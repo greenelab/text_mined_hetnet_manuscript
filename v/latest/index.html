@@ -4,11 +4,10 @@
   <meta charset="utf-8" />
   <meta name="generator" content="pandoc" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
-  <meta name="author" content="John Doe" />
-  <meta name="author" content="Jane Roe" />
-  <meta name="dcterms.date" content="2019-06-12" />
-  <meta name="keywords" content="markdown, publishing, manubot" />
-  <title>Manuscript Title</title>
+  <meta name="author" content="David N. Nicholson" />
+  <meta name="dcterms.date" content="2019-06-25" />
+  <meta name="keywords" content="machine learning, weak supervision, natural language processing, heterogenous netowrks" />
+  <title>Mining Heterogenous Relationships from Pubmed Abstracts Using Weak Supervision</title>
   <style>
       code{white-space: pre-wrap;}
       span.smallcaps{font-variant: small-caps;}
@@ -21,15 +20,47 @@
 </head>
 <body>
 <header id="title-block-header">
-<h1 class="title">Manuscript Title</h1>
+<h1 class="title">Mining Heterogenous Relationships from Pubmed Abstracts Using Weak Supervision</h1>
 </header>
-<p><small><em> This manuscript (<a href="https://greenelab.github.io/text_mined_hetnet_manuscript/v/dad87236dfae7d4a2bfff8503a50f8fe0f88ca07/">permalink</a>) was automatically generated from <a href="https://github.com/greenelab/text_mined_hetnet_manuscript/tree/dad87236dfae7d4a2bfff8503a50f8fe0f88ca07">greenelab/text_mined_hetnet_manuscript@dad8723</a> on June 12, 2019. </em></small></p>
+<p><small><em> This manuscript (<a href="https://greenelab.github.io/text_mined_hetnet_manuscript/v/daac04685c004a220521d1e948777cabfef6e7ea/">permalink</a>) was automatically generated from <a href="https://github.com/greenelab/text_mined_hetnet_manuscript/tree/daac04685c004a220521d1e948777cabfef6e7ea">greenelab/text_mined_hetnet_manuscript@daac046</a> on June 25, 2019. </em></small></p>
 <h2 id="authors">Authors</h2>
 <ul>
-<li><p><strong>John Doe</strong><br> <img src="images/orcid.svg" alt="ORCID icon" class="inline_icon" /> <a href="https://orcid.org/XXXX-XXXX-XXXX-XXXX">XXXX-XXXX-XXXX-XXXX</a> · <img src="images/github.svg" alt="GitHub icon" class="inline_icon" /> <a href="https://github.com/johndoe">johndoe</a> · <img src="images/twitter.svg" alt="Twitter icon" class="inline_icon" /> <a href="https://twitter.com/johndoe">johndoe</a><br> <small> Department of Something, University of Whatever · Funded by Grant XXXXXXXX </small></p></li>
-<li><p><strong>Jane Roe</strong><br> <img src="images/orcid.svg" alt="ORCID icon" class="inline_icon" /> <a href="https://orcid.org/XXXX-XXXX-XXXX-XXXX">XXXX-XXXX-XXXX-XXXX</a> · <img src="images/github.svg" alt="GitHub icon" class="inline_icon" /> <a href="https://github.com/janeroe">janeroe</a><br> <small> Department of Something, University of Whatever; Department of Whatever, University of Something </small></p></li>
+<li><strong>David N. Nicholson</strong><br> <img src="images/orcid.svg" alt="ORCID icon" class="inline_icon" /> <a href="https://orcid.org/0000-0003-0002-5761">0000-0003-0002-5761</a> · <img src="images/github.svg" alt="GitHub icon" class="inline_icon" /> <a href="https://github.com/danich1">danich1</a> · <img src="images/twitter.svg" alt="Twitter icon" class="inline_icon" /> <a href="https://twitter.com/N/A">N/A</a><br> <small> Department of Systems Pharmacology and Translational Therapeutics, University of Pennsylvania · Funded by GBMF 4552 </small></li>
 </ul>
 <h2 id="abstract" class="page_break_before">Abstract</h2>
+<p>This is a <strong>rough draft</strong> of a manscript on label function reuse for text mining heterogenous relationship from Pubmed Abstracts.</p>
+<p>#Introduction Set introduction for paper here Talk about problem, goal, and significance of paper</p>
+<h2 id="recent-work">Recent Work</h2>
+<p>Talk about what has been done in the field in regards to text mining and knowledge base integration</p>
+<p>#Materials and Methods</p>
+<p>##Dataset Talk about dataset - Pubtator Talk about preprocessing Pubtator Talk about hand annotations for each realtion</p>
+<h2 id="label-functions">Label Functions</h2>
+<p>describe what a label function is and how many we created for each relation</p>
+<h2 id="training-models">Training Models</h2>
+<h3 id="generative-model">Generative Model</h3>
+<p>talk about generative model and how it works ### Word Embeddings mention facebooks fasttext model and how we used it to train word vectors ### Discriminator Model talk about the discriminator model and how it works ### Discriminator Model Calibration talk about calibrating deep learning models with temperature smoothing</p>
+<h2 id="experimental-design">Experimental Design</h2>
+<p>talk about sampling experiment</p>
+<h1 id="results">Results</h1>
+<h2 id="random-sampling-of-generative-model">Random Sampling of Generative Model</h2>
+<p>place the grid aurocs here for generative model</p>
+<h2 id="discriminator-model-builds-off-generative-model">Discriminator Model Builds Off Generative Model</h2>
+<p>place the grid of aurocs here for discriminator model</p>
+<h2 id="random-noise-generative-model">Random Noise Generative Model</h2>
+<p>place the results of random label function experiment</p>
+<h2 id="reconstructing-hetionet">Reconstructing Hetionet</h2>
+<p>place figure of number of new edges that can be added to hetionet as well as edges we can reconstruct using this method</p>
+<h1 id="discussion">Discussion</h1>
+<p>Here mention why performnace increases in the beginning for the generative model then decreases</p>
+<p>Discuss discriminator model performance given generative model</p>
+<p>Mention Take home messages</p>
+<ol type="1">
+<li>have a centralized set of negative label functions and focus more on contstructing positive label functions</li>
+</ol>
+<h1 id="conclusion-and-future-direction">Conclusion and Future Direction</h1>
+<p>Recap the original problem - takes a long time to create useful label function</p>
+<p>Proposed solution - reuse label functions</p>
+<p>Mention incorporating more relationships Mention creating a centralized multitask text extractor using this method.</p>
 <h2 id="references" class="page_break_before">References</h2>
 <!-- Explicitly insert bibliography here -->
 <div id="refs" role="doc-bibliography">
