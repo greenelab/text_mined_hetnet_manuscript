@@ -1,14 +1,14 @@
 ---
 author-meta:
-- John Doe
-- Jane Roe
-date-meta: '2019-06-12'
+- David N. Nicholson
+date-meta: '2019-06-25'
 keywords:
-- markdown
-- publishing
-- manubot
+- machine learning
+- weak supervision
+- natural language processing
+- heterogenous netowrks
 lang: en-US
-title: Manuscript Title
+title: Mining Heterogenous Relationships from Pubmed Abstracts Using Weak Supervision
 ...
 
 
@@ -18,42 +18,99 @@ title: Manuscript Title
 
 <small><em>
 This manuscript
-([permalink](https://greenelab.github.io/text_mined_hetnet_manuscript/v/dad87236dfae7d4a2bfff8503a50f8fe0f88ca07/))
+([permalink](https://greenelab.github.io/text_mined_hetnet_manuscript/v/daac04685c004a220521d1e948777cabfef6e7ea/))
 was automatically generated
-from [greenelab/text_mined_hetnet_manuscript@dad8723](https://github.com/greenelab/text_mined_hetnet_manuscript/tree/dad87236dfae7d4a2bfff8503a50f8fe0f88ca07)
-on June 12, 2019.
+from [greenelab/text_mined_hetnet_manuscript@daac046](https://github.com/greenelab/text_mined_hetnet_manuscript/tree/daac04685c004a220521d1e948777cabfef6e7ea)
+on June 25, 2019.
 </em></small>
 
 ## Authors
 
 
 
-+ **John Doe**<br>
++ **David N. Nicholson**<br>
     ![ORCID icon](images/orcid.svg){.inline_icon}
-    [XXXX-XXXX-XXXX-XXXX](https://orcid.org/XXXX-XXXX-XXXX-XXXX)
+    [0000-0003-0002-5761](https://orcid.org/0000-0003-0002-5761)
     · ![GitHub icon](images/github.svg){.inline_icon}
-    [johndoe](https://github.com/johndoe)
+    [danich1](https://github.com/danich1)
     · ![Twitter icon](images/twitter.svg){.inline_icon}
-    [johndoe](https://twitter.com/johndoe)<br>
+    [N/A](https://twitter.com/N/A)<br>
   <small>
-     Department of Something, University of Whatever
-     · Funded by Grant XXXXXXXX
-  </small>
-
-+ **Jane Roe**<br>
-    ![ORCID icon](images/orcid.svg){.inline_icon}
-    [XXXX-XXXX-XXXX-XXXX](https://orcid.org/XXXX-XXXX-XXXX-XXXX)
-    · ![GitHub icon](images/github.svg){.inline_icon}
-    [janeroe](https://github.com/janeroe)<br>
-  <small>
-     Department of Something, University of Whatever; Department of Whatever, University of Something
+     Department of Systems Pharmacology and Translational Therapeutics, University of Pennsylvania
+     · Funded by GBMF 4552
   </small>
 
 
 
 ## Abstract {.page_break_before}
 
+This is a **rough draft** of a manscript on label function reuse for text mining heterogenous relationship from Pubmed Abstracts.
 
+
+#Introduction
+Set introduction for paper here
+Talk about problem, goal, and significance of paper
+
+## Recent Work
+Talk about what has been done in the field in regards to text mining and knowledge base integration
+
+
+#Materials and Methods
+
+##Dataset
+Talk about dataset - Pubtator
+Talk about preprocessing Pubtator
+Talk about hand annotations for each realtion
+
+## Label Functions
+describe what a label function is and how many we created for each relation
+
+## Training Models
+### Generative Model
+talk about generative model and how it works
+### Word Embeddings
+mention facebooks fasttext model and how we used it to train word vectors
+### Discriminator Model
+talk about the discriminator model and how it works
+### Discriminator Model Calibration
+talk about calibrating deep learning models with temperature smoothing
+
+## Experimental Design
+talk about sampling experiment
+
+
+# Results
+
+## Random Sampling of Generative Model
+place the grid aurocs here for generative model
+
+## Discriminator Model Builds Off Generative Model
+place the grid of aurocs here for discriminator model
+
+## Random Noise Generative Model
+place the results of random label function experiment
+
+## Reconstructing Hetionet
+place figure of number of new edges that can be added to hetionet as well as edges we can reconstruct using this method
+
+
+# Discussion
+Here mention why performnace increases in the beginning for the generative model then decreases
+
+Discuss discriminator model performance given generative model
+
+Mention Take home messages
+
+1. have a centralized set of negative label functions and focus more on contstructing positive label functions
+
+
+# Conclusion and Future Direction
+Recap the original problem - takes a long time to create useful label function
+
+Proposed solution - reuse label functions
+
+Mention incorporating more relationships
+Mention creating a centralized multitask text extractor using this method.
 
 
 ## References {.page_break_before}
