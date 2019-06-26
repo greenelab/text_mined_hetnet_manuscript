@@ -1,7 +1,8 @@
 ---
 author-meta:
 - David N. Nicholson
-date-meta: '2019-06-25'
+- Casey S. Greene
+date-meta: '2019-06-26'
 keywords:
 - machine learning
 - weak supervision
@@ -18,10 +19,10 @@ title: Mining Heterogenous Relationships from Pubmed Abstracts Using Weak Superv
 
 <small><em>
 This manuscript
-([permalink](https://greenelab.github.io/text_mined_hetnet_manuscript/v/daac04685c004a220521d1e948777cabfef6e7ea/))
+([permalink](https://greenelab.github.io/text_mined_hetnet_manuscript/v/9483e7dcaa583ec00708a2a95b49fa3bfadd3ffa/))
 was automatically generated
-from [greenelab/text_mined_hetnet_manuscript@daac046](https://github.com/greenelab/text_mined_hetnet_manuscript/tree/daac04685c004a220521d1e948777cabfef6e7ea)
-on June 25, 2019.
+from [greenelab/text_mined_hetnet_manuscript@9483e7d](https://github.com/greenelab/text_mined_hetnet_manuscript/tree/9483e7dcaa583ec00708a2a95b49fa3bfadd3ffa)
+on June 26, 2019.
 </em></small>
 
 ## Authors
@@ -32,12 +33,22 @@ on June 25, 2019.
     ![ORCID icon](images/orcid.svg){.inline_icon}
     [0000-0003-0002-5761](https://orcid.org/0000-0003-0002-5761)
     · ![GitHub icon](images/github.svg){.inline_icon}
-    [danich1](https://github.com/danich1)
-    · ![Twitter icon](images/twitter.svg){.inline_icon}
-    [N/A](https://twitter.com/N/A)<br>
+    [danich1](https://github.com/danich1)<br>
   <small>
      Department of Systems Pharmacology and Translational Therapeutics, University of Pennsylvania
      · Funded by GBMF 4552
+  </small>
+
++ **Casey S. Greene**<br>
+    ![ORCID icon](images/orcid.svg){.inline_icon}
+    [0000-0001-8713-9213](https://orcid.org/0000-0001-8713-9213)
+    · ![GitHub icon](images/github.svg){.inline_icon}
+    [cgreene](https://github.com/cgreene)
+    · ![Twitter icon](images/twitter.svg){.inline_icon}
+    [GreeneScientist](https://twitter.com/GreeneScientist)<br>
+  <small>
+     Department of Systems Pharmacology and Translational Therapeutics, University of Pennsylvania
+     · Funded by GBMF 4552 and R01 HG010067
   </small>
 
 

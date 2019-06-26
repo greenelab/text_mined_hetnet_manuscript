@@ -1,17 +1,32 @@
 {
-  "date": "June 25, 2019",
+  "date": "June 26, 2019",
   "authors": [
     {
       "github": "danich1",
       "name": "David N. Nicholson",
       "initials": "DNN",
       "orcid": "0000-0003-0002-5761",
-      "twitter": "N/A",
+      "twitter": null,
       "email": "dnicholson329@gmail.com",
       "affiliations": [
         "Department of Systems Pharmacology and Translational Therapeutics, University of Pennsylvania"
       ],
       "funders": "GBMF 4552",
+      "affiliation_numbers": [
+        1
+      ]
+    },
+    {
+      "github": "cgreene",
+      "name": "Casey S. Greene",
+      "initials": "CSG",
+      "orcid": "0000-0001-8713-9213",
+      "twitter": "GreeneScientist",
+      "email": "greenescientist@gmail.com",
+      "affiliations": [
+        "Department of Systems Pharmacology and Translational Therapeutics, University of Pennsylvania"
+      ],
+      "funders": "GBMF 4552 and R01 HG010067",
       "affiliation_numbers": [
         1
       ]
@@ -27,7 +42,7 @@
     "repo_slug": "greenelab/text_mined_hetnet_manuscript",
     "repo_owner": "greenelab",
     "repo_name": "text_mined_hetnet_manuscript",
-    "commit": "daac04685c004a220521d1e948777cabfef6e7ea"
+    "commit": "9483e7dcaa583ec00708a2a95b49fa3bfadd3ffa"
   },
   "manuscript_stats": {
     "reference_counts": {
