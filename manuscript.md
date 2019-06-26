@@ -1,6 +1,7 @@
 ---
 author-meta:
 - David N. Nicholson
+- Daniel S. Himmelstein
 - Casey S. Greene
 date-meta: '2019-06-26'
 keywords:
@@ -19,9 +20,9 @@ title: Mining Heterogenous Relationships from Pubmed Abstracts Using Weak Superv
 
 <small><em>
 This manuscript
-([permalink](https://greenelab.github.io/text_mined_hetnet_manuscript/v/9483e7dcaa583ec00708a2a95b49fa3bfadd3ffa/))
+([permalink](https://greenelab.github.io/text_mined_hetnet_manuscript/v/d3fa3f115b0ed98fb4ce89b86c0c51f1688f4581/))
 was automatically generated
-from [greenelab/text_mined_hetnet_manuscript@9483e7d](https://github.com/greenelab/text_mined_hetnet_manuscript/tree/9483e7dcaa583ec00708a2a95b49fa3bfadd3ffa)
+from [greenelab/text_mined_hetnet_manuscript@d3fa3f1](https://github.com/greenelab/text_mined_hetnet_manuscript/tree/d3fa3f115b0ed98fb4ce89b86c0c51f1688f4581)
 on June 26, 2019.
 </em></small>
 
@@ -36,7 +37,19 @@ on June 26, 2019.
     [danich1](https://github.com/danich1)<br>
   <small>
      Department of Systems Pharmacology and Translational Therapeutics, University of Pennsylvania
-     · Funded by GBMF 4552
+     · Funded by GBMF4552
+  </small>
+
++ **Daniel S. Himmelstein**<br>
+    ![ORCID icon](images/orcid.svg){.inline_icon}
+    [0000-0002-3012-7446](https://orcid.org/0000-0002-3012-7446)
+    · ![GitHub icon](images/github.svg){.inline_icon}
+    [dhimmel](https://github.com/dhimmel)
+    · ![Twitter icon](images/twitter.svg){.inline_icon}
+    [dhimmel](https://twitter.com/dhimmel)<br>
+  <small>
+     Department of Systems Pharmacology and Translational Therapeutics, University of Pennsylvania
+     · Funded by GBMF4552
   </small>
 
 + **Casey S. Greene**<br>
@@ -48,7 +61,7 @@ on June 26, 2019.
     [GreeneScientist](https://twitter.com/GreeneScientist)<br>
   <small>
      Department of Systems Pharmacology and Translational Therapeutics, University of Pennsylvania
-     · Funded by GBMF 4552 and R01 HG010067
+     · Funded by GBMF4552 and R01 HG010067
   </small>
 
 

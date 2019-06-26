@@ -11,7 +11,22 @@
       "affiliations": [
         "Department of Systems Pharmacology and Translational Therapeutics, University of Pennsylvania"
       ],
-      "funders": "GBMF 4552",
+      "funders": "GBMF4552",
+      "affiliation_numbers": [
+        1
+      ]
+    },
+    {
+      "github": "dhimmel",
+      "name": "Daniel S. Himmelstein",
+      "initials": "DSH",
+      "orcid": "0000-0002-3012-7446",
+      "twitter": "dhimmel",
+      "email": "daniel.himmelstein@gmail.com",
+      "affiliations": [
+        "Department of Systems Pharmacology and Translational Therapeutics, University of Pennsylvania"
+      ],
+      "funders": "GBMF4552",
       "affiliation_numbers": [
         1
       ]
@@ -26,7 +41,7 @@
       "affiliations": [
         "Department of Systems Pharmacology and Translational Therapeutics, University of Pennsylvania"
       ],
-      "funders": "GBMF 4552 and R01 HG010067",
+      "funders": "GBMF4552 and R01 HG010067",
       "affiliation_numbers": [
         1
       ]
@@ -42,7 +57,7 @@
     "repo_slug": "greenelab/text_mined_hetnet_manuscript",
     "repo_owner": "greenelab",
     "repo_name": "text_mined_hetnet_manuscript",
-    "commit": "9483e7dcaa583ec00708a2a95b49fa3bfadd3ffa"
+    "commit": "d3fa3f115b0ed98fb4ce89b86c0c51f1688f4581"
   },
   "manuscript_stats": {
     "reference_counts": {
