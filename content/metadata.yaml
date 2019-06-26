@@ -16,7 +16,17 @@ author_info:
     email: dnicholson329@gmail.com
     affiliations:
       - Department of Systems Pharmacology and Translational Therapeutics, University of Pennsylvania
-    funders: GBMF 4552
+    funders: GBMF4552
+  -
+    github: dhimmel
+    name: Daniel S. Himmelstein
+    initials: DSH
+    orcid: 0000-0002-3012-7446
+    twitter: dhimmel
+    email: daniel.himmelstein@gmail.com
+    affiliations:
+      - Department of Systems Pharmacology and Translational Therapeutics, University of Pennsylvania
+    funders: GBMF4552
   -
     github: cgreene
     name: Casey S. Greene
@@ -26,7 +36,7 @@ author_info:
     email: greenescientist@gmail.com
     affiliations:
       - Department of Systems Pharmacology and Translational Therapeutics, University of Pennsylvania
-    funders: GBMF 4552 and R01 HG010067
+    funders: GBMF4552 and R01 HG010067
  # -
  #   github: janeroe
  #   name: Jane Roe
