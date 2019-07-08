@@ -20,9 +20,9 @@ title: Mining Heterogenous Relationships from Pubmed Abstracts Using Weak Superv
 
 <small><em>
 This manuscript
-([permalink](https://greenelab.github.io/text_mined_hetnet_manuscript/v/a653d16326c9f3b0f69d1049ac0507bb6a0b6b02/))
+([permalink](https://greenelab.github.io/text_mined_hetnet_manuscript/v/6e0621dd17e77c1259c83ee52c777c6a97170ff0/))
 was automatically generated
-from [greenelab/text_mined_hetnet_manuscript@a653d16](https://github.com/greenelab/text_mined_hetnet_manuscript/tree/a653d16326c9f3b0f69d1049ac0507bb6a0b6b02)
+from [greenelab/text_mined_hetnet_manuscript@6e0621d](https://github.com/greenelab/text_mined_hetnet_manuscript/tree/6e0621dd17e77c1259c83ee52c777c6a97170ff0)
 on July 8, 2019.
 </em></small>
 
@@ -196,7 +196,30 @@ Table: The distribution of each label function per relationship. {#tbl:label-fun
 
 ## Training Models
 ### Generative Model
-talk about generative model and how it works
+The generative model is a core part of this automatic annotation framework.
+It integrates multiple signals emitted by label functions and assigns a training class to each candidate sentence.
+This model assigns training classes by estimating the joint probability distribution of the latent true class ($Y$) and label function signals ($\Lambda$), $P(\Lambda, Y)$.
+Assuming each label function is conditionally independent, the joint distribution is defined as follows:  
+
+$$
+P(\Lambda, Y) = \frac{\exp(\sum_{i=1}^{m} \theta^{T}F_{i}(\Lambda, y))}
+{\sum_{\Lambda'}\sum_{y'} \exp(\sum_{i=1}^{m} \theta^{T}F_{i}(\Lambda', y'))}
+$$  
+
+where $m$ is the number of candidate sentences, $F$ is the vector of summary statistics and $\theta$ is a vector of weights for each summary statistic.
+The summary statistics used by the generative model are as follows:  
+
+$$F^{Lab}_{i,j}(\Lambda, Y) = \unicode{x1D7D9}\{\Lambda_{i,j} \neq 0\}$$
+$$F^{Acc}_{i,j}(\Lambda, Y) = \unicode{x1D7D9}\{\Lambda_{i,j} = y_{i,j}\}$$   
+
+*Lab* is the label function's propensity (the frequency of a label function emitting a signal).
+*Acc* is the individual label function's accuracy given the training class.
+This model optimizes the weights ($\theta$) by minimizing the negative log likelihood:
+
+$$\hat{\theta} = argmin_{\theta} -\sum_{\Lambda} log \sum_{Y}P(\Lambda, Y)$$
+
+In the framework we used predictions from the generative model, $\hat{Y} = P(Y \mid \Lambda)$, as training classes for our dataset [@9Jo1af7Z; @vzoBuh4l].
+
 ### Word Embeddings
 Word embeddings are representations that map individual words to real valued vectors of user-specified dimensions.
 These embeddings have been shown to capture the semantic and syntatic information between words [@u5iJzbp9].
