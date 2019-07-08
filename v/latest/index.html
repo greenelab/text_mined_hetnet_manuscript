@@ -24,7 +24,7 @@
 <header id="title-block-header">
 <h1 class="title">Mining Heterogenous Relationships from Pubmed Abstracts Using Weak Supervision</h1>
 </header>
-<p><small><em> This manuscript (<a href="https://greenelab.github.io/text_mined_hetnet_manuscript/v/a653d16326c9f3b0f69d1049ac0507bb6a0b6b02/">permalink</a>) was automatically generated from <a href="https://github.com/greenelab/text_mined_hetnet_manuscript/tree/a653d16326c9f3b0f69d1049ac0507bb6a0b6b02">greenelab/text_mined_hetnet_manuscript@a653d16</a> on July 8, 2019. </em></small></p>
+<p><small><em> This manuscript (<a href="https://greenelab.github.io/text_mined_hetnet_manuscript/v/6e0621dd17e77c1259c83ee52c777c6a97170ff0/">permalink</a>) was automatically generated from <a href="https://github.com/greenelab/text_mined_hetnet_manuscript/tree/6e0621dd17e77c1259c83ee52c777c6a97170ff0">greenelab/text_mined_hetnet_manuscript@6e0621d</a> on July 8, 2019. </em></small></p>
 <h2 id="authors">Authors</h2>
 <ul>
 <li><p><strong>David N. Nicholson</strong><br> <img src="images/orcid.svg" alt="ORCID icon" class="inline_icon" /> <a href="https://orcid.org/0000-0003-0002-5761">0000-0003-0002-5761</a> · <img src="images/github.svg" alt="GitHub icon" class="inline_icon" /> <a href="https://github.com/danich1">danich1</a><br> <small> Department of Systems Pharmacology and Translational Therapeutics, University of Pennsylvania · Funded by GBMF4552 </small></p></li>
@@ -158,7 +158,18 @@ span.disease_color { color:#875442 }
 </table>
 <h2 id="training-models">Training Models</h2>
 <h3 id="generative-model">Generative Model</h3>
-<p>talk about generative model and how it works ### Word Embeddings Word embeddings are representations that map individual words to real valued vectors of user-specified dimensions. These embeddings have been shown to capture the semantic and syntatic information between words <span class="citation" data-cites="u5iJzbp9">[<a href="#ref-u5iJzbp9" role="doc-biblioref">12</a>]</span>. Using all candidate sentences for each individual relationship pair, we trained facebook’s fastText <span class="citation" data-cites="qUpCDz2v">[<a href="#ref-qUpCDz2v" role="doc-biblioref">13</a>]</span> to generate word embeddings. The fastText model uses a skipgram model <span class="citation" data-cites="1GhHIDxuW">[<a href="#ref-1GhHIDxuW" role="doc-biblioref">14</a>]</span> that aims to predict the context given a candidate word and pairs the model with a novel scoring function that treats each word as a bag of character n-grams. We trained this model for 20 epochs using a window size of 2 and generated 300-dimensional word embeddings. We use the optimized word embeddings to train a discriminative model.</p>
+<p>The generative model is a core part of this automatic annotation framework. It integrates multiple signals emitted by label functions and assigns a training class to each candidate sentence. This model assigns training classes by estimating the joint probability distribution of the latent true class (<span class="math inline">\(Y\)</span>) and label function signals (<span class="math inline">\(\Lambda\)</span>), <span class="math inline">\(P(\Lambda, Y)\)</span>. Assuming each label function is conditionally independent, the joint distribution is defined as follows:</p>
+<p><span class="math display">\[
+P(\Lambda, Y) = \frac{\exp(\sum_{i=1}^{m} \theta^{T}F_{i}(\Lambda, y))}
+{\sum_{\Lambda&#39;}\sum_{y&#39;} \exp(\sum_{i=1}^{m} \theta^{T}F_{i}(\Lambda&#39;, y&#39;))}
+\]</span></p>
+<p>where <span class="math inline">\(m\)</span> is the number of candidate sentences, <span class="math inline">\(F\)</span> is the vector of summary statistics and <span class="math inline">\(\theta\)</span> is a vector of weights for each summary statistic. The summary statistics used by the generative model are as follows:</p>
+<p><span class="math display">\[F^{Lab}_{i,j}(\Lambda, Y) = \unicode{x1D7D9}\{\Lambda_{i,j} \neq 0\}\]</span> <span class="math display">\[F^{Acc}_{i,j}(\Lambda, Y) = \unicode{x1D7D9}\{\Lambda_{i,j} = y_{i,j}\}\]</span></p>
+<p><em>Lab</em> is the label function’s propensity (the frequency of a label function emitting a signal). <em>Acc</em> is the individual label function’s accuracy given the training class. This model optimizes the weights (<span class="math inline">\(\theta\)</span>) by minimizing the negative log likelihood:</p>
+<p><span class="math display">\[\hat{\theta} = argmin_{\theta} -\sum_{\Lambda} log \sum_{Y}P(\Lambda, Y)\]</span></p>
+<p>In the framework we used predictions from the generative model, <span class="math inline">\(\hat{Y} = P(Y \mid \Lambda)\)</span>, as training classes for our dataset <span class="citation" data-cites="9Jo1af7Z vzoBuh4l">[<a href="#ref-9Jo1af7Z" role="doc-biblioref">12</a>,<a href="#ref-vzoBuh4l" role="doc-biblioref">13</a>]</span>.</p>
+<h3 id="word-embeddings">Word Embeddings</h3>
+<p>Word embeddings are representations that map individual words to real valued vectors of user-specified dimensions. These embeddings have been shown to capture the semantic and syntatic information between words <span class="citation" data-cites="u5iJzbp9">[<a href="#ref-u5iJzbp9" role="doc-biblioref">14</a>]</span>. Using all candidate sentences for each individual relationship pair, we trained facebook’s fastText <span class="citation" data-cites="qUpCDz2v">[<a href="#ref-qUpCDz2v" role="doc-biblioref">15</a>]</span> to generate word embeddings. The fastText model uses a skipgram model <span class="citation" data-cites="1GhHIDxuW">[<a href="#ref-1GhHIDxuW" role="doc-biblioref">16</a>]</span> that aims to predict the context given a candidate word and pairs the model with a novel scoring function that treats each word as a bag of character n-grams. We trained this model for 20 epochs using a window size of 2 and generated 300-dimensional word embeddings. We use the optimized word embeddings to train a discriminative model.</p>
 <h3 id="discriminator-model">Discriminator Model</h3>
 <p>talk about the discriminator model and how it works ### Discriminator Model Calibration talk about calibrating deep learning models with temperature smoothing</p>
 <h2 id="experimental-design">Experimental Design</h2>
@@ -251,18 +262,30 @@ Bethany Percha, Russ B Altman<br />
 <em>Bioinformatics</em> (2018-02-27) <a href="https://doi.org/gc3ndk">https://doi.org/gc3ndk</a><br />
 DOI: <a href="https://doi.org/10.1093/bioinformatics/bty114">10.1093/bioinformatics/bty114</a> · PMID: <a href="https://www.ncbi.nlm.nih.gov/pubmed/29490008">29490008</a> · PMCID: <a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC6061699">PMC6061699</a></p>
 </div>
+<div id="ref-9Jo1af7Z">
+<p>12. <strong>Snorkel MeTaL</strong><br />
+Alex Ratner, Braden Hancock, Jared Dunnmon, Roger Goldman, Christopher Ré<br />
+<em>Proceedings of the Second Workshop on Data Management for End-To-End Machine Learning - DEEM’18</em> (2018) <a href="https://doi.org/gf3xk7">https://doi.org/gf3xk7</a><br />
+DOI: <a href="https://doi.org/10.1145/3209889.3209898">10.1145/3209889.3209898</a> · PMID: <a href="https://www.ncbi.nlm.nih.gov/pubmed/30931438">30931438</a> · PMCID: <a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC6436830">PMC6436830</a></p>
+</div>
+<div id="ref-vzoBuh4l">
+<p>13. <strong>Snorkel</strong><br />
+Alexander Ratner, Stephen H. Bach, Henry Ehrenberg, Jason Fries, Sen Wu, Christopher Ré<br />
+<em>Proceedings of the VLDB Endowment</em> (2017-11-01) <a href="https://doi.org/ch44">https://doi.org/ch44</a><br />
+DOI: <a href="https://doi.org/10.14778/3157794.3157797">10.14778/3157794.3157797</a> · PMID: <a href="https://www.ncbi.nlm.nih.gov/pubmed/29770249">29770249</a> · PMCID: <a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5951191">PMC5951191</a></p>
+</div>
 <div id="ref-u5iJzbp9">
-<p>12. <strong>Distributed Representations of Words and Phrases and their Compositionality</strong><br />
+<p>14. <strong>Distributed Representations of Words and Phrases and their Compositionality</strong><br />
 Tomas Mikolov, Ilya Sutskever, Kai Chen, Greg Corrado, Jeffrey Dean<br />
 <em>arXiv</em> (2013-10-16) <a href="https://arxiv.org/abs/1310.4546v1">https://arxiv.org/abs/1310.4546v1</a></p>
 </div>
 <div id="ref-qUpCDz2v">
-<p>13. <strong>Enriching Word Vectors with Subword Information</strong><br />
+<p>15. <strong>Enriching Word Vectors with Subword Information</strong><br />
 Piotr Bojanowski, Edouard Grave, Armand Joulin, Tomas Mikolov<br />
 <em>arXiv</em> (2016-07-15) <a href="https://arxiv.org/abs/1607.04606v2">https://arxiv.org/abs/1607.04606v2</a></p>
 </div>
 <div id="ref-1GhHIDxuW">
-<p>14. <strong>Efficient Estimation of Word Representations in Vector Space</strong><br />
+<p>16. <strong>Efficient Estimation of Word Representations in Vector Space</strong><br />
 Tomas Mikolov, Kai Chen, Greg Corrado, Jeffrey Dean<br />
 <em>arXiv</em> (2013-01-16) <a href="https://arxiv.org/abs/1301.3781v3">https://arxiv.org/abs/1301.3781v3</a></p>
 </div>
