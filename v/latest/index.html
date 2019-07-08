@@ -7,7 +7,7 @@
   <meta name="author" content="David N. Nicholson" />
   <meta name="author" content="Daniel S. Himmelstein" />
   <meta name="author" content="Casey S. Greene" />
-  <meta name="dcterms.date" content="2019-06-26" />
+  <meta name="dcterms.date" content="2019-07-08" />
   <meta name="keywords" content="machine learning, weak supervision, natural language processing, heterogenous netowrks" />
   <title>Mining Heterogenous Relationships from Pubmed Abstracts Using Weak Supervision</title>
   <style>
@@ -24,7 +24,7 @@
 <header id="title-block-header">
 <h1 class="title">Mining Heterogenous Relationships from Pubmed Abstracts Using Weak Supervision</h1>
 </header>
-<p><small><em> This manuscript (<a href="https://greenelab.github.io/text_mined_hetnet_manuscript/v/d3fa3f115b0ed98fb4ce89b86c0c51f1688f4581/">permalink</a>) was automatically generated from <a href="https://github.com/greenelab/text_mined_hetnet_manuscript/tree/d3fa3f115b0ed98fb4ce89b86c0c51f1688f4581">greenelab/text_mined_hetnet_manuscript@d3fa3f1</a> on June 26, 2019. </em></small></p>
+<p><small><em> This manuscript (<a href="https://greenelab.github.io/text_mined_hetnet_manuscript/v/d3e96c7f98c3935272ef2821cd2338a4dd24033e/">permalink</a>) was automatically generated from <a href="https://github.com/greenelab/text_mined_hetnet_manuscript/tree/d3e96c7f98c3935272ef2821cd2338a4dd24033e">greenelab/text_mined_hetnet_manuscript@d3e96c7</a> on July 8, 2019. </em></small></p>
 <h2 id="authors">Authors</h2>
 <ul>
 <li><p><strong>David N. Nicholson</strong><br> <img src="images/orcid.svg" alt="ORCID icon" class="inline_icon" /> <a href="https://orcid.org/0000-0003-0002-5761">0000-0003-0002-5761</a> · <img src="images/github.svg" alt="GitHub icon" class="inline_icon" /> <a href="https://github.com/danich1">danich1</a><br> <small> Department of Systems Pharmacology and Translational Therapeutics, University of Pennsylvania · Funded by GBMF4552 </small></p></li>
@@ -36,8 +36,52 @@
 <p>#Introduction Set introduction for paper here Talk about problem, goal, and significance of paper</p>
 <h2 id="recent-work">Recent Work</h2>
 <p>Talk about what has been done in the field in regards to text mining and knowledge base integration</p>
-<p>#Materials and Methods</p>
-<p>##Dataset Talk about dataset - Pubtator Talk about preprocessing Pubtator Talk about hand annotations for each realtion</p>
+<h1 id="materials-and-methods">Materials and Methods</h1>
+<h2 id="hetionet">Hetionet</h2>
+<p>Hetionet <span class="citation" data-cites="O21tn8vf">[<a href="#ref-O21tn8vf" role="doc-biblioref">1</a>]</span> is a large heterogenous network that contains pharmacological and biological information. This network depicts information in the form of nodes and edges of different types: nodes that represent biological and pharmacological entities and edges which represent relationships between entities. Hetionet v1.0 contains 47,031 nodes with 11 different data types and 2,250,197 edges that represent 24 different relationship types (Figure <a href="#fig:hetionet">1</a>). Edges in Hetionet were obtained from open databases, such as the GWAS Catalog <span class="citation" data-cites="16cIDAXhG">[<a href="#ref-16cIDAXhG" role="doc-biblioref">2</a>]</span> and DrugBank <span class="citation" data-cites="16cIDAXhG">[<a href="#ref-16cIDAXhG" role="doc-biblioref">2</a>]</span>. For this project, we analyzed performance over a subset of the Hetionet relationship types: disease associates with a gene (DaG), compound binds to a gene (CbG), gene interacts with gene (GiG) and compound treating a disease (CtD).</p>
+<figure>
+<img src="images/figures/hetionet/metagraph_highlighted_edges.png" alt="Figure 1: A metagraph (schema) of Hetionet where pharmacological, biological and disease entities are represented as nodes and the relationships between them are represented as edges. This project only focuses on the information shown in bold; however, we can extend this work to incorporate the faded out information as well." id="fig:hetionet" /><figcaption><span>Figure 1:</span> A metagraph (schema) of Hetionet where pharmacological, biological and disease entities are represented as nodes and the relationships between them are represented as edges. This project only focuses on the information shown in bold; however, we can extend this work to incorporate the faded out information as well.</figcaption>
+</figure>
+<h2 id="dataset">Dataset</h2>
+<p>We used PubTator <span class="citation" data-cites="13vw5RIy4">[<a href="#ref-13vw5RIy4" role="doc-biblioref">3</a>]</span> as input to our analysis. PubTator provides MEDLINE abstracts that have been annotated with well-established entity recognition tools including DNorm <span class="citation" data-cites="vtuZ3Wx7">[<a href="#ref-vtuZ3Wx7" role="doc-biblioref">4</a>]</span> for disease mentions, GeneTUKit <span class="citation" data-cites="4S2HMNpa">[<a href="#ref-4S2HMNpa" role="doc-biblioref">5</a>]</span> for gene mentions, Gnorm <span class="citation" data-cites="1AkC7QdyP">[<a href="#ref-1AkC7QdyP" role="doc-biblioref">6</a>]</span> for gene normalizations and a dictionary based look system for compound mentions <span class="citation" data-cites="r501gnuM">[<a href="#ref-r501gnuM" role="doc-biblioref">7</a>]</span>. We downloaded PubTator on June 30, 2017, at which point it contained 10,775,748 abstracts. Then we filtered out mention tags that were not contained in hetionet. We used the Stanford CoreNLP parser <span class="citation" data-cites="RQkLuc5t">[<a href="#ref-RQkLuc5t" role="doc-biblioref">8</a>]</span> to tag parts of speech and generate dependency trees. We extracted sentences with two or more mentions, termed candidate sentences. Each candidates sentence was stratified by co-mention pair to produce a training set, tuning set and a testing set (shown in Table <a href="#tbl:candidate-sentences">1</a>). Each unique co-mention pair is sorted into four categories: (1) in hetionet and has sentences, (2) in hetionet and doesn’t have sentences, (3) not in hetionet and does have sentences and (4) not in hetionet and doesn’t have sentences. Within these four categories each pair receives their own individual partition rank (continuous number between 0 and 1). Any rank lower than 0.7 is sorted into training set, while any rank greater than 0.7 and lower than 0.9 is assigned to tuning set. The rest of the pairs with a rank greater than or equal to 0.9 is assigned to the test set. Sentences that contain more than one co-mention pair are treated as multiple individual candidates. We hand labeled five hundred to a thousand candidate sentences of each relationship to obtain to obtain a ground truth set (Table <a href="#tbl:candidate-sentences">1</a>, <a href="http://github.com/text_minded_hetnet_manuscript/master/supplementary_materials/annotated_sentences">dataset</a>.</p>
+<a name="tbl:candidate-sentences"></a>
+<table>
+<caption><span>Table 1:</span> Statistics of Candidate Sentences. We sorted each candidate sentence into a training, tuning and testing set. Numbers in parentheses show the number of positives and negatives that resulted from the hand-labeling process. </caption>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Relationship</th>
+<th style="text-align: center;">Train</th>
+<th style="text-align: center;">Tune</th>
+<th style="text-align: center;">Test</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Disease Associates Gene</td>
+<td style="text-align: center;">2.35 M</td>
+<td style="text-align: center;">31K (397+, 603-)</td>
+<td style="text-align: center;">313K (351+, 649-)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Compound Binds Gene</td>
+<td style="text-align: center;">1.7M</td>
+<td style="text-align: center;">468K (37+, 463-)</td>
+<td style="text-align: center;">227k (31+, 469-)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Compound Treats Disease</td>
+<td style="text-align: center;">1.013M</td>
+<td style="text-align: center;">96K (96+, 404-)</td>
+<td style="text-align: center;">32K (112+, 388-)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Gene Interacts Gene</td>
+<td style="text-align: center;">12.6M</td>
+<td style="text-align: center;">1.056M (60+, 440-)</td>
+<td style="text-align: center;">257K (76+, 424-)</td>
+</tr>
+</tbody>
+</table>
 <h2 id="label-functions">Label Functions</h2>
 <p>describe what a label function is and how many we created for each relation</p>
 <h2 id="training-models">Training Models</h2>
@@ -68,7 +112,54 @@
 <h2 id="references" class="page_break_before">References</h2>
 <!-- Explicitly insert bibliography here -->
 <div id="refs" role="doc-bibliography">
-
+<div id="ref-O21tn8vf">
+<p>1. <strong>Systematic integration of biomedical knowledge prioritizes drugs for repurposing</strong><br />
+Daniel Scott Himmelstein, Antoine Lizee, Christine Hessler, Leo Brueggeman, Sabrina L Chen, Dexter Hadley, Ari Green, Pouya Khankhanian, Sergio E Baranzini<br />
+<em>eLife</em> (2017-09-22) <a href="https://doi.org/cdfk">https://doi.org/cdfk</a><br />
+DOI: <a href="https://doi.org/10.7554/elife.26726">10.7554/elife.26726</a> · PMID: <a href="https://www.ncbi.nlm.nih.gov/pubmed/28936969">28936969</a> · PMCID: <a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5640425">PMC5640425</a></p>
+</div>
+<div id="ref-16cIDAXhG">
+<p>2. <strong>The new NHGRI-EBI Catalog of published genome-wide association studies (GWAS Catalog)</strong><br />
+Jacqueline MacArthur, Emily Bowler, Maria Cerezo, Laurent Gil, Peggy Hall, Emma Hastings, Heather Junkins, Aoife McMahon, Annalisa Milano, Joannella Morales, … Helen Parkinson<br />
+<em>Nucleic Acids Research</em> (2016-11-29) <a href="https://doi.org/f9v7cp">https://doi.org/f9v7cp</a><br />
+DOI: <a href="https://doi.org/10.1093/nar/gkw1133">10.1093/nar/gkw1133</a> · PMID: <a href="https://www.ncbi.nlm.nih.gov/pubmed/27899670">27899670</a> · PMCID: <a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5210590">PMC5210590</a></p>
+</div>
+<div id="ref-13vw5RIy4">
+<p>3. <strong>PubTator: a web-based text mining tool for assisting biocuration</strong><br />
+Chih-Hsuan Wei, Hung-Yu Kao, Zhiyong Lu<br />
+<em>Nucleic Acids Research</em> (2013-05-22) <a href="https://doi.org/f475th">https://doi.org/f475th</a><br />
+DOI: <a href="https://doi.org/10.1093/nar/gkt441">10.1093/nar/gkt441</a> · PMID: <a href="https://www.ncbi.nlm.nih.gov/pubmed/23703206">23703206</a> · PMCID: <a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3692066">PMC3692066</a></p>
+</div>
+<div id="ref-vtuZ3Wx7">
+<p>4. <strong>DNorm: disease name normalization with pairwise learning to rank</strong><br />
+R. Leaman, R. Islamaj Dogan, Z. Lu<br />
+<em>Bioinformatics</em> (2013-08-21) <a href="https://doi.org/f5gj9n">https://doi.org/f5gj9n</a><br />
+DOI: <a href="https://doi.org/10.1093/bioinformatics/btt474">10.1093/bioinformatics/btt474</a> · PMID: <a href="https://www.ncbi.nlm.nih.gov/pubmed/23969135">23969135</a> · PMCID: <a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3810844">PMC3810844</a></p>
+</div>
+<div id="ref-4S2HMNpa">
+<p>5. <strong>GeneTUKit: a software for document-level gene normalization</strong><br />
+M. Huang, J. Liu, X. Zhu<br />
+<em>Bioinformatics</em> (2011-02-08) <a href="https://doi.org/dng2cb">https://doi.org/dng2cb</a><br />
+DOI: <a href="https://doi.org/10.1093/bioinformatics/btr042">10.1093/bioinformatics/btr042</a> · PMID: <a href="https://www.ncbi.nlm.nih.gov/pubmed/21303863">21303863</a> · PMCID: <a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3065680">PMC3065680</a></p>
+</div>
+<div id="ref-1AkC7QdyP">
+<p>6. <strong>Cross-species gene normalization by species inference</strong><br />
+Chih-Hsuan Wei, Hung-Yu Kao<br />
+<em>BMC Bioinformatics</em> (2011-10-03) <a href="https://doi.org/dnmvds">https://doi.org/dnmvds</a><br />
+DOI: <a href="https://doi.org/10.1186/1471-2105-12-s8-s5">10.1186/1471-2105-12-s8-s5</a> · PMID: <a href="https://www.ncbi.nlm.nih.gov/pubmed/22151999">22151999</a> · PMCID: <a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3269940">PMC3269940</a></p>
+</div>
+<div id="ref-r501gnuM">
+<p>7. <strong>Collaborative biocuration–text-mining development task for document prioritization for curation</strong><br />
+T. C. Wiegers, A. P. Davis, C. J. Mattingly<br />
+<em>Database</em> (2012-11-22) <a href="https://doi.org/gbb3zw">https://doi.org/gbb3zw</a><br />
+DOI: <a href="https://doi.org/10.1093/database/bas037">10.1093/database/bas037</a> · PMID: <a href="https://www.ncbi.nlm.nih.gov/pubmed/23180769">23180769</a> · PMCID: <a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3504477">PMC3504477</a></p>
+</div>
+<div id="ref-RQkLuc5t">
+<p>8. <strong>The Stanford CoreNLP Natural Language Processing Toolkit</strong><br />
+Christopher Manning, Mihai Surdeanu, John Bauer, Jenny Finkel, Steven Bethard, David McClosky<br />
+<em>Proceedings of 52nd Annual Meeting of the Association for Computational Linguistics: System Demonstrations</em> (2014) <a href="https://doi.org/gf3xhp">https://doi.org/gf3xhp</a><br />
+DOI: <a href="https://doi.org/10.3115/v1/p14-5010">10.3115/v1/p14-5010</a></p>
+</div>
 </div>
 <!-- default theme -->
 
