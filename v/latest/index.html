@@ -24,7 +24,7 @@
 <header id="title-block-header">
 <h1 class="title">Mining Heterogenous Relationships from Pubmed Abstracts Using Weak Supervision</h1>
 </header>
-<p><small><em> This manuscript (<a href="https://greenelab.github.io/text_mined_hetnet_manuscript/v/d3e96c7f98c3935272ef2821cd2338a4dd24033e/">permalink</a>) was automatically generated from <a href="https://github.com/greenelab/text_mined_hetnet_manuscript/tree/d3e96c7f98c3935272ef2821cd2338a4dd24033e">greenelab/text_mined_hetnet_manuscript@d3e96c7</a> on July 8, 2019. </em></small></p>
+<p><small><em> This manuscript (<a href="https://greenelab.github.io/text_mined_hetnet_manuscript/v/5ae21d8ab62aeac5995692dc0838e9785b105f1f/">permalink</a>) was automatically generated from <a href="https://github.com/greenelab/text_mined_hetnet_manuscript/tree/5ae21d8ab62aeac5995692dc0838e9785b105f1f">greenelab/text_mined_hetnet_manuscript@5ae21d8</a> on July 8, 2019. </em></small></p>
 <h2 id="authors">Authors</h2>
 <ul>
 <li><p><strong>David N. Nicholson</strong><br> <img src="images/orcid.svg" alt="ORCID icon" class="inline_icon" /> <a href="https://orcid.org/0000-0003-0002-5761">0000-0003-0002-5761</a> · <img src="images/github.svg" alt="GitHub icon" class="inline_icon" /> <a href="https://github.com/danich1">danich1</a><br> <small> Department of Systems Pharmacology and Translational Therapeutics, University of Pennsylvania · Funded by GBMF4552 </small></p></li>
@@ -36,6 +36,10 @@
 <p>#Introduction Set introduction for paper here Talk about problem, goal, and significance of paper</p>
 <h2 id="recent-work">Recent Work</h2>
 <p>Talk about what has been done in the field in regards to text mining and knowledge base integration</p>
+<style> 
+span.gene_color { color:#02b3e4 } 
+span.disease_color { color:#875442 }
+</style>
 <h1 id="materials-and-methods">Materials and Methods</h1>
 <h2 id="hetionet">Hetionet</h2>
 <p>Hetionet <span class="citation" data-cites="O21tn8vf">[<a href="#ref-O21tn8vf" role="doc-biblioref">1</a>]</span> is a large heterogenous network that contains pharmacological and biological information. This network depicts information in the form of nodes and edges of different types: nodes that represent biological and pharmacological entities and edges which represent relationships between entities. Hetionet v1.0 contains 47,031 nodes with 11 different data types and 2,250,197 edges that represent 24 different relationship types (Figure <a href="#fig:hetionet">1</a>). Edges in Hetionet were obtained from open databases, such as the GWAS Catalog <span class="citation" data-cites="16cIDAXhG">[<a href="#ref-16cIDAXhG" role="doc-biblioref">2</a>]</span> and DrugBank <span class="citation" data-cites="16cIDAXhG">[<a href="#ref-16cIDAXhG" role="doc-biblioref">2</a>]</span>. For this project, we analyzed performance over a subset of the Hetionet relationship types: disease associates with a gene (DaG), compound binds to a gene (CbG), gene interacts with gene (GiG) and compound treating a disease (CtD).</p>
@@ -82,8 +86,76 @@
 </tr>
 </tbody>
 </table>
-<h2 id="label-functions">Label Functions</h2>
-<p>describe what a label function is and how many we created for each relation</p>
+<h2 id="label-functions-for-annotating-sentences">Label Functions for Annotating Sentences</h2>
+<p>A common challenge in natural language processing is having too few ground truth annotations, even when textual data are abundant. Data programming circumvents this issue by quickly annotating large datasets by using multiple noisy signals emitted by label functions <span class="citation" data-cites="5Il3kN32">[<a href="#ref-5Il3kN32" role="doc-biblioref">9</a>]</span>. Label functions are simple pythonic functions that emit: a positive label (1), a negative label (-1) or abstain from emitting a label (0). We combine these functions using a generative model to output a single annotation, which is a consensus probability score bounded between 0 (low chance of mentioning a relationship) and 1 (high chance of mentioning a relationship). We used these annotations to train a discriminator model that makes the final classification step. Our label functions fall into three categories: databases, text patterns and domain heuristics. We provide examples for the categories, described below, using the following candidate sentence: “<span class="gene_color">PTK6</span> may be a novel therapeutic target for <span class="disease_color">pancreatic cancer</span>.”</p>
+<p><strong>Databases</strong>: These label functions incorporate existing databases to generate a signal, as seen in distant supervision <span class="citation" data-cites="EHeTvZht">[<a href="#ref-EHeTvZht" role="doc-biblioref">10</a>]</span>. These functions detect if a candidate sentence’s co-mention pair is present in a given database. If the pair is present, emit a positive label and abstain otherwise. If the pair isn’t present in any existing database, then a separate label function will emit a negative label. We use a separate label function to prevent the label imbalance problem. This problem occurs when candidates, that scarcely appear in databases, are drowned out by negative labels. The multitude of negative labels increases the likelihood of misclassification when training the generative model.</p>
+<p><span class="math display">\[ \Lambda_{DB}(\color{#875442}{D}, \color{#02b3e4}{G}) = 
+\begin{cases}
+ 1 &amp; (\color{#875442}{D}, \color{#02b3e4}{G}) \in DB \\
+0 &amp; otherwise \\
+\end{cases} \]</span></p>
+<p><span class="math display">\[ \Lambda_{\neg DB}(\color{#875442}{D}, \color{#02b3e4}{G}) = 
+\begin{cases}
+ -1 &amp; (\color{#875442}{D}, \color{#02b3e4}{G}) \notin DB \\
+0 &amp; otherwise \\
+\end{cases} \]</span></p>
+<p><strong>Text Patterns</strong>: These label functions are designed to use keywords and sentence context to generate a signal. For example, a label function could focus on the number of words between two mentions or focus on the grammatical structure of a sentence. These functions emit a positive or negative label depending on the situation. In general, those focused on keywords emit positives and those focused on negation emit negatives.</p>
+<p><span class="math display">\[ \Lambda_{TP}(\color{#875442}{D}, \color{#02b3e4}{G}) = 
+\begin{cases}
+ 1 &amp; &quot;target&quot; \&gt; \in Candidate \&gt; Sentence \\
+ 0 &amp; otherwise \\
+\end{cases} \]</span></p>
+<p><span class="math display">\[ \Lambda_{TP}(\color{#875442}{D}, \color{#02b3e4}{G}) = 
+\begin{cases}
+ -1 &amp;   &quot;VB&quot; \&gt; \notin pos\_tags(Candidate \&gt; Sentence) \\
+ 0 &amp; otherwise \\
+\end{cases} \]</span></p>
+<p><strong>Domain Heuristics</strong>: These label functions use the other experiment results to generate a signal. For this category, we used dependency path cluster themes generated by Percha et al <span class="citation" data-cites="CSiMoOrI">[<a href="#ref-CSiMoOrI" role="doc-biblioref">11</a>]</span>. If a candidate sentence’s dependency path belongs to a previously generated cluster, then the label function will emit a positive label and abstain otherwise.</p>
+<p><span class="math display">\[
+\Lambda_{DH}(\color{#875442}{D}, \color{#02b3e4}{G}) = \begin{cases}
+    1 &amp; Candidate \&gt; Sentence \in Cluster \&gt; Theme\\
+    0 &amp; otherwise \\
+    \end{cases}
+\]</span></p>
+<p>Roughly half of our label functions are based on text patterns, while the others are distributed across the databases and domain heuristics (Table <a href="#tbl:label-functions">2</a>).</p>
+<a name="tbl:label-functions"></a>
+<table>
+<caption><span>Table 2:</span> The distribution of each label function per relationship. </caption>
+<thead>
+<tr class="header">
+<th>Relationship</th>
+<th style="text-align: center;">Databases (DB)</th>
+<th style="text-align: center;">Text Patterns (TP)</th>
+<th style="text-align: center;">Domain Heuristics (DH)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Disease associates Gene (DaG)</td>
+<td style="text-align: center;">7</td>
+<td style="text-align: center;">20</td>
+<td style="text-align: center;">10</td>
+</tr>
+<tr class="even">
+<td>Compound treats Disease (CtD)</td>
+<td style="text-align: center;">3</td>
+<td style="text-align: center;">15</td>
+<td style="text-align: center;">7</td>
+</tr>
+<tr class="odd">
+<td>Compound binds Gene (CbG)</td>
+<td style="text-align: center;">9</td>
+<td style="text-align: center;">13</td>
+<td style="text-align: center;">7</td>
+</tr>
+<tr class="even">
+<td>Gene interacts Gene (GiG)</td>
+<td style="text-align: center;">9</td>
+<td style="text-align: center;">20</td>
+<td style="text-align: center;">8</td>
+</tr>
+</tbody>
+</table>
 <h2 id="training-models">Training Models</h2>
 <h3 id="generative-model">Generative Model</h3>
 <p>talk about generative model and how it works ### Word Embeddings mention facebooks fasttext model and how we used it to train word vectors ### Discriminator Model talk about the discriminator model and how it works ### Discriminator Model Calibration talk about calibrating deep learning models with temperature smoothing</p>
@@ -159,6 +231,23 @@ DOI: <a href="https://doi.org/10.1093/database/bas037">10.1093/database/bas037</
 Christopher Manning, Mihai Surdeanu, John Bauer, Jenny Finkel, Steven Bethard, David McClosky<br />
 <em>Proceedings of 52nd Annual Meeting of the Association for Computational Linguistics: System Demonstrations</em> (2014) <a href="https://doi.org/gf3xhp">https://doi.org/gf3xhp</a><br />
 DOI: <a href="https://doi.org/10.3115/v1/p14-5010">10.3115/v1/p14-5010</a></p>
+</div>
+<div id="ref-5Il3kN32">
+<p>9. <strong>Data Programming: Creating Large Training Sets, Quickly</strong><br />
+Alexander Ratner, Christopher De Sa, Sen Wu, Daniel Selsam, Christopher Ré<br />
+<em>arXiv</em> (2016-05-25) <a href="https://arxiv.org/abs/1605.07723v3">https://arxiv.org/abs/1605.07723v3</a></p>
+</div>
+<div id="ref-EHeTvZht">
+<p>10. <strong>Distant supervision for relation extraction without labeled data</strong><br />
+Mike Mintz, Steven Bills, Rion Snow, Dan Jurafsky<br />
+<em>Proceedings of the Joint Conference of the 47th Annual Meeting of the ACL and the 4th International Joint Conference on Natural Language Processing of the AFNLP: Volume 2 - ACL-IJCNLP ’09</em> (2009) <a href="https://doi.org/fg9q43">https://doi.org/fg9q43</a><br />
+DOI: <a href="https://doi.org/10.3115/1690219.1690287">10.3115/1690219.1690287</a></p>
+</div>
+<div id="ref-CSiMoOrI">
+<p>11. <strong>A global network of biomedical relationships derived from text</strong><br />
+Bethany Percha, Russ B Altman<br />
+<em>Bioinformatics</em> (2018-02-27) <a href="https://doi.org/gc3ndk">https://doi.org/gc3ndk</a><br />
+DOI: <a href="https://doi.org/10.1093/bioinformatics/bty114">10.1093/bioinformatics/bty114</a> · PMID: <a href="https://www.ncbi.nlm.nih.gov/pubmed/29490008">29490008</a> · PMCID: <a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC6061699">PMC6061699</a></p>
 </div>
 </div>
 <!-- default theme -->
