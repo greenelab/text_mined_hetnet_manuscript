@@ -20,9 +20,9 @@ title: Mining Heterogenous Relationships from Pubmed Abstracts Using Weak Superv
 
 <small><em>
 This manuscript
-([permalink](https://greenelab.github.io/text_mined_hetnet_manuscript/v/5ae21d8ab62aeac5995692dc0838e9785b105f1f/))
+([permalink](https://greenelab.github.io/text_mined_hetnet_manuscript/v/a653d16326c9f3b0f69d1049ac0507bb6a0b6b02/))
 was automatically generated
-from [greenelab/text_mined_hetnet_manuscript@5ae21d8](https://github.com/greenelab/text_mined_hetnet_manuscript/tree/5ae21d8ab62aeac5995692dc0838e9785b105f1f)
+from [greenelab/text_mined_hetnet_manuscript@a653d16](https://github.com/greenelab/text_mined_hetnet_manuscript/tree/a653d16326c9f3b0f69d1049ac0507bb6a0b6b02)
 on July 8, 2019.
 </em></small>
 
@@ -112,7 +112,7 @@ Within these four categories each pair receives their own individual partition r
 Any rank lower than 0.7 is sorted into training set, while any rank greater than 0.7 and lower than 0.9 is assigned to tuning set.
 The rest of the pairs with a rank greater than or equal to 0.9 is assigned to the test set.
 Sentences that contain more than one co-mention pair are treated as multiple individual candidates.
-We hand labeled five hundred to a thousand candidate sentences of each relationship to obtain to obtain a ground truth set (Table {@tbl:candidate-sentences}, [dataset](http://github.com/text_minded_hetnet_manuscript/master/supplementary_materials/annotated_sentences).
+We hand labeled five hundred to a thousand candidate sentences of each relationship to obtain to obtain a ground truth set (Table {@tbl:candidate-sentences}, [dataset](http://github.com/text_minded_hetnet_manuscript/master/supplementary_materials/annotated_sentences)).
 
 | Relationship | Train | Tune | Test |
 | :--- | :---: | :---: | :---: |
@@ -198,7 +198,13 @@ Table: The distribution of each label function per relationship. {#tbl:label-fun
 ### Generative Model
 talk about generative model and how it works
 ### Word Embeddings
-mention facebooks fasttext model and how we used it to train word vectors
+Word embeddings are representations that map individual words to real valued vectors of user-specified dimensions.
+These embeddings have been shown to capture the semantic and syntatic information between words [@u5iJzbp9].
+Using all candidate sentences for each individual relationship pair, we trained facebook's fastText [@qUpCDz2v] to generate word embeddings.
+The fastText model uses a skipgram model [@1GhHIDxuW] that aims to predict the context given a candidate word and pairs the model with a novel scoring function that treats each word as a bag of character n-grams.
+We trained this model for 20 epochs using a window size of 2 and generated 300-dimensional word embeddings.
+We use the optimized word embeddings to train a discriminative model.  
+
 ### Discriminator Model
 talk about the discriminator model and how it works
 ### Discriminator Model Calibration

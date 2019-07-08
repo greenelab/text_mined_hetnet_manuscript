@@ -57,14 +57,14 @@
     "repo_slug": "greenelab/text_mined_hetnet_manuscript",
     "repo_owner": "greenelab",
     "repo_name": "text_mined_hetnet_manuscript",
-    "commit": "5ae21d8ab62aeac5995692dc0838e9785b105f1f"
+    "commit": "a653d16326c9f3b0f69d1049ac0507bb6a0b6b02"
   },
   "manuscript_stats": {
     "reference_counts": {
-      "arxiv": 1,
+      "arxiv": 4,
       "doi": 10,
-      "total": 11
+      "total": 14
     },
-    "word_count": 1648
+    "word_count": 1749
   }
 }
