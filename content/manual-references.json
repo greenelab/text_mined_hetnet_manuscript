@@ -18,5 +18,38 @@
       "family": "Himmelstein"
     }
   ]
-}
+},
+{
+    "id": "raw:biocreative/chemprot",
+    "URL": "https://www.semanticscholar.org/paper/Overview-of-the-BioCreative-VI-chemical-protein-Krallinger-Rabal/eed781f498b563df5a9e8a241c67d63dd1d92ad5",
+    "author": [
+      {
+        "family": "Krallinger",
+        "given": "Martin"
+      },
+      {
+        "family": "Rabal",
+        "given": "Obdulia"
+      },
+      {
+        "family": "Akhondi",
+        "given": "Saber A"
+      },
+      {
+        "literal": "others"
+      }
+    ],
+    "container-title": "Proceedings of the sixth biocreative challenge evaluation workshop",
+    "issued": {
+      "date-parts": [
+        [
+          2017
+        ]
+      ]
+    },
+    "page": "141-146",
+    "title": "Overview of the biocreative vi chemical-protein interaction track",
+    "type": "paper-conference",
+    "volume": "1"
+  }
 ]
