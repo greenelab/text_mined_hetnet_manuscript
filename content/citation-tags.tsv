@@ -10,7 +10,7 @@ cbg_transfer_learning	doi:10.1093/database/bay066
 cocoscore	doi:10.1093/bioinformatics/btz490
 comagc	doi:10.1186/1471-2105-14-323
 copub_discovery	doi:10.1371/journal.pcbi.1000943
-ctd_medline	10.1186/1471-2105-14-181
+ctd_medline	doi:10.1186/1471-2105-14-181
 deep_dive	doi:10.1093/bioinformatics/btv476
 dg_extract_txt_network	doi:10.3115/v1/W14-1108
 dg_text_pubmed	doi:10.1186/s12859-018-2048-y
@@ -37,5 +37,5 @@ semi_supervised_vae	arxiv:1901.06103
 string	doi:10.1093/nar/gku1003
 aimed	doi:10.1016/j.artmed.2004.07.016
 bioinfer	doi:10.1186/1471-2105-8-50
-hprd50	doi:10.1093/bioinformatics/btl616d
+hprd50	doi:10.1093/bioinformatics/btl616
 ppinterfinder	doi:10.1093/database/bas052
