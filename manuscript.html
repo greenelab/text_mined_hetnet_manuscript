@@ -24,7 +24,7 @@
 <header id="title-block-header">
 <h1 class="title">Mining Heterogenous Relationships from Pubmed Abstracts Using Weak Supervision</h1>
 </header>
-<p><small><em> This manuscript (<a href="https://greenelab.github.io/text_mined_hetnet_manuscript/v/ec2bd219cdd7bf88d7e71a36327bd728ac04de44/">permalink</a>) was automatically generated from <a href="https://github.com/greenelab/text_mined_hetnet_manuscript/tree/ec2bd219cdd7bf88d7e71a36327bd728ac04de44">greenelab/text_mined_hetnet_manuscript@ec2bd21</a> on July 23, 2019. </em></small></p>
+<p><small><em> This manuscript (<a href="https://greenelab.github.io/text_mined_hetnet_manuscript/v/0a7be3e9a4633dfcb49e9d734c97926d40786ac9/">permalink</a>) was automatically generated from <a href="https://github.com/greenelab/text_mined_hetnet_manuscript/tree/0a7be3e9a4633dfcb49e9d734c97926d40786ac9">greenelab/text_mined_hetnet_manuscript@0a7be3e</a> on July 23, 2019. </em></small></p>
 <h2 id="authors">Authors</h2>
 <ul>
 <li><p><strong>David N. Nicholson</strong><br> <img src="images/orcid.svg" alt="ORCID icon" class="inline_icon" /> <a href="https://orcid.org/0000-0003-0002-5761">0000-0003-0002-5761</a> · <img src="images/github.svg" alt="GitHub icon" class="inline_icon" /> <a href="https://github.com/danich1">danich1</a><br> <small> Department of Systems Pharmacology and Translational Therapeutics, University of Pennsylvania · Funded by GBMF4552 </small></p></li>
@@ -33,7 +33,11 @@
 </ul>
 <h2 id="abstract" class="page_break_before">Abstract</h2>
 <p>This is a <strong>rough draft</strong> of a manscript on label function reuse for text mining heterogenous relationship from Pubmed Abstracts.</p>
-<p>#Introduction Set introduction for paper here Talk about problem, goal, and significance of paper</p>
+<h2 id="introduction">Introduction</h2>
+<p>Knowledge bases are important resources that hold complex structured and unstructed information. These resources have been used in important tasks such as network analysis for drug repurposing discovery <span class="citation" data-cites="u8pIAt5j bPvC638e O21tn8vf">[<a href="#ref-u8pIAt5j" role="doc-biblioref">1</a>,<a href="#ref-bPvC638e" role="doc-biblioref">2</a>,<a href="#ref-O21tn8vf" role="doc-biblioref">3</a>]</span> or as a source of training labels for text mining systems <span class="citation" data-cites="EHeTvZht CVHSURuI HS4ARwmZ">[<a href="#ref-EHeTvZht" role="doc-biblioref">4</a>,<a href="#ref-CVHSURuI" role="doc-biblioref">5</a>,<a href="#ref-HS4ARwmZ" role="doc-biblioref">6</a>]</span>. Populating knowledge bases often requires highly-trained scientists to read biomedical literature and summarize the results <span class="citation" data-cites="N1Ai0gaI">[<a href="#ref-N1Ai0gaI" role="doc-biblioref">7</a>]</span>. This manual curation process requires a significant amount of effort and time: in 2007 researchers estimated that filling in the missing annotations at that point would require approximately 8.4 years <span class="citation" data-cites="UdzvLgBM">[<a href="#ref-UdzvLgBM" role="doc-biblioref">8</a>]</span>). The rate of publications has continued to increase exponentially <span class="citation" data-cites="1DBISRlwN">[<a href="#ref-1DBISRlwN" role="doc-biblioref">9</a>]</span>. This has been recognized as a considerable challenge and leads to gaps in knowledge bases <span class="citation" data-cites="UdzvLgBM">[<a href="#ref-UdzvLgBM" role="doc-biblioref">8</a>]</span>.<br />
+Relationship extraction has been studied as a solution towards handling this problem <span class="citation" data-cites="N1Ai0gaI">[<a href="#ref-N1Ai0gaI" role="doc-biblioref">7</a>]</span>. This process consists of creating a machine learning system to automatically scan and extract relationships from textual sources. Machine learning methods often leverage a large corpus of well-labeled training data, which still requires manual curation. Distant supervision is one technique to sidestep the requirement of well-annotated sentences: with distant supervision one makes the assumption that that all sentences containing an entity pair found in a selected database provide evidence for a relationship <span class="citation" data-cites="EHeTvZht">[<a href="#ref-EHeTvZht" role="doc-biblioref">4</a>]</span>. Distant supervision provides many labeled examples; however it is accompanied by a decrease in the quality of the labels.<br />
+Ratner et al. <span class="citation" data-cites="5Il3kN32">[<a href="#ref-5Il3kN32" role="doc-biblioref">10</a>]</span> recently introduced “data programming” as a solution. Data programming combines distant supervision with the automated labeling of text using hand-written label functions. The distant supervision sources and label functions are integrated using a noise aware generative model, which is used to produce training labels. Combining distant supervision with label functions can dramatically reduce the time required to acquire sufficient training data. However, constructing a knowledge base of heterogeneous relationships through this framework still requires tens of hand-written label functions for each relationship type. Writing useful label functions requires significant error analysis, which can be a time-consuming process.</p>
+<p>In this paper, we aim to address the question: to what extent can label functions be re-used across different relationship types? We hypothesized that sentences describing one relationship type may share information in the form of keywords or sentence structure with sentences that indicate other relationship types. We designed a series of experiments to determine the extent to which label function re-use enhanced performance over distant supervision alone. We examine relationships that indicate similar types of physical interactions (i.e., gene-binds-gene and compound-binds-gene) as well as different types (i.e., disease-associates-gene and compound-treats-disease). The re-use of label functions could dramatically reduce the number required to generate and update a heterogeneous knowledge graph.</p>
 <h2 id="recent-work">Recent Work</h2>
 <p>Talk about what has been done in the field in regards to text mining and knowledge base integration</p>
 <style> 
@@ -42,12 +46,12 @@ span.disease_color { color:#875442 }
 </style>
 <h1 id="materials-and-methods">Materials and Methods</h1>
 <h2 id="hetionet">Hetionet</h2>
-<p>Hetionet <span class="citation" data-cites="O21tn8vf">[<a href="#ref-O21tn8vf" role="doc-biblioref">1</a>]</span> is a large heterogenous network that contains pharmacological and biological information. This network depicts information in the form of nodes and edges of different types: nodes that represent biological and pharmacological entities and edges which represent relationships between entities. Hetionet v1.0 contains 47,031 nodes with 11 different data types and 2,250,197 edges that represent 24 different relationship types (Figure <a href="#fig:hetionet">1</a>). Edges in Hetionet were obtained from open databases, such as the GWAS Catalog <span class="citation" data-cites="16cIDAXhG">[<a href="#ref-16cIDAXhG" role="doc-biblioref">2</a>]</span> and DrugBank <span class="citation" data-cites="16cIDAXhG">[<a href="#ref-16cIDAXhG" role="doc-biblioref">2</a>]</span>. For this project, we analyzed performance over a subset of the Hetionet relationship types: disease associates with a gene (DaG), compound binds to a gene (CbG), gene interacts with gene (GiG) and compound treating a disease (CtD).</p>
+<p>Hetionet <span class="citation" data-cites="O21tn8vf">[<a href="#ref-O21tn8vf" role="doc-biblioref">3</a>]</span> is a large heterogenous network that contains pharmacological and biological information. This network depicts information in the form of nodes and edges of different types: nodes that represent biological and pharmacological entities and edges which represent relationships between entities. Hetionet v1.0 contains 47,031 nodes with 11 different data types and 2,250,197 edges that represent 24 different relationship types (Figure <a href="#fig:hetionet">1</a>). Edges in Hetionet were obtained from open databases, such as the GWAS Catalog <span class="citation" data-cites="16cIDAXhG">[<a href="#ref-16cIDAXhG" role="doc-biblioref">11</a>]</span> and DrugBank <span class="citation" data-cites="16cIDAXhG">[<a href="#ref-16cIDAXhG" role="doc-biblioref">11</a>]</span>. For this project, we analyzed performance over a subset of the Hetionet relationship types: disease associates with a gene (DaG), compound binds to a gene (CbG), gene interacts with gene (GiG) and compound treating a disease (CtD).</p>
 <figure>
 <img src="images/figures/hetionet/metagraph_highlighted_edges.png" alt="Figure 1: A metagraph (schema) of Hetionet where pharmacological, biological and disease entities are represented as nodes and the relationships between them are represented as edges. This project only focuses on the information shown in bold; however, we can extend this work to incorporate the faded out information as well." id="fig:hetionet" /><figcaption><span>Figure 1:</span> A metagraph (schema) of Hetionet where pharmacological, biological and disease entities are represented as nodes and the relationships between them are represented as edges. This project only focuses on the information shown in bold; however, we can extend this work to incorporate the faded out information as well.</figcaption>
 </figure>
 <h2 id="dataset">Dataset</h2>
-<p>We used PubTator <span class="citation" data-cites="13vw5RIy4">[<a href="#ref-13vw5RIy4" role="doc-biblioref">3</a>]</span> as input to our analysis. PubTator provides MEDLINE abstracts that have been annotated with well-established entity recognition tools including DNorm <span class="citation" data-cites="vtuZ3Wx7">[<a href="#ref-vtuZ3Wx7" role="doc-biblioref">4</a>]</span> for disease mentions, GeneTUKit <span class="citation" data-cites="4S2HMNpa">[<a href="#ref-4S2HMNpa" role="doc-biblioref">5</a>]</span> for gene mentions, Gnorm <span class="citation" data-cites="1AkC7QdyP">[<a href="#ref-1AkC7QdyP" role="doc-biblioref">6</a>]</span> for gene normalizations and a dictionary based look system for compound mentions <span class="citation" data-cites="r501gnuM">[<a href="#ref-r501gnuM" role="doc-biblioref">7</a>]</span>. We downloaded PubTator on June 30, 2017, at which point it contained 10,775,748 abstracts. Then we filtered out mention tags that were not contained in hetionet. We used the Stanford CoreNLP parser <span class="citation" data-cites="RQkLuc5t">[<a href="#ref-RQkLuc5t" role="doc-biblioref">8</a>]</span> to tag parts of speech and generate dependency trees. We extracted sentences with two or more mentions, termed candidate sentences. Each candidates sentence was stratified by co-mention pair to produce a training set, tuning set and a testing set (shown in Table <a href="#tbl:candidate-sentences">1</a>). Each unique co-mention pair is sorted into four categories: (1) in hetionet and has sentences, (2) in hetionet and doesn’t have sentences, (3) not in hetionet and does have sentences and (4) not in hetionet and doesn’t have sentences. Within these four categories each pair receives their own individual partition rank (continuous number between 0 and 1). Any rank lower than 0.7 is sorted into training set, while any rank greater than 0.7 and lower than 0.9 is assigned to tuning set. The rest of the pairs with a rank greater than or equal to 0.9 is assigned to the test set. Sentences that contain more than one co-mention pair are treated as multiple individual candidates. We hand labeled five hundred to a thousand candidate sentences of each relationship to obtain to obtain a ground truth set (Table <a href="#tbl:candidate-sentences">1</a>, <a href="http://github.com/text_minded_hetnet_manuscript/master/supplementary_materials/annotated_sentences">dataset</a>).</p>
+<p>We used PubTator <span class="citation" data-cites="13vw5RIy4">[<a href="#ref-13vw5RIy4" role="doc-biblioref">12</a>]</span> as input to our analysis. PubTator provides MEDLINE abstracts that have been annotated with well-established entity recognition tools including DNorm <span class="citation" data-cites="vtuZ3Wx7">[<a href="#ref-vtuZ3Wx7" role="doc-biblioref">13</a>]</span> for disease mentions, GeneTUKit <span class="citation" data-cites="4S2HMNpa">[<a href="#ref-4S2HMNpa" role="doc-biblioref">14</a>]</span> for gene mentions, Gnorm <span class="citation" data-cites="1AkC7QdyP">[<a href="#ref-1AkC7QdyP" role="doc-biblioref">15</a>]</span> for gene normalizations and a dictionary based look system for compound mentions <span class="citation" data-cites="r501gnuM">[<a href="#ref-r501gnuM" role="doc-biblioref">16</a>]</span>. We downloaded PubTator on June 30, 2017, at which point it contained 10,775,748 abstracts. Then we filtered out mention tags that were not contained in hetionet. We used the Stanford CoreNLP parser <span class="citation" data-cites="RQkLuc5t">[<a href="#ref-RQkLuc5t" role="doc-biblioref">17</a>]</span> to tag parts of speech and generate dependency trees. We extracted sentences with two or more mentions, termed candidate sentences. Each candidates sentence was stratified by co-mention pair to produce a training set, tuning set and a testing set (shown in Table <a href="#tbl:candidate-sentences">1</a>). Each unique co-mention pair is sorted into four categories: (1) in hetionet and has sentences, (2) in hetionet and doesn’t have sentences, (3) not in hetionet and does have sentences and (4) not in hetionet and doesn’t have sentences. Within these four categories each pair receives their own individual partition rank (continuous number between 0 and 1). Any rank lower than 0.7 is sorted into training set, while any rank greater than 0.7 and lower than 0.9 is assigned to tuning set. The rest of the pairs with a rank greater than or equal to 0.9 is assigned to the test set. Sentences that contain more than one co-mention pair are treated as multiple individual candidates. We hand labeled five hundred to a thousand candidate sentences of each relationship to obtain to obtain a ground truth set (Table <a href="#tbl:candidate-sentences">1</a>, <a href="http://github.com/text_minded_hetnet_manuscript/master/supplementary_materials/annotated_sentences">dataset</a>).</p>
 <a name="tbl:candidate-sentences"></a>
 <table>
 <caption><span>Table 1:</span> Statistics of Candidate Sentences. We sorted each candidate sentence into a training, tuning and testing set. Numbers in parentheses show the number of positives and negatives that resulted from the hand-labeling process. </caption>
@@ -87,8 +91,8 @@ span.disease_color { color:#875442 }
 </tbody>
 </table>
 <h2 id="label-functions-for-annotating-sentences">Label Functions for Annotating Sentences</h2>
-<p>A common challenge in natural language processing is having too few ground truth annotations, even when textual data are abundant. Data programming circumvents this issue by quickly annotating large datasets by using multiple noisy signals emitted by label functions <span class="citation" data-cites="5Il3kN32">[<a href="#ref-5Il3kN32" role="doc-biblioref">9</a>]</span>. Label functions are simple pythonic functions that emit: a positive label (1), a negative label (-1) or abstain from emitting a label (0). We combine these functions using a generative model to output a single annotation, which is a consensus probability score bounded between 0 (low chance of mentioning a relationship) and 1 (high chance of mentioning a relationship). We used these annotations to train a discriminator model that makes the final classification step. Our label functions fall into three categories: databases, text patterns and domain heuristics. We provide examples for the categories, described below, using the following candidate sentence: “<span class="gene_color">PTK6</span> may be a novel therapeutic target for <span class="disease_color">pancreatic cancer</span>.”</p>
-<p><strong>Databases</strong>: These label functions incorporate existing databases to generate a signal, as seen in distant supervision <span class="citation" data-cites="EHeTvZht">[<a href="#ref-EHeTvZht" role="doc-biblioref">10</a>]</span>. These functions detect if a candidate sentence’s co-mention pair is present in a given database. If the pair is present, emit a positive label and abstain otherwise. If the pair isn’t present in any existing database, then a separate label function will emit a negative label. We use a separate label function to prevent the label imbalance problem. This problem occurs when candidates, that scarcely appear in databases, are drowned out by negative labels. The multitude of negative labels increases the likelihood of misclassification when training the generative model.</p>
+<p>A common challenge in natural language processing is having too few ground truth annotations, even when textual data are abundant. Data programming circumvents this issue by quickly annotating large datasets by using multiple noisy signals emitted by label functions <span class="citation" data-cites="5Il3kN32">[<a href="#ref-5Il3kN32" role="doc-biblioref">10</a>]</span>. Label functions are simple pythonic functions that emit: a positive label (1), a negative label (-1) or abstain from emitting a label (0). We combine these functions using a generative model to output a single annotation, which is a consensus probability score bounded between 0 (low chance of mentioning a relationship) and 1 (high chance of mentioning a relationship). We used these annotations to train a discriminator model that makes the final classification step. Our label functions fall into three categories: databases, text patterns and domain heuristics. We provide examples for the categories, described below, using the following candidate sentence: “<span class="gene_color">PTK6</span> may be a novel therapeutic target for <span class="disease_color">pancreatic cancer</span>.”</p>
+<p><strong>Databases</strong>: These label functions incorporate existing databases to generate a signal, as seen in distant supervision <span class="citation" data-cites="EHeTvZht">[<a href="#ref-EHeTvZht" role="doc-biblioref">4</a>]</span>. These functions detect if a candidate sentence’s co-mention pair is present in a given database. If the pair is present, emit a positive label and abstain otherwise. If the pair isn’t present in any existing database, then a separate label function will emit a negative label. We use a separate label function to prevent the label imbalance problem. This problem occurs when candidates, that scarcely appear in databases, are drowned out by negative labels. The multitude of negative labels increases the likelihood of misclassification when training the generative model.</p>
 <p><span class="math display">\[ \Lambda_{DB}(\color{#875442}{D}, \color{#02b3e4}{G}) = 
 \begin{cases}
  1 &amp; (\color{#875442}{D}, \color{#02b3e4}{G}) \in DB \\
@@ -110,7 +114,7 @@ span.disease_color { color:#875442 }
  -1 &amp;   &quot;VB&quot; \&gt; \notin pos\_tags(Candidate \&gt; Sentence) \\
  0 &amp; otherwise \\
 \end{cases} \]</span></p>
-<p><strong>Domain Heuristics</strong>: These label functions use the other experiment results to generate a signal. For this category, we used dependency path cluster themes generated by Percha et al <span class="citation" data-cites="CSiMoOrI">[<a href="#ref-CSiMoOrI" role="doc-biblioref">11</a>]</span>. If a candidate sentence’s dependency path belongs to a previously generated cluster, then the label function will emit a positive label and abstain otherwise.</p>
+<p><strong>Domain Heuristics</strong>: These label functions use the other experiment results to generate a signal. For this category, we used dependency path cluster themes generated by Percha et al <span class="citation" data-cites="CSiMoOrI">[<a href="#ref-CSiMoOrI" role="doc-biblioref">18</a>]</span>. If a candidate sentence’s dependency path belongs to a previously generated cluster, then the label function will emit a positive label and abstain otherwise.</p>
 <p><span class="math display">\[
 \Lambda_{DH}(\color{#875442}{D}, \color{#02b3e4}{G}) = \begin{cases}
     1 &amp; Candidate \&gt; Sentence \in Cluster \&gt; Theme\\
@@ -167,13 +171,13 @@ P(\Lambda, Y) = \frac{\exp(\sum_{i=1}^{m} \theta^{T}F_{i}(\Lambda, y))}
 <p><span class="math display">\[F^{Lab}_{i,j}(\Lambda, Y) = \unicode{x1D7D9}\{\Lambda_{i,j} \neq 0\}\]</span> <span class="math display">\[F^{Acc}_{i,j}(\Lambda, Y) = \unicode{x1D7D9}\{\Lambda_{i,j} = y_{i,j}\}\]</span></p>
 <p><em>Lab</em> is the label function’s propensity (the frequency of a label function emitting a signal). <em>Acc</em> is the individual label function’s accuracy given the training class. This model optimizes the weights (<span class="math inline">\(\theta\)</span>) by minimizing the negative log likelihood:</p>
 <p><span class="math display">\[\hat{\theta} = argmin_{\theta} -\sum_{\Lambda} log \sum_{Y}P(\Lambda, Y)\]</span></p>
-<p>In the framework we used predictions from the generative model, <span class="math inline">\(\hat{Y} = P(Y \mid \Lambda)\)</span>, as training classes for our dataset <span class="citation" data-cites="9Jo1af7Z vzoBuh4l">[<a href="#ref-9Jo1af7Z" role="doc-biblioref">12</a>,<a href="#ref-vzoBuh4l" role="doc-biblioref">13</a>]</span>.</p>
+<p>In the framework we used predictions from the generative model, <span class="math inline">\(\hat{Y} = P(Y \mid \Lambda)\)</span>, as training classes for our dataset <span class="citation" data-cites="9Jo1af7Z vzoBuh4l">[<a href="#ref-9Jo1af7Z" role="doc-biblioref">19</a>,<a href="#ref-vzoBuh4l" role="doc-biblioref">20</a>]</span>.</p>
 <h3 id="word-embeddings">Word Embeddings</h3>
-<p>Word embeddings are representations that map individual words to real valued vectors of user-specified dimensions. These embeddings have been shown to capture the semantic and syntatic information between words <span class="citation" data-cites="u5iJzbp9">[<a href="#ref-u5iJzbp9" role="doc-biblioref">14</a>]</span>. Using all candidate sentences for each individual relationship pair, we trained facebook’s fastText <span class="citation" data-cites="qUpCDz2v">[<a href="#ref-qUpCDz2v" role="doc-biblioref">15</a>]</span> to generate word embeddings. The fastText model uses a skipgram model <span class="citation" data-cites="1GhHIDxuW">[<a href="#ref-1GhHIDxuW" role="doc-biblioref">16</a>]</span> that aims to predict the context given a candidate word and pairs the model with a novel scoring function that treats each word as a bag of character n-grams. We trained this model for 20 epochs using a window size of 2 and generated 300-dimensional word embeddings. We use the optimized word embeddings to train a discriminative model.</p>
+<p>Word embeddings are representations that map individual words to real valued vectors of user-specified dimensions. These embeddings have been shown to capture the semantic and syntatic information between words <span class="citation" data-cites="u5iJzbp9">[<a href="#ref-u5iJzbp9" role="doc-biblioref">21</a>]</span>. Using all candidate sentences for each individual relationship pair, we trained facebook’s fastText <span class="citation" data-cites="qUpCDz2v">[<a href="#ref-qUpCDz2v" role="doc-biblioref">22</a>]</span> to generate word embeddings. The fastText model uses a skipgram model <span class="citation" data-cites="1GhHIDxuW">[<a href="#ref-1GhHIDxuW" role="doc-biblioref">23</a>]</span> that aims to predict the context given a candidate word and pairs the model with a novel scoring function that treats each word as a bag of character n-grams. We trained this model for 20 epochs using a window size of 2 and generated 300-dimensional word embeddings. We use the optimized word embeddings to train a discriminative model.</p>
 <h3 id="discriminator-model">Discriminator Model</h3>
 <p>talk about the discriminator model and how it works ### Discriminator Model Calibration talk about calibrating deep learning models with temperature smoothing</p>
 <h3 id="experimental-design">Experimental Design</h3>
-<p>Being able to re-use label functions across edge types would substantially reduce the number of label functions required to extract multiple relationship types from biomedical literature. We first established a baseline by training a generative model using only distant supervision label functions designed for the target edge type. As an example, for the gene-interacts-gene edge type we used label functions that returned a <code>1</code> if the pair of genes were included in the Human Interaction database <span class="citation" data-cites="LCyCrr7W">[<a href="#ref-LCyCrr7W" role="doc-biblioref">17</a>]</span>, the iRefIndex database <span class="citation" data-cites="gtV3bOpd">[<a href="#ref-gtV3bOpd" role="doc-biblioref">18</a>]</span> or in the Incomplete Interactome database <span class="citation" data-cites="2jkcXYxN">[<a href="#ref-2jkcXYxN" role="doc-biblioref">19</a>]</span>. Then we compared models that also included text and domain-heuristic label functions. Using a sampling with replacement approach, we sampled these text and domain-heuristic label functions separately within edge types, across edge types, and from a pool of all label functions. We compared within-edge-type performance to across-edge-type and all-edge-type performance. For each edge type we sampled a fixed number of label functions consisting of five evenly-spaced numbers between one and the total number of possible label functions. We repeated this sampling process 50 times for each point. We evaluated both generative and discriminative models at each point, and we report performance of each in terms of the area under the receiver operating characteristic curve (AUROC) and the area under the precision-recall curve (AUPR).</p>
+<p>Being able to re-use label functions across edge types would substantially reduce the number of label functions required to extract multiple relationship types from biomedical literature. We first established a baseline by training a generative model using only distant supervision label functions designed for the target edge type. As an example, for the gene-interacts-gene edge type we used label functions that returned a <code>1</code> if the pair of genes were included in the Human Interaction database <span class="citation" data-cites="LCyCrr7W">[<a href="#ref-LCyCrr7W" role="doc-biblioref">24</a>]</span>, the iRefIndex database <span class="citation" data-cites="gtV3bOpd">[<a href="#ref-gtV3bOpd" role="doc-biblioref">25</a>]</span> or in the Incomplete Interactome database <span class="citation" data-cites="2jkcXYxN">[<a href="#ref-2jkcXYxN" role="doc-biblioref">26</a>]</span>. Then we compared models that also included text and domain-heuristic label functions. Using a sampling with replacement approach, we sampled these text and domain-heuristic label functions separately within edge types, across edge types, and from a pool of all label functions. We compared within-edge-type performance to across-edge-type and all-edge-type performance. For each edge type we sampled a fixed number of label functions consisting of five evenly-spaced numbers between one and the total number of possible label functions. We repeated this sampling process 50 times for each point. We evaluated both generative and discriminative models at each point, and we report performance of each in terms of the area under the receiver operating characteristic curve (AUROC) and the area under the precision-recall curve (AUPR).</p>
 <h1 id="results">Results</h1>
 <h2 id="random-sampling-of-generative-model">Random Sampling of Generative Model</h2>
 <p>place the grid aurocs here for generative model</p>
@@ -197,112 +201,154 @@ P(\Lambda, Y) = \frac{\exp(\sum_{i=1}^{m} \theta^{T}F_{i}(\Lambda, y))}
 <h2 id="references" class="page_break_before">References</h2>
 <!-- Explicitly insert bibliography here -->
 <div id="refs" role="doc-bibliography">
+<div id="ref-u8pIAt5j">
+<p>1. <strong>Graph Theory Enables Drug Repurposing – How a Mathematical Model Can Drive the Discovery of Hidden Mechanisms of Action</strong><br />
+Ruggero Gramatica, T. Di Matteo, Stefano Giorgetti, Massimo Barbiani, Dorian Bevec, Tomaso Aste<br />
+<em>PLoS ONE</em> (2014-01-09) <a href="https://doi.org/gf45zp">https://doi.org/gf45zp</a><br />
+DOI: <a href="https://doi.org/10.1371/journal.pone.0084912">10.1371/journal.pone.0084912</a> · PMID: <a href="https://www.ncbi.nlm.nih.gov/pubmed/24416311">24416311</a> · PMCID: <a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3886994">PMC3886994</a></p>
+</div>
+<div id="ref-bPvC638e">
+<p>2. <strong>Drug repurposing through joint learning on knowledge graphs and literature</strong><br />
+Mona Alshahrani, Robert Hoehndorf<br />
+<em>Cold Spring Harbor Laboratory</em> (2018-08-06) <a href="https://doi.org/gf45zk">https://doi.org/gf45zk</a><br />
+DOI: <a href="https://doi.org/10.1101/385617">10.1101/385617</a></p>
+</div>
 <div id="ref-O21tn8vf">
-<p>1. <strong>Systematic integration of biomedical knowledge prioritizes drugs for repurposing</strong><br />
+<p>3. <strong>Systematic integration of biomedical knowledge prioritizes drugs for repurposing</strong><br />
 Daniel Scott Himmelstein, Antoine Lizee, Christine Hessler, Leo Brueggeman, Sabrina L Chen, Dexter Hadley, Ari Green, Pouya Khankhanian, Sergio E Baranzini<br />
 <em>eLife</em> (2017-09-22) <a href="https://doi.org/cdfk">https://doi.org/cdfk</a><br />
 DOI: <a href="https://doi.org/10.7554/elife.26726">10.7554/elife.26726</a> · PMID: <a href="https://www.ncbi.nlm.nih.gov/pubmed/28936969">28936969</a> · PMCID: <a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5640425">PMC5640425</a></p>
 </div>
+<div id="ref-EHeTvZht">
+<p>4. <strong>Distant supervision for relation extraction without labeled data</strong><br />
+Mike Mintz, Steven Bills, Rion Snow, Dan Jurafsky<br />
+<em>Proceedings of the Joint Conference of the 47th Annual Meeting of the ACL and the 4th International Joint Conference on Natural Language Processing of the AFNLP: Volume 2 - ACL-IJCNLP ’09</em> (2009) <a href="https://doi.org/fg9q43">https://doi.org/fg9q43</a><br />
+DOI: <a href="https://doi.org/10.3115/1690219.1690287">10.3115/1690219.1690287</a></p>
+</div>
+<div id="ref-CVHSURuI">
+<p>5. <strong>CoCoScore: Context-aware co-occurrence scoring for text mining applications using distant supervision</strong><br />
+Alexander Junge, Lars Juhl Jensen<br />
+<em>Cold Spring Harbor Laboratory</em> (2018-10-16) <a href="https://doi.org/gf45zm">https://doi.org/gf45zm</a><br />
+DOI: <a href="https://doi.org/10.1101/444398">10.1101/444398</a></p>
+</div>
+<div id="ref-HS4ARwmZ">
+<p>6. <strong>Knowledge-guided convolutional networks for chemical-disease relation extraction</strong><br />
+Huiwei Zhou, Chengkun Lang, Zhuang Liu, Shixian Ning, Yingyu Lin, Lei Du<br />
+<em>BMC Bioinformatics</em> (2019-05-21) <a href="https://doi.org/gf45zn">https://doi.org/gf45zn</a><br />
+DOI: <a href="https://doi.org/10.1186/s12859-019-2873-7">10.1186/s12859-019-2873-7</a> · PMID: <a href="https://www.ncbi.nlm.nih.gov/pubmed/31113357">31113357</a> · PMCID: <a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC6528333">PMC6528333</a></p>
+</div>
+<div id="ref-N1Ai0gaI">
+<p>7. <strong>Facts from text: can text mining help to scale-up high-quality manual curation of gene products with ontologies?</strong><br />
+R. Winnenburg, T. Wachter, C. Plake, A. Doms, M. Schroeder<br />
+<em>Briefings in Bioinformatics</em> (2008-07-11) <a href="https://doi.org/bfsnwg">https://doi.org/bfsnwg</a><br />
+DOI: <a href="https://doi.org/10.1093/bib/bbn043">10.1093/bib/bbn043</a> · PMID: <a href="https://www.ncbi.nlm.nih.gov/pubmed/19060303">19060303</a></p>
+</div>
+<div id="ref-UdzvLgBM">
+<p>8. <strong>Manual curation is not sufficient for annotation of genomic databases</strong><br />
+William A. Baumgartner Jr, K. Bretonnel Cohen, Lynne M. Fox, George Acquaah-Mensah, Lawrence Hunter<br />
+<em>Bioinformatics</em> (2007-07-01) <a href="https://doi.org/dtck86">https://doi.org/dtck86</a><br />
+DOI: <a href="https://doi.org/10.1093/bioinformatics/btm229">10.1093/bioinformatics/btm229</a> · PMID: <a href="https://www.ncbi.nlm.nih.gov/pubmed/17646325">17646325</a> · PMCID: <a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC2516305">PMC2516305</a></p>
+</div>
+<div id="ref-1DBISRlwN">
+<p>9. <strong>Growth rates of modern science: A bibliometric analysis based on the number of publications and cited references</strong><br />
+Lutz Bornmann, Rüdiger Mutz<br />
+<em>Journal of the Association for Information Science and Technology</em> (2015-04-29) <a href="https://doi.org/gfj5zc">https://doi.org/gfj5zc</a><br />
+DOI: <a href="https://doi.org/10.1002/asi.23329">10.1002/asi.23329</a></p>
+</div>
+<div id="ref-5Il3kN32">
+<p>10. <strong>Data Programming: Creating Large Training Sets, Quickly</strong><br />
+Alexander Ratner, Christopher De Sa, Sen Wu, Daniel Selsam, Christopher Ré<br />
+<em>arXiv</em> (2016-05-25) <a href="https://arxiv.org/abs/1605.07723v3">https://arxiv.org/abs/1605.07723v3</a></p>
+</div>
 <div id="ref-16cIDAXhG">
-<p>2. <strong>The new NHGRI-EBI Catalog of published genome-wide association studies (GWAS Catalog)</strong><br />
+<p>11. <strong>The new NHGRI-EBI Catalog of published genome-wide association studies (GWAS Catalog)</strong><br />
 Jacqueline MacArthur, Emily Bowler, Maria Cerezo, Laurent Gil, Peggy Hall, Emma Hastings, Heather Junkins, Aoife McMahon, Annalisa Milano, Joannella Morales, … Helen Parkinson<br />
 <em>Nucleic Acids Research</em> (2016-11-29) <a href="https://doi.org/f9v7cp">https://doi.org/f9v7cp</a><br />
 DOI: <a href="https://doi.org/10.1093/nar/gkw1133">10.1093/nar/gkw1133</a> · PMID: <a href="https://www.ncbi.nlm.nih.gov/pubmed/27899670">27899670</a> · PMCID: <a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5210590">PMC5210590</a></p>
 </div>
 <div id="ref-13vw5RIy4">
-<p>3. <strong>PubTator: a web-based text mining tool for assisting biocuration</strong><br />
+<p>12. <strong>PubTator: a web-based text mining tool for assisting biocuration</strong><br />
 Chih-Hsuan Wei, Hung-Yu Kao, Zhiyong Lu<br />
 <em>Nucleic Acids Research</em> (2013-05-22) <a href="https://doi.org/f475th">https://doi.org/f475th</a><br />
 DOI: <a href="https://doi.org/10.1093/nar/gkt441">10.1093/nar/gkt441</a> · PMID: <a href="https://www.ncbi.nlm.nih.gov/pubmed/23703206">23703206</a> · PMCID: <a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3692066">PMC3692066</a></p>
 </div>
 <div id="ref-vtuZ3Wx7">
-<p>4. <strong>DNorm: disease name normalization with pairwise learning to rank</strong><br />
+<p>13. <strong>DNorm: disease name normalization with pairwise learning to rank</strong><br />
 R. Leaman, R. Islamaj Dogan, Z. Lu<br />
 <em>Bioinformatics</em> (2013-08-21) <a href="https://doi.org/f5gj9n">https://doi.org/f5gj9n</a><br />
 DOI: <a href="https://doi.org/10.1093/bioinformatics/btt474">10.1093/bioinformatics/btt474</a> · PMID: <a href="https://www.ncbi.nlm.nih.gov/pubmed/23969135">23969135</a> · PMCID: <a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3810844">PMC3810844</a></p>
 </div>
 <div id="ref-4S2HMNpa">
-<p>5. <strong>GeneTUKit: a software for document-level gene normalization</strong><br />
+<p>14. <strong>GeneTUKit: a software for document-level gene normalization</strong><br />
 M. Huang, J. Liu, X. Zhu<br />
 <em>Bioinformatics</em> (2011-02-08) <a href="https://doi.org/dng2cb">https://doi.org/dng2cb</a><br />
 DOI: <a href="https://doi.org/10.1093/bioinformatics/btr042">10.1093/bioinformatics/btr042</a> · PMID: <a href="https://www.ncbi.nlm.nih.gov/pubmed/21303863">21303863</a> · PMCID: <a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3065680">PMC3065680</a></p>
 </div>
 <div id="ref-1AkC7QdyP">
-<p>6. <strong>Cross-species gene normalization by species inference</strong><br />
+<p>15. <strong>Cross-species gene normalization by species inference</strong><br />
 Chih-Hsuan Wei, Hung-Yu Kao<br />
 <em>BMC Bioinformatics</em> (2011-10-03) <a href="https://doi.org/dnmvds">https://doi.org/dnmvds</a><br />
 DOI: <a href="https://doi.org/10.1186/1471-2105-12-s8-s5">10.1186/1471-2105-12-s8-s5</a> · PMID: <a href="https://www.ncbi.nlm.nih.gov/pubmed/22151999">22151999</a> · PMCID: <a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3269940">PMC3269940</a></p>
 </div>
 <div id="ref-r501gnuM">
-<p>7. <strong>Collaborative biocuration–text-mining development task for document prioritization for curation</strong><br />
+<p>16. <strong>Collaborative biocuration–text-mining development task for document prioritization for curation</strong><br />
 T. C. Wiegers, A. P. Davis, C. J. Mattingly<br />
 <em>Database</em> (2012-11-22) <a href="https://doi.org/gbb3zw">https://doi.org/gbb3zw</a><br />
 DOI: <a href="https://doi.org/10.1093/database/bas037">10.1093/database/bas037</a> · PMID: <a href="https://www.ncbi.nlm.nih.gov/pubmed/23180769">23180769</a> · PMCID: <a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3504477">PMC3504477</a></p>
 </div>
 <div id="ref-RQkLuc5t">
-<p>8. <strong>The Stanford CoreNLP Natural Language Processing Toolkit</strong><br />
+<p>17. <strong>The Stanford CoreNLP Natural Language Processing Toolkit</strong><br />
 Christopher Manning, Mihai Surdeanu, John Bauer, Jenny Finkel, Steven Bethard, David McClosky<br />
 <em>Proceedings of 52nd Annual Meeting of the Association for Computational Linguistics: System Demonstrations</em> (2014) <a href="https://doi.org/gf3xhp">https://doi.org/gf3xhp</a><br />
 DOI: <a href="https://doi.org/10.3115/v1/p14-5010">10.3115/v1/p14-5010</a></p>
 </div>
-<div id="ref-5Il3kN32">
-<p>9. <strong>Data Programming: Creating Large Training Sets, Quickly</strong><br />
-Alexander Ratner, Christopher De Sa, Sen Wu, Daniel Selsam, Christopher Ré<br />
-<em>arXiv</em> (2016-05-25) <a href="https://arxiv.org/abs/1605.07723v3">https://arxiv.org/abs/1605.07723v3</a></p>
-</div>
-<div id="ref-EHeTvZht">
-<p>10. <strong>Distant supervision for relation extraction without labeled data</strong><br />
-Mike Mintz, Steven Bills, Rion Snow, Dan Jurafsky<br />
-<em>Proceedings of the Joint Conference of the 47th Annual Meeting of the ACL and the 4th International Joint Conference on Natural Language Processing of the AFNLP: Volume 2 - ACL-IJCNLP ’09</em> (2009) <a href="https://doi.org/fg9q43">https://doi.org/fg9q43</a><br />
-DOI: <a href="https://doi.org/10.3115/1690219.1690287">10.3115/1690219.1690287</a></p>
-</div>
 <div id="ref-CSiMoOrI">
-<p>11. <strong>A global network of biomedical relationships derived from text</strong><br />
+<p>18. <strong>A global network of biomedical relationships derived from text</strong><br />
 Bethany Percha, Russ B Altman<br />
 <em>Bioinformatics</em> (2018-02-27) <a href="https://doi.org/gc3ndk">https://doi.org/gc3ndk</a><br />
 DOI: <a href="https://doi.org/10.1093/bioinformatics/bty114">10.1093/bioinformatics/bty114</a> · PMID: <a href="https://www.ncbi.nlm.nih.gov/pubmed/29490008">29490008</a> · PMCID: <a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC6061699">PMC6061699</a></p>
 </div>
 <div id="ref-9Jo1af7Z">
-<p>12. <strong>Snorkel MeTaL</strong><br />
+<p>19. <strong>Snorkel MeTaL</strong><br />
 Alex Ratner, Braden Hancock, Jared Dunnmon, Roger Goldman, Christopher Ré<br />
 <em>Proceedings of the Second Workshop on Data Management for End-To-End Machine Learning - DEEM’18</em> (2018) <a href="https://doi.org/gf3xk7">https://doi.org/gf3xk7</a><br />
 DOI: <a href="https://doi.org/10.1145/3209889.3209898">10.1145/3209889.3209898</a> · PMID: <a href="https://www.ncbi.nlm.nih.gov/pubmed/30931438">30931438</a> · PMCID: <a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC6436830">PMC6436830</a></p>
 </div>
 <div id="ref-vzoBuh4l">
-<p>13. <strong>Snorkel</strong><br />
+<p>20. <strong>Snorkel</strong><br />
 Alexander Ratner, Stephen H. Bach, Henry Ehrenberg, Jason Fries, Sen Wu, Christopher Ré<br />
 <em>Proceedings of the VLDB Endowment</em> (2017-11-01) <a href="https://doi.org/ch44">https://doi.org/ch44</a><br />
 DOI: <a href="https://doi.org/10.14778/3157794.3157797">10.14778/3157794.3157797</a> · PMID: <a href="https://www.ncbi.nlm.nih.gov/pubmed/29770249">29770249</a> · PMCID: <a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5951191">PMC5951191</a></p>
 </div>
 <div id="ref-u5iJzbp9">
-<p>14. <strong>Distributed Representations of Words and Phrases and their Compositionality</strong><br />
+<p>21. <strong>Distributed Representations of Words and Phrases and their Compositionality</strong><br />
 Tomas Mikolov, Ilya Sutskever, Kai Chen, Greg Corrado, Jeffrey Dean<br />
 <em>arXiv</em> (2013-10-16) <a href="https://arxiv.org/abs/1310.4546v1">https://arxiv.org/abs/1310.4546v1</a></p>
 </div>
 <div id="ref-qUpCDz2v">
-<p>15. <strong>Enriching Word Vectors with Subword Information</strong><br />
+<p>22. <strong>Enriching Word Vectors with Subword Information</strong><br />
 Piotr Bojanowski, Edouard Grave, Armand Joulin, Tomas Mikolov<br />
 <em>arXiv</em> (2016-07-15) <a href="https://arxiv.org/abs/1607.04606v2">https://arxiv.org/abs/1607.04606v2</a></p>
 </div>
 <div id="ref-1GhHIDxuW">
-<p>16. <strong>Efficient Estimation of Word Representations in Vector Space</strong><br />
+<p>23. <strong>Efficient Estimation of Word Representations in Vector Space</strong><br />
 Tomas Mikolov, Kai Chen, Greg Corrado, Jeffrey Dean<br />
 <em>arXiv</em> (2013-01-16) <a href="https://arxiv.org/abs/1301.3781v3">https://arxiv.org/abs/1301.3781v3</a></p>
 </div>
 <div id="ref-LCyCrr7W">
-<p>17. <strong>A Proteome-Scale Map of the Human Interactome Network</strong><br />
+<p>24. <strong>A Proteome-Scale Map of the Human Interactome Network</strong><br />
 Thomas Rolland, Murat Taşan, Benoit Charloteaux, Samuel J. Pevzner, Quan Zhong, Nidhi Sahni, Song Yi, Irma Lemmens, Celia Fontanillo, Roberto Mosca, … Marc Vidal<br />
 <em>Cell</em> (2014-11) <a href="https://doi.org/f3mn6x">https://doi.org/f3mn6x</a><br />
 DOI: <a href="https://doi.org/10.1016/j.cell.2014.10.050">10.1016/j.cell.2014.10.050</a> · PMID: <a href="https://www.ncbi.nlm.nih.gov/pubmed/25416956">25416956</a> · PMCID: <a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4266588">PMC4266588</a></p>
 </div>
 <div id="ref-gtV3bOpd">
-<p>18. <strong>iRefIndex: A consolidated protein interaction database with provenance</strong><br />
+<p>25. <strong>iRefIndex: A consolidated protein interaction database with provenance</strong><br />
 Sabry Razick, George Magklaras, Ian M Donaldson<br />
 <em>BMC Bioinformatics</em> (2008) <a href="https://doi.org/b99bjj">https://doi.org/b99bjj</a><br />
 DOI: <a href="https://doi.org/10.1186/1471-2105-9-405">10.1186/1471-2105-9-405</a> · PMID: <a href="https://www.ncbi.nlm.nih.gov/pubmed/18823568">18823568</a> · PMCID: <a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC2573892">PMC2573892</a></p>
 </div>
 <div id="ref-2jkcXYxN">
-<p>19. <strong>Uncovering disease-disease relationships through the incomplete interactome</strong><br />
+<p>26. <strong>Uncovering disease-disease relationships through the incomplete interactome</strong><br />
 J. Menche, A. Sharma, M. Kitsak, S. D. Ghiassian, M. Vidal, J. Loscalzo, A.-L. Barabasi<br />
 <em>Science</em> (2015-02-19) <a href="https://doi.org/f3mn6z">https://doi.org/f3mn6z</a><br />
 DOI: <a href="https://doi.org/10.1126/science.1257601">10.1126/science.1257601</a> · PMID: <a href="https://www.ncbi.nlm.nih.gov/pubmed/25700523">25700523</a> · PMCID: <a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4435741">PMC4435741</a></p>

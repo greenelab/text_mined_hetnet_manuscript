@@ -20,9 +20,9 @@ title: Mining Heterogenous Relationships from Pubmed Abstracts Using Weak Superv
 
 <small><em>
 This manuscript
-([permalink](https://greenelab.github.io/text_mined_hetnet_manuscript/v/ec2bd219cdd7bf88d7e71a36327bd728ac04de44/))
+([permalink](https://greenelab.github.io/text_mined_hetnet_manuscript/v/0a7be3e9a4633dfcb49e9d734c97926d40786ac9/))
 was automatically generated
-from [greenelab/text_mined_hetnet_manuscript@ec2bd21](https://github.com/greenelab/text_mined_hetnet_manuscript/tree/ec2bd219cdd7bf88d7e71a36327bd728ac04de44)
+from [greenelab/text_mined_hetnet_manuscript@0a7be3e](https://github.com/greenelab/text_mined_hetnet_manuscript/tree/0a7be3e9a4633dfcb49e9d734c97926d40786ac9)
 on July 23, 2019.
 </em></small>
 
@@ -71,11 +71,34 @@ on July 23, 2019.
 This is a **rough draft** of a manscript on label function reuse for text mining heterogenous relationship from Pubmed Abstracts.
 
 
-#Introduction
-Set introduction for paper here
-Talk about problem, goal, and significance of paper
+## Introduction
+
+Knowledge bases are important resources that hold complex structured and unstructed information. 
+These resources have been used in important tasks such as network analysis for drug repurposing discovery [@u8pIAt5j; @bPvC638e; @O21tn8vf] or as a source of training labels for text mining systems [@EHeTvZht; @CVHSURuI; @HS4ARwmZ]. 
+Populating knowledge bases often requires highly-trained scientists to read biomedical literature and summarize the results [@N1Ai0gaI].
+This manual curation process requires a significant amount of effort and time: in 2007 researchers estimated that filling in the missing annotations at that point would require approximately 8.4 years [@UdzvLgBM]).
+The rate of publications has continued to increase exponentially [@1DBISRlwN].
+This has been recognized as a considerable challenge and leads to gaps in knowledge bases [@UdzvLgBM].  
+Relationship extraction has been studied as a solution towards handling this problem [@N1Ai0gaI].
+This process consists of creating a machine learning system to automatically scan and extract relationships from textual sources.
+Machine learning methods often leverage a large corpus of well-labeled training data, which still requires manual curation.
+Distant supervision is one technique to sidestep the requirement of well-annotated sentences: with distant supervision one makes the assumption that that all sentences containing an entity pair found in a selected database provide evidence for a relationship [@EHeTvZht].
+Distant supervision provides many labeled examples; however it is accompanied by a decrease in the quality of the labels.  
+Ratner et al. [@5Il3kN32] recently introduced "data programming" as a solution.
+Data programming combines distant supervision with the automated labeling of text using hand-written label functions.
+The distant supervision sources and label functions are integrated using a noise aware generative model, which is used to produce training labels.
+Combining distant supervision with label functions can dramatically reduce the time required to acquire sufficient training data.
+However, constructing a knowledge base of heterogeneous relationships through this framework still requires tens of hand-written label functions for each relationship type.
+Writing useful label functions requires significant error analysis, which can be a time-consuming process.  
+
+In this paper, we aim to address the question: to what extent can label functions be re-used across different relationship types?
+We hypothesized that sentences describing one relationship type may share information in the form of keywords or sentence structure with sentences that indicate other relationship types.
+We designed a series of experiments to determine the extent to which label function re-use enhanced performance over distant supervision alone.
+We examine relationships that indicate similar types of physical interactions (i.e., gene-binds-gene and compound-binds-gene) as well as different types (i.e., disease-associates-gene and compound-treats-disease).
+The re-use of label functions could dramatically reduce the number required to generate and update a heterogeneous knowledge graph.
 
 ## Recent Work
+
 Talk about what has been done in the field in regards to text mining and knowledge base integration
 
 
