@@ -20,9 +20,9 @@ title: Mining Heterogenous Relationships from Pubmed Abstracts Using Weak Superv
 
 <small><em>
 This manuscript
-([permalink](https://greenelab.github.io/text_mined_hetnet_manuscript/v/0a7be3e9a4633dfcb49e9d734c97926d40786ac9/))
+([permalink](https://greenelab.github.io/text_mined_hetnet_manuscript/v/cf88cc94ae16968145cb473be8ce4b742239b043/))
 was automatically generated
-from [greenelab/text_mined_hetnet_manuscript@0a7be3e](https://github.com/greenelab/text_mined_hetnet_manuscript/tree/0a7be3e9a4633dfcb49e9d734c97926d40786ac9)
+from [greenelab/text_mined_hetnet_manuscript@cf88cc9](https://github.com/greenelab/text_mined_hetnet_manuscript/tree/cf88cc94ae16968145cb473be8ce4b742239b043)
 on July 23, 2019.
 </em></small>
 
@@ -268,10 +268,50 @@ We repeated this sampling process 50 times for each point.
 We evaluated both generative and discriminative models at each point, and we report performance of each in terms of the area under the receiver operating characteristic curve (AUROC) and the area under the precision-recall curve (AUPR).
 
 
-# Results
+## Results
 
-## Random Sampling of Generative Model
-place the grid aurocs here for generative model
+### Generative Model Using Randomly Sampled Label Functions
+![
+Grid of Area Under the Receiver Operating Curve (AUROC) scores for each generative model trained on randomly sampled label functions.
+The rows depict the relationship each model is trying to predict and the columns are the relationship specific sources each label function is sampled from.
+For example, the top-left most square depicts the generative model predicting Disease associates Gene (DaG) sentences, while randomly sampling label functions designed to predict the DaG relationship. 
+The square towards the right depicts the generative model predicting DaG sentences, while randomly sampling label functions designed to predict the Compound treats Disease (CtD) relationship.
+This pattern continues filling out the rest of the grid.
+The last most column consists of pooling every relationship specific label function and proceeding as above.
+](https://raw.githubusercontent.com/greenelab/snorkeling/master/figures/label_sampling_experiment/transfer_test_set_auroc.png){#fig:gen_model_auroc}
+
+We added randomly sampled label functions to a baseline for each edge type to evaluate the feasibility of label function re-use.
+Our baseline model consisted of a generative model trained with only the edge type's distant supervision label functions.
+We report the results in the form of area under the precision recall curve (AUPR) (Figure {@fig:gen_model_auprc}) and area under the receiver operating curve (AUROC) (Figure {@fig:gen_model_auroc}).  
+The on-diagonal plots of figure {@fig:gen_model_auprc}) and figure {@fig:gen_model_auprc} show performance when edge-specific label functions are added on top of edge-specific baselines.
+The general trend is performance increases in this setting.
+The Compound-treats-Disease (CtD) edge type is a quintessential example of this trend.
+The baseline model starts off with an AUROC score of 52% and an AUPRC of 28%, which increase to 76% and 49% respectively as more CtD label functions are included. 
+Disease-associates-Gene (DaG) edges have a similar trend: performance starting off with a AUROC of 56% and AUPRC of 41%, which increase to 62% and 45% respectively.
+Both the Compound-binds-Gene (CbG) and Gene-interacts-Gene (GiG) edges have an increasing trend but plateau after a few label functions are added.  
+
+The off-diagonals in figure {@fig:gen_model_auprc}) and figure {@fig:gen_model_auprc} show how performance varies when label functions from one edge type are added to a different edge type's baseline.
+In certain cases (apparent for DaG), performance increases regardless of the edge type used for label functions.
+In other cases (apparent with CtD), one label function appears to improve performance; however, adding more label functions does not improve performance (AUROC) or decreases it (AUPRC).
+In certain cases, the source of the label functions appear to be important: for CbG edges performance decreases when using label functions from the DaG and CtD categories.
+
+Our initial hypothesis was based on the idea that certain edge types capture similar physical relationships and that these cases would be particularly amenable for label function transfer.
+For example, Compound-binds-Gene (CbG) and Gene-interacts-Gene (GiG) both describe physical interactions.
+We observed that performance increased as assessed by both AUPRC and AUPRC when using label functions from the GiG edge type to predict CbG edges.
+A similar trend was observed when predicting the GiG edge; however, the performance differences were small for this edge type making the importance difficult to assess.  
+The last column shows performance when sampling from all label functions.
+Performance increased (AUROC and AUPRC) for both DaG and CtD, when sampling from the full pool of label functions.
+CbG and GiG also had increased performance when one random label function was sampled, but performance decreased drastically as more label functions were added.
+It is possible that a small number of irrelevant label functions are able to overwhelm the distant supervision label functions in these cases.
+
+![
+Grid of Area Under the Precision Recall Curve (AUPRC) scores for each generative model trained on randomly sampled label functions.
+The rows depict the relationship each model is trying to predict and the columns are the relationship specific sources each label function is sampled from.
+For example, the top-left most square depicts the generative model predicting Disease associates Gene (DaG) sentences, while randomly sampling label functions designed to predict the DaG relationship. 
+The square towards the right depicts the generative model predicting DaG sentences, while randomly sampling label functions designed to predict the Compound treats Disease (CtD) relationship.
+This pattern continues filling out the rest of the grid.
+The last most column consists of pooling every relationship specific label function and proceeding as above.
+](https://raw.githubusercontent.com/greenelab/snorkeling/master/figures/label_sampling_experiment/transfer_test_set_auprc.png){#fig:gen_model_auprc}
 
 ## Discriminator Model Builds Off Generative Model
 place the grid of aurocs here for discriminator model
