@@ -146,6 +146,314 @@
     "id": "qUpCDz2v"
   },
   {
+    "publisher": "Elsevier BV",
+    "issue": "5",
+    "DOI": "10.1016/j.cell.2014.10.050",
+    "type": "article-journal",
+    "page": "1212-1226",
+    "source": "Crossref",
+    "title": "A Proteome-Scale Map of the Human Interactome Network",
+    "volume": "159",
+    "author": [
+      {
+        "given": "Thomas",
+        "family": "Rolland"
+      },
+      {
+        "given": "Murat",
+        "family": "Taşan"
+      },
+      {
+        "given": "Benoit",
+        "family": "Charloteaux"
+      },
+      {
+        "given": "Samuel J.",
+        "family": "Pevzner"
+      },
+      {
+        "given": "Quan",
+        "family": "Zhong"
+      },
+      {
+        "given": "Nidhi",
+        "family": "Sahni"
+      },
+      {
+        "given": "Song",
+        "family": "Yi"
+      },
+      {
+        "given": "Irma",
+        "family": "Lemmens"
+      },
+      {
+        "given": "Celia",
+        "family": "Fontanillo"
+      },
+      {
+        "given": "Roberto",
+        "family": "Mosca"
+      },
+      {
+        "given": "Atanas",
+        "family": "Kamburov"
+      },
+      {
+        "given": "Susan D.",
+        "family": "Ghiassian"
+      },
+      {
+        "given": "Xinping",
+        "family": "Yang"
+      },
+      {
+        "given": "Lila",
+        "family": "Ghamsari"
+      },
+      {
+        "given": "Dawit",
+        "family": "Balcha"
+      },
+      {
+        "given": "Bridget E.",
+        "family": "Begg"
+      },
+      {
+        "given": "Pascal",
+        "family": "Braun"
+      },
+      {
+        "given": "Marc",
+        "family": "Brehme"
+      },
+      {
+        "given": "Martin P.",
+        "family": "Broly"
+      },
+      {
+        "given": "Anne-Ruxandra",
+        "family": "Carvunis"
+      },
+      {
+        "given": "Dan",
+        "family": "Convery-Zupan"
+      },
+      {
+        "given": "Roser",
+        "family": "Corominas"
+      },
+      {
+        "given": "Jasmin",
+        "family": "Coulombe-Huntington"
+      },
+      {
+        "given": "Elizabeth",
+        "family": "Dann"
+      },
+      {
+        "given": "Matija",
+        "family": "Dreze"
+      },
+      {
+        "given": "Amélie",
+        "family": "Dricot"
+      },
+      {
+        "given": "Changyu",
+        "family": "Fan"
+      },
+      {
+        "given": "Eric",
+        "family": "Franzosa"
+      },
+      {
+        "given": "Fana",
+        "family": "Gebreab"
+      },
+      {
+        "given": "Bryan J.",
+        "family": "Gutierrez"
+      },
+      {
+        "given": "Madeleine F.",
+        "family": "Hardy"
+      },
+      {
+        "given": "Mike",
+        "family": "Jin"
+      },
+      {
+        "given": "Shuli",
+        "family": "Kang"
+      },
+      {
+        "given": "Ruth",
+        "family": "Kiros"
+      },
+      {
+        "given": "Guan Ning",
+        "family": "Lin"
+      },
+      {
+        "given": "Katja",
+        "family": "Luck"
+      },
+      {
+        "given": "Andrew",
+        "family": "MacWilliams"
+      },
+      {
+        "given": "Jörg",
+        "family": "Menche"
+      },
+      {
+        "given": "Ryan R.",
+        "family": "Murray"
+      },
+      {
+        "given": "Alexandre",
+        "family": "Palagi"
+      },
+      {
+        "given": "Matthew M.",
+        "family": "Poulin"
+      },
+      {
+        "given": "Xavier",
+        "family": "Rambout"
+      },
+      {
+        "given": "John",
+        "family": "Rasla"
+      },
+      {
+        "given": "Patrick",
+        "family": "Reichert"
+      },
+      {
+        "given": "Viviana",
+        "family": "Romero"
+      },
+      {
+        "given": "Elien",
+        "family": "Ruyssinck"
+      },
+      {
+        "given": "Julie M.",
+        "family": "Sahalie"
+      },
+      {
+        "given": "Annemarie",
+        "family": "Scholz"
+      },
+      {
+        "given": "Akash A.",
+        "family": "Shah"
+      },
+      {
+        "given": "Amitabh",
+        "family": "Sharma"
+      },
+      {
+        "given": "Yun",
+        "family": "Shen"
+      },
+      {
+        "given": "Kerstin",
+        "family": "Spirohn"
+      },
+      {
+        "given": "Stanley",
+        "family": "Tam"
+      },
+      {
+        "given": "Alexander O.",
+        "family": "Tejeda"
+      },
+      {
+        "given": "Shelly A.",
+        "family": "Trigg"
+      },
+      {
+        "given": "Jean-Claude",
+        "family": "Twizere"
+      },
+      {
+        "given": "Kerwin",
+        "family": "Vega"
+      },
+      {
+        "given": "Jennifer",
+        "family": "Walsh"
+      },
+      {
+        "given": "Michael E.",
+        "family": "Cusick"
+      },
+      {
+        "given": "Yu",
+        "family": "Xia"
+      },
+      {
+        "given": "Albert-László",
+        "family": "Barabási"
+      },
+      {
+        "given": "Lilia M.",
+        "family": "Iakoucheva"
+      },
+      {
+        "given": "Patrick",
+        "family": "Aloy"
+      },
+      {
+        "given": "Javier",
+        "family": "De Las Rivas"
+      },
+      {
+        "given": "Jan",
+        "family": "Tavernier"
+      },
+      {
+        "given": "Michael A.",
+        "family": "Calderwood"
+      },
+      {
+        "given": "David E.",
+        "family": "Hill"
+      },
+      {
+        "given": "Tong",
+        "family": "Hao"
+      },
+      {
+        "given": "Frederick P.",
+        "family": "Roth"
+      },
+      {
+        "given": "Marc",
+        "family": "Vidal"
+      }
+    ],
+    "container-title": "Cell",
+    "language": "en",
+    "issued": {
+      "date-parts": [
+        [
+          2014,
+          11
+        ]
+      ]
+    },
+    "URL": "https://doi.org/f3mn6x",
+    "container-title-short": "Cell",
+    "PMCID": "PMC4266588",
+    "PMID": "25416956",
+    "note": "This CSL JSON Item was automatically generated by Manubot v0.2.3 using citation-by-identifier.\nstandard_id: doi:10.1016/j.cell.2014.10.050",
+    "id": "LCyCrr7W"
+  },
+  {
     "publisher": "Oxford University Press (OUP)",
     "issue": "7",
     "DOI": "10.1093/bioinformatics/btr042",
@@ -448,6 +756,63 @@
     "id": "16cIDAXhG"
   },
   {
+    "publisher": "American Association for the Advancement of Science (AAAS)",
+    "issue": "6224",
+    "DOI": "10.1126/science.1257601",
+    "type": "article-journal",
+    "page": "1257601-1257601",
+    "source": "Crossref",
+    "title": "Uncovering disease-disease relationships through the incomplete interactome",
+    "volume": "347",
+    "author": [
+      {
+        "given": "J.",
+        "family": "Menche"
+      },
+      {
+        "given": "A.",
+        "family": "Sharma"
+      },
+      {
+        "given": "M.",
+        "family": "Kitsak"
+      },
+      {
+        "given": "S. D.",
+        "family": "Ghiassian"
+      },
+      {
+        "given": "M.",
+        "family": "Vidal"
+      },
+      {
+        "given": "J.",
+        "family": "Loscalzo"
+      },
+      {
+        "given": "A.-L.",
+        "family": "Barabasi"
+      }
+    ],
+    "container-title": "Science",
+    "language": "en",
+    "issued": {
+      "date-parts": [
+        [
+          2015,
+          2,
+          19
+        ]
+      ]
+    },
+    "URL": "https://doi.org/f3mn6z",
+    "container-title-short": "Science",
+    "PMCID": "PMC4435741",
+    "PMID": "25700523",
+    "note": "This CSL JSON Item was automatically generated by Manubot v0.2.3 using citation-by-identifier.\nstandard_id: doi:10.1126/science.1257601",
+    "id": "2jkcXYxN"
+  },
+  {
     "publisher": "ACM Press",
     "DOI": "10.1145/3209889.3209898",
     "type": "paper-conference",
@@ -525,6 +890,45 @@
     "PMID": "22151999",
     "note": "This CSL JSON Item was automatically generated by Manubot v0.2.3 using citation-by-identifier.\nstandard_id: doi:10.1186/1471-2105-12-s8-s5",
     "id": "1AkC7QdyP"
+  },
+  {
+    "publisher": "Springer Nature",
+    "issue": "1",
+    "DOI": "10.1186/1471-2105-9-405",
+    "type": "article-journal",
+    "page": "405",
+    "source": "Crossref",
+    "title": "iRefIndex: A consolidated protein interaction database with provenance",
+    "volume": "9",
+    "author": [
+      {
+        "given": "Sabry",
+        "family": "Razick"
+      },
+      {
+        "given": "George",
+        "family": "Magklaras"
+      },
+      {
+        "given": "Ian M",
+        "family": "Donaldson"
+      }
+    ],
+    "container-title": "BMC Bioinformatics",
+    "language": "en",
+    "issued": {
+      "date-parts": [
+        [
+          2008
+        ]
+      ]
+    },
+    "URL": "https://doi.org/b99bjj",
+    "container-title-short": "BMC Bioinformatics",
+    "PMCID": "PMC2573892",
+    "PMID": "18823568",
+    "note": "This CSL JSON Item was automatically generated by Manubot v0.2.3 using citation-by-identifier.\nstandard_id: doi:10.1186/1471-2105-9-405",
+    "id": "gtV3bOpd"
   },
   {
     "publisher": "VLDB Endowment",

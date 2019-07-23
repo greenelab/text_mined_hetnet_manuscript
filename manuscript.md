@@ -3,7 +3,7 @@ author-meta:
 - David N. Nicholson
 - Daniel S. Himmelstein
 - Casey S. Greene
-date-meta: '2019-07-08'
+date-meta: '2019-07-23'
 keywords:
 - machine learning
 - weak supervision
@@ -20,10 +20,10 @@ title: Mining Heterogenous Relationships from Pubmed Abstracts Using Weak Superv
 
 <small><em>
 This manuscript
-([permalink](https://greenelab.github.io/text_mined_hetnet_manuscript/v/6e0621dd17e77c1259c83ee52c777c6a97170ff0/))
+([permalink](https://greenelab.github.io/text_mined_hetnet_manuscript/v/ec2bd219cdd7bf88d7e71a36327bd728ac04de44/))
 was automatically generated
-from [greenelab/text_mined_hetnet_manuscript@6e0621d](https://github.com/greenelab/text_mined_hetnet_manuscript/tree/6e0621dd17e77c1259c83ee52c777c6a97170ff0)
-on July 8, 2019.
+from [greenelab/text_mined_hetnet_manuscript@ec2bd21](https://github.com/greenelab/text_mined_hetnet_manuscript/tree/ec2bd219cdd7bf88d7e71a36327bd728ac04de44)
+on July 23, 2019.
 </em></small>
 
 ## Authors
@@ -233,8 +233,16 @@ talk about the discriminator model and how it works
 ### Discriminator Model Calibration
 talk about calibrating deep learning models with temperature smoothing
 
-## Experimental Design
-talk about sampling experiment
+### Experimental Design
+Being able to re-use label functions across edge types would substantially reduce the number of label functions required to extract multiple relationship types from biomedical literature.
+We first established a baseline by training a generative model using only distant supervision label functions designed for the target edge type.
+As an example, for the gene-interacts-gene edge type we used label functions that returned a `1` if the pair of genes were included in the Human Interaction database [@LCyCrr7W], the iRefIndex database [@gtV3bOpd] or in the Incomplete Interactome database [@2jkcXYxN].
+Then we compared models that also included text and domain-heuristic label functions.
+Using a sampling with replacement approach, we sampled these text and domain-heuristic label functions separately within edge types, across edge types, and from a pool of all label functions.
+We compared within-edge-type performance to across-edge-type and all-edge-type performance.
+For each edge type we sampled a fixed number of label functions consisting of five evenly-spaced numbers between one and the total number of possible label functions.
+We repeated this sampling process 50 times for each point.
+We evaluated both generative and discriminative models at each point, and we report performance of each in terms of the area under the receiver operating characteristic curve (AUROC) and the area under the precision-recall curve (AUPR).
 
 
 # Results
