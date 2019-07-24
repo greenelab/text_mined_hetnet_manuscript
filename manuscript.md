@@ -3,7 +3,7 @@ author-meta:
 - David N. Nicholson
 - Daniel S. Himmelstein
 - Casey S. Greene
-date-meta: '2019-07-23'
+date-meta: '2019-07-24'
 keywords:
 - machine learning
 - weak supervision
@@ -20,10 +20,10 @@ title: Mining Heterogenous Relationships from Pubmed Abstracts Using Weak Superv
 
 <small><em>
 This manuscript
-([permalink](https://greenelab.github.io/text_mined_hetnet_manuscript/v/cf88cc94ae16968145cb473be8ce4b742239b043/))
+([permalink](https://greenelab.github.io/text_mined_hetnet_manuscript/v/af32497aa07240d939402ca5746a6a0fb780b752/))
 was automatically generated
-from [greenelab/text_mined_hetnet_manuscript@cf88cc9](https://github.com/greenelab/text_mined_hetnet_manuscript/tree/cf88cc94ae16968145cb473be8ce4b742239b043)
-on July 23, 2019.
+from [greenelab/text_mined_hetnet_manuscript@af32497](https://github.com/greenelab/text_mined_hetnet_manuscript/tree/af32497aa07240d939402ca5746a6a0fb780b752)
+on July 24, 2019.
 </em></small>
 
 ## Authors
@@ -107,13 +107,14 @@ span.gene_color { color:#02b3e4 }
 span.disease_color { color:#875442 }
 </style>
 
-# Materials and Methods
+## Materials and Methods
 
-## Hetionet
+### Hetionet
+
 Hetionet [@O21tn8vf] is a large heterogenous network that contains pharmacological and biological information.
 This network depicts information in the form of nodes and edges of different types: nodes that represent biological and pharmacological entities and edges which represent relationships between entities. 
 Hetionet v1.0 contains 47,031 nodes with 11 different data types and 2,250,197 edges that represent 24 different relationship types (Figure {@fig:hetionet}).
-Edges in Hetionet were obtained from open databases, such as the GWAS Catalog [@16cIDAXhG] and DrugBank [@16cIDAXhG].
+Edges in Hetionet were obtained from open databases, such as the GWAS Catalog [@16cIDAXhG] and DrugBank [@1FI8iuYiQ].
 For this project, we analyzed performance over a subset of the Hetionet relationship types: disease associates with a gene (DaG), compound binds to a gene (CbG), gene interacts with gene (GiG) and compound treating a disease (CtD).
 
 ![
@@ -121,8 +122,8 @@ A metagraph (schema) of Hetionet where pharmacological, biological and disease e
 This project only focuses on the information shown in bold; however, we can extend this work to incorporate the faded out information as well.
 ](images/figures/hetionet/metagraph_highlighted_edges.png){#fig:hetionet}
 
+### Dataset
 
-## Dataset
 We used PubTator [@13vw5RIy4] as input to our analysis.
 PubTator provides MEDLINE abstracts that have been annotated with well-established entity recognition tools including DNorm [@vtuZ3Wx7] for disease mentions, GeneTUKit [@4S2HMNpa] for gene mentions, Gnorm [@1AkC7QdyP] for gene normalizations and a dictionary based look system for compound mentions [@r501gnuM].
 We downloaded PubTator on June 30, 2017, at which point it contained 10,775,748 abstracts. 
@@ -135,7 +136,7 @@ Within these four categories each pair receives their own individual partition r
 Any rank lower than 0.7 is sorted into training set, while any rank greater than 0.7 and lower than 0.9 is assigned to tuning set.
 The rest of the pairs with a rank greater than or equal to 0.9 is assigned to the test set.
 Sentences that contain more than one co-mention pair are treated as multiple individual candidates.
-We hand labeled five hundred to a thousand candidate sentences of each relationship to obtain to obtain a ground truth set (Table {@tbl:candidate-sentences}, [dataset](http://github.com/text_minded_hetnet_manuscript/master/supplementary_materials/annotated_sentences)).
+We hand labeled five hundred to a thousand candidate sentences of each relationship to obtain to obtain a ground truth set (Table {@tbl:candidate-sentences}, [dataset](https://github.com/greenelab/text_mined_hetnet_manuscript/tree/master/supplementary_materials/annotated_sentences)).
 
 | Relationship | Train | Tune | Test |
 | :--- | :---: | :---: | :---: |
@@ -149,7 +150,8 @@ We sorted each candidate sentence into a training, tuning and testing set.
 Numbers in parentheses show the number of positives and negatives that resulted from the hand-labeling process.
 {#tbl:candidate-sentences}
 
-## Label Functions for Annotating Sentences
+### Label Functions for Annotating Sentences
+
 A common challenge in natural language processing is having too few ground truth annotations, even when textual data are abundant.
 Data programming circumvents this issue by quickly annotating large datasets by using multiple noisy signals emitted by label functions [@5Il3kN32].
 Label functions are simple pythonic functions that emit: a positive label (1), a negative label (-1) or abstain from emitting a label (0).
@@ -217,8 +219,10 @@ Roughly half of our label functions are based on text patterns, while the others
 
 Table: The distribution of each label function per relationship. {#tbl:label-functions} 
 
-## Training Models
-### Generative Model
+### Training Models
+
+#### Generative Model
+
 The generative model is a core part of this automatic annotation framework.
 It integrates multiple signals emitted by label functions and assigns a training class to each candidate sentence.
 This model assigns training classes by estimating the joint probability distribution of the latent true class ($Y$) and label function signals ($\Lambda$), $P(\Lambda, Y)$.
@@ -243,7 +247,8 @@ $$\hat{\theta} = argmin_{\theta} -\sum_{\Lambda} log \sum_{Y}P(\Lambda, Y)$$
 
 In the framework we used predictions from the generative model, $\hat{Y} = P(Y \mid \Lambda)$, as training classes for our dataset [@9Jo1af7Z; @vzoBuh4l].
 
-### Word Embeddings
+#### Word Embeddings
+
 Word embeddings are representations that map individual words to real valued vectors of user-specified dimensions.
 These embeddings have been shown to capture the semantic and syntatic information between words [@u5iJzbp9].
 Using all candidate sentences for each individual relationship pair, we trained facebook's fastText [@qUpCDz2v] to generate word embeddings.
@@ -251,12 +256,43 @@ The fastText model uses a skipgram model [@1GhHIDxuW] that aims to predict the c
 We trained this model for 20 epochs using a window size of 2 and generated 300-dimensional word embeddings.
 We use the optimized word embeddings to train a discriminative model.  
 
-### Discriminator Model
-talk about the discriminator model and how it works
-### Discriminator Model Calibration
-talk about calibrating deep learning models with temperature smoothing
+#### Discriminative Model
+
+The discriminative model is a neural network, which we train to predict labels from the generative model.
+The expectation is that the discriminative model can learn more complete features of the text than the label functions that are used in the generative model.
+We used a convolutional neural network with multiple filters as our discriminative model.
+This network uses multiple filters with fixed widths of 300 dimensions and a fixed height of 7 (Figure {@fig:convolutional_network}), because this height provided the best performance in terms of relationship classification [@fs8rAHoJ].
+We trained this model for 20 epochs using the adam optimizer [@c6d3lKFX] with a learning rate of 0.001.
+This optimizer used pytorch's default parameter settings.
+We added a L2 penalty on the network weights to prevent overfitting.
+Lastly, we added a dropout layer (p=0.25) between the fully connected layer and the softmax layer.
+
+![
+The architecture of the discriminative model is a convolutional neural network.
+We perform a convolution step using multiple filters. 
+These filters generate a feature map that is sent into a maximum pooling layer. 
+This layer extracts the largest feature in each of these maps.
+The extracted features are concatenated into a singular vector that is passed into a fully connected network. 
+The fully connected network has 300 neurons for the first layer, 100 neurons for the second layer and 50 neurons for the last layer. 
+From the fully connected network the last step is to generate predictions using the softmax layer.
+](images/figures/convolutional_neural_network/convolutional_neural_nework.png){#fig:convolutional_network}
+
+#### Calibration of the Discriminative Model
+
+Often many tasks require a machine learning model to output reliable probability predictions. 
+A model is well calibrated if the probabilities emitted from the model match the observed probabilities: a well-calibrated model that assigns a class label with 80% probability should have that class appear 80% of the time.
+Deep neural network models can often be poorly calibrated [@QJ6hYH8N; @rLVjMJ5l].
+These models are usually over-confidenent in their predictions.
+As a result, we calibrated our convolutional neural network using temperature scaling. 
+Temperature scaling uses a parameter T to scale each value of the logit vector (z) before being passed into the softmax (SM) function.
+
+$$\sigma_{SM}(\frac{z_{i}}{T}) = \frac{\exp(\frac{z_{i}}{T})}{\sum_{i}\exp(\frac{z_{i}}{T})}$$
+
+We found the optimial T by minimizing the negative log likelihood (NLL) of a held out validation set.
+The benefit of using this method is the model becomes more reliable and the accuracy of the model doesn't change [@QJ6hYH8N].
 
 ### Experimental Design
+
 Being able to re-use label functions across edge types would substantially reduce the number of label functions required to extract multiple relationship types from biomedical literature.
 We first established a baseline by training a generative model using only distant supervision label functions designed for the target edge type.
 As an example, for the gene-interacts-gene edge type we used label functions that returned a `1` if the pair of genes were included in the Human Interaction database [@LCyCrr7W], the iRefIndex database [@gtV3bOpd] or in the Incomplete Interactome database [@2jkcXYxN].
