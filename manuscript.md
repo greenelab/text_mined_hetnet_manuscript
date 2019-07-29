@@ -20,9 +20,9 @@ title: Mining Heterogenous Relationships from Pubmed Abstracts Using Weak Superv
 
 <small><em>
 This manuscript
-([permalink](https://greenelab.github.io/text_mined_hetnet_manuscript/v/7110ef8256589056320952bb343ace5a89fb7180/))
+([permalink](https://greenelab.github.io/text_mined_hetnet_manuscript/v/dff29d7676ff724d610236ffd38b6d36d27695f1/))
 was automatically generated
-from [greenelab/text_mined_hetnet_manuscript@7110ef8](https://github.com/greenelab/text_mined_hetnet_manuscript/tree/7110ef8256589056320952bb343ace5a89fb7180)
+from [greenelab/text_mined_hetnet_manuscript@dff29d7](https://github.com/greenelab/text_mined_hetnet_manuscript/tree/dff29d7676ff724d610236ffd38b6d36d27695f1)
 on July 29, 2019.
 </em></small>
 
@@ -264,7 +264,7 @@ In the framework we used predictions from the generative model, $\hat{Y} = P(Y \
 #### Word Embeddings
 
 Word embeddings are representations that map individual words to real valued vectors of user-specified dimensions.
-These embeddings have been shown to capture the semantic and syntatic information between words [@u5iJzbp9].
+These embeddings have been shown to capture the semantic and syntactic information between words [@u5iJzbp9].
 Using all candidate sentences for each individual relationship pair, we trained facebook's fastText [@qUpCDz2v] to generate word embeddings.
 The fastText model uses a skipgram model [@1GhHIDxuW] that aims to predict the context given a candidate word and pairs the model with a novel scoring function that treats each word as a bag of character n-grams.
 We trained this model for 20 epochs using a window size of 2 and generated 300-dimensional word embeddings.
@@ -296,13 +296,13 @@ From the fully connected network the last step is to generate predictions using 
 Often many tasks require a machine learning model to output reliable probability predictions. 
 A model is well calibrated if the probabilities emitted from the model match the observed probabilities: a well-calibrated model that assigns a class label with 80% probability should have that class appear 80% of the time.
 Deep neural network models can often be poorly calibrated [@QJ6hYH8N; @rLVjMJ5l].
-These models are usually over-confidenent in their predictions.
+These models are usually over-confident in their predictions.
 As a result, we calibrated our convolutional neural network using temperature scaling. 
 Temperature scaling uses a parameter T to scale each value of the logit vector (z) before being passed into the softmax (SM) function.
 
 $$\sigma_{SM}(\frac{z_{i}}{T}) = \frac{\exp(\frac{z_{i}}{T})}{\sum_{i}\exp(\frac{z_{i}}{T})}$$
 
-We found the optimial T by minimizing the negative log likelihood (NLL) of a held out validation set.
+We found the optimal T by minimizing the negative log likelihood (NLL) of a held out validation set.
 The benefit of using this method is the model becomes more reliable and the accuracy of the model doesn't change [@QJ6hYH8N].
 
 ### Experimental Design
@@ -316,6 +316,15 @@ We compared within-edge-type performance to across-edge-type and all-edge-type p
 For each edge type we sampled a fixed number of label functions consisting of five evenly-spaced numbers between one and the total number of possible label functions.
 We repeated this sampling process 50 times for each point.
 We evaluated both generative and discriminative models at each point, and we report performance of each in terms of the area under the receiver operating characteristic curve (AUROC) and the area under the precision-recall curve (AUPR).
+
+#### Adding Random Noise to Generative Model
+
+We discovered in the course of this work that adding a single label function from a mismatched type would often improve the performance of the generative model (see Results).
+We designed an experiment to test whether adding a noisy label function also increased performance.
+This label function emitted a positive or negative label at varying frequencies, which were evenly spaced from zero to one.
+Zero is the same as distant supervision alone.
+We trained the generative model with these label functions added and report results in terms of AUROC and AUPR.
+
 
 
 ## Results
@@ -363,11 +372,29 @@ This pattern continues filling out the rest of the grid.
 The last most column consists of pooling every relationship specific label function and proceeding as above.
 ](https://raw.githubusercontent.com/greenelab/snorkeling/master/figures/label_sampling_experiment/transfer_test_set_auprc.png){#fig:gen_model_auprc}
 
+### Random Label Function Gen Model Analysis
+![
+A grid of area under the receiver operating curve (AUROC) for each edge type.
+Each plot consists of adding a single label function on top of the baseline model.
+This label function emits a positive (top row) or negative (bottom row) label at specified frequencies, and performance at zero is equivalent to not having a randomly emitting label function.
+The error bars represent 95% confidence intervals for AUROC (y-axis) at each emission frequency.
+](https://raw.githubusercontent.com/danich1/snorkeling/f8962788e462b783be05a6dec5eec7fe0f0259e7/figures/gen_model_error_analysis/transfer_test_set_auroc.png){#fig:random_label_function_auroc}
+
+We observed that including one label function of a mismatched type to distant supervision often improved performance, so we evaluated the effects of adding a random label function in the same setting.
+We found that adding random noise did not usually improve performance (Figures {@fig:random_label_function_auprc} and {@fig:random_label_function_auprc}).
+For the CbG edge type we did observe slightly increased performance via AUPR (Figure {@fig:random_label_function_auprc}).
+However, in general the performance changes were smaller than those observed with mismatched label types.
+
+![
+A grid of area under the precision recall curve (AUPR) for each edge type.
+Each plot consists of adding a single label function on top of the baseline model.
+This label function emits a positive (top row) or negative (bottom row) label at specified frequencies.
+The error bars represent 95% confidence intervals for AUPR (y-axis) at emission frequency.
+](https://raw.githubusercontent.com/danich1/snorkeling/f8962788e462b783be05a6dec5eec7fe0f0259e7/figures/gen_model_error_analysis/transfer_test_set_auprc.png){#fig:random_label_function_auprc}
+
+
 ## Discriminator Model Builds Off Generative Model
 place the grid of aurocs here for discriminator model
-
-## Random Noise Generative Model
-place the results of random label function experiment
 
 ## Reconstructing Hetionet
 place figure of number of new edges that can be added to hetionet as well as edges we can reconstruct using this method
