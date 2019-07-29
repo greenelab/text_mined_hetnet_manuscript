@@ -3,7 +3,7 @@ author-meta:
 - David N. Nicholson
 - Daniel S. Himmelstein
 - Casey S. Greene
-date-meta: '2019-07-24'
+date-meta: '2019-07-29'
 keywords:
 - machine learning
 - weak supervision
@@ -20,10 +20,10 @@ title: Mining Heterogenous Relationships from Pubmed Abstracts Using Weak Superv
 
 <small><em>
 This manuscript
-([permalink](https://greenelab.github.io/text_mined_hetnet_manuscript/v/af32497aa07240d939402ca5746a6a0fb780b752/))
+([permalink](https://greenelab.github.io/text_mined_hetnet_manuscript/v/7110ef8256589056320952bb343ace5a89fb7180/))
 was automatically generated
-from [greenelab/text_mined_hetnet_manuscript@af32497](https://github.com/greenelab/text_mined_hetnet_manuscript/tree/af32497aa07240d939402ca5746a6a0fb780b752)
-on July 24, 2019.
+from [greenelab/text_mined_hetnet_manuscript@7110ef8](https://github.com/greenelab/text_mined_hetnet_manuscript/tree/7110ef8256589056320952bb343ace5a89fb7180)
+on July 29, 2019.
 </em></small>
 
 ## Authors
@@ -68,7 +68,21 @@ on July 24, 2019.
 
 ## Abstract {.page_break_before}
 
-This is a **rough draft** of a manscript on label function reuse for text mining heterogenous relationship from Pubmed Abstracts.
+Knowledge bases support multiple research efforts including providing contextual information for biomedical entities, constructing networks, and supporting the interpretation of high-throughput analyses.
+Some knowledge bases are automatically constructed, but most are populated via some form of manual curation.
+Manual curation is time consuming and difficult to scale in the context of an increasing publication rate.
+A recently described "data programming" paradigm seeks to circumvent this arduous process by combining distant supervision with simple rules and heuristics written as labeling functions that can be automatically applied to inputs.
+Unfortunately writing useful label functions requires substantial error analysis and is a non trivial task: in early efforts to use data programming we found that producing each label function could take a few days.
+Producing a biomedical knowledge base with multiple node and edge types could take hundreds or thousands of label functions.
+In this paper we sought to evaluate the extent to which label functions could be re-used across edge types. 
+We used a subset of Hetionet v1 that centered on disease, compound, and gene nodes to evaluate this approach.
+We compare a baseline distant supervision model with the same distant supervision resources added to edge-type-specific label functions, edge-type-mismatch label functions, and all label functions.
+We confirmed that adding additional edge-type-specific label functions improves performance.
+We also found that adding one or a few edge-type-mismatch label functions also nearly always improves performance.
+Adding a large number of edge-type-mismatch label functions produces more variable performance that depends on the edge type being predicted and the edge type that is the source of the label function.
+Lastly, we show that this approach, even on this subgraph of Hetionet, could certain novel edges to Hetionet v1 with high confidence.
+We expect that its use in practice would include additional filtering and scoring methods which would further enhance precision.
+
 
 
 ## Introduction
