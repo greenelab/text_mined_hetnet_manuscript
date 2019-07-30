@@ -3,7 +3,7 @@ author-meta:
 - David N. Nicholson
 - Daniel S. Himmelstein
 - Casey S. Greene
-date-meta: '2019-07-29'
+date-meta: '2019-07-30'
 keywords:
 - machine learning
 - weak supervision
@@ -20,10 +20,10 @@ title: Mining Heterogenous Relationships from Pubmed Abstracts Using Weak Superv
 
 <small><em>
 This manuscript
-([permalink](https://greenelab.github.io/text_mined_hetnet_manuscript/v/77307b470aa2d92f7d31b4a5eebc6658154a5dc7/))
+([permalink](https://greenelab.github.io/text_mined_hetnet_manuscript/v/5f444057cbd78c678b5dd6f7b5043c648a614871/))
 was automatically generated
-from [greenelab/text_mined_hetnet_manuscript@77307b4](https://github.com/greenelab/text_mined_hetnet_manuscript/tree/77307b470aa2d92f7d31b4a5eebc6658154a5dc7)
-on July 29, 2019.
+from [greenelab/text_mined_hetnet_manuscript@5f44405](https://github.com/greenelab/text_mined_hetnet_manuscript/tree/5f444057cbd78c678b5dd6f7b5043c648a614871)
+on July 30, 2019.
 </em></small>
 
 ## Authors
@@ -111,9 +111,74 @@ We designed a series of experiments to determine the extent to which label funct
 We examine relationships that indicate similar types of physical interactions (i.e., gene-binds-gene and compound-binds-gene) as well as different types (i.e., disease-associates-gene and compound-treats-disease).
 The re-use of label functions could dramatically reduce the number required to generate and update a heterogeneous knowledge graph.
 
-## Recent Work
+### Related Work
 
-Talk about what has been done in the field in regards to text mining and knowledge base integration
+Relationship extraction is the process of detecting and classifying semantic relationships from a collection of text.
+This process can be broken down into three different categories: (1) the use of natural language processing techniques such as manually crafted rules and identifying key text patterns for relationship extraction, (2) the use of unsupervised methods via co-occurrence scores or clustering, and (3) supervised or semi-supervised machine learning using annotated datasets for classification of documents or sentences.
+In this section, we discuss selected efforts for each type of edge that we include in this project.
+
+#### Disease-Gene Associations 
+
+Efforts to extract Disease-associates-Gene (DaG) relationships have often used manually crafted rules or unsupervised methods.
+One study used hand crafted rules based on a sentence's grammatical structure, represented as dependency trees, to extract DaG relationships [@NLxmpSdj].
+Some of these rules inspired certain DaG text pattern label functions in our work.
+Another study used co-occurrence frequencies within abstracts and sentences to score the likelihood of association between disease and gene pairs [@5gG8hwv7].
+The results of this study were incorporated into Hetionet v1, so this served as one of our distant supervision label functions.
+Another approach built off of the above work by incorporating a supervised classifier, trained via distant supervision, into a scoring scheme [@IGXdryzB].
+Each sentence containing a disease and gene mention is scored using a logistic regression model and combined using the same co-occurrence approach used in Pletscher-Frankild et al. [@5gG8hwv7].
+We compared our results to this to measure how well our overall approach performs relative to other methods.
+Besides the mentioned three studies, researchers have used co-occurrences for extraction alone [@19zkt9R1G; @WDNuFZ4j; @DGlWGDEt] or in combination with other features to recover DaG relationships [@CxErbNTp].
+One recent effort relied on a bi-clustering approach to detect DaG-relevant sentences from Pubmed abstracts [@CSiMoOrI] with clustering of dependency paths grouping similar sentences together.
+The results of this work supply our domain heuristic label functions.
+These approaches do not rely on a well-annotated training performance and tend to provide excellent recall, though the precision is often worse than with supervised methods [@199TFjkrC; @1ZjlFRHa].
+
+Hand-crafted high-quality datasets [@hbAqN08A; @Y2DcwTrA; @luGt8luc; @1Du6MinB8] often serve as a gold standard for training, tuning, and testing supervised machine learning methods in this setting.
+Support vector machines have been repeatedly used to detect DaG relationships [@hbAqN08A; @3j1T67vB; @GeCe9qfW].
+These models perform well in large feature spaces, but are slow to train as the number of data points becomes large.
+Recently, some studies have used deep neural network models.
+One used a pre-trained recurrent neural network [@riimmjYr], and another used distant supervision [@k7ZUI6FL].
+Due to the success of these two models, we evaluate performance when using a deep neural network as our discriminative model.
+
+#### Compound Treats Disease
+
+The goal of extracting Compound-treats-Disease (CtD) edges is to identify sentences that mention current drug treatments or propose new uses for existing drugs.
+One study combined an inference model from previously established drug-gene and gene-disease relationships to infer novel drug-disease interactions via co-occurrences [@ETC6lm7S].
+A similar approach has also been applied to CtD extraction [@AdKPf5EO].
+Manually-curated rules have also been applied to PubMed abstracts to address this task [@1avvFjJ9].
+The rules were based on identifying key phrases and wordings related to using drugs to treat a disease, and we used these patterns as inspirations for some of our CtD label functions. 
+Lastly, one study used a  bi-clustering approach to identify sentences relevant to CtD edges [@CSiMoOrI].
+As with DaG edges, we use the results from this study to provide what we term as domain heuristic label functions.
+
+Recent work with supervised machine learning methods has often focused on compounds that induce a disease: an important question for toxicology and the subject of the BioCreative V dataset [@6wNuLZWb].
+We don't consider environmental toxicants in our work, as our source databases for distant supervision are primarily centered around FDA-approved therapies.
+
+#### Compound Binds Gene
+
+The BioCreative VI track 5 task focused on classifying compound-protein interactions and has led to a great deal of work on the topic [@16As8893j].
+The equivalent edge in our networks is Compound-binds-Gene (CbG).
+Curators manually annotated 2,432 PubMed abstracts for five different compound protein interactions (agonist, antagonist, inhibitor, activator and substrate/product production) as part of the BioCreative task. 
+The best performers on this task achieved an F1 score of 64.10% [@16As8893j].
+Numerous additional groups have now used the publicly available dataset that resulted from this competition, and it is often used to train supervised machine learning methods [@OnvaFHG9; @i7KpvzCo; @5LOkzCNK; @riimmjYr; @5LOkzCNK; @1H34cFSl8; @16MGWGDUB; @1HjIKY59u; @WP5p3RT3].
+Semi-supervised approaches have also been used to extract compound-gene interactions [@P2pnebCX].
+Each of these approaches depend on well-annotated training datasets, which creates a bottleneck.
+In addition to supervised machine learning methods, hand crafted rules [@107WYOcxW] and bi-clustering of dependency trees  [@CSiMoOrI] have also been used.
+We use the results from the bi-clustering study to provide a subset of the CbG label functions in this work.
+
+#### Gene-Gene Interactions
+
+Akin to the DaG edge type, many efforts to extract Gene-interacts-Gene (GiG) relationships use co-occurrence approaches.
+This edge type is more frequently referred to as a protein-protein interaction.
+Even approaches as simple as calculating Z-scores from PubMed abstract co-occurrences can be informative [@q9Fhy8eq], and there are numerous studies using co-occurrences [@yGMDz6lK; @w32u0Rj9; @8GVs1dBG; @DGlWGDEt].
+However, more sophisticated strategies such as distant supervision appear to improve performance [@IGXdryzB].
+As with the other edge types we consider, the bi-clustering approach over dependency trees has also been applied to this edge type [@CSiMoOrI].
+As with the other cases, this manuscript provides a set of label functions for our work.
+These methods benefit from not needing annotated data and tend to have good recall for this edge type.
+
+Most supervised classifiers used publicly available datasets for evaluation [@YWh6tPj; @DWpAeBxB; @szMMEMdC; @L9IIm3Zd; @115pgEuOr].
+These datasets are used equally among studies, but can generate noticable differences in terms of performance [@DR8XM4Ff].
+Support vector machines were a common approach to extract GiG edges [@iiQkIqUX; @1B0lnkj35].
+However, with the growing popularity of deep learning numerous deep neural network architectures have been applied [@ibJfUvEe; @1H4LpFrU0; @bLKJwjMD; @P2pnebCX].
+Distant supervision has also been used in this domain [@WYud0jQT], and in fact this effort was one of the motivating rationales for our work.
 
 
 <style> 
@@ -212,7 +277,7 @@ $$ \Lambda_{TP}(\color{#875442}{D}, \color{#02b3e4}{G}) =
 
 
 **Domain Heuristics**: These label functions use the other experiment results to generate a signal. 
-For this category, we used dependency path cluster themes generated by Percha et al [@CSiMoOrI].
+For this category, we used dependency path cluster themes generated by Percha et al. [@CSiMoOrI].
 If a candidate sentence's dependency path belongs to a previously generated cluster, then the label function will emit a positive label and abstain otherwise.
 
 $$
