@@ -20,9 +20,9 @@ title: Mining Heterogenous Relationships from Pubmed Abstracts Using Weak Superv
 
 <small><em>
 This manuscript
-([permalink](https://greenelab.github.io/text_mined_hetnet_manuscript/v/e706bcc39ad3e92b9de42a2aadfd088821114610/))
+([permalink](https://greenelab.github.io/text_mined_hetnet_manuscript/v/82239e122c631b2c8f2b803cbb0f1ab1f02516d6/))
 was automatically generated
-from [greenelab/text_mined_hetnet_manuscript@e706bcc](https://github.com/greenelab/text_mined_hetnet_manuscript/tree/e706bcc39ad3e92b9de42a2aadfd088821114610)
+from [greenelab/text_mined_hetnet_manuscript@82239e1](https://github.com/greenelab/text_mined_hetnet_manuscript/tree/82239e122c631b2c8f2b803cbb0f1ab1f02516d6)
 on August 1, 2019.
 </em></small>
 
@@ -575,6 +575,17 @@ Unlike existing hetnets like Hetionet where text-derived edges generally cannot 
 In addition, edges generated with this approach would be unencumbered from upstream licensing or copyright restrictions, enabling openly licensed hetnets at a scale not previously possible [@4G0GW8oe; @137tbemL9; @1GwdMLPbV].
 Accordingly, we plan to use this framework to create a robust multi-edge extractor via multitask learning  [@GeCe9qfW] to construct continuously updating literature-derived hetnets.
 
+
+
+## Supplemental Information
+
+This manuscript along with supplemental information are available at <https://greenelab.github.io/text_mined_hetnet_manuscript/>.
+
+## Acknowledgements
+
+The authors would like to thank Christopher Re's group at Stanford Univeristy, especially Alex Ratner and Steven Bach, for their assistance with this project.
+We also want to thank Graciela Gonzalez-Hernandez for her advice and input with this project.
+This work was support by [Grant GBMF4552](https://www.moore.org/grant-detail?grantId=GBMF4552) from the Gordon Betty Moore Foundation.
 
 
 ## References {.page_break_before}
