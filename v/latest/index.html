@@ -24,7 +24,7 @@
 <header id="title-block-header">
 <h1 class="title">Mining Heterogenous Relationships from Pubmed Abstracts Using Weak Supervision</h1>
 </header>
-<p><small><em> This manuscript (<a href="https://greenelab.github.io/text_mined_hetnet_manuscript/v/7cbfd76eb96d890a27315ca5ebcad8f5873ab473/">permalink</a>) was automatically generated from <a href="https://github.com/greenelab/text_mined_hetnet_manuscript/tree/7cbfd76eb96d890a27315ca5ebcad8f5873ab473">greenelab/text_mined_hetnet_manuscript@7cbfd76</a> on August 1, 2019. </em></small></p>
+<p><small><em> This manuscript (<a href="https://greenelab.github.io/text_mined_hetnet_manuscript/v/7d8ae702042a6ccdfccf08ba98fbcb086c9379bc/">permalink</a>) was automatically generated from <a href="https://github.com/greenelab/text_mined_hetnet_manuscript/tree/7d8ae702042a6ccdfccf08ba98fbcb086c9379bc">greenelab/text_mined_hetnet_manuscript@7d8ae70</a> on August 1, 2019. </em></small></p>
 <h2 id="authors">Authors</h2>
 <ul>
 <li><p><strong>David N. Nicholson</strong><br> <img src="images/orcid.svg" alt="ORCID icon" class="inline_icon" /> <a href="https://orcid.org/0000-0003-0002-5761">0000-0003-0002-5761</a> · <img src="images/github.svg" alt="GitHub icon" class="inline_icon" /> <a href="https://github.com/danich1">danich1</a><br> <small> Department of Systems Pharmacology and Translational Therapeutics, University of Pennsylvania · Funded by GBMF4552 </small></p></li>
@@ -53,8 +53,9 @@ Ratner et al. <span class="citation" data-cites="5Il3kN32">[<a href="#ref-5Il3k
 <p>Most supervised classifiers used publicly available datasets for evaluation <span class="citation" data-cites="YWh6tPj DWpAeBxB szMMEMdC L9IIm3Zd 115pgEuOr">[<a href="#ref-YWh6tPj" role="doc-biblioref">47</a>,<a href="#ref-DWpAeBxB" role="doc-biblioref">48</a>,<a href="#ref-szMMEMdC" role="doc-biblioref">49</a>,<a href="#ref-L9IIm3Zd" role="doc-biblioref">50</a>,<a href="#ref-115pgEuOr" role="doc-biblioref">51</a>]</span>. These datasets are used equally among studies, but can generate noticable differences in terms of performance <span class="citation" data-cites="DR8XM4Ff">[<a href="#ref-DR8XM4Ff" role="doc-biblioref">52</a>]</span>. Support vector machines were a common approach to extract GiG edges <span class="citation" data-cites="iiQkIqUX 1B0lnkj35">[<a href="#ref-iiQkIqUX" role="doc-biblioref">53</a>,<a href="#ref-1B0lnkj35" role="doc-biblioref">54</a>]</span>. However, with the growing popularity of deep learning numerous deep neural network architectures have been applied <span class="citation" data-cites="ibJfUvEe 1H4LpFrU0 bLKJwjMD P2pnebCX">[<a href="#ref-P2pnebCX" role="doc-biblioref">41</a>,<a href="#ref-ibJfUvEe" role="doc-biblioref">55</a>,<a href="#ref-1H4LpFrU0" role="doc-biblioref">56</a>,<a href="#ref-bLKJwjMD" role="doc-biblioref">57</a>]</span>. Distant supervision has also been used in this domain <span class="citation" data-cites="WYud0jQT">[<a href="#ref-WYud0jQT" role="doc-biblioref">58</a>]</span>, and in fact this effort was one of the motivating rationales for our work.</p>
 <style> 
 span.gene_color { color:#02b3e4 } 
-span.disease_color { color:#875442 }
-</style>
+span.disease_color { color:#875442 } 
+span.compound_color { color:#e91e63 }
+ </style>
 <h2 id="materials-and-methods">Materials and Methods</h2>
 <h3 id="hetionet">Hetionet</h3>
 <p>Hetionet <span class="citation" data-cites="O21tn8vf">[<a href="#ref-O21tn8vf" role="doc-biblioref">3</a>]</span> is a large heterogenous network that contains pharmacological and biological information. This network depicts information in the form of nodes and edges of different types: nodes that represent biological and pharmacological entities and edges which represent relationships between entities. Hetionet v1.0 contains 47,031 nodes with 11 different data types and 2,250,197 edges that represent 24 different relationship types (Figure <a href="#fig:hetionet">1</a>). Edges in Hetionet were obtained from open databases, such as the GWAS Catalog <span class="citation" data-cites="16cIDAXhG">[<a href="#ref-16cIDAXhG" role="doc-biblioref">59</a>]</span> and DrugBank <span class="citation" data-cites="1FI8iuYiQ">[<a href="#ref-1FI8iuYiQ" role="doc-biblioref">60</a>]</span>. For this project, we analyzed performance over a subset of the Hetionet relationship types: disease associates with a gene (DaG), compound binds to a gene (CbG), gene interacts with gene (GiG) and compound treating a disease (CtD).</p>
@@ -243,13 +244,9 @@ We found that the discriminative model under-performed the generative model in m
 <figure>
 <img src="https://raw.githubusercontent.com/danich1/snorkeling/0149086785b19f9429c92565d650e9d049c136ff/figures/edge_prediction_experiment/edges_added.png" alt="Figure 11: A scatter plot showing the number of edges (log scale) we can add or recall at specified precision levels. The blue depicts edges exisiting in hetionet and the orange depicts how many novel edges can be added." id="fig:hetionet_reconstruction" /><figcaption><span>Figure 11:</span> A scatter plot showing the number of edges (log scale) we can add or recall at specified precision levels. The blue depicts edges exisiting in hetionet and the orange depicts how many novel edges can be added.</figcaption>
 </figure>
-<h1 id="discussion">Discussion</h1>
-<p>Here mention why performnace increases in the beginning for the generative model then decreases</p>
-<p>Discuss discriminator model performance given generative model</p>
-<p>Mention Take home messages</p>
-<ol type="1">
-<li>have a centralized set of negative label functions and focus more on contstructing positive label functions</li>
-</ol>
+<h2 id="discussion">Discussion</h2>
+<p>We tested the feasibility of re-using label functions to extract relationships from literature. Through our sampling experiment we found that adding relevant label functions increases prediction performance (shown in the on-diagonals of Figures {<span class="citation" data-cites="fig:generative_model_auroc">[<span class="citeproc-not-found" data-reference-id="fig:generative_model_auroc"><strong>???</strong></span>]</span>} and {<span class="citation" data-cites="fig:generative_model_auprc">[<span class="citeproc-not-found" data-reference-id="fig:generative_model_auprc"><strong>???</strong></span>]</span>}). We found that label functions designed from relatively related edge types can increase performance (seen when GiG label functions predicts CbG and vise versa). We noticed that one edge type (DaG) is agnostic to label function source (Figures {<span class="citation" data-cites="fig:generative_model_auroc">[<span class="citeproc-not-found" data-reference-id="fig:generative_model_auroc"><strong>???</strong></span>]</span>} and {<span class="citation" data-cites="fig:generative_model_auprc">[<span class="citeproc-not-found" data-reference-id="fig:generative_model_auprc"><strong>???</strong></span>]</span>}). Performance increases when adding a single label function to our baseline model (the generative model trained only on distant superivison label functions). Initially we thought that adding a small amount of noise aided the model, but this turns out to not be the case (Figure <a href="#fig:random_label_function_auroc">5</a> and <a href="#fig:random_label_function_auprc">6</a>). This result begs the question: why does performance drastically increase when adding a single label function to our distant supervision baseline?</p>
+<p>The discriminative model didn’t work as intended. Majority of the time the discriminative model underperformed the generative model (Figures <a href="#fig:discriminative_model_auroc">7</a> and <a href="#fig:discriminative_model_auprc">8</a>). Potential reasons for this are the discriminative model overfitting to the generative model’s predictions and there is a negative class bias in some of our datasets (Table <a href="#tbl:candidate-sentences">1</a>). These two pitfalls are a big reason for problems we encountered in our downstream analyses (discriminative model calibration (Figure <a href="#fig:discriminative_model_calibration">9</a>) and poor recall in detecting existing edges in Hetionet v1 (Figure <a href="#fig:hetionet_reconstruction">11</a>)). Despite the above complications, our model had similar performance with a published baseline model (Figure <a href="#fig:cocoscore_comparison">10</a>). This implies that with better tuning the discriminative model has the potential to perform better than the baseline model.</p>
 <h1 id="conclusion-and-future-direction">Conclusion and Future Direction</h1>
 <p>Recap the original problem - takes a long time to create useful label function</p>
 <p>Proposed solution - reuse label functions</p>
@@ -712,7 +709,6 @@ J. Menche, A. Sharma, M. Kitsak, S. D. Ghiassian, M. Vidal, J. Loscalzo, A.-L. B
 DOI: <a href="https://doi.org/10.1126/science.1257601">10.1126/science.1257601</a> · PMID: <a href="https://www.ncbi.nlm.nih.gov/pubmed/25700523">25700523</a> · PMCID: <a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4435741">PMC4435741</a></p>
 </div>
 </div>
-<style> span.gene_color { color:#02b3e4 } span.disease_color { color:#875442 } span.compound_color { color:#e91e63 } </style>
 <h2 id="supplemental-figures" class="page_break_before">Supplemental Figures</h2>
 <h3 id="top-edge-prediction-tables">Top Edge Prediction Tables</h3>
 <a name="tbl:edge_prediction_tbl"></a>
@@ -1102,8 +1098,9 @@ DOI: <a href="https://doi.org/10.1126/science.1257601">10.1126/science.1257601</
 </tbody>
 </table>
 <h3 id="model-calibration-prediction-tables">Model Calibration Prediction Tables</h3>
+<a name="tbl:dg_top_ten_table"></a>
 <table>
-<caption>Contains the top ten Disease-associates-Gene confidence scores before and after model calbration. Disease mentions are highlighted in <span class="disease_color">brown</span> and Gene mentions are highlighted in <span class="gene_color">blue</span>.{#tbl:dg_top_ten_table}</caption>
+<caption><span>Table 4:</span> Contains the top ten Disease-associates-Gene confidence scores before and after model calbration. Disease mentions are highlighted in <span class="disease_color">brown</span> and Gene mentions are highlighted in <span class="gene_color">blue</span>. </caption>
 <colgroup>
 <col style="width: 7%" />
 <col style="width: 3%" />
@@ -1195,7 +1192,7 @@ DOI: <a href="https://doi.org/10.1126/science.1257601">10.1126/science.1257601</
 </table>
 <a name="tbl:dg_bottom_ten_table"></a>
 <table>
-<caption><span>Table 4:</span> Contains the bottom ten Disease-associates-Gene confidence scores before and after model calbration. Disease mentions are highlighted in <span class="disease_color">brown</span> and Gene mentions are highlighted in <span class="gene_color">blue</span>. </caption>
+<caption><span>Table 5:</span> Contains the bottom ten Disease-associates-Gene confidence scores before and after model calbration. Disease mentions are highlighted in <span class="disease_color">brown</span> and Gene mentions are highlighted in <span class="gene_color">blue</span>. </caption>
 <colgroup>
 <col style="width: 4%" />
 <col style="width: 3%" />
@@ -1285,8 +1282,9 @@ DOI: <a href="https://doi.org/10.1126/science.1257601">10.1126/science.1257601</
 </tr>
 </tbody>
 </table>
+<a name="tbl:cd_top_ten_table"></a>
 <table>
-<caption>Contains the top ten Compound-treats-Disease confidence scores after model calbration. Disease mentions are highlighted in <span class="disease_color">brown</span> and Compound mentions are highlighted in <span class="compound_color">red</span>.{#tbl:cd_top_ten_table}</caption>
+<caption><span>Table 6:</span> Contains the top ten Compound-treats-Disease confidence scores after model calbration. Disease mentions are highlighted in <span class="disease_color">brown</span> and Compound mentions are highlighted in <span class="compound_color">red</span>. </caption>
 <colgroup>
 <col style="width: 7%" />
 <col style="width: 12%" />
@@ -1376,8 +1374,9 @@ DOI: <a href="https://doi.org/10.1126/science.1257601">10.1126/science.1257601</
 </tr>
 </tbody>
 </table>
+<a name="tbl:cd_bottom_ten_table"></a>
 <table>
-<caption>Contains the bottom ten Compound-treats-Disease confidence scores before and after model calbration. Disease mentions are highlighted in <span class="disease_color">brown</span> and Compound mentions are highlighted in <span class="compound_color">red</span>.{#tbl:cd_bottom_ten_table}</caption>
+<caption><span>Table 7:</span> Contains the bottom ten Compound-treats-Disease confidence scores before and after model calbration. Disease mentions are highlighted in <span class="disease_color">brown</span> and Compound mentions are highlighted in <span class="compound_color">red</span>. </caption>
 <colgroup>
 <col style="width: 5%" />
 <col style="width: 4%" />
@@ -1467,8 +1466,9 @@ DOI: <a href="https://doi.org/10.1126/science.1257601">10.1126/science.1257601</
 </tr>
 </tbody>
 </table>
+<a name="tbl:cg_top_ten_table"></a>
 <table>
-<caption>Contains the top ten Compound-treats-Disease confidence scores before and after model calbration. Gene mentions are highlighted in <span class="gene_color">blue</span> and Compound mentions are highlighted in <span class="compound_color">red</span>.{#tbl:cg_top_ten_table}</caption>
+<caption><span>Table 8:</span> Contains the top ten Compound-treats-Disease confidence scores before and after model calbration. Gene mentions are highlighted in <span class="gene_color">blue</span> and Compound mentions are highlighted in <span class="compound_color">red</span>. </caption>
 <colgroup>
 <col style="width: 3%" />
 <col style="width: 2%" />
@@ -1558,8 +1558,9 @@ DOI: <a href="https://doi.org/10.1126/science.1257601">10.1126/science.1257601</
 </tr>
 </tbody>
 </table>
+<a name="tbl:cg_bottom_ten_table"></a>
 <table>
-<caption>Contains the bottom ten Compound-binds-Gene confidence scores before and after model calbration. Gene mentions are highlighted in <span class="gene_color">blue</span> and Compound mentions are highlighted in <span class="compound_color">red</span>.{#tbl:cg_bottom_ten_table}</caption>
+<caption><span>Table 9:</span> Contains the bottom ten Compound-binds-Gene confidence scores before and after model calbration. Gene mentions are highlighted in <span class="gene_color">blue</span> and Compound mentions are highlighted in <span class="compound_color">red</span>. </caption>
 <colgroup>
 <col style="width: 3%" />
 <col style="width: 2%" />
@@ -1649,8 +1650,9 @@ DOI: <a href="https://doi.org/10.1126/science.1257601">10.1126/science.1257601</
 </tr>
 </tbody>
 </table>
+<a name="tbl:gg_top_ten_table"></a>
 <table>
-<caption>Contains the top ten Gene-interacts-Gene confidence scores before and after model calbration. Both gene mentions highlighted in <span class="gene_color">blue</span>.{#tbl:gg_top_ten_table}</caption>
+<caption><span>Table 10:</span> Contains the top ten Gene-interacts-Gene confidence scores before and after model calbration. Both gene mentions highlighted in <span class="gene_color">blue</span>. </caption>
 <colgroup>
 <col style="width: 4%" />
 <col style="width: 4%" />
@@ -1740,8 +1742,9 @@ DOI: <a href="https://doi.org/10.1126/science.1257601">10.1126/science.1257601</
 </tr>
 </tbody>
 </table>
+<a name="tbl:gg_bottom_ten_table"></a>
 <table>
-<caption>Contains the bottom ten Gene-interacts-Gene confidence scores before and after model calbration. Both gene mentions highlighted in <span class="gene_color">blue</span>.{#tbl:gg_bottom_ten_table}</caption>
+<caption><span>Table 11:</span> Contains the bottom ten Gene-interacts-Gene confidence scores before and after model calbration. Both gene mentions highlighted in <span class="gene_color">blue</span>. </caption>
 <colgroup>
 <col style="width: 4%" />
 <col style="width: 4%" />
