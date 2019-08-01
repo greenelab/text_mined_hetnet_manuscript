@@ -20,9 +20,9 @@ title: Mining Heterogenous Relationships from Pubmed Abstracts Using Weak Superv
 
 <small><em>
 This manuscript
-([permalink](https://greenelab.github.io/text_mined_hetnet_manuscript/v/7cbfd76eb96d890a27315ca5ebcad8f5873ab473/))
+([permalink](https://greenelab.github.io/text_mined_hetnet_manuscript/v/7d8ae702042a6ccdfccf08ba98fbcb086c9379bc/))
 was automatically generated
-from [greenelab/text_mined_hetnet_manuscript@7cbfd76](https://github.com/greenelab/text_mined_hetnet_manuscript/tree/7cbfd76eb96d890a27315ca5ebcad8f5873ab473)
+from [greenelab/text_mined_hetnet_manuscript@7d8ae70](https://github.com/greenelab/text_mined_hetnet_manuscript/tree/7d8ae702042a6ccdfccf08ba98fbcb086c9379bc)
 on August 1, 2019.
 </em></small>
 
@@ -183,8 +183,9 @@ Distant supervision has also been used in this domain [@WYud0jQT], and in fact t
 
 <style> 
 span.gene_color { color:#02b3e4 } 
-span.disease_color { color:#875442 }
-</style>
+span.disease_color { color:#875442 } 
+span.compound_color { color:#e91e63 }
+ </style> 
 
 ## Materials and Methods
 
@@ -538,14 +539,22 @@ The blue depicts edges exisiting in hetionet and the orange depicts how many nov
 
 
 
-# Discussion
-Here mention why performnace increases in the beginning for the generative model then decreases
+## Discussion
 
-Discuss discriminator model performance given generative model
+We tested the feasibility of re-using label functions to extract relationships from literature.
+Through our sampling experiment we found that adding relevant label functions increases prediction performance (shown in the on-diagonals of Figures {@fig:generative_model_auroc} and {@fig:generative_model_auprc}).
+We found that label functions designed from relatively related edge types can increase performance (seen when GiG label functions predicts CbG and vise versa).
+We noticed that one edge type (DaG) is agnostic to label function source (Figures {@fig:generative_model_auroc} and {@fig:generative_model_auprc}). 
+Performance increases when adding a single label function to our baseline model (the generative model trained only on distant superivison label functions).
+Initially we thought that adding a small amount of noise aided the model, but this turns out to not be the case (Figure {@fig:random_label_function_auroc} and {@fig:random_label_function_auprc}).
+This result begs the question: why does performance drastically increase when adding a single label function to our distant supervision baseline?
 
-Mention Take home messages
-
-1. have a centralized set of negative label functions and focus more on contstructing positive label functions
+The discriminative model didn't work as intended. 
+Majority of the time the discriminative model underperformed the generative model (Figures {@fig:discriminative_model_auroc} and {@fig:discriminative_model_auprc}).
+Potential reasons for this are the discriminative model overfitting to the generative model's predictions and there is a negative class bias in some of our datasets (Table {@tbl:candidate-sentences}).
+These two pitfalls are a big reason for problems we encountered in our downstream analyses (discriminative model calibration (Figure {@fig:discriminative_model_calibration}) and poor recall in detecting existing edges in Hetionet v1 (Figure {@fig:hetionet_reconstruction})).
+Despite the above complications, our model had similar performance with a published baseline model (Figure {@fig:cocoscore_comparison}).
+This implies that with better tuning the discriminative model has the potential to perform better than the baseline model.
 
 
 # Conclusion and Future Direction
@@ -562,7 +571,6 @@ Mention creating a centralized multitask text extractor using this method.
 <!-- Explicitly insert bibliography here -->
 <div id="refs"></div>
 
-<style> span.gene_color { color:#02b3e4 } span.disease_color { color:#875442 } span.compound_color { color:#e91e63 } </style> 
 ## Supplemental Figures {.page_break_before}
 
 ### Top Edge Prediction Tables
@@ -626,7 +634,7 @@ Table: Contains the top ten predictions for each edge type. Highlighted words re
 | lung cancer                  | MUC16       | the mean concentration of [ca 125]{.gene_color} was higher in patients with [lung cancer]{.disease_color} ( 37 + / - 81 u/ml ) than in those with nonmalignant disease ( 4.2 + / - 5.7 u/ml ) ( p less than 0.01 ) .                                                                                                                               | 0.999              | 0.806             | 
 | prostate cancer              | AR          | the [androgen receptor]{.gene_color} was expressed in all primary and metastatic [prostate cancer]{.disease_color} tissues and no mutations were identified .                                                                                                                                                                                      | 0.999              | 0.801             | 
 | breast cancer                | ERBB2       | the results of multiple linear regression analysis , with her2 as the dependent variable , showed that family history of [breast cancer]{.disease_color} was significantly associated with elevated [her2]{.gene_color} levels in the tumors ( p = 0.0038 ) , after controlling for the effects of age , tumor estrogen receptor , and dna index . | 0.999              | 0.8               |  
-Table: Contains the top ten Disease-associates-Gene confidence scores before and after model calbration. Disease mentions are highlighted in [brown]{.disease_color} and Gene mentions are highlighted in [blue]{.gene_color}.{#tbl:dg_top_ten_table}
+Table: Contains the top ten Disease-associates-Gene confidence scores before and after model calbration. Disease mentions are highlighted in [brown]{.disease_color} and Gene mentions are highlighted in [blue]{.gene_color}. {#tbl:dg_top_ten_table}
 
 | Disease Name       | Gene Symbol | Text                                                                                                                                                                                                                                                                                                                                                           | Before Calibration | After Calibraiton | 
 |--------------------|-------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|--------------------|-------------------| 
@@ -654,7 +662,7 @@ Table: Contains the bottom ten Disease-associates-Gene confidence scores before 
 | Prednisolone       | lymphatic system cancer        | peptichemio : a new oncolytic drug in combination with vincristine and [prednisolone]{.compound_color} in the treatment of [non-hodgkin lymphomas]{.disease_color} .                    | 1.0                | 0.871             | 
 | Methyldopa         | hypertension                   | methyldopate , the ethyl ester hydrochloride salt of [alpha-methyldopa]{.compound_color} ( alpha-md ) , is used extensively in the treatment of severe [hypertension]{.disease_color} . | 1.0                | 0.851             | 
 | Haloperidol        | Gilles de la Tourette syndrome | a comparison of pimozide and [haloperidol]{.compound_color} in the treatment of gilles de la [tourette 's syndrome]{.disease_color} .                                                   | 1.0                | 0.839             | 
-Table: Contains the top ten Compound-treats-Disease confidence scores after model calbration. Disease mentions are highlighted in [brown]{.disease_color} and Compound mentions are highlighted in [red]{.compound_color}.{#tbl:cd_top_ten_table}
+Table: Contains the top ten Compound-treats-Disease confidence scores after model calbration. Disease mentions are highlighted in [brown]{.disease_color} and Compound mentions are highlighted in [red]{.compound_color}. {#tbl:cd_top_ten_table}
 
 | Compound Name                  | Disease Name            | Text                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     | Before Calibration | After Calibration | 
 |--------------------------------|-------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|--------------------|-------------------| 
@@ -668,7 +676,7 @@ Table: Contains the top ten Compound-treats-Disease confidence scores after mode
 | Indomethacin                   | hypertension            | effects of [indomethacin]{.compound_color} in rabbit [renovascular hypertension]{.disease_color} .                                                                                                                                                                                                                                                                                                                                                                                                    | 0.004              | 0.308             | 
 | Cyclic Adenosine Monophosphate | ovarian cancer          | the hormonal regulation of steroidogenesis and [adenosine 3 ' :5 ' - cyclic monophosphate]{.compound_color} in [embryonic-chick ovary]{.disease_color} .                                                                                                                                                                                                                                                                                                                                              | 0.002              | 0.292             | 
 | Dobutamine                     | coronary artery disease | two-dimensional echocardiography can detect regional wall motion abnormalities resulting from [myocardial ischemia]{.disease_color} produced by [dobutamine]{.compound_color} infusion .                                                                                                                                                                                                                                                                                                              | 0.002              | 0.287             |  
-Table: Contains the bottom ten Compound-treats-Disease confidence scores before and after model calbration. Disease mentions are highlighted in [brown]{.disease_color} and Compound mentions are highlighted in [red]{.compound_color}.{#tbl:cd_bottom_ten_table}
+Table: Contains the bottom ten Compound-treats-Disease confidence scores before and after model calbration. Disease mentions are highlighted in [brown]{.disease_color} and Compound mentions are highlighted in [red]{.compound_color}. {#tbl:cd_bottom_ten_table}
 
 | Compound Name   | Gene Symbol | Text                                                                                                                                                                                                                                                                                                                                                                                                         | Before Calibration | After Calibration | 
 |-----------------|-------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|--------------------|-------------------| 
@@ -682,7 +690,7 @@ Table: Contains the bottom ten Compound-treats-Disease confidence scores before 
 | D-Tyrosine      | PLCG1       | epidermal growth factor ( egf ) or platelet-derived growth factor binding to their receptor on fibroblasts induces tyrosine phosphorylation of plc gamma 1 and stable association of [plc gamma 1]{.gene_color} with the receptor protein [tyrosine]{.compound_color} kinase .                                                                                                                                         | 0.969              | 0.659             | 
 | D-Tyrosine      | PLCG1       | [tyrosine]{.compound_color} phosphorylation of plc-ii was stimulated by low physiological concentrations of egf ( 1 nm ) , was quantitative , and was already maximal after a 30 sec incubation with 50 nm egf at 37 degrees c. interestingly , antibodies specific for plc-ii were able to coimmunoprecipitate the egf receptor and antibodies against egf receptor also coimmunoprecipitated [plc-ii]{.gene_color} . | 0.964              | 0.651             | 
 | Ketamine        | C5          | additionally , reduction of glycine binding by the c-5 antagonists was reversed by both nmda receptor agonists and c-7 competitive [nmda]{.compound_color} antagonists , providing evidence that the site of action of these [c-5]{.gene_color} antagonists is the nmda recognition site , resulting in indirect modulation of the glycine site .                                                                      | 0.957              | 0.643             | 
-Table: Contains the top ten Compound-treats-Disease confidence scores before and after model calbration. Gene mentions are highlighted in [blue]{.gene_color} and Compound mentions are highlighted in [red]{.compound_color}.{#tbl:cg_top_ten_table}
+Table: Contains the top ten Compound-treats-Disease confidence scores before and after model calbration. Gene mentions are highlighted in [blue]{.gene_color} and Compound mentions are highlighted in [red]{.compound_color}. {#tbl:cg_top_ten_table}
 
 | Compound Name  | Gene Symbol | Text                                                                                                                                                                                                                                                                                                                                                                                            | Before Calibration | After Calibration | 
 |----------------|-------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|--------------------|-------------------| 
@@ -696,7 +704,7 @@ Table: Contains the top ten Compound-treats-Disease confidence scores before and
 | Epinephrine    | INS         | thermogenic effect of thyroid hormones : interactions with [epinephrine]{.compound_color} and [insulin]{.gene_color} .                                                                                                                                                                                                                                                                                    | 0.004              | 0.259             | 
 | Hydrocortisone | GH1         | [cortisol]{.compound_color} and [growth hormone]{.gene_color} ( gh ) secretion ( spontaneous variations at night and the release induced by insulin hypoglycaemia ) were investigated in 69 children and adolescents .                                                                                                                                                                                    | 0.002              | 0.241             | 
 | Estriol        | LGALS1      | [ diagnostic value of serial determination of [estriol]{.compound_color} and [hpl]{.gene_color} in plasma and of total estrogens in 24-h-urine compared to single values for diagnosis of fetal danger ] .                                                                                                                                                                                                | 0.0                | 0.181             |
-Table: Contains the bottom ten Compound-binds-Gene confidence scores before and after model calbration. Gene mentions are highlighted in [blue]{.gene_color} and Compound mentions are highlighted in [red]{.compound_color}.{#tbl:cg_bottom_ten_table}
+Table: Contains the bottom ten Compound-binds-Gene confidence scores before and after model calbration. Gene mentions are highlighted in [blue]{.gene_color} and Compound mentions are highlighted in [red]{.compound_color}. {#tbl:cg_bottom_ten_table}
 
 | Gene1 Symbol | Gene2 Symbol | Text                                                                                                                                                                                                                                                         | Before Calibration | After Calibration | 
 |--------------|--------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|--------------------|-------------------| 
@@ -710,7 +718,7 @@ Table: Contains the bottom ten Compound-binds-Gene confidence scores before and 
 | PTH2R        | PTH2         | thus , the juxtamembrane receptor domain specifies the signaling and binding selectivity of [tip39]{.gene_color} for the [pth2 receptor]{.gene_color} over the pth1 receptor .                                                                                     | 0.749              | 0.55              | 
 | MMP9         | MMP2         | all these factors markedly influenced the secretion and/or activation of [mmp-2]{.gene_color} and [mmp-9]{.gene_color} .                                                                                                                                           | 0.738              | 0.547             | 
 | CCND1        | ABL1         | synergy with [v-abl]{.gene_color} depended on a motif in [cyclin d1]{.gene_color} that mediates its binding to the retinoblastoma protein , suggesting that abl oncogenes in part mediate their mitogenic effects via a retinoblastoma protein-dependent pathway . | 0.736              | 0.547             |
-Table: Contains the top ten Gene-interacts-Gene confidence scores before and after model calbration. Both gene mentions highlighted in [blue]{.gene_color}.{#tbl:gg_top_ten_table}
+Table: Contains the top ten Gene-interacts-Gene confidence scores before and after model calbration. Both gene mentions highlighted in [blue]{.gene_color}. {#tbl:gg_top_ten_table}
 
 | Gene1 Symbol | Gene2 Symbol | Text                                                                                                                                                                                                                                                       | Before Calibration | After Calibration | 
 |--------------|--------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|--------------------|-------------------| 
@@ -724,5 +732,5 @@ Table: Contains the top ten Gene-interacts-Gene confidence scores before and aft
 | IL2          | IFNG         | the detailed distribution of lymphokine-producing cells showed that [il-2]{.gene_color} and [ifn-gamma-producing]{.gene_color} cells were located mainly in the follicular areas .                                                                               | 0.007              | 0.287             | 
 | IL2          | IFNG         | pbl of ms patients produced more pro-inflammatory cytokines , [il-2]{.gene_color} , [ifn-gamma]{.gene_color} and tnf/lymphotoxin , and less anti-inflammatory cytokine , tgf-beta , during wk 2 to 4 in culture than pbl of normal controls .                    | 0.006              | 0.283             | 
 | NFKB1        | TNF          | [nf-kappab-dependent]{.gene_color} reporter gene transcription activated by [tnf]{.gene_color} was also suppressed by calagualine .                                                                                                                              | 0.005              | 0.276             | 
-Table: Contains the bottom ten Gene-interacts-Gene confidence scores before and after model calbration. Both gene mentions highlighted in [blue]{.gene_color}.{#tbl:gg_bottom_ten_table}
+Table: Contains the bottom ten Gene-interacts-Gene confidence scores before and after model calbration. Both gene mentions highlighted in [blue]{.gene_color}. {#tbl:gg_bottom_ten_table}
 
