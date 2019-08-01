@@ -24,7 +24,7 @@
 <header id="title-block-header">
 <h1 class="title">Mining Heterogenous Relationships from Pubmed Abstracts Using Weak Supervision</h1>
 </header>
-<p><small><em> This manuscript (<a href="https://greenelab.github.io/text_mined_hetnet_manuscript/v/7d8ae702042a6ccdfccf08ba98fbcb086c9379bc/">permalink</a>) was automatically generated from <a href="https://github.com/greenelab/text_mined_hetnet_manuscript/tree/7d8ae702042a6ccdfccf08ba98fbcb086c9379bc">greenelab/text_mined_hetnet_manuscript@7d8ae70</a> on August 1, 2019. </em></small></p>
+<p><small><em> This manuscript (<a href="https://greenelab.github.io/text_mined_hetnet_manuscript/v/e706bcc39ad3e92b9de42a2aadfd088821114610/">permalink</a>) was automatically generated from <a href="https://github.com/greenelab/text_mined_hetnet_manuscript/tree/e706bcc39ad3e92b9de42a2aadfd088821114610">greenelab/text_mined_hetnet_manuscript@e706bcc</a> on August 1, 2019. </em></small></p>
 <h2 id="authors">Authors</h2>
 <ul>
 <li><p><strong>David N. Nicholson</strong><br> <img src="images/orcid.svg" alt="ORCID icon" class="inline_icon" /> <a href="https://orcid.org/0000-0003-0002-5761">0000-0003-0002-5761</a> · <img src="images/github.svg" alt="GitHub icon" class="inline_icon" /> <a href="https://github.com/danich1">danich1</a><br> <small> Department of Systems Pharmacology and Translational Therapeutics, University of Pennsylvania · Funded by GBMF4552 </small></p></li>
@@ -247,10 +247,9 @@ We found that the discriminative model under-performed the generative model in m
 <h2 id="discussion">Discussion</h2>
 <p>We tested the feasibility of re-using label functions to extract relationships from literature. Through our sampling experiment we found that adding relevant label functions increases prediction performance (shown in the on-diagonals of Figures {<span class="citation" data-cites="fig:generative_model_auroc">[<span class="citeproc-not-found" data-reference-id="fig:generative_model_auroc"><strong>???</strong></span>]</span>} and {<span class="citation" data-cites="fig:generative_model_auprc">[<span class="citeproc-not-found" data-reference-id="fig:generative_model_auprc"><strong>???</strong></span>]</span>}). We found that label functions designed from relatively related edge types can increase performance (seen when GiG label functions predicts CbG and vise versa). We noticed that one edge type (DaG) is agnostic to label function source (Figures {<span class="citation" data-cites="fig:generative_model_auroc">[<span class="citeproc-not-found" data-reference-id="fig:generative_model_auroc"><strong>???</strong></span>]</span>} and {<span class="citation" data-cites="fig:generative_model_auprc">[<span class="citeproc-not-found" data-reference-id="fig:generative_model_auprc"><strong>???</strong></span>]</span>}). Performance increases when adding a single label function to our baseline model (the generative model trained only on distant superivison label functions). Initially we thought that adding a small amount of noise aided the model, but this turns out to not be the case (Figure <a href="#fig:random_label_function_auroc">5</a> and <a href="#fig:random_label_function_auprc">6</a>). This result begs the question: why does performance drastically increase when adding a single label function to our distant supervision baseline?</p>
 <p>The discriminative model didn’t work as intended. Majority of the time the discriminative model underperformed the generative model (Figures <a href="#fig:discriminative_model_auroc">7</a> and <a href="#fig:discriminative_model_auprc">8</a>). Potential reasons for this are the discriminative model overfitting to the generative model’s predictions and there is a negative class bias in some of our datasets (Table <a href="#tbl:candidate-sentences">1</a>). These two pitfalls are a big reason for problems we encountered in our downstream analyses (discriminative model calibration (Figure <a href="#fig:discriminative_model_calibration">9</a>) and poor recall in detecting existing edges in Hetionet v1 (Figure <a href="#fig:hetionet_reconstruction">11</a>)). Despite the above complications, our model had similar performance with a published baseline model (Figure <a href="#fig:cocoscore_comparison">10</a>). This implies that with better tuning the discriminative model has the potential to perform better than the baseline model.</p>
-<h1 id="conclusion-and-future-direction">Conclusion and Future Direction</h1>
-<p>Recap the original problem - takes a long time to create useful label function</p>
-<p>Proposed solution - reuse label functions</p>
-<p>Mention incorporating more relationships Mention creating a centralized multitask text extractor using this method.</p>
+<h2 id="conclusion-and-future-direction">Conclusion and Future Direction</h2>
+<p>Filling out knowledge bases via manual curation can be an arduous and erroneous task <span class="citation" data-cites="UdzvLgBM">[<a href="#ref-UdzvLgBM" role="doc-biblioref">8</a>]</span>. As the rate of publications increases manual curation becomes an infeasible approach. Data programming, a paradigm that uses label functions a means to speed up the annotation process, can be used as a solution for this problem. A problem with this paradigm is creating a useful label function takes significant amount of time. We tested the feasibility of reusing label functions as a way to speed up the process of creating label functions. Based on our findings, we conclude that label functions can be reused across edge types. Adding more relavant label functions can increase overall performance. The discriminative model, under this paradigm, has a tendency to overfit to predictions of the generative model. We recommend implementing regularization techniques such as drop out and weight decay to combat this issue.</p>
+<p>This work sets up the foundation for creating a common framework that mines text to create edges. Within this framework we would continuously ingest new knowledge as novel findings are published, while providing a single confidence scores for an edge by consolidating sentence scores. Unlike existing hetnets like Hetionet where text-derived edges generally cannot be exactly attributed to excerpts from literature <span class="citation" data-cites="O21tn8vf L2B5V7XC">[<a href="#ref-O21tn8vf" role="doc-biblioref">3</a>,<a href="#ref-L2B5V7XC" role="doc-biblioref">79</a>]</span>, our approach would annotate each edge with its source sentences. In addition, edges generated with this approach would be unencumbered from upstream licensing or copyright restrictions, enabling openly licensed hetnets at a scale not previously possible <span class="citation" data-cites="4G0GW8oe 137tbemL9 1GwdMLPbV">[<a href="#ref-4G0GW8oe" role="doc-biblioref">80</a>,<a href="#ref-137tbemL9" role="doc-biblioref">81</a>,<a href="#ref-1GwdMLPbV" role="doc-biblioref">82</a>]</span>. Accordingly, we plan to use this framework to create a robust multi-edge extractor via multitask learning <span class="citation" data-cites="GeCe9qfW">[<a href="#ref-GeCe9qfW" role="doc-biblioref">26</a>]</span> to construct continuously updating literature-derived hetnets.</p>
 <h2 id="references" class="page_break_before">References</h2>
 <!-- Explicitly insert bibliography here -->
 <div id="refs" role="doc-bibliography">
@@ -707,6 +706,30 @@ DOI: <a href="https://doi.org/10.1186/1471-2105-9-405">10.1186/1471-2105-9-405</
 J. Menche, A. Sharma, M. Kitsak, S. D. Ghiassian, M. Vidal, J. Loscalzo, A.-L. Barabasi<br />
 <em>Science</em> (2015-02-19) <a href="https://doi.org/f3mn6z">https://doi.org/f3mn6z</a><br />
 DOI: <a href="https://doi.org/10.1126/science.1257601">10.1126/science.1257601</a> · PMID: <a href="https://www.ncbi.nlm.nih.gov/pubmed/25700523">25700523</a> · PMCID: <a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4435741">PMC4435741</a></p>
+</div>
+<div id="ref-L2B5V7XC">
+<p>79. <strong>Mining knowledge from MEDLINE articles and their indexed MeSH terms</strong><br />
+Daniel Himmelstein, Alex Pankov<br />
+<em>ThinkLab</em> (2015-05-10) <a href="https://doi.org/f3mqwp">https://doi.org/f3mqwp</a><br />
+DOI: <a href="https://doi.org/10.15363/thinklab.d67">10.15363/thinklab.d67</a></p>
+</div>
+<div id="ref-4G0GW8oe">
+<p>80. <strong>Integrating resources with disparate licensing into an open network</strong><br />
+Daniel Himmelstein, Lars Juhl Jensen, MacKenzie Smith, Katie Fortney, Caty Chung<br />
+<em>ThinkLab</em> (2015-08-28) <a href="https://doi.org/bfmk">https://doi.org/bfmk</a><br />
+DOI: <a href="https://doi.org/10.15363/thinklab.d107">10.15363/thinklab.d107</a></p>
+</div>
+<div id="ref-137tbemL9">
+<p>81. <strong>Legal confusion threatens to slow data science</strong><br />
+Simon Oxenham<br />
+<em>Nature</em> (2016-08) <a href="https://doi.org/bndt">https://doi.org/bndt</a><br />
+DOI: <a href="https://doi.org/10.1038/536016a">10.1038/536016a</a> · PMID: <a href="https://www.ncbi.nlm.nih.gov/pubmed/27488781">27488781</a></p>
+</div>
+<div id="ref-1GwdMLPbV">
+<p>82. <strong>An analysis and metric of reusable data licensing practices for biomedical resources</strong><br />
+Seth Carbon, Robin Champieux, Julie A. McMurry, Lilly Winfree, Letisha R. Wyatt, Melissa A. Haendel<br />
+<em>PLOS ONE</em> (2019-03-27) <a href="https://doi.org/gf5m8v">https://doi.org/gf5m8v</a><br />
+DOI: <a href="https://doi.org/10.1371/journal.pone.0213090">10.1371/journal.pone.0213090</a> · PMID: <a href="https://www.ncbi.nlm.nih.gov/pubmed/30917137">30917137</a> · PMCID: <a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC6436688">PMC6436688</a></p>
 </div>
 </div>
 <h2 id="supplemental-figures" class="page_break_before">Supplemental Figures</h2>

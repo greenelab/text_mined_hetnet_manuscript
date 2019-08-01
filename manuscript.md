@@ -20,9 +20,9 @@ title: Mining Heterogenous Relationships from Pubmed Abstracts Using Weak Superv
 
 <small><em>
 This manuscript
-([permalink](https://greenelab.github.io/text_mined_hetnet_manuscript/v/7d8ae702042a6ccdfccf08ba98fbcb086c9379bc/))
+([permalink](https://greenelab.github.io/text_mined_hetnet_manuscript/v/e706bcc39ad3e92b9de42a2aadfd088821114610/))
 was automatically generated
-from [greenelab/text_mined_hetnet_manuscript@7d8ae70](https://github.com/greenelab/text_mined_hetnet_manuscript/tree/7d8ae702042a6ccdfccf08ba98fbcb086c9379bc)
+from [greenelab/text_mined_hetnet_manuscript@e706bcc](https://github.com/greenelab/text_mined_hetnet_manuscript/tree/e706bcc39ad3e92b9de42a2aadfd088821114610)
 on August 1, 2019.
 </em></small>
 
@@ -557,13 +557,24 @@ Despite the above complications, our model had similar performance with a publis
 This implies that with better tuning the discriminative model has the potential to perform better than the baseline model.
 
 
-# Conclusion and Future Direction
-Recap the original problem - takes a long time to create useful label function
+## Conclusion and Future Direction
 
-Proposed solution - reuse label functions
+Filling out knowledge bases via manual curation can be an arduous and erroneous task [@UdzvLgBM].
+As the rate of publications increases manual curation becomes an infeasible approach.
+Data programming, a paradigm that uses label functions a means to speed up the annotation process, can be used as a solution for this problem.
+A problem with this paradigm is creating a useful label function takes significant amount of time.
+We tested the feasibility of reusing label functions as a way to speed up the process of creating label functions.
+Based on our findings, we conclude that label functions can be reused across edge types.
+Adding more relavant label functions can increase overall performance.
+The discriminative model, under this paradigm, has a tendency to overfit to predictions of the generative model.
+We recommend implementing regularization techniques such as drop out and weight decay to combat this issue.
 
-Mention incorporating more relationships
-Mention creating a centralized multitask text extractor using this method.
+This work sets up the foundation for creating a common framework that mines text to create edges.
+Within this framework we would continuously ingest new knowledge as novel findings are published, while providing a single confidence scores for an edge by consolidating sentence scores.
+Unlike existing hetnets like Hetionet where text-derived edges generally cannot be exactly attributed to excerpts from literature [@O21tn8vf; @L2B5V7XC], our approach would annotate each edge with its source sentences.
+In addition, edges generated with this approach would be unencumbered from upstream licensing or copyright restrictions, enabling openly licensed hetnets at a scale not previously possible [@4G0GW8oe; @137tbemL9; @1GwdMLPbV].
+Accordingly, we plan to use this framework to create a robust multi-edge extractor via multitask learning  [@GeCe9qfW] to construct continuously updating literature-derived hetnets.
+
 
 
 ## References {.page_break_before}
