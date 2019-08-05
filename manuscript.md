@@ -22,9 +22,9 @@ title: Reusing label functions to extract multiple types of biomedical relations
 
 <small><em>
 This manuscript
-([permalink](https://greenelab.github.io/text_mined_hetnet_manuscript/v/4f562f4d2d30e0ddeeb423f651573bb49972c0b0/))
+([permalink](https://greenelab.github.io/text_mined_hetnet_manuscript/v/3c42381c8d479d69c3d0012a7d80eda212e9d509/))
 was automatically generated
-from [greenelab/text_mined_hetnet_manuscript@4f562f4](https://github.com/greenelab/text_mined_hetnet_manuscript/tree/4f562f4d2d30e0ddeeb423f651573bb49972c0b0)
+from [greenelab/text_mined_hetnet_manuscript@3c42381](https://github.com/greenelab/text_mined_hetnet_manuscript/tree/3c42381c8d479d69c3d0012a7d80eda212e9d509)
 on August 5, 2019.
 </em></small>
 
@@ -174,7 +174,7 @@ Similarly to the other edge types, the bi-clustering approach over dependency tr
 This manuscript provides a set of label functions for our work.
 
 Most supervised classifiers used publicly available datasets for evaluation [@YWh6tPj; @DWpAeBxB; @szMMEMdC; @L9IIm3Zd; @115pgEuOr].
-These datasets are used equally among studies, but can generate noticable differences in terms of performance [@DR8XM4Ff].
+These datasets are used equally among studies, but can generate noticeable  differences in terms of performance [@DR8XM4Ff].
 Support vector machines were a common approach to extract GiG edges [@iiQkIqUX; @1B0lnkj35].
 However, with the growing popularity of deep learning numerous deep neural network architectures have been applied [@ibJfUvEe; @1H4LpFrU0; @bLKJwjMD; @P2pnebCX].
 Distant supervision has also been used in this domain [@WYud0jQT], and in fact this effort was one of the motivating rationales for our work.
@@ -239,7 +239,144 @@ Label functions are simple pythonic functions that emit: a positive label (1), a
 We combine these functions using a generative model to output a single annotation, which is a consensus probability score bounded between 0 (low chance of mentioning a relationship) and 1 (high chance of mentioning a relationship).
 We used these annotations to train a discriminator model that makes the final classification step.
 Our label functions fall into three categories: databases, text patterns and domain heuristics.
-We provide examples for the categories, described below, using the following candidate sentence: "[PTK6]{.gene_color} may be a novel therapeutic target for [pancreatic cancer]{.disease_color}."
+We provide examples for each categories in our [supplemental methods section](#label-function-categories).  
+
+### Training Models
+
+#### Generative Model
+
+The generative model is a core part of this automatic annotation framework.
+It integrates multiple signals emitted by label functions and assigns a training class to each candidate sentence.
+This model assigns training classes by estimating the joint probability distribution of the latent true class ($Y$) and label function signals ($\Lambda$), $P(\Lambda, Y)$.
+Assuming each label function is conditionally independent, the joint distribution is defined as follows:  
+
+$$
+P(\Lambda, Y) = \frac{\exp(\sum_{i=1}^{m} \theta^{T}F_{i}(\Lambda, y))}
+{\sum_{\Lambda'}\sum_{y'} \exp(\sum_{i=1}^{m} \theta^{T}F_{i}(\Lambda', y'))}
+$$  
+
+where $m$ is the number of candidate sentences, $F$ is the vector of summary statistics and $\theta$ is a vector of weights for each summary statistic.
+The summary statistics used by the generative model are as follows:  
+
+$$F^{Lab}_{i,j}(\Lambda, Y) = \unicode{x1D7D9}\{\Lambda_{i,j} \neq 0\}$$
+$$F^{Acc}_{i,j}(\Lambda, Y) = \unicode{x1D7D9}\{\Lambda_{i,j} = y_{i,j}\}$$   
+
+*Lab* is the label function's propensity (the frequency of a label function emitting a signal).
+*Acc* is the individual label function's accuracy given the training class.
+This model optimizes the weights ($\theta$) by minimizing the negative log likelihood:
+
+$$\hat{\theta} = argmin_{\theta} -\sum_{\Lambda} log \sum_{Y}P(\Lambda, Y)$$
+
+In the framework we used predictions from the generative model, $\hat{Y} = P(Y \mid \Lambda)$, as training classes for our dataset [@vzoBuh4l; @9Jo1af7Z]. 
+
+### Experimental Design
+
+Being able to re-use label functions across edge types would substantially reduce the number of label functions required to extract multiple relationships from biomedical literature.
+We first established a baseline by training a generative model using only distant supervision label functions designed for the target edge type.
+As an example, for the GiG edge type we used label functions that returned a `1` if the pair of genes were included in the Human Interaction database [@LCyCrr7W], the iRefIndex database [@gtV3bOpd] or in the Incomplete Interactome database [@2jkcXYxN].
+Then we compared models that also included text and domain-heuristic label functions.
+Using a sampling with replacement approach, we sampled these text and domain-heuristic label functions separately within edge types, across edge types, and from a pool of all label functions.
+We compared within-edge-type performance to across-edge-type and all-edge-type performance.
+For each edge type we sampled a fixed number of label functions consisting of five evenly-spaced numbers between one and the total number of possible label functions.
+We repeated this sampling process 50 times for each point.
+We evaluated both generative and discriminative (training and downstream analyses are described in the [supplemental methods section](#discriminative-model))  models at each point, and we reported performance of each in terms of the area under the receiver operating characteristic curve (AUROC) and the area under the precision-recall curve (AUPR).
+Lastly, we conducted a follow up experiment for the generative model described in the [supplemental methods section](#adding-random-noise-to-generative-model).
+
+
+
+## Results
+
+### Generative Model Using Randomly Sampled Label Functions
+![
+Grid of AUROC (A) and AUPR (B) scores for each generative model trained on randomly sampled label functions.
+The rows depict the relationship each model is trying to predict and the columns are the edge type specific sources from which each label function is sampled.
+The right most column consists of pooling every relationship specific label function and proceeding as above.
+](https://raw.githubusercontent.com/danich1/snorkeling/ee638b4e45717a86f54a2744a813baaa90bc6b84/figures/label_sampling_experiment/transfer_test_set_auroc.png){#fig:auroc_gen_model_performance}
+
+We added randomly sampled label functions to a baseline for each edge type to evaluate the feasibility of label function re-use.
+Our baseline model consisted of a generative model trained with only edge-specific distant supervision label functions.
+We reported the results in AUROC and AUPR (Figure {@fig:auroc_gen_model_performance} and Supplemental Figure {@fig:aupr_gen_model_performance}).  
+The on-diagonal plots of figure {@fig:auroc_gen_model_performance} and supplemental figure {@fig:aupr_gen_model_performance} show increasing performance when edge-specific label functions are added on top of the  edge-specific baselines.
+The CtD edge type is a quintessential example of this trend.
+The baseline model starts off with an AUROC score of 52% and an AUPRC of 28%, which increase to 76% and 49% respectively as more CtD label functions are included. 
+DaG edges have a similar trend: performance starting off with an AUROC of 56% and AUPR of 41% then increases to 62% and 45% respectively.
+Both the CbG and GiG edges have an increasing trend but plateau after a few label functions are added.  
+
+The off-diagonals in figure {@fig:auroc_gen_model_performance} and supplemental figure {@fig:aupr_gen_model_performance} show how performance varies when label functions from one edge type are added to a different edge type's baseline.
+In certain cases (apparent for DaG), performance increases regardless of the edge type used for label functions.
+In other cases (apparent with CtD), one label function appears to improve performance; however, adding more label functions does not improve performance (AUROC) or decreases it (AUPR).
+In certain cases, the source of the label functions appears to be important: the performance of CbG edges decrease when using label functions from the DaG and CtD categories.
+
+Our initial hypothesis was based on the idea that certain edge types capture similar physical relationships and that these cases would be particularly amenable for label function transfer.
+For example, CbG and GiG both describe physical interactions.
+We observed that performance increased as assessed by both AUROC and AUPR when using label functions from the GiG edge type to predict CbG edges.
+A similar trend was observed when predicting the GiG edge; however, the performance differences were small for this edge type making the importance difficult to assess.  
+The last column shows increasing performance (AUROC and AUPR) for both DaG and CtD when sampling from all label functions.
+CbG and GiG also had increased performance when one random label function was sampled, but performance decreased drastically as more label functions were added.
+It is possible that a small number of irrelevant label functions are able to overwhelm the distant supervision label functions in these cases (see Supplemental Figures {@fig:auroc_random_label_function_performance} and {@fig:aupr_random_label_function_performance}).
+
+
+
+## Discussion
+
+We tested the feasibility of re-using label functions to extract relationships from literature.
+Through our sampling experiment, we found that adding relevant label functions increases prediction performance (shown in the on-diagonals of Figures {@fig:auroc_gen_model_performance} and Supplemental Figure {@fig:aupr_gen_model_performance}).
+We found that label functions designed from relatively related edge types can increase performance (seen when GiG label functions predicts CbG and vice versa).
+We noticed that one edge type (DaG) is agnostic to label function source (Figure {@fig:auroc_gen_model_performance} and Supplemental Figure {@fig:aupr_gen_model_performance}). 
+Performance routinely increases when adding a single mismatched label function to our baseline model (the generative model trained only on distant supervision label functions).
+These results led us to hypothesize that adding a small amount of noise aided the model, but our experiment with a random label function reveals that this was not the case (Supplemental Figures {@fig:auroc_random_label_function_performance} and {@fig:aupr_random_label_function_performance}).
+Based on these results one question still remains: why does performance drastically increase when adding a single label function to our distant supervision baseline?
+
+The discriminative model didn't work as intended. 
+The majority of the time the discriminative model underperformed the generative model (Supplemental Figures {@fig:auroc_discriminative_model_performance} and {@fig:aupr_discriminative_model_performance}).
+Potential reasons for this are the discriminative model overfitting to the generative model's predictions and a negative class bias in some of our datasets (Table {@tbl:candidate-sentences}).
+The challenges with the discriminative model are likely to have led to issues in our downstream analyses: poor model calibration (Supplemental Figure {@fig:discriminative_model_calibration}) and poor recall in detecting existing Hetionet edges (Supplemental Figure {@fig:hetionet_reconstruction}).
+Despite the above complications, our model had similar performance with a published baseline model (Supplemental Figure {@fig:cocoscore_comparison}).
+This implies that with better tuning the discriminative model has the potential to perform better than the baseline model.
+
+
+## Conclusion and Future Direction
+
+Filling out knowledge bases via manual curation can be an arduous and erroneous task [@UdzvLgBM].
+As the rate of publications increases manual curation becomes an infeasible approach.
+Data programming, a paradigm that uses label functions as a means to speed up the annotation process, can be used as a solution for this problem.
+A problem with this paradigm is that creating a useful label function takes a significant amount of time. 
+We tested the feasibility of reusing label functions as a way to speed up the  label function creation process.
+We conclude that label function re-use across edge types can increase performance when there are certain constraints on the number of functions re-used.
+More sophisticated methods of reuse may be able to capture many of the advantages and avoid many of the drawbacks.
+Adding more relevant label functions can increase overall performance.
+The discriminative model, under this paradigm, has a tendency to overfit to predictions of the generative model.
+We recommend implementing regularization techniques such as drop out and weight decay to combat this issue.
+
+This work sets up the foundation for creating a common framework that mines text to create edges.
+Within this framework we would continuously ingest new knowledge as novel findings are published, while providing a single confidence score for an edge by consolidating sentence scores.
+Different from existing hetnets like Hetionet where text-derived edges generally cannot be exactly attributed to excerpts from literature [@O21tn8vf; @L2B5V7XC], our approach would annotate each edge with its source sentences.
+In addition, edges generated with this approach would be unencumbered from upstream licensing or copyright restrictions, enabling openly licensed hetnets at a scale not previously possible [@4G0GW8oe; @137tbemL9; @1GwdMLPbV].
+Accordingly, we plan to use this framework to create a robust multi-edge extractor via multitask learning [@9Jo1af7Z] to construct continuously updating literature-derived hetnets.
+
+
+## Supplemental Information
+
+This manuscript and supplemental information are available at <https://greenelab.github.io/text_mined_hetnet_manuscript/>.
+Source code for this work is available under open licenses at: <https://github.com/greenelab/snorkeling/>.
+
+## Acknowledgements
+
+The authors would like to thank Christopher Ré's group at Stanford Univeristy, especially Alex Ratner and Steven Bach, for their assistance with this project.
+We also want to thank Graciela Gonzalez-Hernandez for her advice and input with this project.
+This work was support by [Grant GBMF4552](https://www.moore.org/grant-detail?grantId=GBMF4552) from the Gordon Betty Moore Foundation.
+
+
+## References {.page_break_before}
+
+<!-- Explicitly insert bibliography here -->
+<div id="refs"></div>
+
+## Supplemental Methods {.page_break_before}
+
+### Label Function Categories
+
+We provide examples of label function categories below. Each example regards the following candidate sentence: “[PTK6]{.gene_color} may be a novel therapeutic target for [pancreatic cancer]{.disease_color}.”
 
 **Databases**: These label functions incorporate existing databases to generate a signal, as seen in distant supervision [@EHeTvZht].
 These functions detect if a candidate sentence's co-mention pair is present in a given database.
@@ -298,44 +435,15 @@ Roughly half of our label functions are based on text patterns, while the others
 
 Table: The distribution of each label function per relationship. {#tbl:label-functions} 
 
-### Training Models
+### Adding Random Noise to Generative Model
 
-#### Generative Model
+We discovered in the course of this work that adding a single label function from a mismatched type would often improve the performance of the generative model (see Results).
+We designed an experiment to test whether adding a noisy label function also increased performance.
+This label function emitted a positive or negative label at varying frequencies, which were evenly spaced from zero to one.
+Zero was the same as distant supervision and one meant that all sentences were randomly labeled.
+We trained the generative model with these label functions added and reported results in terms of AUROC and AUPR.
 
-The generative model is a core part of this automatic annotation framework.
-It integrates multiple signals emitted by label functions and assigns a training class to each candidate sentence.
-This model assigns training classes by estimating the joint probability distribution of the latent true class ($Y$) and label function signals ($\Lambda$), $P(\Lambda, Y)$.
-Assuming each label function is conditionally independent, the joint distribution is defined as follows:  
-
-$$
-P(\Lambda, Y) = \frac{\exp(\sum_{i=1}^{m} \theta^{T}F_{i}(\Lambda, y))}
-{\sum_{\Lambda'}\sum_{y'} \exp(\sum_{i=1}^{m} \theta^{T}F_{i}(\Lambda', y'))}
-$$  
-
-where $m$ is the number of candidate sentences, $F$ is the vector of summary statistics and $\theta$ is a vector of weights for each summary statistic.
-The summary statistics used by the generative model are as follows:  
-
-$$F^{Lab}_{i,j}(\Lambda, Y) = \unicode{x1D7D9}\{\Lambda_{i,j} \neq 0\}$$
-$$F^{Acc}_{i,j}(\Lambda, Y) = \unicode{x1D7D9}\{\Lambda_{i,j} = y_{i,j}\}$$   
-
-*Lab* is the label function's propensity (the frequency of a label function emitting a signal).
-*Acc* is the individual label function's accuracy given the training class.
-This model optimizes the weights ($\theta$) by minimizing the negative log likelihood:
-
-$$\hat{\theta} = argmin_{\theta} -\sum_{\Lambda} log \sum_{Y}P(\Lambda, Y)$$
-
-In the framework we used predictions from the generative model, $\hat{Y} = P(Y \mid \Lambda)$, as training classes for our dataset [@vzoBuh4l; @9Jo1af7Z].
-
-#### Word Embeddings
-
-Word embeddings are representations that map individual words to real valued vectors of user-specified dimensions.
-These embeddings have been shown to capture the semantic and syntactic information between words [@u5iJzbp9].
-We trained Facebook's fastText [@qUpCDz2v] using all candidate sentences for each individual relationship pair to generate word embeddings.
-fastText uses a skipgram model [@1GhHIDxuW] that aims to predict the surrounding context for a candidate word and pairs the model with a novel scoring function that treats each word as a bag of character n-grams.
-We trained this model for 20 epochs using a window size of 2 and generated 300-dimensional word embeddings.
-We use the optimized word embeddings to train a discriminative model.  
-
-#### Discriminative Model
+### Discriminative Model
 
 The discriminative model is a neural network, which we train to predict labels from the generative model.
 The expectation is that the discriminative model can learn more complete features of the text than the label functions used in the generative model.
@@ -354,6 +462,15 @@ The fully connected network had 300 neurons for the first layer, 100 neurons for
 The last step from the fully connected network was to generate predictions using a softmax layer.
 ](images/figures/convolutional_neural_network/convolutional_neural_nework.png){#fig:convolutional_network}
 
+#### Word Embeddings
+
+Word embeddings are representations that map individual words to real valued vectors of user-specified dimensions.
+These embeddings have been shown to capture the semantic and syntactic information between words [@u5iJzbp9].
+We trained Facebook's fastText [@qUpCDz2v] using all candidate sentences for each individual relationship pair to generate word embeddings.
+fastText uses a skipgram model [@1GhHIDxuW] that aims to predict the surrounding context for a candidate word and pairs the model with a novel scoring function that treats each word as a bag of character n-grams.
+We trained this model for 20 epochs using a window size of 2 and generated 300-dimensional word embeddings.
+We use the optimized word embeddings to train a discriminative model. 
+
 #### Calibration of the Discriminative Model
 
 Often many tasks require a machine learning model to output reliable probability predictions. 
@@ -368,61 +485,9 @@ $$\sigma_{SM}(\frac{z_{i}}{T}) = \frac{\exp(\frac{z_{i}}{T})}{\sum_{i}\exp(\frac
 We found the optimal T by minimizing the negative log likelihood (NLL) of a held out validation set.
 The benefit of using this method is that the model becomes more reliable and the accuracy of the model doesn't change [@QJ6hYH8N].
 
-### Experimental Design
+## Supplemental Tables and Figures
 
-Being able to re-use label functions across edge types would substantially reduce the number of label functions required to extract multiple relationships from biomedical literature.
-We first established a baseline by training a generative model using only distant supervision label functions designed for the target edge type.
-As an example, for the GiG edge type we used label functions that returned a `1` if the pair of genes were included in the Human Interaction database [@LCyCrr7W], the iRefIndex database [@gtV3bOpd] or in the Incomplete Interactome database [@2jkcXYxN].
-Then we compared models that also included text and domain-heuristic label functions.
-Using a sampling with replacement approach, we sampled these text and domain-heuristic label functions separately within edge types, across edge types, and from a pool of all label functions.
-We compared within-edge-type performance to across-edge-type and all-edge-type performance.
-For each edge type we sampled a fixed number of label functions consisting of five evenly-spaced numbers between one and the total number of possible label functions.
-We repeated this sampling process 50 times for each point.
-We evaluated both generative and discriminative models at each point, and we reported performance of each in terms of the area under the receiver operating characteristic curve (AUROC) and the area under the precision-recall curve (AUPR).
-
-#### Adding Random Noise to Generative Model
-
-We discovered in the course of this work that adding a single label function from a mismatched type would often improve the performance of the generative model (see Results).
-We designed an experiment to test whether adding a noisy label function also increased performance.
-This label function emitted a positive or negative label at varying frequencies, which were evenly spaced from zero to one.
-Zero was the same as distant supervision and one meant that all sentences were randomly labeled.
-We trained the generative model with these label functions added and reported results in terms of AUROC and AUPR.
-
-
-
-## Results
-
-### Generative Model Using Randomly Sampled Label Functions
-![
-Grid of AUROC (A) and AUPR (B) scores for each generative model trained on randomly sampled label functions.
-The rows depict the relationship each model is trying to predict and the columns are the edge type specific sources from which each label function is sampled.
-For example, the top-left most square depicts the generative model predicting DaG sentences, while randomly sampling label functions designed to predict the DaG relationship. 
-The square towards the right depicts the generative model predicting DaG sentences, while randomly sampling label functions designed to predict the CtD relationship.
-This pattern continues filling out the rest of the grid.
-The right most column consists of pooling every relationship specific label function and proceeding as above.
-](https://raw.githubusercontent.com/danich1/snorkeling/ee638b4e45717a86f54a2744a813baaa90bc6b84/figures/label_sampling_experiment/transfer_test_set_auroc.png){#fig:auroc_gen_model_performance}
-
-We added randomly sampled label functions to a baseline for each edge type to evaluate the feasibility of label function re-use.
-Our baseline model consisted of a generative model trained with only edge-specific distant supervision label functions.
-We reported the results in AUPR and AUROC (Figures {@fig:auroc_gen_model_performance} and {@fig:aupr_gen_model_performance}).  
-The on-diagonal plots of figures {@fig:auroc_gen_model_performance} and {@fig:aupr_gen_model_performance} show increasing performance when edge-specific label functions are added on top of the  edge-specific baselines.
-The CtD edge type is a quintessential example of this trend.
-The baseline model starts off with an AUROC score of 52% and an AUPRC of 28%, which increase to 76% and 49% respectively as more CtD label functions are included. 
-DaG edges have a similar trend: performance starting off with an AUROC of 56% and AUPR of 41% then increases to 62% and 45% respectively.
-Both the CbG and GiG edges have an increasing trend but plateau after a few label functions are added.  
-
-The off-diagonals in figures {@fig:auroc_gen_model_performance} and {@fig:aupr_gen_model_performance} show how performance varies when label functions from one edge type are added to a different edge type's baseline.
-In certain cases (apparent for DaG), performance increases regardless of the edge type used for label functions.
-In other cases (apparent with CtD), one label function appears to improve performance; however, adding more label functions does not improve performance (AUROC) or decreases it (AUPR).
-In certain cases, the source of the label functions appears to be important: the performance of CbG edges decrease when using label functions from the DaG and CtD categories.
-
-Our initial hypothesis was based on the idea that certain edge types capture similar physical relationships and that these cases would be particularly amenable for label function transfer.
-For example, CbG and GiG both describe physical interactions.
-We observed that performance increased as assessed by both AUROC and AUPR when using label functions from the GiG edge type to predict CbG edges.
-A similar trend was observed when predicting the GiG edge; however, the performance differences were small for this edge type making the importance difficult to assess.  
-The last column shows increasing performance (AUROC and AUPR) for both DaG and CtD when sampling from all label functions.
-CbG and GiG also had increased performance when one random label function was sampled, but performance decreased drastically as more label functions were added.
-It is possible that a small number of irrelevant label functions are able to overwhelm the distant supervision label functions in these cases (see Supplemental Figures {@fig:auroc_random_label_function_performance} and {@fig:aupr_random_label_function_performance}).
+### Generative Model AUPR Performance
 
 ![
 Grid of AUPR scores for each generative model trained on randomly sampled label functions.
@@ -432,6 +497,26 @@ The square towards the right depicts the generative model predicting DaG sentenc
 This pattern continues filling out the rest of the grid.
 The right most column consists of pooling every relationship specific label function and proceeding as above.
 ](https://raw.githubusercontent.com/danich1/snorkeling/ee638b4e45717a86f54a2744a813baaa90bc6b84/figures/label_sampling_experiment/transfer_test_set_auprc.png){#fig:aupr_gen_model_performance}
+
+### Random Label Function Gen Model Analysis
+![
+A grid of AUROC (A) scores for each edge type.
+Each plot consists of adding a single label function on top of the baseline model.
+This label function emits a positive (shown in blue) or negative (shown in orange) label at specified frequencies, and performance at zero is equivalent to not having a randomly emitting label function.
+The error bars represent 95% confidence intervals for AUROC or AUPR (y-axis) at each emission frequency.
+](https://raw.githubusercontent.com/danich1/snorkeling/ee638b4e45717a86f54a2744a813baaa90bc6b84/figures/gen_model_error_analysis/transfer_test_set_auroc.png){#fig:auroc_random_label_function_performance}
+
+We observed that including one label function of a mismatched type to distant supervision often improved performance, so we evaluated the effects of adding a random label function in the same setting.
+We found that usually adding random noise did not improve performance (Figures {@fig:auroc_random_label_function_performance} and {@fig:aupr_random_label_function_performance}).
+For the CbG edge type we did observe slightly increased performance via AUPR (Figure {@fig:aupr_random_label_function_performance}).
+However, performance changes in general were smaller than those observed with mismatched label types.
+
+![
+A grid of AUROC (A) scores for each edge type.
+Each plot consists of adding a single label function on top of the baseline model.
+This label function emits a positive (shown in blue) or negative (shown in orange) label at specified frequencies, and performance at zero is equivalent to not having a randomly emitting label function.
+The error bars represent 95% confidence intervals for AUROC or AUPR (y-axis) at each emission frequency.
+](https://raw.githubusercontent.com/danich1/snorkeling/ee638b4e45717a86f54a2744a813baaa90bc6b84/figures/gen_model_error_analysis/transfer_test_set_auprc.png){#fig:aupr_random_label_function_performance}
 
 ### Discriminative Model Performance
 
@@ -475,167 +560,13 @@ The blue line represents the predictions before calibration and the orange line 
 
 Even deep learning models with high precision and recall can be poorly calibrated, and the overconfidence of these models has been noted [@QJ6hYH8N; @rLVjMJ5l].
 We attempted to calibrate the best performing discriminative model so that we could directly use the emitted probabilities.
-We examined the calibration of our existing model (Figure {@fig:discriminative_model_calibration}, blue line).
+We examined the calibration of our existing model (Supplemental Figure {@fig:discriminative_model_calibration}, blue line).
 We found that the DaG and CtG edge types were, though not perfectly calibrated, were somewhat aligned with the ideal calibration lines.
 The CbG and GiG edges were poorly calibrated and increasing model certainty did not always lead to an increase in precision.
 Applying the calibration algorithm (orange line) did not appear to bring predictions in line with the ideal calibration line, but did capture some of the uncertainty in the GiG edge type.
 For this reason we use the measured precision instead of the predicted probabilities when determining how many edges could be added to existing knowledge bases with specified levels of confidence.
 
-### Baseline Comparison
-
-![
-Comparion between our model and CoCoScore model [@IGXdryzB].
-We report both model's performance in terms of AUROC and AUPR.
-Our model achieves comparable performance against CoCoScore in terms of AUROC.
-As for AUPR, CoCoScore consistently outperforms our model except for CtD. 
-](https://raw.githubusercontent.com/danich1/snorkeling/0149086785b19f9429c92565d650e9d049c136ff/figures/literature_models/model_comparison.png){#fig:cocoscore_comparison}
-
-Once our discriminator model is calibrated, we grouped sentences based on mention pair (edges).
-We assigned each edge the maximum score over all grouped sentences and compared our model's ability to predict pairs in our test set to a previously published baseline model [@IGXdryzB].
-Performance is reported in terms of AUROC and AUPR (Figure {@fig:cocoscore_comparison}).
-Across edge types our model shows comparable performance against the baseline in terms of AUROC.
-Regarding AUPR, our model shows hindered performance against the baseline.
-The exception for both cases is CtD where our model performs better than the baseline.
-
-### Reconstructing Hetionet
-
-![
-A scatter plot showing the number of edges (log scale) we can add or recall at specified precision levels. 
-The blue depicts edges existing in hetionet and the orange depicts how many novel edges can be added.
-](https://raw.githubusercontent.com/danich1/snorkeling/0149086785b19f9429c92565d650e9d049c136ff/figures/edge_prediction_experiment/edges_added.png){#fig:hetionet_reconstruction}
-
-We evaluated how many edges we can recall/add to Hetionet v1 (Figure {@fig:hetionet_reconstruction} and Supplemental Table {@tbl:edge_prediction_tbl}).
-In our evaluation we used edges assigned to our test set.
-Overall, we can recall a small amount of edges at high precision thresholds.
-A key example is CbG and GiG where we recalled only one exisiting edge at 100% precision.
-Despite the low recall, we are still able to add novel edges to DaG and CtD while retaining modest precision.
-
-
-## Discussion
-
-We tested the feasibility of re-using label functions to extract relationships from literature.
-Through our sampling experiment, we found that adding relevant label functions increases prediction performance (shown in the on-diagonals of Figures {@fig:auroc_gen_model_performance} and {@fig:aupr_gen_model_performance}).
-We found that label functions designed from relatively related edge types can increase performance (seen when GiG label functions predicts CbG and vise versa).
-We noticed that one edge type (DaG) is agnostic to label function source (Figures {@fig:auroc_gen_model_performance} and {@fig:aupr_gen_model_performance}). 
-Performance routinely increases when adding a single mismatched label function to our baseline model (the generative model trained only on distant supervision label functions).
-These results led us to hypothesize that adding a small amount of noise aided the model, but our experiment with a random label function reveals that this was not the case (Figures {@fig:auroc_random_label_function_performance} and {@fig:aupr_random_label_function_performance}).
-Based on these results one question still remains: why does performance drastically increase when adding a single label function to our distant supervision baseline?
-
-The discriminative model didn't work as intended. 
-The majority of the time the discriminative model underperformed the generative model (Figures {@fig:auroc_discriminative_model_performance} and {@fig:aupr_discriminative_model_performance).
-Potential reasons for this are the discriminative model overfitting to the generative model's predictions and a negative class bias in some of our datasets (Table {@tbl:candidate-sentences}).
-The challenges with the discriminative model are likely to have led to issues in our downstream analyses: poor model calibration (Figure {@fig:discriminative_model_calibration}) and poor recall in detecting existing Hetionet edges (Figure {@fig:hetionet_reconstruction}).
-Despite the above complications, our model had similar performance with a published baseline model (Figure {@fig:cocoscore_comparison}).
-This implies that with better tuning the discriminative model has the potential to perform better than the baseline model.
-
-
-## Conclusion and Future Direction
-
-Filling out knowledge bases via manual curation can be an arduous and erroneous task [@UdzvLgBM].
-As the rate of publications increases manual curation becomes an infeasible approach.
-Data programming, a paradigm that uses label functions as a means to speed up the annotation process, can be used as a solution for this problem.
-A problem with this paradigm is that creating a useful label function takes a significant amount of time. 
-We tested the feasibility of reusing label functions as a way to speed up the  label function creation process.
-We conclude that label function re-use across edge types can increase performance when there are certain constraints on the number of functions re-used.
-More sophisticated methods of reuse may be able to capture many of the advantages and avoid many of the drawbacks.
-Adding more relavant label functions can increase overall performance.
-The discriminative model, under this paradigm, has a tendency to overfit to predictions of the generative model.
-We recommend implementing regularization techniques such as drop out and weight decay to combat this issue.
-
-This work sets up the foundation for creating a common framework that mines text to create edges.
-Within this framework we would continuously ingest new knowledge as novel findings are published, while providing a single confidence score for an edge by consolidating sentence scores.
-Different from existing hetnets like Hetionet where text-derived edges generally cannot be exactly attributed to excerpts from literature [@O21tn8vf; @L2B5V7XC], our approach would annotate each edge with its source sentences.
-In addition, edges generated with this approach would be unencumbered from upstream licensing or copyright restrictions, enabling openly licensed hetnets at a scale not previously possible [@4G0GW8oe; @137tbemL9; @1GwdMLPbV].
-Accordingly, we plan to use this framework to create a robust multi-edge extractor via multitask learning [@9Jo1af7Z] to construct continuously updating literature-derived hetnets.
-
-
-## Supplemental Information
-
-This manuscript and supplemental information are available at <https://greenelab.github.io/text_mined_hetnet_manuscript/>.
-Source code for this work is available under open licenses at: <https://github.com/greenelab/snorkeling/>.
-
-## Acknowledgements
-
-The authors would like to thank Christopher Ré's group at Stanford Univeristy, especially Alex Ratner and Steven Bach, for their assistance with this project.
-We also want to thank Graciela Gonzalez-Hernandez for her advice and input with this project.
-This work was support by [Grant GBMF4552](https://www.moore.org/grant-detail?grantId=GBMF4552) from the Gordon Betty Moore Foundation.
-
-
-## References {.page_break_before}
-
-<!-- Explicitly insert bibliography here -->
-<div id="refs"></div>
-
-## Supplemental Figures {.page_break_before}
-
-### Random Label Function Gen Model Analysis
-![
-A grid of AUROC (A) scores for each edge type.
-Each plot consists of adding a single label function on top of the baseline model.
-This label function emits a positive (shown in blue) or negative (shown in orange) label at specified frequencies, and performance at zero is equivalent to not having a randomly emitting label function.
-The error bars represent 95% confidence intervals for AUROC or AUPR (y-axis) at each emission frequency.
-](https://raw.githubusercontent.com/danich1/snorkeling/ee638b4e45717a86f54a2744a813baaa90bc6b84/figures/gen_model_error_analysis/transfer_test_set_auroc.png){#fig:auroc_random_label_function_performance}
-
-We observed that including one label function of a mismatched type to distant supervision often improved performance, so we evaluated the effects of adding a random label function in the same setting.
-We found that usually adding random noise did not improve performance (Figures {@fig:auroc_random_label_function_performance} and {@fig:aupr_random_label_function_performance}).
-For the CbG edge type we did observe slightly increased performance via AUPR (Figure {@fig:aupr_andom_label_function_performance}).
-However, performance changes in general were smaller than those observed with mismatched label types.
-
-![
-A grid of AUROC (A) scores for each edge type.
-Each plot consists of adding a single label function on top of the baseline model.
-This label function emits a positive (shown in blue) or negative (shown in orange) label at specified frequencies, and performance at zero is equivalent to not having a randomly emitting label function.
-The error bars represent 95% confidence intervals for AUROC or AUPR (y-axis) at each emission frequency.
-](https://raw.githubusercontent.com/danich1/snorkeling/ee638b4e45717a86f54a2744a813baaa90bc6b84/figures/gen_model_error_analysis/transfer_test_set_auprc.png){#fig:aupr_random_label_function_performance}
-
-### Top Edge Prediction Tables
-
-| Edge Type | Source Node             | Target Node               | Gen Model Prediction | Disc Model Prediction | Number of Sentences | Text   | 
-|--------------|----------------------|------------------------|----------------------|-----------------------|---------------------|-----------------------------------------| 
-| [D]{.disease_color}a[G]{.gene_color}       | lung cancer             | VEGFA                     | 1.000                | 0.912                 | 3293                | conclusion : the plasma [vegf]{.gene_color} level is increased in [nsclc]{.disease_color} patients with approximate1y one fourth to have cancer cells in the peripheral blood.                                                                                                                                                                                  | 
-| [D]{.disease_color}a[G]{.gene_color}       | hematologic cancer      | TP53                      | 1.000                | 0.905                 | 8660                | mutations of the [p53]{.gene_color} gene were found in four cases of [cml]{.disease_color} in blastic crisis ( bc ).                                                                                                                                                                                                                                            | 
-| [D]{.disease_color}a[G]{.gene_color}       | obesity                 | MC4R                      | 1.000                | 0.901                 | 1493                | several mutations in the [melanocortin 4 receptor]{.gene_color} gene are associated with [obesity]{.disease_color} in chinese children and adolescents.                                                                                                                                                                                                         | 
-| [D]{.disease_color}a[G]{.gene_color}       | Alzheimer's disease     | VLDLR                     | 1.000                | 0.886                 | 86                  | the 5-repeat allele in the [very-low-density lipoprotein receptor]{.gene_color} gene polymorphism is not increased in sporadic [alzheimer 's disease]{.disease_color} in japanese.                                                                                                                                                                              | 
-| [D]{.disease_color}a[G]{.gene_color}       | lung cancer             | XRCC1                     | 1.000                | 0.885                 | 662                 | results : [xrcc1]{.gene_color} gene polymorphism is associated with increased risk of [lung cancer]{.disease_color} when the arg/arg genotype was used as the reference group.                                                                                                                                                                                  | 
-| [D]{.disease_color}a[G]{.gene_color}       | prostate cancer         | ESR1                      | 1.000                | 0.883                 | 500                 | conclusion : these results suggest that variants of the ggga polymorphism from the [estrogen receptor alpha]{.gene_color} gene may be associated with an increased risk of developing [prostate cancer]{.disease_color}.                                                                                                                                        | 
-| [D]{.disease_color}a[G]{.gene_color}       | breast cancer           | REG1A                     | 1.000                | 0.878                 | 37                  | conclusion : high levels of [reg1a]{.gene_color} expression within tumors are an independent predictor of poor prognosis in patients with [breast cancer]{.disease_color}.                                                                                                                                                                                      | 
-| [D]{.disease_color}a[G]{.gene_color}       | breast cancer           | INSR                      | 1.000                | 0.877                 | 200                 | we have previously reported that [insulin receptor]{.gene_color} expression is increased in human [breast cancer]{.disease_color} specimens ( v. papa et al. , j. clin.                                                                                                                                                                                         | 
-| [D]{.disease_color}a[G]{.gene_color}       | rheumatoid arthritis    | AR                        | 1.000                | 0.877                 | 53                  | conclusion : our results suggest no correlation between cag repeat polymorphism in the [ar]{.gene_color} gene and response to treatment with lef in women with [ra]{.disease_color}.                                                                                                                                                                            | 
-| [D]{.disease_color}a[G]{.gene_color}       | coronary artery disease | CTLA4                     | 1.000                | 0.875                 | 12                  | conclusion : the g/g genotype polymorphism of the [ctla-4]{.gene_color} gene is associated with increased risk of [ami]{.disease_color}.                                                                                                                                                                                                                        | 
-| [C]{.compound_color}t[D]{.disease_color}       | Zonisamide              | epilepsy syndrome         | 1.000                | 0.943                 | 1011                | adjunctive [zonisamide]{.compound_color} therapy in the long-term treatment of children with [partial epilepsy]{.disease_color} : results of an open-label extension study of a phase iii , randomized , double-blind , placebo-controlled trial.                                                                                                               | 
-| [C]{.compound_color}t[D]{.disease_color}       | Metformin               | polycystic ovary syndrome | 1.000                | 0.942                 | 3217                | in the present study , 23 [pcos]{.disease_color} subjects [ mean ( + / - se ) body mass index 30.0 + / -1.1 kg/m2 ] were randomly assigned to double-blind treatment with [metformin]{.compound_color} ( 500 mg tid ) or placebo for 6 months , while maintaining their usual eating habits.                                                                    | 
-| [C]{.compound_color}t[D]{.disease_color}       | Piroxicam               | rheumatoid arthritis      | 1.000                | 0.928                 | 184                 | methods : a double-blind , randomized , crossover trial in 49 patients with active [ra]{.disease_color} compared 6 weeks of treatment with tenidap ( 120 mg/day ) versus 6 weeks of treatment with [piroxicam]{.compound_color} ( 20 mg/day ).                                                                                                                  | 
-| [C]{.compound_color}t[D]{.disease_color}       | Irinotecan              | stomach cancer            | 1.000                | 0.918                 | 968                 | randomized phase ii trial of first-line treatment with tailored [irinotecan]{.compound_color} and s-1 therapy versus s-1 monotherapy for advanced or recurrent [gastric carcinoma]{.disease_color} ( jfmc31-0301 ).                                                                                                                                             | 
-| [C]{.compound_color}t[D]{.disease_color}       | Treprostinil            | hypertension              | 1.000                | 0.913                 | 536                 | oral [treprostinil]{.compound_color} for the treatment of [pulmonary arterial hypertension]{.disease_color} in patients receiving background endothelin receptor antagonist and phosphodiesterase type 5 inhibitor therapy ( the freedom-c2 study ) : a randomized controlled trial.                                                                            | 
-| [C]{.compound_color}t[D]{.disease_color}       | Colchicine              | gout                      | 1.000                | 0.911                 | 78                  | this is the first in vivo data to provide a biological rationale that supports the implementation of low dose , non-toxic , [colchicine]{.compound_color} therapy for the treatment of [gouty arthritis]{.disease_color}.                                                                                                                                       | 
-| [C]{.compound_color}t[D]{.disease_color}       | Propranolol             | stomach cancer            | 1.000                | 0.898                 | 45                  | 74 cirrhotic patients with a history of variceal or [gastric bleeding]{.disease_color} were randomly assigned to treatment with [propranolol]{.compound_color} ( 40 to 360 mg/day ) or placebo.                                                                                                                                                                 | 
-| [C]{.compound_color}t[D]{.disease_color}       | Reboxetine              | endogenous depression     | 1.000                | 0.894                 | 439                 | data were obtained from four short-term ( 4-8-week ) , randomized , placebo-controlled trials of [reboxetine]{.compound_color} for the treatment of [mdd]{.disease_color}.                                                                                                                                                                                      | 
-| [C]{.compound_color}t[D]{.disease_color}       | Diclofenac              | ankylosing spondylitis    | 1.000                | 0.892                 | 61                  | comparison of two different dosages of celecoxib with [diclofenac]{.compound_color} for the treatment of active [ankylosing spondylitis]{.disease_color} : results of a 12-week randomised , double-blind , controlled study.                                                                                                                                   | 
-| [C]{.compound_color}t[D]{.disease_color}       | Tapentadol              | osteoarthritis            | 1.000                | 0.880                 | 29                  | driving ability in patients with severe chronic low back or [osteoarthritis]{.disease_color} knee pain on stable treatment with [tapentadol]{.compound_color} prolonged release : a multicenter , open-label , phase 3b trial.                                                                                                                                  | 
-| [C]{.compound_color}b[G]{.gene_color}       | Dexamethasone           | NR3C1                     | 1.000                | 0.850                 | 1119                | submicromolar free calcium modulates [dexamethasone]{.compound_color} binding to the [glucocorticoid receptor]{.gene_color}.                                                                                                                                                                                                                                    | 
-| [C]{.compound_color}b[G]{.gene_color}       | Vitamin A               | RBP4                      | 1.000                | 0.807                 | 5512                | the authors give serum [retinol]{.compound_color} binding protein ( [rbp )]{.gene_color} normal values , established by immunonephelometry , for two healthy populations in their hospital laboratory.                                                                                                                                                          | 
-| [C]{.compound_color}b[G]{.gene_color}       | D-Proline               | IGFBP4                    | 1.000                | 0.790                 | 1                   | the insulin-like growth factor-i-stimulated [l-proline]{.compound_color} uptake was inhibited by one of its binding protein , [insulin-like growth factor binding protein-4]{.gene_color} , in a concentration-dependent manner.                                                                                                                                | 
-| [C]{.compound_color}b[G]{.gene_color}       | Sucrose                 | AR                        | 0.996                | 0.789                 | 37                  | the amount ( maximal binding capacity of 24 to 30 fmol/mg protein ) and hormone binding affinity ( half-maximal saturation of 0.2 nm ) of the [androgen receptor]{.gene_color} in cultured skin fibroblasts was normal , but the receptor was qualitatively abnormal as evidenced by instability on [sucrose]{.compound_color} density gradient centrifugation. | 
-| [C]{.compound_color}b[G]{.gene_color}       | D-Lysine                | PLG                       | 1.000                | 0.787                 | 403                 | in both elisa and rocket immunoelectrophoresis systems , complex formation was inhibited by 10 mm epsilon-amino-n-caproic acid , implying that there is a role for the [lysine]{.compound_color} binding sites of [plg]{.gene_color} in mediating the interaction.                                                                                              | 
-| [C]{.compound_color}b[G]{.gene_color}       | Adenosine               | INSR                      | 1.000                | 0.785                 | 129                 | these findings demonstrate basal state binding of [atp]{.compound_color} to the ckd leading to cis-autophosphorylation and novel basal state regulatory interactions among the subdomains of the [insulin receptor]{.gene_color} kinase.                                                                                                                        | 
-| [C]{.compound_color}b[G]{.gene_color}       | Adenosine               | PLK1                      | 1.000                | 0.783                 | 104                 | most kinase inhibitors interact with the [atp]{.compound_color} binding site on [plk1]{.gene_color} , which is highly conserved.                                                                                                                                                                                                                                | 
-| [C]{.compound_color}b[G]{.gene_color}       | Calcium Chloride        | ITPR3                     | 0.995                | 0.777                 | 1954                | control of [ca2]{.compound_color} + influx in human neutrophils by inositol 1,4,5-trisphosphate ( ip3 ) binding : differential effects of micro-injected [ip3 receptor]{.gene_color} antagonists.                                                                                                                                                               | 
-| [C]{.compound_color}b[G]{.gene_color}       | D-Arginine              | C5AR1                     | 1.000                | 0.775                 | 808                 | thus , selected out of a multiplicity of possibilities by the natural binding partner , [arg37]{.compound_color} as well as arg40 appear to be anchor residues in binding to the [c5a receptor]{.gene_color}.                                                                                                                                                   | 
-| [C]{.compound_color}b[G]{.gene_color}       | Ticagrelor              | P2RY12                    | 1.000                | 0.773                 | 322                 | purpose : [ticagrelor]{.compound_color} is a reversibly binding [p2y12]{.gene_color} receptor antagonist used clinically for the prevention of atherothrombotic events in patients with acute coronary syndromes ( acs ).                                                                                                                                       | 
-| [G]{.gene_color}i[G]{.gene_color}       | ABL1                    | ABL1                      | 0.999                | 0.600                 | 9572                | the acquired resistance in patients who failed to respond to imatinib seemed to be induced by several point mutations in the [bcr-abl]{.gene_color} gene , which were likely to affect the binding of imatinib with [bcr-abl]{.gene_color}.                                                                                                                     | 
-| [G]{.gene_color}i[G]{.gene_color}       | TP63                    | TP53                      | 1.000                | 0.595                 | 2557                | [tp63]{.gene_color} , a member of the [p53]{.gene_color} gene family gene , encodes the np63 protein and is one of the most frequently amplified genes in squamous cell carcinomas ( scc ) of the head and neck ( hnscc ) and lungs ( lusc ).                                                                                                                   | 
-| [G]{.gene_color}i[G]{.gene_color}       | FERMT1                  | FERMT1                    | 0.004                | 0.590                 | 194                 | ks is caused by mutations in the [fermt1]{.gene_color} gene encoding [kindlin-1]{.gene_color}.                                                                                                                                                                                                                                                                  | 
-| [G]{.gene_color}i[G]{.gene_color}       | GRN                     | GRN                       | 1.000                | 0.590                 | 3842                | background : mutations in the [progranulin]{.gene_color} gene ( [pgrn )]{.gene_color} have recently been identified as a cause of frontotemporal lobar degeneration with ubiquitin-positive inclusions ( ftld-u ) in some families.                                                                                                                             | 
-| [G]{.gene_color}i[G]{.gene_color}       | FASN                    | EP300                     | 0.999                | 0.589                 | 6                   | here , we demonstrated that [p300]{.gene_color} binds to and increases histone h3 lysine 27 acetylation ( h3k27ac ) in the [fasn]{.gene_color} gene promoter.                                                                                                                                                                                                   | 
-| [G]{.gene_color}i[G]{.gene_color}       | SETBP1                  | SETBP1                    | 1.000                | 0.588                 | 354                 | the critical deleted region contains [setbp1]{.gene_color} gene ( [set binding protein 1 )]{.gene_color}.                                                                                                                                                                                                                                                       | 
-| [G]{.gene_color}i[G]{.gene_color}       | BCL2                    | BAK1                      | 0.118                | 0.587                 | 1220                | different expression patterns of [bcl-2]{.gene_color} family genes in breast cancer by estrogen receptor status with special reference to pro-apoptotic [bak]{.gene_color} gene.                                                                                                                                                                                | 
-| [G]{.gene_color}i[G]{.gene_color}       | SP1                     | INSR                      | 0.948                | 0.587                 | 23                  | thus , the efficient expression of the human [insulin receptor]{.gene_color} gene possibly requires the binding of transcriptional factor [sp1]{.gene_color} to four g-c boxes located -593 to -618 base pairs upstream of the atg translation initiation codon.                                                                                                | 
-| [G]{.gene_color}i[G]{.gene_color}       | ABCD1                   | ABCD1                     | 1.000                | 0.586                 | 410                 | x-linked adrenoleukodystrophy ( x-ald ) is caused by mutations in the [abcd1]{.gene_color} gene encoding the peroxisomal abc transporter adrenoleukodystrophy protein ( [aldp )]{.gene_color}.                                                                                                                                                                  | 
-| [G]{.gene_color}i[G]{.gene_color}       | CYP1A1                  | AHR                       | 0.996                | 0.586                 | 1940                | the liganded [ah receptor]{.gene_color} activates transcription by binding to a specific dna-recognition motif within a dioxin-responsive enhancer upstream of the [cyp1a1]{.gene_color} gene.                                                                                                                                                                  |
-Table: Contains the top ten predictions for each edge type. Highlighted words represent entities mentioned within the given sentence. {#tbl:edge_prediction_tbl}
-
-
-### Model Calibration Prediction Tables
+#### Model Calibration Tables
 
 | Disease Name  | Gene Symbol | Text  | Before Calibration | After Calibraiton | 
 |-------------------|-------------|--------------------------------------------------------|---------------|---------------| 
@@ -749,3 +680,75 @@ Table: Contains the top ten Gene-interacts-Gene confidence scores before and aft
 | NFKB1        | TNF          | [nf-kappab-dependent]{.gene_color} reporter gene transcription activated by [tnf]{.gene_color} was also suppressed by calagualine .                                                                                                                              | 0.005              | 0.276             | 
 Table: Contains the bottom ten Gene-interacts-Gene confidence scores before and after model calbration. Both gene mentions highlighted in [blue]{.gene_color}. {#tbl:gg_bottom_ten_table}
 
+### Baseline Comparison
+
+![
+Comparion between our model and CoCoScore model [@IGXdryzB].
+We report both model's performance in terms of AUROC and AUPR.
+Our model achieves comparable performance against CoCoScore in terms of AUROC.
+As for AUPR, CoCoScore consistently outperforms our model except for CtD. 
+](https://raw.githubusercontent.com/danich1/snorkeling/0149086785b19f9429c92565d650e9d049c136ff/figures/literature_models/model_comparison.png){#fig:cocoscore_comparison}
+
+Once our discriminator model is calibrated, we grouped sentences based on mention pair (edges).
+We assigned each edge the maximum score over all grouped sentences and compared our model's ability to predict pairs in our test set to a previously published baseline model [@IGXdryzB].
+Performance is reported in terms of AUROC and AUPR (Figure {@fig:cocoscore_comparison}).
+Across edge types our model shows comparable performance against the baseline in terms of AUROC.
+Regarding AUPR, our model shows hindered performance against the baseline.
+The exception for both cases is CtD where our model performs better than the baseline.
+
+### Reconstructing Hetionet
+
+![
+A scatter plot showing the number of edges (log scale) we can add or recall at specified precision levels. 
+The blue depicts edges existing in hetionet and the orange depicts how many novel edges can be added.
+](https://raw.githubusercontent.com/danich1/snorkeling/0149086785b19f9429c92565d650e9d049c136ff/figures/edge_prediction_experiment/edges_added.png){#fig:hetionet_reconstruction}
+
+We evaluated how many edges we can recall/add to Hetionet v1 (Supplemental Figure {@fig:hetionet_reconstruction} and Table {@tbl:edge_prediction_tbl}).
+In our evaluation we used edges assigned to our test set.
+Overall, we can recall a small amount of edges at high precision thresholds.
+A key example is CbG and GiG where we recalled only one exisiting edge at 100% precision.
+Despite the low recall, we are still able to add novel edges to DaG and CtD while retaining modest precision.
+
+| Edge Type | Source Node             | Target Node               | Gen Model Prediction | Disc Model Prediction | Number of Sentences | Text   | 
+|--------------|----------------------|------------------------|----------------------|-----------------------|---------------------|-----------------------------------------| 
+| [D]{.disease_color}a[G]{.gene_color}       | lung cancer             | VEGFA                     | 1.000                | 0.912                 | 3293                | conclusion : the plasma [vegf]{.gene_color} level is increased in [nsclc]{.disease_color} patients with approximate1y one fourth to have cancer cells in the peripheral blood.                                                                                                                                                                                  | 
+| [D]{.disease_color}a[G]{.gene_color}       | hematologic cancer      | TP53                      | 1.000                | 0.905                 | 8660                | mutations of the [p53]{.gene_color} gene were found in four cases of [cml]{.disease_color} in blastic crisis ( bc ).                                                                                                                                                                                                                                            | 
+| [D]{.disease_color}a[G]{.gene_color}       | obesity                 | MC4R                      | 1.000                | 0.901                 | 1493                | several mutations in the [melanocortin 4 receptor]{.gene_color} gene are associated with [obesity]{.disease_color} in chinese children and adolescents.                                                                                                                                                                                                         | 
+| [D]{.disease_color}a[G]{.gene_color}       | Alzheimer's disease     | VLDLR                     | 1.000                | 0.886                 | 86                  | the 5-repeat allele in the [very-low-density lipoprotein receptor]{.gene_color} gene polymorphism is not increased in sporadic [alzheimer 's disease]{.disease_color} in japanese.                                                                                                                                                                              | 
+| [D]{.disease_color}a[G]{.gene_color}       | lung cancer             | XRCC1                     | 1.000                | 0.885                 | 662                 | results : [xrcc1]{.gene_color} gene polymorphism is associated with increased risk of [lung cancer]{.disease_color} when the arg/arg genotype was used as the reference group.                                                                                                                                                                                  | 
+| [D]{.disease_color}a[G]{.gene_color}       | prostate cancer         | ESR1                      | 1.000                | 0.883                 | 500                 | conclusion : these results suggest that variants of the ggga polymorphism from the [estrogen receptor alpha]{.gene_color} gene may be associated with an increased risk of developing [prostate cancer]{.disease_color}.                                                                                                                                        | 
+| [D]{.disease_color}a[G]{.gene_color}       | breast cancer           | REG1A                     | 1.000                | 0.878                 | 37                  | conclusion : high levels of [reg1a]{.gene_color} expression within tumors are an independent predictor of poor prognosis in patients with [breast cancer]{.disease_color}.                                                                                                                                                                                      | 
+| [D]{.disease_color}a[G]{.gene_color}       | breast cancer           | INSR                      | 1.000                | 0.877                 | 200                 | we have previously reported that [insulin receptor]{.gene_color} expression is increased in human [breast cancer]{.disease_color} specimens ( v. papa et al. , j. clin.                                                                                                                                                                                         | 
+| [D]{.disease_color}a[G]{.gene_color}       | rheumatoid arthritis    | AR                        | 1.000                | 0.877                 | 53                  | conclusion : our results suggest no correlation between cag repeat polymorphism in the [ar]{.gene_color} gene and response to treatment with lef in women with [ra]{.disease_color}.                                                                                                                                                                            | 
+| [D]{.disease_color}a[G]{.gene_color}       | coronary artery disease | CTLA4                     | 1.000                | 0.875                 | 12                  | conclusion : the g/g genotype polymorphism of the [ctla-4]{.gene_color} gene is associated with increased risk of [ami]{.disease_color}.                                                                                                                                                                                                                        | 
+| [C]{.compound_color}t[D]{.disease_color}       | Zonisamide              | epilepsy syndrome         | 1.000                | 0.943                 | 1011                | adjunctive [zonisamide]{.compound_color} therapy in the long-term treatment of children with [partial epilepsy]{.disease_color} : results of an open-label extension study of a phase iii , randomized , double-blind , placebo-controlled trial.                                                                                                               | 
+| [C]{.compound_color}t[D]{.disease_color}       | Metformin               | polycystic ovary syndrome | 1.000                | 0.942                 | 3217                | in the present study , 23 [pcos]{.disease_color} subjects [ mean ( + / - se ) body mass index 30.0 + / -1.1 kg/m2 ] were randomly assigned to double-blind treatment with [metformin]{.compound_color} ( 500 mg tid ) or placebo for 6 months , while maintaining their usual eating habits.                                                                    | 
+| [C]{.compound_color}t[D]{.disease_color}       | Piroxicam               | rheumatoid arthritis      | 1.000                | 0.928                 | 184                 | methods : a double-blind , randomized , crossover trial in 49 patients with active [ra]{.disease_color} compared 6 weeks of treatment with tenidap ( 120 mg/day ) versus 6 weeks of treatment with [piroxicam]{.compound_color} ( 20 mg/day ).                                                                                                                  | 
+| [C]{.compound_color}t[D]{.disease_color}       | Irinotecan              | stomach cancer            | 1.000                | 0.918                 | 968                 | randomized phase ii trial of first-line treatment with tailored [irinotecan]{.compound_color} and s-1 therapy versus s-1 monotherapy for advanced or recurrent [gastric carcinoma]{.disease_color} ( jfmc31-0301 ).                                                                                                                                             | 
+| [C]{.compound_color}t[D]{.disease_color}       | Treprostinil            | hypertension              | 1.000                | 0.913                 | 536                 | oral [treprostinil]{.compound_color} for the treatment of [pulmonary arterial hypertension]{.disease_color} in patients receiving background endothelin receptor antagonist and phosphodiesterase type 5 inhibitor therapy ( the freedom-c2 study ) : a randomized controlled trial.                                                                            | 
+| [C]{.compound_color}t[D]{.disease_color}       | Colchicine              | gout                      | 1.000                | 0.911                 | 78                  | this is the first in vivo data to provide a biological rationale that supports the implementation of low dose , non-toxic , [colchicine]{.compound_color} therapy for the treatment of [gouty arthritis]{.disease_color}.                                                                                                                                       | 
+| [C]{.compound_color}t[D]{.disease_color}       | Propranolol             | stomach cancer            | 1.000                | 0.898                 | 45                  | 74 cirrhotic patients with a history of variceal or [gastric bleeding]{.disease_color} were randomly assigned to treatment with [propranolol]{.compound_color} ( 40 to 360 mg/day ) or placebo.                                                                                                                                                                 | 
+| [C]{.compound_color}t[D]{.disease_color}       | Reboxetine              | endogenous depression     | 1.000                | 0.894                 | 439                 | data were obtained from four short-term ( 4-8-week ) , randomized , placebo-controlled trials of [reboxetine]{.compound_color} for the treatment of [mdd]{.disease_color}.                                                                                                                                                                                      | 
+| [C]{.compound_color}t[D]{.disease_color}       | Diclofenac              | ankylosing spondylitis    | 1.000                | 0.892                 | 61                  | comparison of two different dosages of celecoxib with [diclofenac]{.compound_color} for the treatment of active [ankylosing spondylitis]{.disease_color} : results of a 12-week randomised , double-blind , controlled study.                                                                                                                                   | 
+| [C]{.compound_color}t[D]{.disease_color}       | Tapentadol              | osteoarthritis            | 1.000                | 0.880                 | 29                  | driving ability in patients with severe chronic low back or [osteoarthritis]{.disease_color} knee pain on stable treatment with [tapentadol]{.compound_color} prolonged release : a multicenter , open-label , phase 3b trial.                                                                                                                                  | 
+| [C]{.compound_color}b[G]{.gene_color}       | Dexamethasone           | NR3C1                     | 1.000                | 0.850                 | 1119                | submicromolar free calcium modulates [dexamethasone]{.compound_color} binding to the [glucocorticoid receptor]{.gene_color}.                                                                                                                                                                                                                                    | 
+| [C]{.compound_color}b[G]{.gene_color}       | Vitamin A               | RBP4                      | 1.000                | 0.807                 | 5512                | the authors give serum [retinol]{.compound_color} binding protein ( [rbp )]{.gene_color} normal values , established by immunonephelometry , for two healthy populations in their hospital laboratory.                                                                                                                                                          | 
+| [C]{.compound_color}b[G]{.gene_color}       | D-Proline               | IGFBP4                    | 1.000                | 0.790                 | 1                   | the insulin-like growth factor-i-stimulated [l-proline]{.compound_color} uptake was inhibited by one of its binding protein , [insulin-like growth factor binding protein-4]{.gene_color} , in a concentration-dependent manner.                                                                                                                                | 
+| [C]{.compound_color}b[G]{.gene_color}       | Sucrose                 | AR                        | 0.996                | 0.789                 | 37                  | the amount ( maximal binding capacity of 24 to 30 fmol/mg protein ) and hormone binding affinity ( half-maximal saturation of 0.2 nm ) of the [androgen receptor]{.gene_color} in cultured skin fibroblasts was normal , but the receptor was qualitatively abnormal as evidenced by instability on [sucrose]{.compound_color} density gradient centrifugation. | 
+| [C]{.compound_color}b[G]{.gene_color}       | D-Lysine                | PLG                       | 1.000                | 0.787                 | 403                 | in both elisa and rocket immunoelectrophoresis systems , complex formation was inhibited by 10 mm epsilon-amino-n-caproic acid , implying that there is a role for the [lysine]{.compound_color} binding sites of [plg]{.gene_color} in mediating the interaction.                                                                                              | 
+| [C]{.compound_color}b[G]{.gene_color}       | Adenosine               | INSR                      | 1.000                | 0.785                 | 129                 | these findings demonstrate basal state binding of [atp]{.compound_color} to the ckd leading to cis-autophosphorylation and novel basal state regulatory interactions among the subdomains of the [insulin receptor]{.gene_color} kinase.                                                                                                                        | 
+| [C]{.compound_color}b[G]{.gene_color}       | Adenosine               | PLK1                      | 1.000                | 0.783                 | 104                 | most kinase inhibitors interact with the [atp]{.compound_color} binding site on [plk1]{.gene_color} , which is highly conserved.                                                                                                                                                                                                                                | 
+| [C]{.compound_color}b[G]{.gene_color}       | Calcium Chloride        | ITPR3                     | 0.995                | 0.777                 | 1954                | control of [ca2]{.compound_color} + influx in human neutrophils by inositol 1,4,5-trisphosphate ( ip3 ) binding : differential effects of micro-injected [ip3 receptor]{.gene_color} antagonists.                                                                                                                                                               | 
+| [C]{.compound_color}b[G]{.gene_color}       | D-Arginine              | C5AR1                     | 1.000                | 0.775                 | 808                 | thus , selected out of a multiplicity of possibilities by the natural binding partner , [arg37]{.compound_color} as well as arg40 appear to be anchor residues in binding to the [c5a receptor]{.gene_color}.                                                                                                                                                   | 
+| [C]{.compound_color}b[G]{.gene_color}       | Ticagrelor              | P2RY12                    | 1.000                | 0.773                 | 322                 | purpose : [ticagrelor]{.compound_color} is a reversibly binding [p2y12]{.gene_color} receptor antagonist used clinically for the prevention of atherothrombotic events in patients with acute coronary syndromes ( acs ).                                                                                                                                       | 
+| [G]{.gene_color}i[G]{.gene_color}       | ABL1                    | ABL1                      | 0.999                | 0.600                 | 9572                | the acquired resistance in patients who failed to respond to imatinib seemed to be induced by several point mutations in the [bcr-abl]{.gene_color} gene , which were likely to affect the binding of imatinib with [bcr-abl]{.gene_color}.                                                                                                                     | 
+| [G]{.gene_color}i[G]{.gene_color}       | TP63                    | TP53                      | 1.000                | 0.595                 | 2557                | [tp63]{.gene_color} , a member of the [p53]{.gene_color} gene family gene , encodes the np63 protein and is one of the most frequently amplified genes in squamous cell carcinomas ( scc ) of the head and neck ( hnscc ) and lungs ( lusc ).                                                                                                                   | 
+| [G]{.gene_color}i[G]{.gene_color}       | FERMT1                  | FERMT1                    | 0.004                | 0.590                 | 194                 | ks is caused by mutations in the [fermt1]{.gene_color} gene encoding [kindlin-1]{.gene_color}.                                                                                                                                                                                                                                                                  | 
+| [G]{.gene_color}i[G]{.gene_color}       | GRN                     | GRN                       | 1.000                | 0.590                 | 3842                | background : mutations in the [progranulin]{.gene_color} gene ( [pgrn )]{.gene_color} have recently been identified as a cause of frontotemporal lobar degeneration with ubiquitin-positive inclusions ( ftld-u ) in some families.                                                                                                                             | 
+| [G]{.gene_color}i[G]{.gene_color}       | FASN                    | EP300                     | 0.999                | 0.589                 | 6                   | here , we demonstrated that [p300]{.gene_color} binds to and increases histone h3 lysine 27 acetylation ( h3k27ac ) in the [fasn]{.gene_color} gene promoter.                                                                                                                                                                                                   | 
+| [G]{.gene_color}i[G]{.gene_color}       | SETBP1                  | SETBP1                    | 1.000                | 0.588                 | 354                 | the critical deleted region contains [setbp1]{.gene_color} gene ( [set binding protein 1 )]{.gene_color}.                                                                                                                                                                                                                                                       | 
+| [G]{.gene_color}i[G]{.gene_color}       | BCL2                    | BAK1                      | 0.118                | 0.587                 | 1220                | different expression patterns of [bcl-2]{.gene_color} family genes in breast cancer by estrogen receptor status with special reference to pro-apoptotic [bak]{.gene_color} gene.                                                                                                                                                                                | 
+| [G]{.gene_color}i[G]{.gene_color}       | SP1                     | INSR                      | 0.948                | 0.587                 | 23                  | thus , the efficient expression of the human [insulin receptor]{.gene_color} gene possibly requires the binding of transcriptional factor [sp1]{.gene_color} to four g-c boxes located -593 to -618 base pairs upstream of the atg translation initiation codon.                                                                                                | 
+| [G]{.gene_color}i[G]{.gene_color}       | ABCD1                   | ABCD1                     | 1.000                | 0.586                 | 410                 | x-linked adrenoleukodystrophy ( x-ald ) is caused by mutations in the [abcd1]{.gene_color} gene encoding the peroxisomal abc transporter adrenoleukodystrophy protein ( [aldp )]{.gene_color}.                                                                                                                                                                  | 
+| [G]{.gene_color}i[G]{.gene_color}       | CYP1A1                  | AHR                       | 0.996                | 0.586                 | 1940                | the liganded [ah receptor]{.gene_color} activates transcription by binding to a specific dna-recognition motif within a dioxin-responsive enhancer upstream of the [cyp1a1]{.gene_color} gene.                                                                                                                                                                  |
+Table: Contains the top ten predictions for each edge type. Highlighted words represent entities mentioned within the given sentence. {#tbl:edge_prediction_tbl}
