@@ -1,5 +1,5 @@
 ---
-title: "Reusing Label Functions to Scale the Extraction of Relationships From Biomedical Abstracts to Multiple Types"
+title: "Reusing Label Functions to Extract Multiple Types of Biomedical Relationships From Biomedical Abstracts at Scale"
 keywords:
   - machine learning
   - weak supervision
