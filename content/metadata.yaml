@@ -1,10 +1,11 @@
 ---
-title: "Mining Heterogenous Relationships from Pubmed Abstracts Using Weak Supervision"
+title: "Reusing label functions to extract multiple types of biomedical relationships from biomedical abstracts at scale"
 keywords:
   - machine learning
   - weak supervision
   - natural language processing
   - heterogenous netowrks
+  - text mining
 lang: en-US
 author_info:
   -
