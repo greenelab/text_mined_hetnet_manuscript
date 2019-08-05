@@ -3,14 +3,16 @@ author-meta:
 - David N. Nicholson
 - Daniel S. Himmelstein
 - Casey S. Greene
-date-meta: '2019-08-01'
+date-meta: '2019-08-05'
 keywords:
 - machine learning
 - weak supervision
 - natural language processing
 - heterogenous netowrks
+- text mining
 lang: en-US
-title: Mining Heterogenous Relationships from Pubmed Abstracts Using Weak Supervision
+title: Reusing label functions to extract multiple types of biomedical relationships
+  from biomedical abstracts at scale
 ...
 
 
@@ -20,10 +22,10 @@ title: Mining Heterogenous Relationships from Pubmed Abstracts Using Weak Superv
 
 <small><em>
 This manuscript
-([permalink](https://greenelab.github.io/text_mined_hetnet_manuscript/v/82239e122c631b2c8f2b803cbb0f1ab1f02516d6/))
+([permalink](https://greenelab.github.io/text_mined_hetnet_manuscript/v/4f562f4d2d30e0ddeeb423f651573bb49972c0b0/))
 was automatically generated
-from [greenelab/text_mined_hetnet_manuscript@82239e1](https://github.com/greenelab/text_mined_hetnet_manuscript/tree/82239e122c631b2c8f2b803cbb0f1ab1f02516d6)
-on August 1, 2019.
+from [greenelab/text_mined_hetnet_manuscript@4f562f4](https://github.com/greenelab/text_mined_hetnet_manuscript/tree/4f562f4d2d30e0ddeeb423f651573bb49972c0b0)
+on August 5, 2019.
 </em></small>
 
 ## Authors
@@ -68,21 +70,20 @@ on August 1, 2019.
 
 ## Abstract {.page_break_before}
 
-Knowledge bases support multiple research efforts including providing contextual information for biomedical entities, constructing networks, and supporting the interpretation of high-throughput analyses.
+Knowledge bases support multiple research efforts such as providing contextual information for biomedical entities, constructing networks, and supporting the interpretation of high-throughput analyses.
 Some knowledge bases are automatically constructed, but most are populated via some form of manual curation.
 Manual curation is time consuming and difficult to scale in the context of an increasing publication rate.
 A recently described "data programming" paradigm seeks to circumvent this arduous process by combining distant supervision with simple rules and heuristics written as labeling functions that can be automatically applied to inputs.
-Unfortunately writing useful label functions requires substantial error analysis and is a non trivial task: in early efforts to use data programming we found that producing each label function could take a few days.
-Producing a biomedical knowledge base with multiple node and edge types could take hundreds or thousands of label functions.
+Unfortunately writing useful label functions requires substantial error analysis and is a nontrivial task: in early efforts to use data programming we found that producing each label function could take a few days.
+Producing a biomedical knowledge base with multiple node and edge types could take hundreds or possibly thousands of label functions.
 In this paper we sought to evaluate the extent to which label functions could be re-used across edge types. 
 We used a subset of Hetionet v1 that centered on disease, compound, and gene nodes to evaluate this approach.
-We compare a baseline distant supervision model with the same distant supervision resources added to edge-type-specific label functions, edge-type-mismatch label functions, and all label functions.
+We compared a baseline distant supervision model with the same distant supervision resources added to edge-type-specific label functions, edge-type-mismatch label functions, and all label functions.
 We confirmed that adding additional edge-type-specific label functions improves performance.
-We also found that adding one or a few edge-type-mismatch label functions also nearly always improves performance.
-Adding a large number of edge-type-mismatch label functions produces more variable performance that depends on the edge type being predicted and the edge type that is the source of the label function.
-Lastly, we show that this approach, even on this subgraph of Hetionet, could certain novel edges to Hetionet v1 with high confidence.
-We expect that its use in practice would include additional filtering and scoring methods which would further enhance precision.
-
+We also found that adding one or a few edge-type-mismatch label functions nearly always improved performance.
+Adding a large number of edge-type-mismatch label functions produce variable performance that depends on the edge type being predicted and the label function's edge type source.
+Lastly, we show that this approach, even on this subgraph of Hetionet, could add new edges to Hetionet v1 with high confidence.
+We expect that practical use of this strategy would include additional filtering and scoring methods which would further enhance precision.
 
 
 ## Introduction
@@ -90,17 +91,17 @@ We expect that its use in practice would include additional filtering and scorin
 Knowledge bases are important resources that hold complex structured and unstructed information. 
 These resources have been used in important tasks such as network analysis for drug repurposing discovery [@u8pIAt5j; @bPvC638e; @O21tn8vf] or as a source of training labels for text mining systems [@EHeTvZht; @CVHSURuI; @HS4ARwmZ]. 
 Populating knowledge bases often requires highly-trained scientists to read biomedical literature and summarize the results [@N1Ai0gaI].
-This manual curation process requires a significant amount of effort and time: in 2007 researchers estimated that filling in the missing annotations at that point would require approximately 8.4 years [@UdzvLgBM]).
+This manual curation process requires a significant amount of effort and time: in 2007 researchers estimated that filling in the missing annotations would require approximately 8.4 years [@UdzvLgBM].
 The rate of publications has continued to increase exponentially [@1DBISRlwN].
-This has been recognized as a considerable challenge and leads to gaps in knowledge bases [@UdzvLgBM].  
+This has been recognized as a considerable challenge, which can lead to gaps in knowledge bases [@UdzvLgBM].  
 Relationship extraction has been studied as a solution towards handling this problem [@N1Ai0gaI].
 This process consists of creating a machine learning system to automatically scan and extract relationships from textual sources.
 Machine learning methods often leverage a large corpus of well-labeled training data, which still requires manual curation.
-Distant supervision is one technique to sidestep the requirement of well-annotated sentences: with distant supervision one makes the assumption that that all sentences containing an entity pair found in a selected database provide evidence for a relationship [@EHeTvZht].
+Distant supervision is one technique to sidestep the requirement of well-annotated sentences: with distant supervision one makes the assumption that all sentences containing an entity pair found in a selected database provide evidence for a relationship [@EHeTvZht].
 Distant supervision provides many labeled examples; however it is accompanied by a decrease in the quality of the labels.  
 Ratner et al. [@5Il3kN32] recently introduced "data programming" as a solution.
 Data programming combines distant supervision with the automated labeling of text using hand-written label functions.
-The distant supervision sources and label functions are integrated using a noise aware generative model, which is used to produce training labels.
+The distant supervision sources and label functions are integrated using a noise aware generative model that is used to produce training labels.
 Combining distant supervision with label functions can dramatically reduce the time required to acquire sufficient training data.
 However, constructing a knowledge base of heterogeneous relationships through this framework still requires tens of hand-written label functions for each relationship type.
 Writing useful label functions requires significant error analysis, which can be a time-consuming process.  
@@ -108,13 +109,13 @@ Writing useful label functions requires significant error analysis, which can be
 In this paper, we aim to address the question: to what extent can label functions be re-used across different relationship types?
 We hypothesized that sentences describing one relationship type may share information in the form of keywords or sentence structure with sentences that indicate other relationship types.
 We designed a series of experiments to determine the extent to which label function re-use enhanced performance over distant supervision alone.
-We examine relationships that indicate similar types of physical interactions (i.e., gene-binds-gene and compound-binds-gene) as well as different types (i.e., disease-associates-gene and compound-treats-disease).
+We examined relationships that indicated similar types of physical interactions (i.e., gene-binds-gene and compound-binds-gene) as well as different types (i.e., disease-associates-gene and compound-treats-disease).
 The re-use of label functions could dramatically reduce the number required to generate and update a heterogeneous knowledge graph.
 
 ### Related Work
 
 Relationship extraction is the process of detecting and classifying semantic relationships from a collection of text.
-This process can be broken down into three different categories: (1) the use of natural language processing techniques such as manually crafted rules and identifying key text patterns for relationship extraction, (2) the use of unsupervised methods via co-occurrence scores or clustering, and (3) supervised or semi-supervised machine learning using annotated datasets for classification of documents or sentences.
+This process can be broken down into three different categories: (1) the use of natural language processing techniques such as manually crafted rules and the identification of key text patterns for relationship extraction, (2) the use of unsupervised methods via co-occurrence scores or clustering, and (3) supervised or semi-supervised machine learning using annotated datasets for the classification of documents or sentences.
 In this section, we discuss selected efforts for each type of edge that we include in this project.
 
 #### Disease-Gene Associations 
@@ -123,10 +124,10 @@ Efforts to extract Disease-associates-Gene (DaG) relationships have often used m
 One study used hand crafted rules based on a sentence's grammatical structure, represented as dependency trees, to extract DaG relationships [@NLxmpSdj].
 Some of these rules inspired certain DaG text pattern label functions in our work.
 Another study used co-occurrence frequencies within abstracts and sentences to score the likelihood of association between disease and gene pairs [@5gG8hwv7].
-The results of this study were incorporated into Hetionet v1, so this served as one of our distant supervision label functions.
+The results of this study were incorporated into Hetionet v1 [@O21tn8vf], so this served as one of our distant supervision label functions.
 Another approach built off of the above work by incorporating a supervised classifier, trained via distant supervision, into a scoring scheme [@IGXdryzB].
 Each sentence containing a disease and gene mention is scored using a logistic regression model and combined using the same co-occurrence approach used in Pletscher-Frankild et al. [@5gG8hwv7].
-We compared our results to this to measure how well our overall approach performs relative to other methods.
+We compared our results to this approach to measure how well our overall method performs relative to other methods.
 Besides the mentioned three studies, researchers have used co-occurrences for extraction alone [@19zkt9R1G; @WDNuFZ4j; @DGlWGDEt] or in combination with other features to recover DaG relationships [@CxErbNTp].
 One recent effort relied on a bi-clustering approach to detect DaG-relevant sentences from Pubmed abstracts [@CSiMoOrI] with clustering of dependency paths grouping similar sentences together.
 The results of this work supply our domain heuristic label functions.
@@ -137,7 +138,7 @@ Support vector machines have been repeatedly used to detect DaG relationships [@
 These models perform well in large feature spaces, but are slow to train as the number of data points becomes large.
 Recently, some studies have used deep neural network models.
 One used a pre-trained recurrent neural network [@riimmjYr], and another used distant supervision [@k7ZUI6FL].
-Due to the success of these two models, we evaluate performance when using a deep neural network as our discriminative model.
+Due to the success of these two models, we decided to use a deep neural network as our discriminative model.
 
 #### Compound Treats Disease
 
@@ -158,21 +159,19 @@ The BioCreative VI track 5 task focused on classifying compound-protein interact
 The equivalent edge in our networks is Compound-binds-Gene (CbG).
 Curators manually annotated 2,432 PubMed abstracts for five different compound protein interactions (agonist, antagonist, inhibitor, activator and substrate/product production) as part of the BioCreative task. 
 The best performers on this task achieved an F1 score of 64.10% [@16As8893j].
-Numerous additional groups have now used the publicly available dataset that resulted from this competition, and it is often used to train supervised machine learning methods [@OnvaFHG9; @i7KpvzCo; @5LOkzCNK; @riimmjYr; @5LOkzCNK; @1H34cFSl8; @16MGWGDUB; @1HjIKY59u; @WP5p3RT3].
-Semi-supervised approaches have also been used to extract compound-gene interactions [@P2pnebCX].
-Each of these approaches depend on well-annotated training datasets, which creates a bottleneck.
-In addition to supervised machine learning methods, hand crafted rules [@107WYOcxW] and bi-clustering of dependency trees  [@CSiMoOrI] have also been used.
+Numerous additional groups have now used the publicly available dataset, that resulted from this competition, to train supervised machine learning methods [@OnvaFHG9; @i7KpvzCo; @5LOkzCNK; @riimmjYr; @5LOkzCNK; @1H34cFSl8; @16MGWGDUB; @1HjIKY59u; @WP5p3RT3] and semi-supervised machine learning methods [@P2pnebCX].
+These approaches depend on well-annotated training datasets, which creates a bottleneck.
+In addition to supervised and semi-supervised machine learning methods, hand crafted rules [@107WYOcxW] and bi-clustering of dependency trees  [@CSiMoOrI] have been used.
 We use the results from the bi-clustering study to provide a subset of the CbG label functions in this work.
 
 #### Gene-Gene Interactions
 
-Akin to the DaG edge type, many efforts to extract Gene-interacts-Gene (GiG) relationships use co-occurrence approaches.
+Akin to the DaG edge type, many efforts to extract Gene-interacts-Gene (GiG) relationships used co-occurrence approaches.
 This edge type is more frequently referred to as a protein-protein interaction.
 Even approaches as simple as calculating Z-scores from PubMed abstract co-occurrences can be informative [@q9Fhy8eq], and there are numerous studies using co-occurrences [@yGMDz6lK; @w32u0Rj9; @8GVs1dBG; @DGlWGDEt].
 However, more sophisticated strategies such as distant supervision appear to improve performance [@IGXdryzB].
-As with the other edge types we consider, the bi-clustering approach over dependency trees has also been applied to this edge type [@CSiMoOrI].
-As with the other cases, this manuscript provides a set of label functions for our work.
-These methods benefit from not needing annotated data and tend to have good recall for this edge type.
+Similarly to the other edge types, the bi-clustering approach over dependency trees has also been applied to this edge type [@CSiMoOrI].
+This manuscript provides a set of label functions for our work.
 
 Most supervised classifiers used publicly available datasets for evaluation [@YWh6tPj; @DWpAeBxB; @szMMEMdC; @L9IIm3Zd; @115pgEuOr].
 These datasets are used equally among studies, but can generate noticable differences in terms of performance [@DR8XM4Ff].
@@ -191,32 +190,34 @@ span.compound_color { color:#e91e63 }
 
 ### Hetionet
 
+![
+A metagraph (schema) of Hetionet where biomedical entities are represented as nodes and the relationships between them are represented as edges.
+We examined performance on the highlighted subgraph; however, the long-term vision is to capture edges for the entire graph.
+](images/figures/hetionet/metagraph_highlighted_edges.png){#fig:hetionet}
+
 Hetionet [@O21tn8vf] is a large heterogenous network that contains pharmacological and biological information.
 This network depicts information in the form of nodes and edges of different types: nodes that represent biological and pharmacological entities and edges which represent relationships between entities. 
 Hetionet v1.0 contains 47,031 nodes with 11 different data types and 2,250,197 edges that represent 24 different relationship types (Figure {@fig:hetionet}).
 Edges in Hetionet were obtained from open databases, such as the GWAS Catalog [@16cIDAXhG] and DrugBank [@1FI8iuYiQ].
 For this project, we analyzed performance over a subset of the Hetionet relationship types: disease associates with a gene (DaG), compound binds to a gene (CbG), gene interacts with gene (GiG) and compound treating a disease (CtD).
 
-![
-A metagraph (schema) of Hetionet where pharmacological, biological and disease entities are represented as nodes and the relationships between them are represented as edges.
-This project only focuses on the information shown in bold; however, we can extend this work to incorporate the faded out information as well.
-](images/figures/hetionet/metagraph_highlighted_edges.png){#fig:hetionet}
-
 ### Dataset
 
 We used PubTator [@13vw5RIy4] as input to our analysis.
-PubTator provides MEDLINE abstracts that have been annotated with well-established entity recognition tools including DNorm [@vtuZ3Wx7] for disease mentions, GeneTUKit [@4S2HMNpa] for gene mentions, Gnorm [@1AkC7QdyP] for gene normalizations and a dictionary based look system for compound mentions [@r501gnuM].
+PubTator provides MEDLINE abstracts that have been annotated with well-established entity recognition tools including DNorm [@vtuZ3Wx7] for disease mentions, GeneTUKit [@4S2HMNpa] for gene mentions, Gnorm [@1AkC7QdyP] for gene normalizations and a dictionary based search system for compound mentions [@r501gnuM].
 We downloaded PubTator on June 30, 2017, at which point it contained 10,775,748 abstracts. 
 Then we filtered out mention tags that were not contained in hetionet.
 We used the Stanford CoreNLP parser [@RQkLuc5t] to tag parts of speech and generate dependency trees.
 We extracted sentences with two or more mentions, termed candidate sentences.
-Each candidates sentence was stratified by co-mention pair to produce a training set, tuning set and a testing set (shown in Table {@tbl:candidate-sentences}).
+Each candidate sentence was stratified by co-mention pair to produce a training set, tuning set and a testing set (shown in Table {@tbl:candidate-sentences}).
 Each unique co-mention pair is sorted into four categories: (1) in hetionet and has sentences, (2) in hetionet and doesn't have sentences, (3) not in hetionet and does have sentences and (4) not in hetionet and doesn't have sentences.
-Within these four categories each pair receives their own individual partition rank (continuous number between 0 and 1).
-Any rank lower than 0.7 is sorted into training set, while any rank greater than 0.7 and lower than 0.9 is assigned to tuning set.
+Within these four categories each pair is randomly assigned their own individual partition rank (continuous number between 0 and 1).
+Any rank lower than 0.7 is sorted into the training set, while any rank greater than 0.7 and lower than 0.9 is assigned to the tuning set.
 The rest of the pairs with a rank greater than or equal to 0.9 is assigned to the test set.
 Sentences that contain more than one co-mention pair are treated as multiple individual candidates.
-We hand labeled five hundred to a thousand candidate sentences of each relationship to obtain to obtain a ground truth set (Table {@tbl:candidate-sentences}, [dataset](https://github.com/greenelab/text_mined_hetnet_manuscript/tree/master/supplementary_materials/annotated_sentences)).
+We hand labeled five hundred to a thousand candidate sentences of each relationship type to obtain a ground truth set (Table {@tbl:candidate-sentences})[^1].
+
+[^1]: Labeled sentences are available [here](https://github.com/greenelab/text_mined_hetnet_manuscript/tree/master/supplementary_materials/annotated_sentences).
 
 | Relationship | Train | Tune | Test |
 | :--- | :---: | :---: | :---: |
@@ -232,7 +233,7 @@ Numbers in parentheses show the number of positives and negatives that resulted 
 
 ### Label Functions for Annotating Sentences
 
-A common challenge in natural language processing is having too few ground truth annotations, even when textual data are abundant.
+The challenge of having too few ground truth annotations is common to many natural language processing settings, even when unannotated text is abundant.
 Data programming circumvents this issue by quickly annotating large datasets by using multiple noisy signals emitted by label functions [@5Il3kN32].
 Label functions are simple pythonic functions that emit: a positive label (1), a negative label (-1) or abstain from emitting a label (0).
 We combine these functions using a generative model to output a single annotation, which is a consensus probability score bounded between 0 (low chance of mentioning a relationship) and 1 (high chance of mentioning a relationship).
@@ -242,10 +243,9 @@ We provide examples for the categories, described below, using the following can
 
 **Databases**: These label functions incorporate existing databases to generate a signal, as seen in distant supervision [@EHeTvZht].
 These functions detect if a candidate sentence's co-mention pair is present in a given database.
-If the pair is present, emit a positive label and abstain otherwise.
-If the pair isn't present in any existing database, then a separate label function will emit a negative label.
-We use a separate label function to prevent the label imbalance problem. This problem occurs when candidates, that scarcely appear in databases, are drowned out by negative labels.
-The multitude of negative labels increases the likelihood of misclassification when training the generative model.
+If the candidate pair is present, our label function emitted a positive label and abstained otherwise.
+If the candidate pair wasn't present in any existing database, a separate label function emitted a negative label.
+We used a separate label function to prevent a label imbalance problem that we encountered during development: emitting positive and negatives from the same label functions appeared to result in classifiers that predict almost exclusively negative predictions.
 
 $$ \Lambda_{DB}(\color{#875442}{D}, \color{#02b3e4}{G}) = 
 \begin{cases}
@@ -262,7 +262,6 @@ $$ \Lambda_{\neg DB}(\color{#875442}{D}, \color{#02b3e4}{G}) =
 **Text Patterns**: These label functions are designed to use keywords and sentence context to generate a signal. 
 For example, a label function could focus on the number of words between two mentions or focus on the grammatical structure of a sentence.
 These functions emit a positive or negative label depending on the situation.
-In general, those focused on keywords emit positives and those focused on negation emit negatives.
 
 $$ \Lambda_{TP}(\color{#875442}{D}, \color{#02b3e4}{G}) = 
 \begin{cases}
@@ -292,10 +291,10 @@ Roughly half of our label functions are based on text patterns, while the others
 
 | Relationship | Databases (DB) | Text Patterns (TP) | Domain Heuristics (DH) |
 | --- | :---: | :---: | :---: |
-| Disease associates Gene (DaG) | 7 | 20 | 10 | 
-| Compound treats Disease (CtD) | 3 | 15 | 7 |
-| Compound binds Gene (CbG) | 9 | 13 | 7 | 
-| Gene interacts Gene (GiG) | 9 | 20 | 8 | 
+| DaG | 7 | 20 | 10 | 
+| CtD | 3 | 15 | 7 |
+| CbG | 9 | 13 | 7 | 
+| GiG | 9 | 20 | 8 | 
 
 Table: The distribution of each label function per relationship. {#tbl:label-functions} 
 
@@ -325,36 +324,34 @@ This model optimizes the weights ($\theta$) by minimizing the negative log likel
 
 $$\hat{\theta} = argmin_{\theta} -\sum_{\Lambda} log \sum_{Y}P(\Lambda, Y)$$
 
-In the framework we used predictions from the generative model, $\hat{Y} = P(Y \mid \Lambda)$, as training classes for our dataset [@9Jo1af7Z; @vzoBuh4l].
+In the framework we used predictions from the generative model, $\hat{Y} = P(Y \mid \Lambda)$, as training classes for our dataset [@vzoBuh4l; @9Jo1af7Z].
 
 #### Word Embeddings
 
 Word embeddings are representations that map individual words to real valued vectors of user-specified dimensions.
 These embeddings have been shown to capture the semantic and syntactic information between words [@u5iJzbp9].
-Using all candidate sentences for each individual relationship pair, we trained facebook's fastText [@qUpCDz2v] to generate word embeddings.
-The fastText model uses a skipgram model [@1GhHIDxuW] that aims to predict the context given a candidate word and pairs the model with a novel scoring function that treats each word as a bag of character n-grams.
+We trained Facebook's fastText [@qUpCDz2v] using all candidate sentences for each individual relationship pair to generate word embeddings.
+fastText uses a skipgram model [@1GhHIDxuW] that aims to predict the surrounding context for a candidate word and pairs the model with a novel scoring function that treats each word as a bag of character n-grams.
 We trained this model for 20 epochs using a window size of 2 and generated 300-dimensional word embeddings.
 We use the optimized word embeddings to train a discriminative model.  
 
 #### Discriminative Model
 
 The discriminative model is a neural network, which we train to predict labels from the generative model.
-The expectation is that the discriminative model can learn more complete features of the text than the label functions that are used in the generative model.
+The expectation is that the discriminative model can learn more complete features of the text than the label functions used in the generative model.
 We used a convolutional neural network with multiple filters as our discriminative model.
 This network uses multiple filters with fixed widths of 300 dimensions and a fixed height of 7 (Figure {@fig:convolutional_network}), because this height provided the best performance in terms of relationship classification [@fs8rAHoJ].
-We trained this model for 20 epochs using the adam optimizer [@c6d3lKFX] with a learning rate of 0.001.
-This optimizer used pytorch's default parameter settings.
+We trained this model for 20 epochs using the adam optimizer [@c6d3lKFX] with pytorch's default parameter settings and a learning rate of 0.001.
 We added a L2 penalty on the network weights to prevent overfitting.
 Lastly, we added a dropout layer (p=0.25) between the fully connected layer and the softmax layer.
 
 ![
-The architecture of the discriminative model is a convolutional neural network.
-We perform a convolution step using multiple filters. 
-These filters generate a feature map that is sent into a maximum pooling layer. 
-This layer extracts the largest feature in each of these maps.
-The extracted features are concatenated into a singular vector that is passed into a fully connected network. 
-The fully connected network has 300 neurons for the first layer, 100 neurons for the second layer and 50 neurons for the last layer. 
-From the fully connected network the last step is to generate predictions using the softmax layer.
+The architecture of the discriminative model was a convolutional neural network.
+We performed a convolution step using multiple filters. 
+The filters generated a feature map that was sent into a maximum pooling layer that was designed to extract the largest feature in each map.
+The extracted features were concatenated into a singular vector that was passed into a fully connected network. 
+The fully connected network had 300 neurons for the first layer, 100 neurons for the second layer and 50 neurons for the last layer. 
+The last step from the fully connected network was to generate predictions using a softmax layer.
 ](images/figures/convolutional_neural_network/convolutional_neural_nework.png){#fig:convolutional_network}
 
 #### Calibration of the Discriminative Model
@@ -369,27 +366,27 @@ Temperature scaling uses a parameter T to scale each value of the logit vector (
 $$\sigma_{SM}(\frac{z_{i}}{T}) = \frac{\exp(\frac{z_{i}}{T})}{\sum_{i}\exp(\frac{z_{i}}{T})}$$
 
 We found the optimal T by minimizing the negative log likelihood (NLL) of a held out validation set.
-The benefit of using this method is the model becomes more reliable and the accuracy of the model doesn't change [@QJ6hYH8N].
+The benefit of using this method is that the model becomes more reliable and the accuracy of the model doesn't change [@QJ6hYH8N].
 
 ### Experimental Design
 
-Being able to re-use label functions across edge types would substantially reduce the number of label functions required to extract multiple relationship types from biomedical literature.
+Being able to re-use label functions across edge types would substantially reduce the number of label functions required to extract multiple relationships from biomedical literature.
 We first established a baseline by training a generative model using only distant supervision label functions designed for the target edge type.
-As an example, for the gene-interacts-gene edge type we used label functions that returned a `1` if the pair of genes were included in the Human Interaction database [@LCyCrr7W], the iRefIndex database [@gtV3bOpd] or in the Incomplete Interactome database [@2jkcXYxN].
+As an example, for the GiG edge type we used label functions that returned a `1` if the pair of genes were included in the Human Interaction database [@LCyCrr7W], the iRefIndex database [@gtV3bOpd] or in the Incomplete Interactome database [@2jkcXYxN].
 Then we compared models that also included text and domain-heuristic label functions.
 Using a sampling with replacement approach, we sampled these text and domain-heuristic label functions separately within edge types, across edge types, and from a pool of all label functions.
 We compared within-edge-type performance to across-edge-type and all-edge-type performance.
 For each edge type we sampled a fixed number of label functions consisting of five evenly-spaced numbers between one and the total number of possible label functions.
 We repeated this sampling process 50 times for each point.
-We evaluated both generative and discriminative models at each point, and we report performance of each in terms of the area under the receiver operating characteristic curve (AUROC) and the area under the precision-recall curve (AUPR).
+We evaluated both generative and discriminative models at each point, and we reported performance of each in terms of the area under the receiver operating characteristic curve (AUROC) and the area under the precision-recall curve (AUPR).
 
 #### Adding Random Noise to Generative Model
 
 We discovered in the course of this work that adding a single label function from a mismatched type would often improve the performance of the generative model (see Results).
 We designed an experiment to test whether adding a noisy label function also increased performance.
 This label function emitted a positive or negative label at varying frequencies, which were evenly spaced from zero to one.
-Zero is the same as distant supervision alone.
-We trained the generative model with these label functions added and report results in terms of AUROC and AUPR.
+Zero was the same as distant supervision and one meant that all sentences were randomly labeled.
+We trained the generative model with these label functions added and reported results in terms of AUROC and AUPR.
 
 
 
@@ -397,101 +394,84 @@ We trained the generative model with these label functions added and report resu
 
 ### Generative Model Using Randomly Sampled Label Functions
 ![
-Grid of Area Under the Receiver Operating Curve (AUROC) scores for each generative model trained on randomly sampled label functions.
-The rows depict the relationship each model is trying to predict and the columns are the relationship specific sources each label function is sampled from.
-For example, the top-left most square depicts the generative model predicting Disease associates Gene (DaG) sentences, while randomly sampling label functions designed to predict the DaG relationship. 
-The square towards the right depicts the generative model predicting DaG sentences, while randomly sampling label functions designed to predict the Compound treats Disease (CtD) relationship.
+Grid of AUROC (A) and AUPR (B) scores for each generative model trained on randomly sampled label functions.
+The rows depict the relationship each model is trying to predict and the columns are the edge type specific sources from which each label function is sampled.
+For example, the top-left most square depicts the generative model predicting DaG sentences, while randomly sampling label functions designed to predict the DaG relationship. 
+The square towards the right depicts the generative model predicting DaG sentences, while randomly sampling label functions designed to predict the CtD relationship.
 This pattern continues filling out the rest of the grid.
-The last most column consists of pooling every relationship specific label function and proceeding as above.
-](https://raw.githubusercontent.com/greenelab/snorkeling/master/figures/label_sampling_experiment/transfer_test_set_auroc.png){#fig:gen_model_auroc}
+The right most column consists of pooling every relationship specific label function and proceeding as above.
+](https://raw.githubusercontent.com/danich1/snorkeling/ee638b4e45717a86f54a2744a813baaa90bc6b84/figures/label_sampling_experiment/transfer_test_set_auroc.png){#fig:auroc_gen_model_performance}
 
 We added randomly sampled label functions to a baseline for each edge type to evaluate the feasibility of label function re-use.
-Our baseline model consisted of a generative model trained with only the edge type's distant supervision label functions.
-We report the results in the form of area under the precision recall curve (AUPR) (Figure {@fig:gen_model_auprc}) and area under the receiver operating curve (AUROC) (Figure {@fig:gen_model_auroc}).  
-The on-diagonal plots of figure {@fig:gen_model_auprc}) and figure {@fig:gen_model_auprc} show performance when edge-specific label functions are added on top of edge-specific baselines.
-The general trend is performance increases in this setting.
-The Compound-treats-Disease (CtD) edge type is a quintessential example of this trend.
+Our baseline model consisted of a generative model trained with only edge-specific distant supervision label functions.
+We reported the results in AUPR and AUROC (Figures {@fig:auroc_gen_model_performance} and {@fig:aupr_gen_model_performance}).  
+The on-diagonal plots of figures {@fig:auroc_gen_model_performance} and {@fig:aupr_gen_model_performance} show increasing performance when edge-specific label functions are added on top of the  edge-specific baselines.
+The CtD edge type is a quintessential example of this trend.
 The baseline model starts off with an AUROC score of 52% and an AUPRC of 28%, which increase to 76% and 49% respectively as more CtD label functions are included. 
-Disease-associates-Gene (DaG) edges have a similar trend: performance starting off with a AUROC of 56% and AUPRC of 41%, which increase to 62% and 45% respectively.
-Both the Compound-binds-Gene (CbG) and Gene-interacts-Gene (GiG) edges have an increasing trend but plateau after a few label functions are added.  
+DaG edges have a similar trend: performance starting off with an AUROC of 56% and AUPR of 41% then increases to 62% and 45% respectively.
+Both the CbG and GiG edges have an increasing trend but plateau after a few label functions are added.  
 
-The off-diagonals in figure {@fig:gen_model_auprc}) and figure {@fig:gen_model_auprc} show how performance varies when label functions from one edge type are added to a different edge type's baseline.
+The off-diagonals in figures {@fig:auroc_gen_model_performance} and {@fig:aupr_gen_model_performance} show how performance varies when label functions from one edge type are added to a different edge type's baseline.
 In certain cases (apparent for DaG), performance increases regardless of the edge type used for label functions.
-In other cases (apparent with CtD), one label function appears to improve performance; however, adding more label functions does not improve performance (AUROC) or decreases it (AUPRC).
-In certain cases, the source of the label functions appear to be important: for CbG edges performance decreases when using label functions from the DaG and CtD categories.
+In other cases (apparent with CtD), one label function appears to improve performance; however, adding more label functions does not improve performance (AUROC) or decreases it (AUPR).
+In certain cases, the source of the label functions appears to be important: the performance of CbG edges decrease when using label functions from the DaG and CtD categories.
 
 Our initial hypothesis was based on the idea that certain edge types capture similar physical relationships and that these cases would be particularly amenable for label function transfer.
-For example, Compound-binds-Gene (CbG) and Gene-interacts-Gene (GiG) both describe physical interactions.
-We observed that performance increased as assessed by both AUPRC and AUPRC when using label functions from the GiG edge type to predict CbG edges.
+For example, CbG and GiG both describe physical interactions.
+We observed that performance increased as assessed by both AUROC and AUPR when using label functions from the GiG edge type to predict CbG edges.
 A similar trend was observed when predicting the GiG edge; however, the performance differences were small for this edge type making the importance difficult to assess.  
-The last column shows performance when sampling from all label functions.
-Performance increased (AUROC and AUPRC) for both DaG and CtD, when sampling from the full pool of label functions.
+The last column shows increasing performance (AUROC and AUPR) for both DaG and CtD when sampling from all label functions.
 CbG and GiG also had increased performance when one random label function was sampled, but performance decreased drastically as more label functions were added.
-It is possible that a small number of irrelevant label functions are able to overwhelm the distant supervision label functions in these cases.
+It is possible that a small number of irrelevant label functions are able to overwhelm the distant supervision label functions in these cases (see Supplemental Figures {@fig:auroc_random_label_function_performance} and {@fig:aupr_random_label_function_performance}).
 
 ![
-Grid of Area Under the Precision Recall Curve (AUPRC) scores for each generative model trained on randomly sampled label functions.
-The rows depict the relationship each model is trying to predict and the columns are the relationship specific sources each label function is sampled from.
-For example, the top-left most square depicts the generative model predicting Disease associates Gene (DaG) sentences, while randomly sampling label functions designed to predict the DaG relationship. 
-The square towards the right depicts the generative model predicting DaG sentences, while randomly sampling label functions designed to predict the Compound treats Disease (CtD) relationship.
+Grid of AUPR scores for each generative model trained on randomly sampled label functions.
+The rows depict the relationship each model is trying to predict and the columns are the edge type specific sources from which each label function is sampled.
+For example, the top-left most square depicts the generative model predicting DaG sentences, while randomly sampling label functions designed to predict the DaG relationship. 
+The square towards the right depicts the generative model predicting DaG sentences, while randomly sampling label functions designed to predict the CtD relationship.
 This pattern continues filling out the rest of the grid.
-The last most column consists of pooling every relationship specific label function and proceeding as above.
-](https://raw.githubusercontent.com/greenelab/snorkeling/master/figures/label_sampling_experiment/transfer_test_set_auprc.png){#fig:gen_model_auprc}
-
-### Random Label Function Gen Model Analysis
-![
-A grid of area under the receiver operating curve (AUROC) for each edge type.
-Each plot consists of adding a single label function on top of the baseline model.
-This label function emits a positive (shown in blue) or negative (shown in orange) label at specified frequencies, and performance at zero is equivalent to not having a randomly emitting label function.
-The error bars represent 95% confidence intervals for AUROC (y-axis) at each emission frequency.
-](https://raw.githubusercontent.com/greenelab/snorkeling/master/figures/gen_model_error_analysis/transfer_test_set_auroc.png){#fig:random_label_function_auroc}
-
-We observed that including one label function of a mismatched type to distant supervision often improved performance, so we evaluated the effects of adding a random label function in the same setting.
-We found that adding random noise did not usually improve performance (Figures {@fig:random_label_function_auroc} and {@fig:random_label_function_auprc}).
-For the CbG edge type we did observe slightly increased performance via AUPR (Figure {@fig:random_label_function_auprc}).
-However, in general the performance changes were smaller than those observed with mismatched label types.
-
-![
-A grid of area under the precision recall curve (AUPR) for each edge type.
-Each plot consists of adding a single label function on top of the baseline model.
-This label function emits a positive (shown in blue) or negative (shown in orange) label at specified frequencies.
-The error bars represent 95% confidence intervals for AUPR (y-axis) at emission frequency.
-](https://raw.githubusercontent.com/greenelab/snorkeling/master/figures/gen_model_error_analysis/transfer_test_set_auprc.png){#fig:random_label_function_auprc}
-
+The right most column consists of pooling every relationship specific label function and proceeding as above.
+](https://raw.githubusercontent.com/danich1/snorkeling/ee638b4e45717a86f54a2744a813baaa90bc6b84/figures/label_sampling_experiment/transfer_test_set_auprc.png){#fig:aupr_gen_model_performance}
 
 ### Discriminative Model Performance
 
+![
+Grid of AUROC scores for each discriminative model trained using generated labels from the generative models.
+The rows depict the edge type each model is trying to predict and the columns are the edge type specific sources from which each label function was sampled. 
+For example, the top-left most square depicts the discriminator model predicting DaG sentences, while randomly sampling label functions designed to predict the DaG relationship.
+The error bars over the points represents the standard deviation between sampled runs.
+The square towards the right depicts the discriminative model predicting DaG sentences, while randomly sampling label functions designed to predict the CtD relationship.
+This pattern continues filling out the rest of the grid.
+The right most column consists of pooling every relationship specific label function and proceeding as above.
+](https://raw.githubusercontent.com/danich1/snorkeling/ee638b4e45717a86f54a2744a813baaa90bc6b84/figures/label_sampling_experiment/disc_performance_test_set_auroc.png){#fig:auroc_discriminative_model_performance}
+
 In this framework we used a generative model trained over label functions to produce probabilistic training labels for each sentence.
-Then we train a discriminative model, which has full access to a representation of the text of the sentence, to predict the generated labels.
-The discriminative model is a convolutional neural network trained over word embeddings.
-We report the results of the discriminative model using AUPR (Figure {@fig:discriminative_model_auprc}) and AUROC (Figure {@fig:discriminative_model_auroc}).    
+Then we trained a discriminative model, which has full access to a representation of the text of the sentence, to predict the generated labels.
+The discriminative model is a convolutional neural network trained over word embeddings (See Methods).
+We report the results of the discriminative model using AUROC and AUPR (Figures {@fig:auroc_discriminative_model_performance} and {@fig:aupr_discriminative_model_performance}).  
+  
 We found that the discriminative model under-performed the generative model in most cases.
-Only for the CtD edge does the discriminative model appear to provide performance above the generative model and that increased performance is only with modest numbers of label functions.
-With the full set of label functions, the performance of both remains similar.
-The trend observed in the generative model that one or a few mismatched label functions (off-diagonal) improves performance is retained despite the limited performance of the discriminative model.
- 
+Only for the CtD edge does the discriminative model appear to provide performance above the generative model and that increased performance is only with a modest number of label functions.
+With the full set of label functions, performance of both models remain similar.
+The one or a few mismatched label functions (off-diagonal) improving generative model performance trend is retained despite the limited performance of the discriminative model.
 
 ![
-Grid of Area Under the Receiver Operating Curve (AUROC) scores for each discriminative model trained using generated labels from the generative models.
-The rows depict the relationship each model is trying to predict and the columns are the relationship specific sources each label function was sampled from. 
-For example, the top-left most square depicts the discriminator model predicting Disease associates Gene (DaG) sentences, while randomly sampling label functions designed to predict the DaG relationship.
+Grid of AUPR scores for each discriminative model trained using generated labels from the generative models.
+The rows depict the edge type each model is trying to predict and the columns are the edge type specific sources from which each label function was sampled. 
+For example, the top-left most square depicts the discriminator model predicting DaG sentences, while randomly sampling label functions designed to predict the DaG relationship.
 The error bars over the points represents the standard deviation between sampled runs.
-The square towards the right depicts the discriminative model predicting DaG sentences, while randomly sampling label functions designed to predict the Compound treats Disease (CtD) relationship.
+The square towards the right depicts the discriminative model predicting DaG sentences, while randomly sampling label functions designed to predict the CtD relationship.
 This pattern continues filling out the rest of the grid.
-The last most column consists of pooling every relationship specific label function and proceeding as above.
-](https://raw.githubusercontent.com/greenelab/snorkeling/master/figures/label_sampling_experiment/disc_performance_test_set_auroc.png){#fig:discriminative_model_auroc}
-
-![
-Grid of Area Under the Receiver Operating Curve (AUROC) scores for each discriminative model trained using generated labels from the generative models.
-The rows depict the relationship each model is trying to predict and the columns are the relationship specific sources each label function was sampled from. 
-For example, the top-left most square depicts the discriminator model predicting Disease associates Gene (DaG) sentences, while randomly sampling label functions designed to predict the DaG relationship.
-The error bars over the points represents the standard deviation between sampled runs.
-The square towards the right depicts the discriminative model predicting DaG sentences, while randomly sampling label functions designed to predict the Compound treats Disease (CtD) relationship.
-This pattern continues filling out the rest of the grid.
-The last most column consists of pooling every relationship specific label function and proceeding as above.
-](https://raw.githubusercontent.com/greenelab/snorkeling/master/figures/label_sampling_experiment/disc_performance_test_set_auprc.png){#fig:discriminative_model_auprc}
+The right most column consists of pooling every relationship specific label function and proceeding as above.
+](https://raw.githubusercontent.com/danich1/snorkeling/ee638b4e45717a86f54a2744a813baaa90bc6b84/figures/label_sampling_experiment/disc_performance_test_set_auprc.png){#fig:aupr_discriminative_model_performance}
 
 ### Discriminative Model Calibration
+
+![
+Calibration plots for the discriminative model.
+A perfectly calibrated model would follow the dashed diagonal line.
+The blue line represents the predictions before calibration and the orange line shows predictions after calibration. 
+](https://raw.githubusercontent.com/greenelab/snorkeling/master/figures/model_calibration_experiment/model_calibration.png){#fig:discriminative_model_calibration}
 
 Even deep learning models with high precision and recall can be poorly calibrated, and the overconfidence of these models has been noted [@QJ6hYH8N; @rLVjMJ5l].
 We attempted to calibrate the best performing discriminative model so that we could directly use the emitted probabilities.
@@ -501,29 +481,28 @@ The CbG and GiG edges were poorly calibrated and increasing model certainty did 
 Applying the calibration algorithm (orange line) did not appear to bring predictions in line with the ideal calibration line, but did capture some of the uncertainty in the GiG edge type.
 For this reason we use the measured precision instead of the predicted probabilities when determining how many edges could be added to existing knowledge bases with specified levels of confidence.
 
-![
-Calibration plots for the discriminative model.
-A perfectly calibrated model would follow the dashed diagonal line.
-The blue line represents the predictions before calibration and the orange line shows predictions after calibration. 
-](https://raw.githubusercontent.com/greenelab/snorkeling/master/figures/model_calibration_experiment/model_calibration.png){#fig:discriminative_model_calibration}
-
-
 ### Baseline Comparison
+
+![
+Comparion between our model and CoCoScore model [@IGXdryzB].
+We report both model's performance in terms of AUROC and AUPR.
+Our model achieves comparable performance against CoCoScore in terms of AUROC.
+As for AUPR, CoCoScore consistently outperforms our model except for CtD. 
+](https://raw.githubusercontent.com/danich1/snorkeling/0149086785b19f9429c92565d650e9d049c136ff/figures/literature_models/model_comparison.png){#fig:cocoscore_comparison}
+
 Once our discriminator model is calibrated, we grouped sentences based on mention pair (edges).
-We assigned each edge the max score over all grouped sentences and compared our model's ability to predict pairs in our test set to a previously published baseline model [@IGXdryzB].
+We assigned each edge the maximum score over all grouped sentences and compared our model's ability to predict pairs in our test set to a previously published baseline model [@IGXdryzB].
 Performance is reported in terms of AUROC and AUPR (Figure {@fig:cocoscore_comparison}).
 Across edge types our model shows comparable performance against the baseline in terms of AUROC.
 Regarding AUPR, our model shows hindered performance against the baseline.
 The exception for both cases is CtD where our model performs better than the baseline.
 
-![
-Comparion between our model and CoCoScore model [@IGXdryzB].
-We report both model's performance in terms of area under the receiver operating curve (AUROC) and area under then precision recall curve (AUPR).
-Our model achieves comparable performance against CoCoScore in terms of AUROC.
-As for AUPR CoCoScore consistently outperforms our model except for compound treats disease (CtD). 
-](https://raw.githubusercontent.com/danich1/snorkeling/0149086785b19f9429c92565d650e9d049c136ff/figures/literature_models/model_comparison.png){#fig:cocoscore_comparison}
-
 ### Reconstructing Hetionet
+
+![
+A scatter plot showing the number of edges (log scale) we can add or recall at specified precision levels. 
+The blue depicts edges existing in hetionet and the orange depicts how many novel edges can be added.
+](https://raw.githubusercontent.com/danich1/snorkeling/0149086785b19f9429c92565d650e9d049c136ff/figures/edge_prediction_experiment/edges_added.png){#fig:hetionet_reconstruction}
 
 We evaluated how many edges we can recall/add to Hetionet v1 (Figure {@fig:hetionet_reconstruction} and Supplemental Table {@tbl:edge_prediction_tbl}).
 In our evaluation we used edges assigned to our test set.
@@ -531,28 +510,21 @@ Overall, we can recall a small amount of edges at high precision thresholds.
 A key example is CbG and GiG where we recalled only one exisiting edge at 100% precision.
 Despite the low recall, we are still able to add novel edges to DaG and CtD while retaining modest precision.
 
-![
-A scatter plot showing the number of edges (log scale) we can add or recall at specified precision levels. 
-The blue depicts edges exisiting in hetionet and the orange depicts how many novel edges can be added.
-](https://raw.githubusercontent.com/danich1/snorkeling/0149086785b19f9429c92565d650e9d049c136ff/figures/edge_prediction_experiment/edges_added.png){#fig:hetionet_reconstruction}
-
-
-
 
 ## Discussion
 
 We tested the feasibility of re-using label functions to extract relationships from literature.
-Through our sampling experiment we found that adding relevant label functions increases prediction performance (shown in the on-diagonals of Figures {@fig:generative_model_auroc} and {@fig:generative_model_auprc}).
+Through our sampling experiment, we found that adding relevant label functions increases prediction performance (shown in the on-diagonals of Figures {@fig:auroc_gen_model_performance} and {@fig:aupr_gen_model_performance}).
 We found that label functions designed from relatively related edge types can increase performance (seen when GiG label functions predicts CbG and vise versa).
-We noticed that one edge type (DaG) is agnostic to label function source (Figures {@fig:generative_model_auroc} and {@fig:generative_model_auprc}). 
-Performance increases when adding a single label function to our baseline model (the generative model trained only on distant superivison label functions).
-Initially we thought that adding a small amount of noise aided the model, but this turns out to not be the case (Figure {@fig:random_label_function_auroc} and {@fig:random_label_function_auprc}).
-This result begs the question: why does performance drastically increase when adding a single label function to our distant supervision baseline?
+We noticed that one edge type (DaG) is agnostic to label function source (Figures {@fig:auroc_gen_model_performance} and {@fig:aupr_gen_model_performance}). 
+Performance routinely increases when adding a single mismatched label function to our baseline model (the generative model trained only on distant supervision label functions).
+These results led us to hypothesize that adding a small amount of noise aided the model, but our experiment with a random label function reveals that this was not the case (Figures {@fig:auroc_random_label_function_performance} and {@fig:aupr_random_label_function_performance}).
+Based on these results one question still remains: why does performance drastically increase when adding a single label function to our distant supervision baseline?
 
 The discriminative model didn't work as intended. 
-Majority of the time the discriminative model underperformed the generative model (Figures {@fig:discriminative_model_auroc} and {@fig:discriminative_model_auprc}).
-Potential reasons for this are the discriminative model overfitting to the generative model's predictions and there is a negative class bias in some of our datasets (Table {@tbl:candidate-sentences}).
-These two pitfalls are a big reason for problems we encountered in our downstream analyses (discriminative model calibration (Figure {@fig:discriminative_model_calibration}) and poor recall in detecting existing edges in Hetionet v1 (Figure {@fig:hetionet_reconstruction})).
+The majority of the time the discriminative model underperformed the generative model (Figures {@fig:auroc_discriminative_model_performance} and {@fig:aupr_discriminative_model_performance).
+Potential reasons for this are the discriminative model overfitting to the generative model's predictions and a negative class bias in some of our datasets (Table {@tbl:candidate-sentences}).
+The challenges with the discriminative model are likely to have led to issues in our downstream analyses: poor model calibration (Figure {@fig:discriminative_model_calibration}) and poor recall in detecting existing Hetionet edges (Figure {@fig:hetionet_reconstruction}).
 Despite the above complications, our model had similar performance with a published baseline model (Figure {@fig:cocoscore_comparison}).
 This implies that with better tuning the discriminative model has the potential to perform better than the baseline model.
 
@@ -561,29 +533,30 @@ This implies that with better tuning the discriminative model has the potential 
 
 Filling out knowledge bases via manual curation can be an arduous and erroneous task [@UdzvLgBM].
 As the rate of publications increases manual curation becomes an infeasible approach.
-Data programming, a paradigm that uses label functions a means to speed up the annotation process, can be used as a solution for this problem.
-A problem with this paradigm is creating a useful label function takes significant amount of time.
-We tested the feasibility of reusing label functions as a way to speed up the process of creating label functions.
-Based on our findings, we conclude that label functions can be reused across edge types.
+Data programming, a paradigm that uses label functions as a means to speed up the annotation process, can be used as a solution for this problem.
+A problem with this paradigm is that creating a useful label function takes a significant amount of time. 
+We tested the feasibility of reusing label functions as a way to speed up the  label function creation process.
+We conclude that label function re-use across edge types can increase performance when there are certain constraints on the number of functions re-used.
+More sophisticated methods of reuse may be able to capture many of the advantages and avoid many of the drawbacks.
 Adding more relavant label functions can increase overall performance.
 The discriminative model, under this paradigm, has a tendency to overfit to predictions of the generative model.
 We recommend implementing regularization techniques such as drop out and weight decay to combat this issue.
 
 This work sets up the foundation for creating a common framework that mines text to create edges.
-Within this framework we would continuously ingest new knowledge as novel findings are published, while providing a single confidence scores for an edge by consolidating sentence scores.
-Unlike existing hetnets like Hetionet where text-derived edges generally cannot be exactly attributed to excerpts from literature [@O21tn8vf; @L2B5V7XC], our approach would annotate each edge with its source sentences.
+Within this framework we would continuously ingest new knowledge as novel findings are published, while providing a single confidence score for an edge by consolidating sentence scores.
+Different from existing hetnets like Hetionet where text-derived edges generally cannot be exactly attributed to excerpts from literature [@O21tn8vf; @L2B5V7XC], our approach would annotate each edge with its source sentences.
 In addition, edges generated with this approach would be unencumbered from upstream licensing or copyright restrictions, enabling openly licensed hetnets at a scale not previously possible [@4G0GW8oe; @137tbemL9; @1GwdMLPbV].
-Accordingly, we plan to use this framework to create a robust multi-edge extractor via multitask learning  [@GeCe9qfW] to construct continuously updating literature-derived hetnets.
-
+Accordingly, we plan to use this framework to create a robust multi-edge extractor via multitask learning [@9Jo1af7Z] to construct continuously updating literature-derived hetnets.
 
 
 ## Supplemental Information
 
-This manuscript along with supplemental information are available at <https://greenelab.github.io/text_mined_hetnet_manuscript/>.
+This manuscript and supplemental information are available at <https://greenelab.github.io/text_mined_hetnet_manuscript/>.
+Source code for this work is available under open licenses at: <https://github.com/greenelab/snorkeling/>.
 
 ## Acknowledgements
 
-The authors would like to thank Christopher Re's group at Stanford Univeristy, especially Alex Ratner and Steven Bach, for their assistance with this project.
+The authors would like to thank Christopher Ré's group at Stanford Univeristy, especially Alex Ratner and Steven Bach, for their assistance with this project.
 We also want to thank Graciela Gonzalez-Hernandez for her advice and input with this project.
 This work was support by [Grant GBMF4552](https://www.moore.org/grant-detail?grantId=GBMF4552) from the Gordon Betty Moore Foundation.
 
@@ -595,10 +568,30 @@ This work was support by [Grant GBMF4552](https://www.moore.org/grant-detail?gra
 
 ## Supplemental Figures {.page_break_before}
 
+### Random Label Function Gen Model Analysis
+![
+A grid of AUROC (A) scores for each edge type.
+Each plot consists of adding a single label function on top of the baseline model.
+This label function emits a positive (shown in blue) or negative (shown in orange) label at specified frequencies, and performance at zero is equivalent to not having a randomly emitting label function.
+The error bars represent 95% confidence intervals for AUROC or AUPR (y-axis) at each emission frequency.
+](https://raw.githubusercontent.com/danich1/snorkeling/ee638b4e45717a86f54a2744a813baaa90bc6b84/figures/gen_model_error_analysis/transfer_test_set_auroc.png){#fig:auroc_random_label_function_performance}
+
+We observed that including one label function of a mismatched type to distant supervision often improved performance, so we evaluated the effects of adding a random label function in the same setting.
+We found that usually adding random noise did not improve performance (Figures {@fig:auroc_random_label_function_performance} and {@fig:aupr_random_label_function_performance}).
+For the CbG edge type we did observe slightly increased performance via AUPR (Figure {@fig:aupr_andom_label_function_performance}).
+However, performance changes in general were smaller than those observed with mismatched label types.
+
+![
+A grid of AUROC (A) scores for each edge type.
+Each plot consists of adding a single label function on top of the baseline model.
+This label function emits a positive (shown in blue) or negative (shown in orange) label at specified frequencies, and performance at zero is equivalent to not having a randomly emitting label function.
+The error bars represent 95% confidence intervals for AUROC or AUPR (y-axis) at each emission frequency.
+](https://raw.githubusercontent.com/danich1/snorkeling/ee638b4e45717a86f54a2744a813baaa90bc6b84/figures/gen_model_error_analysis/transfer_test_set_auprc.png){#fig:aupr_random_label_function_performance}
+
 ### Top Edge Prediction Tables
 
-| Edge Type | Source Node             | Target Node               | Gen Model Prediction | Disc Model Prediction | Number of Sentences | Text                                                                                                                                                                                                                                                                                                                                                            | 
-|-----------|-------------------------|---------------------------|----------------------|-----------------------|---------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------| 
+| Edge Type | Source Node             | Target Node               | Gen Model Prediction | Disc Model Prediction | Number of Sentences | Text   | 
+|--------------|----------------------|------------------------|----------------------|-----------------------|---------------------|-----------------------------------------| 
 | [D]{.disease_color}a[G]{.gene_color}       | lung cancer             | VEGFA                     | 1.000                | 0.912                 | 3293                | conclusion : the plasma [vegf]{.gene_color} level is increased in [nsclc]{.disease_color} patients with approximate1y one fourth to have cancer cells in the peripheral blood.                                                                                                                                                                                  | 
 | [D]{.disease_color}a[G]{.gene_color}       | hematologic cancer      | TP53                      | 1.000                | 0.905                 | 8660                | mutations of the [p53]{.gene_color} gene were found in four cases of [cml]{.disease_color} in blastic crisis ( bc ).                                                                                                                                                                                                                                            | 
 | [D]{.disease_color}a[G]{.gene_color}       | obesity                 | MC4R                      | 1.000                | 0.901                 | 1493                | several mutations in the [melanocortin 4 receptor]{.gene_color} gene are associated with [obesity]{.disease_color} in chinese children and adolescents.                                                                                                                                                                                                         | 
@@ -644,8 +637,8 @@ Table: Contains the top ten predictions for each edge type. Highlighted words re
 
 ### Model Calibration Prediction Tables
 
-| Disease Name                 | Gene Symbol | Text                                                                                                                                                                                                                                                                                                                                      | Before Calibration | After Calibraiton | 
-|------------------------------|-------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|--------------------|-------------------| 
+| Disease Name  | Gene Symbol | Text  | Before Calibration | After Calibraiton | 
+|-------------------|-------------|--------------------------------------------------------|---------------|---------------| 
 | adrenal gland cancer         | TP53        | the mechanisms of adrenal tumorigenesis remain poorly established ; the r337h germline mutation in the [p53]{.gene_color} gene has previously been associated with [acts]{.disease_color} in brazilian children .                                                                                                                                  | 1.0                | 0.882             | 
 | breast cancer                | ERBB2       | in [breast cancer]{.disease_color} , overexpression of [her2]{.gene_color} is associated with an aggressive tumor phenotype and poor prognosis .                                                                                                                                                                                                   | 1.0                | 0.845             | 
 | lung cancer                  | TP53        | however , both adenine ( a ) and guanine ( g ) mutations are found in the [p53]{.gene_color} gene in cr exposure-related [lung cancer]{.disease_color} .                                                                                                                                                                                           | 1.0                | 0.83              | 
@@ -658,8 +651,8 @@ Table: Contains the top ten predictions for each edge type. Highlighted words re
 | breast cancer                | ERBB2       | the results of multiple linear regression analysis , with her2 as the dependent variable , showed that family history of [breast cancer]{.disease_color} was significantly associated with elevated [her2]{.gene_color} levels in the tumors ( p = 0.0038 ) , after controlling for the effects of age , tumor estrogen receptor , and dna index . | 0.999              | 0.8               |  
 Table: Contains the top ten Disease-associates-Gene confidence scores before and after model calbration. Disease mentions are highlighted in [brown]{.disease_color} and Gene mentions are highlighted in [blue]{.gene_color}. {#tbl:dg_top_ten_table}
 
-| Disease Name       | Gene Symbol | Text                                                                                                                                                                                                                                                                                                                                                           | Before Calibration | After Calibraiton | 
-|--------------------|-------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|--------------------|-------------------| 
+| Disease Name       | Gene Symbol | Text  | Before Calibration | After Calibraiton | 
+|----------------|-------------|----------------------------------------------------------|---------------|---------------|  
 | breast cancer      | NAT2        | [ the relationship between passive smoking , [breast cancer]{.disease_color} risk and [n-acetyltransferase 2]{.gene_color} ( nat2 ) ] .                                                                                                                                                                                                                                 | 0.012              | 0.287             | 
 | schizophrenia      | EP300       | ventricle size and [p300]{.gene_color} in [schizophrenia]{.disease_color} .                                                                                                                                                                                                                                                                                             | 0.012              | 0.286             | 
 | hematologic cancer | CD33        | in the 2 ( nd ) study of [cd33]{.gene_color} + [sr-aml]{.disease_color} 2 doses of go ( 4.5 - 9 mg/m ( 2 ) ) were administered > = 60d post reduced intensity conditioning ( ric ) allosct ( 8 wks apart ) .                                                                                                                                                            | 0.01               | 0.281             | 
@@ -672,8 +665,8 @@ Table: Contains the top ten Disease-associates-Gene confidence scores before and
 | hematologic cancer | C7          | serum antibody responses to four haemophilus influenzae type b capsular polysaccharide-protein conjugate vaccines ( prp-d , hboc , [c7p]{.gene_color} , and [prp-t )]{.disease_color} were studied and compared in 175 infants , 85 adults and 140 2-year-old children .                                                                                                | 0.002              | 0.208             | 
 Table: Contains the bottom ten Disease-associates-Gene confidence scores before and after model calbration. Disease mentions are highlighted in [brown]{.disease_color} and Gene mentions are highlighted in [blue]{.gene_color}. {#tbl:dg_bottom_ten_table}
 
-| Compound Name      | Disease Name                   | Text                                                                                                                                                                       | Before Calibration | After Calibration | 
-|--------------------|--------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------|--------------------|-------------------| 
+| Compound Name      | Disease Name  | Text  | Before Calibration | After Calibration | 
+|----------------|----------------|--------------------------------------------------------|---------------|---------------|  
 | Methylprednisolone | asthma                         | use of tao without [methylprednisolone]{.compound_color} in the treatment of severe [asthma]{.disease_color} .                                                                          | 1.0                | 0.895             | 
 | Methyldopa         | hypertension                   | atenolol and [methyldopa]{.compound_color} in the treatment of [hypertension]{.disease_color} .                                                                                         | 1.0                | 0.888             | 
 | Prednisone         | asthma                         | [prednisone]{.compound_color} and beclomethasone for treatment of [asthma]{.disease_color} .                                                                                            | 1.0                | 0.885             | 
@@ -686,8 +679,8 @@ Table: Contains the bottom ten Disease-associates-Gene confidence scores before 
 | Haloperidol        | Gilles de la Tourette syndrome | a comparison of pimozide and [haloperidol]{.compound_color} in the treatment of gilles de la [tourette 's syndrome]{.disease_color} .                                                   | 1.0                | 0.839             | 
 Table: Contains the top ten Compound-treats-Disease confidence scores after model calbration. Disease mentions are highlighted in [brown]{.disease_color} and Compound mentions are highlighted in [red]{.compound_color}. {#tbl:cd_top_ten_table}
 
-| Compound Name                  | Disease Name            | Text                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     | Before Calibration | After Calibration | 
-|--------------------------------|-------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|--------------------|-------------------| 
+| Compound Name  | Disease Name | Text   | Before Calibration | After Calibration | 
+|----------------|----------------|--------------------------------------------------------|---------------|---------------| 
 | Dexamethasone                  | hypertension            | [dexamethasone]{.compound_color} and [hypertension]{.disease_color} in preterm infants .                                                                                                                                                                                                                                                                                                                                                                                                              | 0.011              | 0.34              | 
 | Reserpine                      | hypertension            | [reserpine]{.compound_color} in [hypertension]{.disease_color} : present status .                                                                                                                                                                                                                                                                                                                                                                                                                     | 0.01               | 0.336             | 
 | Creatine                       | coronary artery disease | scintiphotographic findings were compared with the size of [myocardial infarcts]{.disease_color} calculated from measurements of the activity of mb isoenzymes of [creatine]{.compound_color} kinase ( ck-mb ) in serum and in the myocardium at autopsy , as described by sobel 's method .                                                                                                                                                                                                          | 0.009              | 0.334             | 
@@ -700,8 +693,8 @@ Table: Contains the top ten Compound-treats-Disease confidence scores after mode
 | Dobutamine                     | coronary artery disease | two-dimensional echocardiography can detect regional wall motion abnormalities resulting from [myocardial ischemia]{.disease_color} produced by [dobutamine]{.compound_color} infusion .                                                                                                                                                                                                                                                                                                              | 0.002              | 0.287             |  
 Table: Contains the bottom ten Compound-treats-Disease confidence scores before and after model calbration. Disease mentions are highlighted in [brown]{.disease_color} and Compound mentions are highlighted in [red]{.compound_color}. {#tbl:cd_bottom_ten_table}
 
-| Compound Name   | Gene Symbol | Text                                                                                                                                                                                                                                                                                                                                                                                                         | Before Calibration | After Calibration | 
-|-----------------|-------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|--------------------|-------------------| 
+| Compound Name   | Gene Symbol | Text   | Before Calibration | After Calibration | 
+|----------------|-------------|----------------------------------------------------------|---------------|---------------| 
 | Hydrocortisone  | SHBG        | serum concentrations of testicular and adrenal androgens and androgen precursors , [cortisol]{.compound_color} , unconjugated ( e1 ) and total estrone ( te1 ; greater than or equal to 85 % e1 sulfate ) , pituitary hormones , sex hormone binding globulin ( [shbg )]{.gene_color} and albumin were measured in 14 male patients with non-diabetic end stage renal disease and in 28 age-matched healthy controls . | 0.997              | 0.745             | 
 | Minoxidil       | EGFR        | direct measurement of the ability of minoxidil to compete for binding to the egf receptor indicated that [minoxidil]{.compound_color} probably does not bind to the [egf receptor]{.gene_color} .                                                                                                                                                                                                                      | 0.99               | 0.706             | 
 | Hydrocortisone  | SHBG        | gonadotropin , testosterone , sex hormone binding globulin ( [shbg )]{.gene_color} , dehydroepiandrosterone sulphate , androstenedione , estradiol , prolactin , [cortisol]{.compound_color} , thyrotropin , and free thyroxine levels were determined .                                                                                                                                                               | 0.988              | 0.7               | 
@@ -714,8 +707,8 @@ Table: Contains the bottom ten Compound-treats-Disease confidence scores before 
 | Ketamine        | C5          | additionally , reduction of glycine binding by the c-5 antagonists was reversed by both nmda receptor agonists and c-7 competitive [nmda]{.compound_color} antagonists , providing evidence that the site of action of these [c-5]{.gene_color} antagonists is the nmda recognition site , resulting in indirect modulation of the glycine site .                                                                      | 0.957              | 0.643             | 
 Table: Contains the top ten Compound-treats-Disease confidence scores before and after model calbration. Gene mentions are highlighted in [blue]{.gene_color} and Compound mentions are highlighted in [red]{.compound_color}. {#tbl:cg_top_ten_table}
 
-| Compound Name  | Gene Symbol | Text                                                                                                                                                                                                                                                                                                                                                                                            | Before Calibration | After Calibration | 
-|----------------|-------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|--------------------|-------------------| 
+| Compound Name  | Gene Symbol | Text   | Before Calibration | After Calibration | 
+|----------------|-------------|----------------------------------------------------------|-------------|-------------| 
 | Iron           | NDUFB3      | since gastric acid plays an important role in the absorption process of [iron]{.compound_color} and vitamin b12 , we determined levels of iron , ferritin , vitamin [b12]{.gene_color} , and folic acid in 75 serum samples obtained during continuous omeprazole therapy ( 6-48 months after start of therapy ) from 34 patients with peptic diseases ( primarily reflux esophagitis ) .                 | 0.006              | 0.276             | 
 | D-Tyrosine     | PLAU        | either the 55 kda u-pa form and the lower mw form ( 33 kda ) derived from the 55 kda [u-pa]{.gene_color} are tyr-phosphorylated also the u-pa secreted in the culture media of human fibrosarcoma cells ( ht-1080 ) is phosphorylated in [tyrosine]{.compound_color} as well as u-pa present in tissue extracts of tumors induced in nude mice by ht-1080 cells .                                         | 0.006              | 0.276             | 
 | D-Leucine      | POMC        | cross-reactivities of [leucine-enkephalin]{.compound_color} and [beta-endorphin]{.gene_color} with the eia were less than 0.1 % , while that with gly-gly-phe-met and oxidized gly-gly-phe-met were 2.5 % and 10.2 % , respectively .                                                                                                                                                                     | 0.006              | 0.273             | 
@@ -728,8 +721,8 @@ Table: Contains the top ten Compound-treats-Disease confidence scores before and
 | Estriol        | LGALS1      | [ diagnostic value of serial determination of [estriol]{.compound_color} and [hpl]{.gene_color} in plasma and of total estrogens in 24-h-urine compared to single values for diagnosis of fetal danger ] .                                                                                                                                                                                                | 0.0                | 0.181             |
 Table: Contains the bottom ten Compound-binds-Gene confidence scores before and after model calbration. Gene mentions are highlighted in [blue]{.gene_color} and Compound mentions are highlighted in [red]{.compound_color}. {#tbl:cg_bottom_ten_table}
 
-| Gene1 Symbol | Gene2 Symbol | Text                                                                                                                                                                                                                                                         | Before Calibration | After Calibration | 
-|--------------|--------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|--------------------|-------------------| 
+| Gene1 Symbol | Gene2 Symbol | Text   | Before Calibration | After Calibration | 
+|-----------|-------------|----------------------------------------------------------|-------------|-------------| 
 | INS          | HSPA4        | conclusions : intact insulin only weakly interacts with the [hsp70]{.gene_color} chaperone dnak whereas monomeric proinsulin and peptides from 3 distinct [proinsulin]{.gene_color} regions show substantial chaperone binding .                                   | 0.834              | 0.574             | 
 | NMT1         | S100B        | values for k ( cat ) indicated that , once gag or [nef]{.gene_color} binds to the enzyme , myristoylation by [nmt1]{.gene_color} and nmt2 proceeds at comparable rates .                                                                                           | 0.826              | 0.571             | 
 | VEGFA        | HIF1A        | mechanistically , we demonstrated that resveratrol inhibited [hif-1alpha]{.gene_color} and [vegf]{.gene_color} expression through multiple mechanisms .                                                                                                            | 0.82               | 0.569             | 
@@ -742,8 +735,8 @@ Table: Contains the bottom ten Compound-binds-Gene confidence scores before and 
 | CCND1        | ABL1         | synergy with [v-abl]{.gene_color} depended on a motif in [cyclin d1]{.gene_color} that mediates its binding to the retinoblastoma protein , suggesting that abl oncogenes in part mediate their mitogenic effects via a retinoblastoma protein-dependent pathway . | 0.736              | 0.547             |
 Table: Contains the top ten Gene-interacts-Gene confidence scores before and after model calbration. Both gene mentions highlighted in [blue]{.gene_color}. {#tbl:gg_top_ten_table}
 
-| Gene1 Symbol | Gene2 Symbol | Text                                                                                                                                                                                                                                                       | Before Calibration | After Calibration | 
-|--------------|--------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|--------------------|-------------------| 
+| Gene1 Symbol | Gene2 Symbol | Text  | Before Calibration | After Calibration | 
+|-----------|-------------|----------------------------------------------------------|-------------|-------------|  
 | IFNG         | IL6          | in the control group , the positive rate for il-4 , [il-6]{.gene_color} , il-10 were 0/10 , 2/10 and 1/10 , respectively , and those for il-2 and [ifn-gamma]{.gene_color} were both 1/10 .                                                                      | 0.012              | 0.306             | 
 | ACHE         | BCHE         | anticholinesterase activity was determined against acetylcholinesterase ( [ache )]{.gene_color} and butyrylcholinesterase ( [bche )]{.gene_color} , the enzymes vital for alzheimer 's disease , at 50 , 100 and 200 g ml ( -1 ) .                               | 0.011              | 0.306             | 
 | CCL2         | AGT          | we found no significant increase in [mcp-1]{.gene_color} concentrations by [ang ii]{.gene_color} alone ; but it enhanced the tnf-alpha-induced mcp-1 mrna expression in a dose-dependent manner .                                                                | 0.011              | 0.306             | 

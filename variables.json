@@ -1,5 +1,5 @@
 {
-  "date": "August 1, 2019",
+  "date": "August 5, 2019",
   "authors": [
     {
       "github": "danich1",
@@ -57,7 +57,7 @@
     "repo_slug": "greenelab/text_mined_hetnet_manuscript",
     "repo_owner": "greenelab",
     "repo_name": "text_mined_hetnet_manuscript",
-    "commit": "82239e122c631b2c8f2b803cbb0f1ab1f02516d6"
+    "commit": "4f562f4d2d30e0ddeeb423f651573bb49972c0b0"
   },
   "manuscript_stats": {
     "reference_counts": {
@@ -67,6 +67,6 @@
       "raw": 3,
       "total": 82
     },
-    "word_count": 11806
+    "word_count": 11722
   }
 }
