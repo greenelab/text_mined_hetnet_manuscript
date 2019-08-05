@@ -22,9 +22,9 @@ title: Reusing label functions to extract multiple types of biomedical relations
 
 <small><em>
 This manuscript
-([permalink](https://greenelab.github.io/text_mined_hetnet_manuscript/v/3c42381c8d479d69c3d0012a7d80eda212e9d509/))
+([permalink](https://greenelab.github.io/text_mined_hetnet_manuscript/v/a256577b5da517c75b5cc2996f752c8dcee6dcc8/))
 was automatically generated
-from [greenelab/text_mined_hetnet_manuscript@3c42381](https://github.com/greenelab/text_mined_hetnet_manuscript/tree/3c42381c8d479d69c3d0012a7d80eda212e9d509)
+from [greenelab/text_mined_hetnet_manuscript@a256577](https://github.com/greenelab/text_mined_hetnet_manuscript/tree/a256577b5da517c75b5cc2996f752c8dcee6dcc8)
 on August 5, 2019.
 </em></small>
 
@@ -239,7 +239,7 @@ Label functions are simple pythonic functions that emit: a positive label (1), a
 We combine these functions using a generative model to output a single annotation, which is a consensus probability score bounded between 0 (low chance of mentioning a relationship) and 1 (high chance of mentioning a relationship).
 We used these annotations to train a discriminator model that makes the final classification step.
 Our label functions fall into three categories: databases, text patterns and domain heuristics.
-We provide examples for each categories in our [supplemental methods section](#label-function-categories).  
+We provide examples for each category in our [supplemental methods section](#label-function-categories).  
 
 ### Training Models
 
@@ -288,7 +288,7 @@ Lastly, we conducted a follow up experiment for the generative model described i
 
 ### Generative Model Using Randomly Sampled Label Functions
 ![
-Grid of AUROC (A) and AUPR (B) scores for each generative model trained on randomly sampled label functions.
+Grid of AUROC scores for each generative model trained on randomly sampled label functions.
 The rows depict the relationship each model is trying to predict and the columns are the edge type specific sources from which each label function is sampled.
 The right most column consists of pooling every relationship specific label function and proceeding as above.
 ](https://raw.githubusercontent.com/danich1/snorkeling/ee638b4e45717a86f54a2744a813baaa90bc6b84/figures/label_sampling_experiment/transfer_test_set_auroc.png){#fig:auroc_gen_model_performance}
@@ -313,8 +313,20 @@ We observed that performance increased as assessed by both AUROC and AUPR when u
 A similar trend was observed when predicting the GiG edge; however, the performance differences were small for this edge type making the importance difficult to assess.  
 The last column shows increasing performance (AUROC and AUPR) for both DaG and CtD when sampling from all label functions.
 CbG and GiG also had increased performance when one random label function was sampled, but performance decreased drastically as more label functions were added.
-It is possible that a small number of irrelevant label functions are able to overwhelm the distant supervision label functions in these cases (see Supplemental Figures {@fig:auroc_random_label_function_performance} and {@fig:aupr_random_label_function_performance}).
+It is possible that a small number of irrelevant label functions are able to overwhelm the distant supervision label functions in these cases (see Figure {@fig:auroc_random_label_function_performance} and Supplemental Figure {@fig:aupr_random_label_function_performance}).
 
+### Random Label Function Generative Model Analysis
+![
+A grid of AUROC (A) scores for each edge type.
+Each plot consists of adding a single label function on top of the baseline model.
+This label function emits a positive (shown in blue) or negative (shown in orange) label at specified frequencies, and performance at zero is equivalent to not having a randomly emitting label function.
+The error bars represent 95% confidence intervals for AUROC or AUPR (y-axis) at each emission frequency.
+](https://raw.githubusercontent.com/danich1/snorkeling/ee638b4e45717a86f54a2744a813baaa90bc6b84/figures/gen_model_error_analysis/transfer_test_set_auroc.png){#fig:auroc_random_label_function_performance}
+
+We observed that including one label function of a mismatched type to distant supervision often improved performance, so we evaluated the effects of adding a random label function in the same setting.
+We found that usually adding random noise did not improve performance (Figure {@fig:auroc_random_label_function_performance} and Supplemental Figure {@fig:aupr_random_label_function_performance}).
+For the CbG edge type we did observe slightly increased performance via AUPR (Supplemental Figure {@fig:aupr_random_label_function_performance}).
+However, performance changes in general were smaller than those observed with mismatched label types.
 
 
 ## Discussion
@@ -324,7 +336,7 @@ Through our sampling experiment, we found that adding relevant label functions i
 We found that label functions designed from relatively related edge types can increase performance (seen when GiG label functions predicts CbG and vice versa).
 We noticed that one edge type (DaG) is agnostic to label function source (Figure {@fig:auroc_gen_model_performance} and Supplemental Figure {@fig:aupr_gen_model_performance}). 
 Performance routinely increases when adding a single mismatched label function to our baseline model (the generative model trained only on distant supervision label functions).
-These results led us to hypothesize that adding a small amount of noise aided the model, but our experiment with a random label function reveals that this was not the case (Supplemental Figures {@fig:auroc_random_label_function_performance} and {@fig:aupr_random_label_function_performance}).
+These results led us to hypothesize that adding a small amount of noise aided the model, but our experiment with a random label function reveals that this was not the case (Figures {@fig:auroc_random_label_function_performance} and {@fig:aupr_random_label_function_performance}).
 Based on these results one question still remains: why does performance drastically increase when adding a single label function to our distant supervision baseline?
 
 The discriminative model didn't work as intended. 
@@ -498,19 +510,7 @@ This pattern continues filling out the rest of the grid.
 The right most column consists of pooling every relationship specific label function and proceeding as above.
 ](https://raw.githubusercontent.com/danich1/snorkeling/ee638b4e45717a86f54a2744a813baaa90bc6b84/figures/label_sampling_experiment/transfer_test_set_auprc.png){#fig:aupr_gen_model_performance}
 
-### Random Label Function Gen Model Analysis
-![
-A grid of AUROC (A) scores for each edge type.
-Each plot consists of adding a single label function on top of the baseline model.
-This label function emits a positive (shown in blue) or negative (shown in orange) label at specified frequencies, and performance at zero is equivalent to not having a randomly emitting label function.
-The error bars represent 95% confidence intervals for AUROC or AUPR (y-axis) at each emission frequency.
-](https://raw.githubusercontent.com/danich1/snorkeling/ee638b4e45717a86f54a2744a813baaa90bc6b84/figures/gen_model_error_analysis/transfer_test_set_auroc.png){#fig:auroc_random_label_function_performance}
-
-We observed that including one label function of a mismatched type to distant supervision often improved performance, so we evaluated the effects of adding a random label function in the same setting.
-We found that usually adding random noise did not improve performance (Figures {@fig:auroc_random_label_function_performance} and {@fig:aupr_random_label_function_performance}).
-For the CbG edge type we did observe slightly increased performance via AUPR (Figure {@fig:aupr_random_label_function_performance}).
-However, performance changes in general were smaller than those observed with mismatched label types.
-
+### Random Label Function Generative Model Analysis
 ![
 A grid of AUROC (A) scores for each edge type.
 Each plot consists of adding a single label function on top of the baseline model.
