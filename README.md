@@ -10,8 +10,8 @@
 
 <!-- usage note: edit this section. -->
 
-This repository is a template manuscript (a.k.a. rootstock).
-Actual manuscript instances will clone this repository (see [`SETUP.md`](SETUP.md)) and replace this paragraph with a description of their manuscript.
+This repository contains the manuscript "Reusing label functions to extract multiple types of biomedical relationships from biomedical abstracts at scale".
+Code to produce the results described in this manuscript can be found [here](https://github.com/greenelab/snorkeling).
 
 ## Manubot
 
