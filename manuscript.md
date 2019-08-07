@@ -3,7 +3,7 @@ author-meta:
 - David N. Nicholson
 - Daniel S. Himmelstein
 - Casey S. Greene
-date-meta: '2019-08-06'
+date-meta: '2019-08-07'
 keywords:
 - machine learning
 - weak supervision
@@ -22,10 +22,10 @@ title: Reusing label functions to extract multiple types of biomedical relations
 
 <small><em>
 This manuscript
-([permalink](https://greenelab.github.io/text_mined_hetnet_manuscript/v/3a040e78114208417d2b1784ae558fb323eabe01/))
+([permalink](https://greenelab.github.io/text_mined_hetnet_manuscript/v/032820f1215ec7265f376098a4d378988f2bd7e9/))
 was automatically generated
-from [greenelab/text_mined_hetnet_manuscript@3a040e7](https://github.com/greenelab/text_mined_hetnet_manuscript/tree/3a040e78114208417d2b1784ae558fb323eabe01)
-on August 6, 2019.
+from [greenelab/text_mined_hetnet_manuscript@032820f](https://github.com/greenelab/text_mined_hetnet_manuscript/tree/032820f1215ec7265f376098a4d378988f2bd7e9)
+on August 7, 2019.
 </em></small>
 
 ## Authors
