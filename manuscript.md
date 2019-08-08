@@ -3,7 +3,7 @@ author-meta:
 - David N. Nicholson
 - Daniel S. Himmelstein
 - Casey S. Greene
-date-meta: '2019-08-07'
+date-meta: '2019-08-08'
 keywords:
 - machine learning
 - weak supervision
@@ -11,8 +11,8 @@ keywords:
 - heterogenous netowrks
 - text mining
 lang: en-US
-title: Reusing label functions to extract multiple types of biomedical relationships
-  from biomedical abstracts at scale
+title: Reusing label functions to extract multiple types of relationships from biomedical
+  abstracts at scale
 ...
 
 
@@ -22,10 +22,10 @@ title: Reusing label functions to extract multiple types of biomedical relations
 
 <small><em>
 This manuscript
-([permalink](https://greenelab.github.io/text_mined_hetnet_manuscript/v/032820f1215ec7265f376098a4d378988f2bd7e9/))
+([permalink](https://greenelab.github.io/text_mined_hetnet_manuscript/v/8ae266d54b205d094ba57fe03d5878dfecdaa737/))
 was automatically generated
-from [greenelab/text_mined_hetnet_manuscript@032820f](https://github.com/greenelab/text_mined_hetnet_manuscript/tree/032820f1215ec7265f376098a4d378988f2bd7e9)
-on August 7, 2019.
+from [greenelab/text_mined_hetnet_manuscript@8ae266d](https://github.com/greenelab/text_mined_hetnet_manuscript/tree/8ae266d54b205d094ba57fe03d5878dfecdaa737)
+on August 8, 2019.
 </em></small>
 
 ## Authors
