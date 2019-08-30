@@ -3,7 +3,7 @@ author-meta:
 - David N. Nicholson
 - Daniel S. Himmelstein
 - Casey S. Greene
-date-meta: '2019-08-08'
+date-meta: '2019-08-30'
 keywords:
 - machine learning
 - weak supervision
@@ -17,15 +17,15 @@ title: Reusing label functions to extract multiple types of relationships from b
 
 
 
-
+_A DOI-citable version of this manuscript is available at <https://doi.org/10.1101/730085>_.
 
 
 <small><em>
 This manuscript
-([permalink](https://greenelab.github.io/text_mined_hetnet_manuscript/v/8ae266d54b205d094ba57fe03d5878dfecdaa737/))
+([permalink](https://greenelab.github.io/text_mined_hetnet_manuscript/v/1bfed75fc8c2ebf521553052593da96cfca9915c/))
 was automatically generated
-from [greenelab/text_mined_hetnet_manuscript@8ae266d](https://github.com/greenelab/text_mined_hetnet_manuscript/tree/8ae266d54b205d094ba57fe03d5878dfecdaa737)
-on August 8, 2019.
+from [greenelab/text_mined_hetnet_manuscript@1bfed75](https://github.com/greenelab/text_mined_hetnet_manuscript/tree/1bfed75fc8c2ebf521553052593da96cfca9915c)
+on August 30, 2019.
 </em></small>
 
 ## Authors
