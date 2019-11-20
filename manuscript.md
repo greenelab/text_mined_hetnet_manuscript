@@ -4,6 +4,97 @@ author-meta:
 - Daniel S. Himmelstein
 - Casey S. Greene
 date-meta: '2019-11-20'
+header-includes: '<!--
+
+  Manubot generated metadata rendered from header-includes-template.html.
+
+  Suggest improvements at https://github.com/manubot/manubot/blob/master/manubot/process/header-includes-template.html
+
+  -->
+
+  <meta name="dc.format" content="text/html" />
+
+  <meta name="dc.title" content="Reusing label functions to extract multiple types of relationships from biomedical abstracts at scale" />
+
+  <meta name="citation_title" content="Reusing label functions to extract multiple types of relationships from biomedical abstracts at scale" />
+
+  <meta property="og:title" content="Reusing label functions to extract multiple types of relationships from biomedical abstracts at scale" />
+
+  <meta property="twitter:title" content="Reusing label functions to extract multiple types of relationships from biomedical abstracts at scale" />
+
+  <meta name="dc.date" content="2019-11-20" />
+
+  <meta name="citation_publication_date" content="2019-11-20" />
+
+  <meta name="dc.language" content="en-US" />
+
+  <meta name="citation_language" content="en-US" />
+
+  <meta name="dc.relation.ispartof" content="Manubot" />
+
+  <meta name="dc.publisher" content="Manubot" />
+
+  <meta name="citation_journal_title" content="Manubot" />
+
+  <meta name="citation_technical_report_institution" content="Manubot" />
+
+  <meta name="citation_author" content="David N. Nicholson" />
+
+  <meta name="citation_author_institution" content="Department of Systems Pharmacology and Translational Therapeutics, University of Pennsylvania" />
+
+  <meta name="citation_author_orcid" content="0000-0003-0002-5761" />
+
+  <meta name="twitter:creator" content="@None" />
+
+  <meta name="citation_author" content="Daniel S. Himmelstein" />
+
+  <meta name="citation_author_institution" content="Department of Systems Pharmacology and Translational Therapeutics, University of Pennsylvania" />
+
+  <meta name="citation_author_orcid" content="0000-0002-3012-7446" />
+
+  <meta name="twitter:creator" content="@dhimmel" />
+
+  <meta name="citation_author" content="Casey S. Greene" />
+
+  <meta name="citation_author_institution" content="Department of Systems Pharmacology and Translational Therapeutics, University of Pennsylvania" />
+
+  <meta name="citation_author_orcid" content="0000-0001-8713-9213" />
+
+  <meta name="twitter:creator" content="@GreeneScientist" />
+
+  <link rel="canonical" href="https://greenelab.github.io/text_mined_hetnet_manuscript/" />
+
+  <meta property="og:url" content="https://greenelab.github.io/text_mined_hetnet_manuscript/" />
+
+  <meta property="twitter:url" content="https://greenelab.github.io/text_mined_hetnet_manuscript/" />
+
+  <meta name="citation_fulltext_html_url" content="https://greenelab.github.io/text_mined_hetnet_manuscript/" />
+
+  <meta name="citation_pdf_url" content="https://greenelab.github.io/text_mined_hetnet_manuscript/manuscript.pdf" />
+
+  <link rel="alternate" type="application/pdf" href="https://greenelab.github.io/text_mined_hetnet_manuscript/manuscript.pdf" />
+
+  <link rel="alternate" type="text/html" href="https://greenelab.github.io/text_mined_hetnet_manuscript/v/94dcb1762692454a131fb90bb0fe2730d425434c/" />
+
+  <meta name="manubot_html_url_versioned" content="https://greenelab.github.io/text_mined_hetnet_manuscript/v/94dcb1762692454a131fb90bb0fe2730d425434c/" />
+
+  <meta name="manubot_pdf_url_versioned" content="https://greenelab.github.io/text_mined_hetnet_manuscript/v/94dcb1762692454a131fb90bb0fe2730d425434c/manuscript.pdf" />
+
+  <meta property="og:type" content="article" />
+
+  <meta property="twitter:card" content="summary_large_image" />
+
+  <meta property="og:image" content="https://github.com/greenelab/text_mined_hetnet_manuscript/raw/94dcb1762692454a131fb90bb0fe2730d425434c/thumbnail.png" />
+
+  <meta property="twitter:image" content="https://github.com/greenelab/text_mined_hetnet_manuscript/raw/94dcb1762692454a131fb90bb0fe2730d425434c/thumbnail.png" />
+
+  <link rel="icon" type="image/png" sizes="192x192" href="https://manubot.org/favicon-192x192.png" />
+
+  <link rel="mask-icon" href="https://manubot.org/safari-pinned-tab.svg" color="#ad1457" />
+
+  <meta name="theme-color" content="#ad1457" />
+
+  <!-- end Manubot generated metadata -->'
 keywords:
 - machine learning
 - weak supervision
@@ -11,8 +102,7 @@ keywords:
 - heterogenous netowrks
 - text mining
 lang: en-US
-title: Reusing label functions to extract multiple types of relationships from biomedical
-  abstracts at scale
+title: Reusing label functions to extract multiple types of relationships from biomedical abstracts at scale
 ...
 
 
@@ -22,9 +112,9 @@ _A DOI-citable version of this manuscript is available at <https://doi.org/10.11
 
 <small><em>
 This manuscript
-([permalink](https://greenelab.github.io/text_mined_hetnet_manuscript/v/3431ea64fccd7cbaf3315194bb2547d869750718/))
+([permalink](https://greenelab.github.io/text_mined_hetnet_manuscript/v/94dcb1762692454a131fb90bb0fe2730d425434c/))
 was automatically generated
-from [greenelab/text_mined_hetnet_manuscript@3431ea6](https://github.com/greenelab/text_mined_hetnet_manuscript/tree/3431ea64fccd7cbaf3315194bb2547d869750718)
+from [greenelab/text_mined_hetnet_manuscript@94dcb17](https://github.com/greenelab/text_mined_hetnet_manuscript/tree/94dcb1762692454a131fb90bb0fe2730d425434c)
 on November 20, 2019.
 </em></small>
 
