@@ -3,7 +3,7 @@ author-meta:
 - David N. Nicholson
 - Daniel S. Himmelstein
 - Casey S. Greene
-date-meta: '2019-08-30'
+date-meta: '2019-11-20'
 keywords:
 - machine learning
 - weak supervision
@@ -22,10 +22,10 @@ _A DOI-citable version of this manuscript is available at <https://doi.org/10.11
 
 <small><em>
 This manuscript
-([permalink](https://greenelab.github.io/text_mined_hetnet_manuscript/v/1bfed75fc8c2ebf521553052593da96cfca9915c/))
+([permalink](https://greenelab.github.io/text_mined_hetnet_manuscript/v/3431ea64fccd7cbaf3315194bb2547d869750718/))
 was automatically generated
-from [greenelab/text_mined_hetnet_manuscript@1bfed75](https://github.com/greenelab/text_mined_hetnet_manuscript/tree/1bfed75fc8c2ebf521553052593da96cfca9915c)
-on August 30, 2019.
+from [greenelab/text_mined_hetnet_manuscript@3431ea6](https://github.com/greenelab/text_mined_hetnet_manuscript/tree/3431ea64fccd7cbaf3315194bb2547d869750718)
+on November 20, 2019.
 </em></small>
 
 ## Authors
