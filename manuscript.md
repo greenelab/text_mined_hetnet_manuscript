@@ -3,7 +3,7 @@ author-meta:
 - David N. Nicholson
 - Daniel S. Himmelstein
 - Casey S. Greene
-date-meta: '2019-11-20'
+date-meta: '2020-01-13'
 header-includes: '<!--
 
   Manubot generated metadata rendered from header-includes-template.html.
@@ -22,9 +22,9 @@ header-includes: '<!--
 
   <meta property="twitter:title" content="Reusing label functions to extract multiple types of relationships from biomedical abstracts at scale" />
 
-  <meta name="dc.date" content="2019-11-20" />
+  <meta name="dc.date" content="2020-01-13" />
 
-  <meta name="citation_publication_date" content="2019-11-20" />
+  <meta name="citation_publication_date" content="2020-01-13" />
 
   <meta name="dc.language" content="en-US" />
 
@@ -74,19 +74,19 @@ header-includes: '<!--
 
   <link rel="alternate" type="application/pdf" href="https://greenelab.github.io/text_mined_hetnet_manuscript/manuscript.pdf" />
 
-  <link rel="alternate" type="text/html" href="https://greenelab.github.io/text_mined_hetnet_manuscript/v/94dcb1762692454a131fb90bb0fe2730d425434c/" />
+  <link rel="alternate" type="text/html" href="https://greenelab.github.io/text_mined_hetnet_manuscript/v/83750ca547a65d1db8145ac33d332deef6df29a3/" />
 
-  <meta name="manubot_html_url_versioned" content="https://greenelab.github.io/text_mined_hetnet_manuscript/v/94dcb1762692454a131fb90bb0fe2730d425434c/" />
+  <meta name="manubot_html_url_versioned" content="https://greenelab.github.io/text_mined_hetnet_manuscript/v/83750ca547a65d1db8145ac33d332deef6df29a3/" />
 
-  <meta name="manubot_pdf_url_versioned" content="https://greenelab.github.io/text_mined_hetnet_manuscript/v/94dcb1762692454a131fb90bb0fe2730d425434c/manuscript.pdf" />
+  <meta name="manubot_pdf_url_versioned" content="https://greenelab.github.io/text_mined_hetnet_manuscript/v/83750ca547a65d1db8145ac33d332deef6df29a3/manuscript.pdf" />
 
   <meta property="og:type" content="article" />
 
   <meta property="twitter:card" content="summary_large_image" />
 
-  <meta property="og:image" content="https://github.com/greenelab/text_mined_hetnet_manuscript/raw/94dcb1762692454a131fb90bb0fe2730d425434c/thumbnail.png" />
+  <meta property="og:image" content="https://github.com/greenelab/text_mined_hetnet_manuscript/raw/83750ca547a65d1db8145ac33d332deef6df29a3/thumbnail.png" />
 
-  <meta property="twitter:image" content="https://github.com/greenelab/text_mined_hetnet_manuscript/raw/94dcb1762692454a131fb90bb0fe2730d425434c/thumbnail.png" />
+  <meta property="twitter:image" content="https://github.com/greenelab/text_mined_hetnet_manuscript/raw/83750ca547a65d1db8145ac33d332deef6df29a3/thumbnail.png" />
 
   <link rel="icon" type="image/png" sizes="192x192" href="https://manubot.org/favicon-192x192.png" />
 
@@ -112,10 +112,10 @@ _A DOI-citable version of this manuscript is available at <https://doi.org/10.11
 
 <small><em>
 This manuscript
-([permalink](https://greenelab.github.io/text_mined_hetnet_manuscript/v/94dcb1762692454a131fb90bb0fe2730d425434c/))
+([permalink](https://greenelab.github.io/text_mined_hetnet_manuscript/v/83750ca547a65d1db8145ac33d332deef6df29a3/))
 was automatically generated
-from [greenelab/text_mined_hetnet_manuscript@94dcb17](https://github.com/greenelab/text_mined_hetnet_manuscript/tree/94dcb1762692454a131fb90bb0fe2730d425434c)
-on November 20, 2019.
+from [greenelab/text_mined_hetnet_manuscript@83750ca](https://github.com/greenelab/text_mined_hetnet_manuscript/tree/83750ca547a65d1db8145ac33d332deef6df29a3)
+on January 13, 2020.
 </em></small>
 
 ## Authors
@@ -337,11 +337,11 @@ We provide examples for each category in our [supplemental methods section](#lab
 
 The generative model is a core part of this automatic annotation framework.
 It integrates multiple signals emitted by label functions and assigns a training class to each candidate sentence.
-This model assigns training classes by estimating the joint probability distribution of the latent true class ($Y$) and label function signals ($\Lambda$), $P(\Lambda, Y)$.
+This model assigns training classes by estimating the joint probability distribution of the latent true class ($Y$) and label function signals ($\Lambda$), ($P_{\theta}(\Lambda, Y)$).
 Assuming each label function is conditionally independent, the joint distribution is defined as follows:  
 
 $$
-P(\Lambda, Y) = \frac{\exp(\sum_{i=1}^{m} \theta^{T}F_{i}(\Lambda, y))}
+P_{\theta}(\Lambda, Y) = \frac{\exp(\sum_{i=1}^{m} \theta^{T}F_{i}(\Lambda, y))}
 {\sum_{\Lambda'}\sum_{y'} \exp(\sum_{i=1}^{m} \theta^{T}F_{i}(\Lambda', y'))}
 $$  
 
@@ -355,23 +355,21 @@ $$F^{Acc}_{i,j}(\Lambda, Y) = \unicode{x1D7D9}\{\Lambda_{i,j} = y_{i,j}\}$$
 *Acc* is the individual label function's accuracy given the training class.
 This model optimizes the weights ($\theta$) by minimizing the negative log likelihood:
 
-$$\hat{\theta} = argmin_{\theta} -\sum_{\Lambda} log \sum_{Y}P(\Lambda, Y)$$
+$$\hat{\theta} = argmin_{\theta} -\sum_{\Lambda} \sum_{Y} log P_{\theta}(\Lambda, Y)$$
 
-In the framework we used predictions from the generative model, $\hat{Y} = P(Y \mid \Lambda)$, as training classes for our dataset [@vzoBuh4l; @9Jo1af7Z]. 
+In the framework we used predictions from the generative model, $\hat{Y} = P_{\hat{\theta}}(Y \mid \Lambda)$, as training classes for our dataset [@vzoBuh4l; @9Jo1af7Z]. 
 
 ### Experimental Design
 
 Being able to re-use label functions across edge types would substantially reduce the number of label functions required to extract multiple relationships from biomedical literature.
 We first established a baseline by training a generative model using only distant supervision label functions designed for the target edge type.
-As an example, for the GiG edge type we used label functions that returned a `1` if the pair of genes were included in the Human Interaction database [@LCyCrr7W], the iRefIndex database [@gtV3bOpd] or in the Incomplete Interactome database [@2jkcXYxN].
-Then we compared models that also included text and domain-heuristic label functions.
+For example, in the Gene interacts Gene (GiG) edge type we used label functions that returned a **1** if the pair of genes were included in the Human Interaction database [@LCyCrr7W], the iRefIndex database [@gtV3bOpd] or in the Incomplete Interactome database [@2jkcXYxN].
+Then we compared the baseline model with models that also included text and domain-heuristic label functions.
 Using a sampling with replacement approach, we sampled these text and domain-heuristic label functions separately within edge types, across edge types, and from a pool of all label functions.
 We compared within-edge-type performance to across-edge-type and all-edge-type performance.
-For each edge type we sampled a fixed number of label functions consisting of five evenly-spaced numbers between one and the total number of possible label functions.
+For each edge type we sampled a fixed number of label functions consisting of five evenly spaced numbers between one and the total number of possible label functions.
 We repeated this sampling process 50 times for each point.
-We evaluated both generative and discriminative (training and downstream analyses are described in the [supplemental methods section](#discriminative-model))  models at each point, and we reported performance of each in terms of the area under the receiver operating characteristic curve (AUROC) and the area under the precision-recall curve (AUPR).
-Lastly, we conducted a follow up experiment for the generative model described in the [supplemental methods section](#adding-random-noise-to-generative-model).
-
+We evaluated both generative and discriminative (training and downstream analyses are described in the [supplemental methods section](#discriminative-model)) models at each point, and report performance of each in terms of the area under the receiver operating characteristic curve (AUROC) and the area under the precision-recall curve (AUPR).
 
 
 ## Results

@@ -1501,11 +1501,14 @@
   },
   {
     "publisher": "Oxford University Press (OUP)",
+    "issue": "1",
     "abstract": "<jats:title>Abstract</jats:title>\n               <jats:sec>\n                  <jats:title>Motivation</jats:title>\n                  <jats:p>Information extraction by mining the scientific literature is key to uncovering relations between biomedical entities. Most existing approaches based on natural language processing extract relations from single sentence-level co-mentions, ignoring co-occurrence statistics over the whole corpus. Existing approaches counting entity co-occurrences ignore the textual context of each co-occurrence.</jats:p>\n               </jats:sec>\n               <jats:sec>\n                  <jats:title>Results</jats:title>\n                  <jats:p>We propose a novel corpus-wide co-occurrence scoring approach to relation extraction that takes the textual context of each co-mention into account. Our method, called CoCoScore, scores the certainty of stating an association for each sentence that co-mentions two entities. CoCoScore is trained using distant supervision based on a gold-standard set of associations between entities of interest. Instead of requiring a manually annotated training corpus, co-mentions are labeled as positives/negatives according to their presence/absence in the gold standard. We show that CoCoScore outperforms previous approaches in identifying human disease–gene and tissue–gene associations as well as in identifying physical and functional protein–protein associations in different species. CoCoScore is a versatile text mining tool to uncover pairwise associations via co-occurrence mining, within and beyond biomedical applications.</jats:p>\n               </jats:sec>\n               <jats:sec>\n                  <jats:title>Availability and implementation</jats:title>\n                  <jats:p>CoCoScore is available at: https://github.com/JungeAlexander/cocoscore.</jats:p>\n               </jats:sec>\n               <jats:sec>\n                  <jats:title>Supplementary information</jats:title>\n                  <jats:p>Supplementary data are available at Bioinformatics online.</jats:p>\n               </jats:sec>",
     "DOI": "10.1093/bioinformatics/btz490",
     "type": "article-journal",
+    "page": "264-271",
     "source": "Crossref",
     "title": "CoCoScore: context-aware co-occurrence scoring for text mining applications using distant supervision",
+    "volume": "36",
     "author": [
       {
         "given": "Alexander",
@@ -2566,6 +2569,7 @@
   {
     "publisher": "SAGE Publications",
     "issue": "1",
+    "abstract": "<jats:p> The automatic extraction of protein–protein interactions (PPIs) reported in scientific publications are of great significance for biomedical researchers in that they could efficiently grasp the recent research results about biochemical events and molecular processes for conducting their original studies. This article introduces a deep convolutional neural network (DCNN) equipped with various feature embeddings to battle the limitations of the existing machine learning-based PPI extraction methods. The proposed model learns and optimises word embeddings based on the publicly available word vectors and also exploits position embeddings to identify the locations of the target protein names in sentences. Furthermore, it can employ various linguistic feature embeddings to improve the PPI extraction. The intensive experiments using AIMed data set known as the most difficult collection not only show the superiority of the suggested model but also indicate important implications in optimising the network parameters and hyperparameters. </jats:p>",
     "DOI": "10.1177/0165551516673485",
     "type": "article-journal",
     "page": "60-73",
@@ -2584,7 +2588,8 @@
       "date-parts": [
         [
           2016,
-          11
+          11,
+          1
         ]
       ]
     },
@@ -2594,7 +2599,7 @@
     "id": "1H4LpFrU0"
   },
   {
-    "publisher": "Springer Nature",
+    "publisher": "Springer Science and Business Media LLC",
     "issue": "S2",
     "DOI": "10.1186/1471-2105-10-s2-s6",
     "type": "article-journal",
@@ -2629,7 +2634,7 @@
     "id": "107WYOcxW"
   },
   {
-    "publisher": "Springer Nature",
+    "publisher": "Springer Science and Business Media LLC",
     "issue": "S8",
     "DOI": "10.1186/1471-2105-12-s8-s5",
     "type": "article-journal",
@@ -2665,7 +2670,7 @@
     "id": "1AkC7QdyP"
   },
   {
-    "publisher": "Springer Nature",
+    "publisher": "Springer Science and Business Media LLC",
     "issue": "1",
     "DOI": "10.1186/1471-2105-13-161",
     "type": "article-journal",
@@ -2737,7 +2742,7 @@
     "id": "1Du6MinB8"
   },
   {
-    "publisher": "Springer Nature",
+    "publisher": "Springer Science and Business Media LLC",
     "issue": "1",
     "DOI": "10.1186/1471-2105-14-181",
     "type": "article-journal",
@@ -2773,7 +2778,7 @@
     "id": "1avvFjJ9"
   },
   {
-    "publisher": "Springer Nature",
+    "publisher": "Springer Science and Business Media LLC",
     "issue": "1",
     "DOI": "10.1186/1471-2105-14-323",
     "type": "article-journal",
@@ -2820,7 +2825,7 @@
     "id": "luGt8luc"
   },
   {
-    "publisher": "Springer Nature",
+    "publisher": "Springer Science and Business Media LLC",
     "issue": "1",
     "DOI": "10.1186/1471-2105-8-50",
     "type": "article-journal",
@@ -2876,7 +2881,7 @@
     "id": "DWpAeBxB"
   },
   {
-    "publisher": "Springer Nature",
+    "publisher": "Springer Science and Business Media LLC",
     "issue": "1",
     "DOI": "10.1186/1471-2105-9-405",
     "type": "article-journal",
@@ -2915,7 +2920,7 @@
     "id": "gtV3bOpd"
   },
   {
-    "publisher": "Springer Nature",
+    "publisher": "Springer Science and Business Media LLC",
     "issue": "S3",
     "DOI": "10.1186/1471-2105-9-s3-s6",
     "type": "article-journal",
