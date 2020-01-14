@@ -5,7 +5,6 @@ bert	arxiv:1810.04805
 biobert	arxiv:1901.08746
 biocreative_v	doi:10.1093/database/baw068
 cbg_ensemble_dl	doi:10.1093/database/bay073
-cbg_feat_engineering	doi:10.1093/database/bay138
 cbg_neural_attention	doi:10.1093/database/bay102
 cbg_transfer_learning	doi:10.1093/database/bay066
 cocoscore	doi:10.1093/bioinformatics/btz490
