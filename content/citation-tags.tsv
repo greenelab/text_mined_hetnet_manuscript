@@ -36,7 +36,6 @@ protein_docking	doi:10.1371/journal.pcbi.1004630
 protein_protein_co_network	doi:10.1186/s12859-019-2634-7
 recursive_nn	doi:10.1093/database/bay060
 semi_supervised_vae	arxiv:1901.06103
-string	doi:10.1093/nar/gku1003
 aimed	doi:10.1016/j.artmed.2004.07.016
 bioinfer	doi:10.1186/1471-2105-8-50
 hprd50	doi:10.1093/bioinformatics/btl616
