@@ -105,5 +105,36 @@
     "title": "Mining medline: Abstracts, sentences, or phrases?",
     "title-short": "Mining medline",
     "type": "paper-conference"
+  },
+  {
+    "id": "Jiang2018RevisitingDS",
+    "author": [
+      {
+        "family": "Jiang",
+        "given": "Tingsong"
+      },
+      {
+        "family": "Liu",
+        "given": "Jing"
+      },
+      {
+        "family": "Lin",
+        "given": "Chin-Yew"
+      },
+      {
+        "family": "Sui",
+        "given": "Zhifang"
+      }
+    ],
+    "container-title": "LREC",
+    "issued": {
+      "date-parts": [
+        [
+          2018
+        ]
+      ]
+    },
+    "title": "Revisiting distant supervision for relation extraction",
+    "type": "paper-conference"
   }
 ]
