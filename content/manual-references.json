@@ -107,6 +107,32 @@
     "type": "paper-conference"
   },
   {
+    "id": "chemprot_winner",
+    "URL": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC6796919/",
+    "author": [
+      {
+        "family": "Antunes",
+        "given": "Rui"
+      },
+      {
+        "family": "Matos",
+        "given": "Sérgio"
+      }
+    ],
+    "container-title": "Database : the journal of biological databases and curation",
+    "issued": {
+      "date-parts": [
+        [
+          2019,
+          1
+        ]
+      ]
+    },
+    "publisher": "Oxford University Press",
+    "title": "Extraction of chemical-protein interactions from the literature using neural networks and narrow instance representation",
+    "type": "no-type"
+    },
+    {
     "id": "Jiang2018RevisitingDS",
     "author": [
       {
