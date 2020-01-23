@@ -74,19 +74,19 @@ header-includes: '<!--
 
   <link rel="alternate" type="application/pdf" href="https://greenelab.github.io/text_mined_hetnet_manuscript/manuscript.pdf" />
 
-  <link rel="alternate" type="text/html" href="https://greenelab.github.io/text_mined_hetnet_manuscript/v/a8bf9e7cc5e858c517ac3343ba6d89d2a8162022/" />
+  <link rel="alternate" type="text/html" href="https://greenelab.github.io/text_mined_hetnet_manuscript/v/962cb9c913853598a8721b704e661384a4f00291/" />
 
-  <meta name="manubot_html_url_versioned" content="https://greenelab.github.io/text_mined_hetnet_manuscript/v/a8bf9e7cc5e858c517ac3343ba6d89d2a8162022/" />
+  <meta name="manubot_html_url_versioned" content="https://greenelab.github.io/text_mined_hetnet_manuscript/v/962cb9c913853598a8721b704e661384a4f00291/" />
 
-  <meta name="manubot_pdf_url_versioned" content="https://greenelab.github.io/text_mined_hetnet_manuscript/v/a8bf9e7cc5e858c517ac3343ba6d89d2a8162022/manuscript.pdf" />
+  <meta name="manubot_pdf_url_versioned" content="https://greenelab.github.io/text_mined_hetnet_manuscript/v/962cb9c913853598a8721b704e661384a4f00291/manuscript.pdf" />
 
   <meta property="og:type" content="article" />
 
   <meta property="twitter:card" content="summary_large_image" />
 
-  <meta property="og:image" content="https://github.com/greenelab/text_mined_hetnet_manuscript/raw/a8bf9e7cc5e858c517ac3343ba6d89d2a8162022/thumbnail.png" />
+  <meta property="og:image" content="https://github.com/greenelab/text_mined_hetnet_manuscript/raw/962cb9c913853598a8721b704e661384a4f00291/thumbnail.png" />
 
-  <meta property="twitter:image" content="https://github.com/greenelab/text_mined_hetnet_manuscript/raw/a8bf9e7cc5e858c517ac3343ba6d89d2a8162022/thumbnail.png" />
+  <meta property="twitter:image" content="https://github.com/greenelab/text_mined_hetnet_manuscript/raw/962cb9c913853598a8721b704e661384a4f00291/thumbnail.png" />
 
   <link rel="icon" type="image/png" sizes="192x192" href="https://manubot.org/favicon-192x192.png" />
 
@@ -112,9 +112,9 @@ _A DOI-citable version of this manuscript is available at <https://doi.org/10.11
 
 <small><em>
 This manuscript
-([permalink](https://greenelab.github.io/text_mined_hetnet_manuscript/v/a8bf9e7cc5e858c517ac3343ba6d89d2a8162022/))
+([permalink](https://greenelab.github.io/text_mined_hetnet_manuscript/v/962cb9c913853598a8721b704e661384a4f00291/))
 was automatically generated
-from [greenelab/text_mined_hetnet_manuscript@a8bf9e7](https://github.com/greenelab/text_mined_hetnet_manuscript/tree/a8bf9e7cc5e858c517ac3343ba6d89d2a8162022)
+from [greenelab/text_mined_hetnet_manuscript@962cb9c](https://github.com/greenelab/text_mined_hetnet_manuscript/tree/962cb9c913853598a8721b704e661384a4f00291)
 on January 23, 2020.
 </em></small>
 
@@ -178,29 +178,32 @@ We expect that practical use of this strategy would include additional filtering
 
 ## Introduction
 
-Knowledge bases are important resources that hold complex structured and unstructed information. 
+Knowledge bases are important resources that hold complex structured and unstructured information. 
 These resources have been used in important tasks such as network analysis for drug repurposing discovery [@u8pIAt5j; @bPvC638e; @O21tn8vf] or as a source of training labels for text mining systems [@EHeTvZht; @CVHSURuI; @HS4ARwmZ]. 
 Populating knowledge bases often requires highly-trained scientists to read biomedical literature and summarize the results [@N1Ai0gaI].
-This manual curation process requires a significant amount of effort and time: in 2007 researchers estimated that filling in the missing annotations would require approximately 8.4 years [@UdzvLgBM].
-The rate of publications has continued to increase exponentially [@1DBISRlwN].
-This has been recognized as a considerable challenge, which can lead to gaps in knowledge bases [@UdzvLgBM].  
-Relationship extraction has been studied as a solution towards handling this problem [@N1Ai0gaI].
-This process consists of creating a machine learning system to automatically scan and extract relationships from textual sources.
-Machine learning methods often leverage a large corpus of well-labeled training data, which still requires manual curation.
-Distant supervision is one technique to sidestep the requirement of well-annotated sentences: with distant supervision one makes the assumption that all sentences containing an entity pair found in a selected database provide evidence for a relationship [@EHeTvZht].
-Distant supervision provides many labeled examples; however it is accompanied by a decrease in the quality of the labels.  
-Ratner et al. [@5Il3kN32] recently introduced "data programming" as a solution.
-Data programming combines distant supervision with the automated labeling of text using hand-written label functions.
-The distant supervision sources and label functions are integrated using a noise aware generative model that is used to produce training labels.
-Combining distant supervision with label functions can dramatically reduce the time required to acquire sufficient training data.
-However, constructing a knowledge base of heterogeneous relationships through this framework still requires tens of hand-written label functions for each relationship type.
-Writing useful label functions requires significant error analysis, which can be a time-consuming process.  
+This time consuming process is referred to as manual curation.
+In 2007 researchers estimated that filling a knowledge base via manual curation would require approximately 8.4 years to complete [@UdzvLgBM]. 
+The rate of publications continues to exponentially increase [@1DBISRlwN], so using only manual curation to fully populate a knowledge base has become impractical.  
 
-In this paper, we aim to address the question: to what extent can label functions be re-used across different relationship types?
-We hypothesized that sentences describing one relationship type may share information in the form of keywords or sentence structure with sentences that indicate other relationship types.
-We designed a series of experiments to determine the extent to which label function re-use enhanced performance over distant supervision alone.
-We examined relationships that indicated similar types of physical interactions (i.e., gene-binds-gene and compound-binds-gene) as well as different types (i.e., disease-associates-gene and compound-treats-disease).
-The re-use of label functions could dramatically reduce the number required to generate and update a heterogeneous knowledge graph.
+Relationship extraction has been studied as a solution towards handling the challenge posed by an exponentially growing body of literature [@N1Ai0gaI].
+This process consists of creating an expert system to automatically scan, detect and extract relationships from textual sources.
+Typically, these systems utilize machine learning techniques that require large corpora of well-labeled training data.
+These corpora are difficult to obtain, because they are constructed via particularly detailed manual curation.
+Distant supervision is a technique designed to sidestep the dependence on manual curation and quickly generate large training datasets.
+This technique makes the assumption that positive examples established in selected databases can be applied to any sentence that contains them [@EHeTvZht].
+The central problem with this technique is that generated labels are often of low quality which results in an immense amount of false positives [@mwM58zzr].  
+
+Ratner et al. [@5Il3kN32] recently introduced "data programming" as a solution.
+Data programming is a paradigm that combines distant supervision with simple rules and heuristics written as small programs called label functions.
+These label functions are consolidated via a noise aware generative model that is designed to produce training labels for large datasets.
+Using this paradigm can dramatically reduce the time required to obtain sufficient training data; however, writing a useful label function requires a significant amount of time and error analysis.
+This dependency makes constructing a knowledge base with a myriad of heterogenous relationships nearly impossible as tens or possibly hundreds of label functions are required per relationship type.  
+
+In this paper, we seek to accelerate the label function creation process by measuring the extent to which label functions can be re-used across different relationship types.
+We hypothesize that sentences describing one relationship type may share linguistic features such as keywords or sentence structure with sentences describing other relationship types.
+We conduct a series of experiments to determine the degree to which label function re-use enhanced performance over distant supervision alone.
+We focus on relationships that indicate similar types of physical interactions (i.e., gene-binds-gene and compound-binds-gene) as well as different types (i.e., disease-associates-gene and compound-treats-disease).
+Re-using label functions could dramatically reduce time required to populate a knowledge base with a multitude of heterogeneous relationships.
 
 ### Related Work
 

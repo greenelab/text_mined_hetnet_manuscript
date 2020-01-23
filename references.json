@@ -3871,6 +3871,38 @@
     "note": "This CSL JSON Item was loaded by Manubot v0.2.4 from a manual reference file.\nmanual_reference_filename: manual-references.json\nstandard_id: raw:IEPA"
   },
   {
+    "id": "mwM58zzr",
+    "author": [
+      {
+        "family": "Jiang",
+        "given": "Tingsong"
+      },
+      {
+        "family": "Liu",
+        "given": "Jing"
+      },
+      {
+        "family": "Lin",
+        "given": "Chin-Yew"
+      },
+      {
+        "family": "Sui",
+        "given": "Zhifang"
+      }
+    ],
+    "container-title": "LREC",
+    "issued": {
+      "date-parts": [
+        [
+          2018
+        ]
+      ]
+    },
+    "title": "Revisiting distant supervision for relation extraction",
+    "type": "paper-conference",
+    "note": "This CSL JSON Item was loaded by Manubot v0.2.4 from a manual reference file.\nmanual_reference_filename: manual-references.json\noriginal_id: Jiang2018RevisitingDS\nstandard_id: raw:Jiang2018RevisitingDS"
+  },
+  {
     "id": "szMMEMdC",
     "author": [
       {
