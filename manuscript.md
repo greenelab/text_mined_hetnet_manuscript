@@ -14,13 +14,13 @@ header-includes: '<!--
 
   <meta name="dc.format" content="text/html" />
 
-  <meta name="dc.title" content="Reusing label functions to extract multiple types of relationships from biomedical abstracts at scale" />
+  <meta name="dc.title" content="Expanding a Database-derived Biomedical Knowledge Graph via Multi-relation Extraction from Biomedical Abstracts" />
 
-  <meta name="citation_title" content="Reusing label functions to extract multiple types of relationships from biomedical abstracts at scale" />
+  <meta name="citation_title" content="Expanding a Database-derived Biomedical Knowledge Graph via Multi-relation Extraction from Biomedical Abstracts" />
 
-  <meta property="og:title" content="Reusing label functions to extract multiple types of relationships from biomedical abstracts at scale" />
+  <meta property="og:title" content="Expanding a Database-derived Biomedical Knowledge Graph via Multi-relation Extraction from Biomedical Abstracts" />
 
-  <meta property="twitter:title" content="Reusing label functions to extract multiple types of relationships from biomedical abstracts at scale" />
+  <meta property="twitter:title" content="Expanding a Database-derived Biomedical Knowledge Graph via Multi-relation Extraction from Biomedical Abstracts" />
 
   <meta name="dc.date" content="2020-01-23" />
 
@@ -74,19 +74,19 @@ header-includes: '<!--
 
   <link rel="alternate" type="application/pdf" href="https://greenelab.github.io/text_mined_hetnet_manuscript/manuscript.pdf" />
 
-  <link rel="alternate" type="text/html" href="https://greenelab.github.io/text_mined_hetnet_manuscript/v/2bdf3d71ea84d5a6c083f2d1ffea54d736f1389c/" />
+  <link rel="alternate" type="text/html" href="https://greenelab.github.io/text_mined_hetnet_manuscript/v/9ae0c5443269a5dd02ef9e40f7fa4ef879a660db/" />
 
-  <meta name="manubot_html_url_versioned" content="https://greenelab.github.io/text_mined_hetnet_manuscript/v/2bdf3d71ea84d5a6c083f2d1ffea54d736f1389c/" />
+  <meta name="manubot_html_url_versioned" content="https://greenelab.github.io/text_mined_hetnet_manuscript/v/9ae0c5443269a5dd02ef9e40f7fa4ef879a660db/" />
 
-  <meta name="manubot_pdf_url_versioned" content="https://greenelab.github.io/text_mined_hetnet_manuscript/v/2bdf3d71ea84d5a6c083f2d1ffea54d736f1389c/manuscript.pdf" />
+  <meta name="manubot_pdf_url_versioned" content="https://greenelab.github.io/text_mined_hetnet_manuscript/v/9ae0c5443269a5dd02ef9e40f7fa4ef879a660db/manuscript.pdf" />
 
   <meta property="og:type" content="article" />
 
   <meta property="twitter:card" content="summary_large_image" />
 
-  <meta property="og:image" content="https://github.com/greenelab/text_mined_hetnet_manuscript/raw/2bdf3d71ea84d5a6c083f2d1ffea54d736f1389c/thumbnail.png" />
+  <meta property="og:image" content="https://github.com/greenelab/text_mined_hetnet_manuscript/raw/9ae0c5443269a5dd02ef9e40f7fa4ef879a660db/thumbnail.png" />
 
-  <meta property="twitter:image" content="https://github.com/greenelab/text_mined_hetnet_manuscript/raw/2bdf3d71ea84d5a6c083f2d1ffea54d736f1389c/thumbnail.png" />
+  <meta property="twitter:image" content="https://github.com/greenelab/text_mined_hetnet_manuscript/raw/9ae0c5443269a5dd02ef9e40f7fa4ef879a660db/thumbnail.png" />
 
   <link rel="icon" type="image/png" sizes="192x192" href="https://manubot.org/favicon-192x192.png" />
 
@@ -102,7 +102,7 @@ keywords:
 - heterogenous netowrks
 - text mining
 lang: en-US
-title: Reusing label functions to extract multiple types of relationships from biomedical abstracts at scale
+title: Expanding a Database-derived Biomedical Knowledge Graph via Multi-relation Extraction from Biomedical Abstracts
 ...
 
 
@@ -112,9 +112,9 @@ _A DOI-citable version of this manuscript is available at <https://doi.org/10.11
 
 <small><em>
 This manuscript
-([permalink](https://greenelab.github.io/text_mined_hetnet_manuscript/v/2bdf3d71ea84d5a6c083f2d1ffea54d736f1389c/))
+([permalink](https://greenelab.github.io/text_mined_hetnet_manuscript/v/9ae0c5443269a5dd02ef9e40f7fa4ef879a660db/))
 was automatically generated
-from [greenelab/text_mined_hetnet_manuscript@2bdf3d7](https://github.com/greenelab/text_mined_hetnet_manuscript/tree/2bdf3d71ea84d5a6c083f2d1ffea54d736f1389c)
+from [greenelab/text_mined_hetnet_manuscript@9ae0c54](https://github.com/greenelab/text_mined_hetnet_manuscript/tree/9ae0c5443269a5dd02ef9e40f7fa4ef879a660db)
 on January 23, 2020.
 </em></small>
 
@@ -160,20 +160,16 @@ on January 23, 2020.
 
 ## Abstract {.page_break_before}
 
-Knowledge bases support multiple research efforts such as providing contextual information for biomedical entities, constructing networks, and supporting the interpretation of high-throughput analyses.
-Some knowledge bases are automatically constructed, but most are populated via some form of manual curation.
-Manual curation is time consuming and difficult to scale in the context of an increasing publication rate.
-A recently described "data programming" paradigm seeks to circumvent this arduous process by combining distant supervision with simple rules and heuristics written as labeling functions that can be automatically applied to inputs.
-Unfortunately writing useful label functions requires substantial error analysis and is a nontrivial task: in early efforts to use data programming we found that producing each label function could take a few days.
-Producing a biomedical knowledge base with multiple node and edge types could take hundreds or possibly thousands of label functions.
-In this paper we sought to evaluate the extent to which label functions could be re-used across edge types. 
-We used a subset of Hetionet v1 that centered on disease, compound, and gene nodes to evaluate this approach.
-We compared a baseline distant supervision model with the same distant supervision resources added to edge-type-specific label functions, edge-type-mismatch label functions, and all label functions.
-We confirmed that adding additional edge-type-specific label functions improves performance.
-We also found that adding one or a few edge-type-mismatch label functions nearly always improved performance.
-Adding a large number of edge-type-mismatch label functions produce variable performance that depends on the edge type being predicted and the label function's edge type source.
-Lastly, we show that this approach, even on this subgraph of Hetionet, could add new edges to Hetionet v1 with high confidence.
-We expect that practical use of this strategy would include additional filtering and scoring methods which would further enhance precision.
+Knowledge graphs support multiple research efforts by providing contextual information for biomedical entities, constructing networks, and supporting the interpretation of high-throughput analyses. 
+These databases are populated via some form of manual curation, which is difficult to scale in the context of an increasing publication rate. 
+Data programming is a paradigm that circumvents this arduous process by combining databases with simple rules and heuristics written as label functions, which are programs designed to automatically annotate textual data. 
+Unfortunately, writing a useful label function requires substantial error analysis and is a nontrivial task that takes multiple days per function.
+This makes populating a knowledge graph with multiple nodes and edge types practically infeasible. 
+We sought to accelerate the label function creation process by evaluating the extent to which label functions could be re-used across multiple edge types.
+We used a subset of an existing knowledge graph centered on disease, compound, and gene entities to evaluate label function re-use. 
+We determined the best label function combination by comparing a baseline database-only model with the same model but added edge-specific or edge-mismatch label functions.
+We confirmed that adding additional edge-specific rather than edge-mismatch label functions often improves text annotation and show that this approach can incorporate novel edges into our source knowledge graph. 
+We expect that continued development of this strategy  has the potential to swiftly populate knowledge graphs with new discoveries, ensuring that these resources include cutting-edge results.
 
 
 ## Introduction
