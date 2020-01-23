@@ -74,19 +74,19 @@ header-includes: '<!--
 
   <link rel="alternate" type="application/pdf" href="https://greenelab.github.io/text_mined_hetnet_manuscript/manuscript.pdf" />
 
-  <link rel="alternate" type="text/html" href="https://greenelab.github.io/text_mined_hetnet_manuscript/v/ba3e152fbfac8678f8c23b4324705d25b7579eee/" />
+  <link rel="alternate" type="text/html" href="https://greenelab.github.io/text_mined_hetnet_manuscript/v/e0278f840c7e4cccf89df47b193c15bb27c43ceb/" />
 
-  <meta name="manubot_html_url_versioned" content="https://greenelab.github.io/text_mined_hetnet_manuscript/v/ba3e152fbfac8678f8c23b4324705d25b7579eee/" />
+  <meta name="manubot_html_url_versioned" content="https://greenelab.github.io/text_mined_hetnet_manuscript/v/e0278f840c7e4cccf89df47b193c15bb27c43ceb/" />
 
-  <meta name="manubot_pdf_url_versioned" content="https://greenelab.github.io/text_mined_hetnet_manuscript/v/ba3e152fbfac8678f8c23b4324705d25b7579eee/manuscript.pdf" />
+  <meta name="manubot_pdf_url_versioned" content="https://greenelab.github.io/text_mined_hetnet_manuscript/v/e0278f840c7e4cccf89df47b193c15bb27c43ceb/manuscript.pdf" />
 
   <meta property="og:type" content="article" />
 
   <meta property="twitter:card" content="summary_large_image" />
 
-  <meta property="og:image" content="https://github.com/greenelab/text_mined_hetnet_manuscript/raw/ba3e152fbfac8678f8c23b4324705d25b7579eee/thumbnail.png" />
+  <meta property="og:image" content="https://github.com/greenelab/text_mined_hetnet_manuscript/raw/e0278f840c7e4cccf89df47b193c15bb27c43ceb/thumbnail.png" />
 
-  <meta property="twitter:image" content="https://github.com/greenelab/text_mined_hetnet_manuscript/raw/ba3e152fbfac8678f8c23b4324705d25b7579eee/thumbnail.png" />
+  <meta property="twitter:image" content="https://github.com/greenelab/text_mined_hetnet_manuscript/raw/e0278f840c7e4cccf89df47b193c15bb27c43ceb/thumbnail.png" />
 
   <link rel="icon" type="image/png" sizes="192x192" href="https://manubot.org/favicon-192x192.png" />
 
@@ -112,9 +112,9 @@ _A DOI-citable version of this manuscript is available at <https://doi.org/10.11
 
 <small><em>
 This manuscript
-([permalink](https://greenelab.github.io/text_mined_hetnet_manuscript/v/ba3e152fbfac8678f8c23b4324705d25b7579eee/))
+([permalink](https://greenelab.github.io/text_mined_hetnet_manuscript/v/e0278f840c7e4cccf89df47b193c15bb27c43ceb/))
 was automatically generated
-from [greenelab/text_mined_hetnet_manuscript@ba3e152](https://github.com/greenelab/text_mined_hetnet_manuscript/tree/ba3e152fbfac8678f8c23b4324705d25b7579eee)
+from [greenelab/text_mined_hetnet_manuscript@e0278f8](https://github.com/greenelab/text_mined_hetnet_manuscript/tree/e0278f840c7e4cccf89df47b193c15bb27c43ceb)
 on January 23, 2020.
 </em></small>
 
@@ -475,14 +475,39 @@ DaG was the exception to the general rule: the pooled set of label functions imp
 The decreasing trend when pooling all label functions supports the notion that label functions cannot easily transfer between edge types (exception being CbG on GiG and vise versa).
 
 ![
-Using all label functions generally hinders generative model performance.
-Each line plot header depicts the edge type the generative model is trying to predict, while the colors represent the source of label functions.
-For example, orange represents sampling label functions designed to predict the Compound treats Disease (CtD) edge type.
-The x axis shows the number of randomly sampled label functions being incorporated onto the database only baseline model (point at 0).
-The y axis shows area under the receiver operating curve (AUROC).
-Each point on the plot shows the average of 50 sample runs, while the error bars show the 95% confidence intervals of all runs.
+A grid of AUROC (A) scores for each edge type.
+Each plot consists of adding a single label function on top of the baseline model.
+This label function emits a positive (shown in blue) or negative (shown in orange) label at specified frequencies, and performance at zero is equivalent to not having a randomly emitting label function.
+The error bars represent 95% confidence intervals for AUROC or AUPR (y-axis) at each emission frequency.
+](https://raw.githubusercontent.com/danich1/snorkeling/ee638b4e45717a86f54a2744a813baaa90bc6b84/figures/gen_model_error_analysis/transfer_test_set_auroc.png){#fig:auroc_random_label_function_performance}
+
+We observed that including one label function of a mismatched type to distant supervision often improved performance, so we evaluated the effects of adding a random label function in the same setting.
+We found that usually adding random noise did not improve performance (Figure {@fig:auroc_random_label_function_performance} and Supplemental Figure {@fig:aupr_random_label_function_performance}).
+For the CbG edge type we did observe slightly increased performance via AUPR (Supplemental Figure {@fig:aupr_random_label_function_performance}).
+However, performance changes in general were smaller than those observed with mismatched label types.
+
+### Discriminative Model Performance
+
+![
+The discriminator model usually improves at a faster rate than the generative model as more edge-specific label function are included.
+The line plot headers represents the specific edge type the discriminator model is trying to predict.
+The x-axis shows the number of randomly sampled label functions that are incorporated on top of the baseline model (point at 0).
+The y axis shows the area under the receiver operating curve (AUROC).
+Each datapoint represents the average of each 50 sample run and the error bars represent the 95% confidence interval of each run.
 The baseline and “All” data points consist of sampling from the entire fixed set of label functions.
-](https://raw.githubusercontent.com/danich1/snorkeling/86037d185a299a1f6dd4dd68605073849c72af6f/figures/label_sampling_experiment/all_lf_test_set_auroc.png){#fig:auroc_grabbag_gen_model_test_set}
+This makes the error bars appear flat.
+](https://raw.githubusercontent.com/danich1/snorkeling/1941485a02c8aa9972c67d8f9d3ff96acb0f3b7b/figures/disc_model_experiment/disc_model_test_auroc.png){#fig:auroc_discriminative_model_performance}
+
+The discriminator model is designed to augment performance over the generative model by incorporating textual features along with estimated training labels.
+The discriminative model is a piecewise convolutional neural network trained over word embeddings (See Methods).
+We found that the discriminative model generally out-performed the generative model as more edge-specific label functions are incorporated (Figure {@fig:auroc_discriminative_model_performance} and Supplemental Figure {@fig:aupr_discriminative_model_performance}).
+The discriminator model's performance is often poorest when very few edge-specific label functions are added to the baseline model (seen in Disease associates Gene (DaG), Compound binds Gene (CbG) and Gene interacts Gene (GiG)). 
+This suggests that generative models trained with more label functions produce outputs that are more suitable for training discriminative models.
+An exception to this trend is Compound treats Disease (CtD) where the discriminator model out-performs the generative model at all levels of sampling.
+We observed the opposite trend with the Compound-binds-Gene (CbG) edges: the discriminator model was always poorer or indistinguishable from the generative model.
+Interestingly, the AUPR for CbG plateaus below the generative model and the decreases when all edge-specific label functions are used (Supplemental Figure {@fig:aupr_discriminative_model_performance}).
+This suggests that the discriminator model might be predicting more false positives in this setting.
+Incorporating more edge-specific label functions usually improves performance for the discriminator model over the generator model.
 
 ### Discriminative Model Calibration
 
@@ -638,34 +663,14 @@ The baseline and “All” data points consist of sampling from the entire fixed
 ### Discriminative Model Performance
 
 ![
-Grid of AUROC scores for each discriminative model trained using generated labels from the generative models.
-The rows depict the edge type each model is trying to predict and the columns are the edge type specific sources from which each label function was sampled. 
-For example, the top-left most square depicts the discriminator model predicting DaG sentences, while randomly sampling label functions designed to predict the DaG relationship.
-The error bars over the points represents the standard deviation between sampled runs.
-The square towards the right depicts the discriminative model predicting DaG sentences, while randomly sampling label functions designed to predict the CtD relationship.
-This pattern continues filling out the rest of the grid.
-The right most column consists of pooling every relationship specific label function and proceeding as above.
-](https://raw.githubusercontent.com/danich1/snorkeling/ee638b4e45717a86f54a2744a813baaa90bc6b84/figures/label_sampling_experiment/disc_performance_test_set_auroc.png){#fig:auroc_discriminative_model_performance}
-
-In this framework we used a generative model trained over label functions to produce probabilistic training labels for each sentence.
-Then we trained a discriminative model, which has full access to a representation of the text of the sentence, to predict the generated labels.
-The discriminative model is a convolutional neural network trained over word embeddings (See Methods).
-We report the results of the discriminative model using AUROC and AUPR (Figures {@fig:auroc_discriminative_model_performance} and {@fig:aupr_discriminative_model_performance}).  
-  
-We found that the discriminative model under-performed the generative model in most cases.
-Only for the CtD edge does the discriminative model appear to provide performance above the generative model and that increased performance is only with a modest number of label functions.
-With the full set of label functions, performance of both models remain similar.
-The one or a few mismatched label functions (off-diagonal) improving generative model performance trend is retained despite the limited performance of the discriminative model.
-
-![
-Grid of AUPR scores for each discriminative model trained using generated labels from the generative models.
-The rows depict the edge type each model is trying to predict and the columns are the edge type specific sources from which each label function was sampled. 
-For example, the top-left most square depicts the discriminator model predicting DaG sentences, while randomly sampling label functions designed to predict the DaG relationship.
-The error bars over the points represents the standard deviation between sampled runs.
-The square towards the right depicts the discriminative model predicting DaG sentences, while randomly sampling label functions designed to predict the CtD relationship.
-This pattern continues filling out the rest of the grid.
-The right most column consists of pooling every relationship specific label function and proceeding as above.
-](https://raw.githubusercontent.com/danich1/snorkeling/ee638b4e45717a86f54a2744a813baaa90bc6b84/figures/label_sampling_experiment/disc_performance_test_set_auprc.png){#fig:aupr_discriminative_model_performance}
+The discriminator model improves performance as the number of edge-specific label functions is added to the baseline model.
+The line plot headers represents the specific edge type the discriminator model is trying to predict.
+The x-axis shows the number of randomly sampled label functions incorporated on top of the baseline model (point at 0).
+The y axis shows the area under the precision recall curve (AUPR).
+Each datapoint shows the average of each sample runs, while the error bars represents the 95% confidence interval at each point.
+The baseline and “All” data points consist of sampling from the entire fixed set of label functions.
+This makes the error bars appear flat.
+](https://raw.githubusercontent.com/danich1/snorkeling/1941485a02c8aa9972c67d8f9d3ff96acb0f3b7b/figures/disc_model_experiment/disc_model_test_aupr.png){#fig:aupr_discriminative_model_performance}
 
 #### Model Calibration Tables
 
