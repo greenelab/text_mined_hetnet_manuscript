@@ -74,19 +74,19 @@ header-includes: '<!--
 
   <link rel="alternate" type="application/pdf" href="https://greenelab.github.io/text_mined_hetnet_manuscript/manuscript.pdf" />
 
-  <link rel="alternate" type="text/html" href="https://greenelab.github.io/text_mined_hetnet_manuscript/v/962cb9c913853598a8721b704e661384a4f00291/" />
+  <link rel="alternate" type="text/html" href="https://greenelab.github.io/text_mined_hetnet_manuscript/v/ba3e152fbfac8678f8c23b4324705d25b7579eee/" />
 
-  <meta name="manubot_html_url_versioned" content="https://greenelab.github.io/text_mined_hetnet_manuscript/v/962cb9c913853598a8721b704e661384a4f00291/" />
+  <meta name="manubot_html_url_versioned" content="https://greenelab.github.io/text_mined_hetnet_manuscript/v/ba3e152fbfac8678f8c23b4324705d25b7579eee/" />
 
-  <meta name="manubot_pdf_url_versioned" content="https://greenelab.github.io/text_mined_hetnet_manuscript/v/962cb9c913853598a8721b704e661384a4f00291/manuscript.pdf" />
+  <meta name="manubot_pdf_url_versioned" content="https://greenelab.github.io/text_mined_hetnet_manuscript/v/ba3e152fbfac8678f8c23b4324705d25b7579eee/manuscript.pdf" />
 
   <meta property="og:type" content="article" />
 
   <meta property="twitter:card" content="summary_large_image" />
 
-  <meta property="og:image" content="https://github.com/greenelab/text_mined_hetnet_manuscript/raw/962cb9c913853598a8721b704e661384a4f00291/thumbnail.png" />
+  <meta property="og:image" content="https://github.com/greenelab/text_mined_hetnet_manuscript/raw/ba3e152fbfac8678f8c23b4324705d25b7579eee/thumbnail.png" />
 
-  <meta property="twitter:image" content="https://github.com/greenelab/text_mined_hetnet_manuscript/raw/962cb9c913853598a8721b704e661384a4f00291/thumbnail.png" />
+  <meta property="twitter:image" content="https://github.com/greenelab/text_mined_hetnet_manuscript/raw/ba3e152fbfac8678f8c23b4324705d25b7579eee/thumbnail.png" />
 
   <link rel="icon" type="image/png" sizes="192x192" href="https://manubot.org/favicon-192x192.png" />
 
@@ -112,9 +112,9 @@ _A DOI-citable version of this manuscript is available at <https://doi.org/10.11
 
 <small><em>
 This manuscript
-([permalink](https://greenelab.github.io/text_mined_hetnet_manuscript/v/962cb9c913853598a8721b704e661384a4f00291/))
+([permalink](https://greenelab.github.io/text_mined_hetnet_manuscript/v/ba3e152fbfac8678f8c23b4324705d25b7579eee/))
 was automatically generated
-from [greenelab/text_mined_hetnet_manuscript@962cb9c](https://github.com/greenelab/text_mined_hetnet_manuscript/tree/962cb9c913853598a8721b704e661384a4f00291)
+from [greenelab/text_mined_hetnet_manuscript@ba3e152](https://github.com/greenelab/text_mined_hetnet_manuscript/tree/ba3e152fbfac8678f8c23b4324705d25b7579eee)
 on January 23, 2020.
 </em></small>
 
@@ -524,21 +524,18 @@ This implies that with better tuning the discriminative model has the potential 
 ## Conclusion and Future Direction
 
 Filling out knowledge bases via manual curation can be an arduous and erroneous task [@UdzvLgBM].
-As the rate of publications increases manual curation becomes an infeasible approach.
+As the rate of publications increases, relying on manual curation alone becomes impractical.
 Data programming, a paradigm that uses label functions as a means to speed up the annotation process, can be used as a solution for this problem.
-A problem with this paradigm is that creating a useful label function takes a significant amount of time. 
-We tested the feasibility of reusing label functions as a way to speed up the  label function creation process.
-We conclude that label function re-use across edge types can increase performance when there are certain constraints on the number of functions re-used.
-More sophisticated methods of reuse may be able to capture many of the advantages and avoid many of the drawbacks.
-Adding more relevant label functions can increase overall performance.
-The discriminative model, under this paradigm, has a tendency to overfit to predictions of the generative model.
-We recommend implementing regularization techniques such as drop out and weight decay to combat this issue.
+An obstacle for this paradigm is creating useful label functions, which takes a considerable amount of time. 
+We tested the feasibility of reusing label functions as a way to reduce the total number of label functions required for strong prediction performance.
+We conclude that label functions may be re-used with closely related edge types, but that re-use does not improve performance for most pairings.
+The discriminative model's performance improves as more edge-specific label functions are incorporated into the generative model; however, we did notice that performance greatly depends on the generative model.
 
 This work sets up the foundation for creating a common framework that mines text to create edges.
-Within this framework we would continuously ingest new knowledge as novel findings are published, while providing a single confidence score for an edge by consolidating sentence scores.
-Different from existing hetnets like Hetionet where text-derived edges generally cannot be exactly attributed to excerpts from literature [@O21tn8vf; @L2B5V7XC], our approach would annotate each edge with its source sentences.
+Within this framework we would continuously ingest new knowledge as novel findings are published, while providing a single confidence score for an edge via sentence score consolidation.
+As opposed to many existing knowledge graphs, for example Hetionet where text-derived edges generally cannot be exactly attributed to excerpts from literature [@O21tn8vf; @L2B5V7XC], our approach has the potential to annotate each edge based on its source sentences.
 In addition, edges generated with this approach would be unencumbered from upstream licensing or copyright restrictions, enabling openly licensed hetnets at a scale not previously possible [@4G0GW8oe; @137tbemL9; @1GwdMLPbV].
-Accordingly, we plan to use this framework to create a robust multi-edge extractor via multitask learning [@9Jo1af7Z] to construct continuously updating literature-derived hetnets.
+New multitask learning [@9Jo1af7Z] strategies may make it even more practical to reuse label functions to construct continuously updating literature-derived knowledge graphs.
 
 
 ## Supplemental Information
