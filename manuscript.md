@@ -74,19 +74,19 @@ header-includes: '<!--
 
   <link rel="alternate" type="application/pdf" href="https://greenelab.github.io/text_mined_hetnet_manuscript/manuscript.pdf" />
 
-  <link rel="alternate" type="text/html" href="https://greenelab.github.io/text_mined_hetnet_manuscript/v/e0278f840c7e4cccf89df47b193c15bb27c43ceb/" />
+  <link rel="alternate" type="text/html" href="https://greenelab.github.io/text_mined_hetnet_manuscript/v/2bdf3d71ea84d5a6c083f2d1ffea54d736f1389c/" />
 
-  <meta name="manubot_html_url_versioned" content="https://greenelab.github.io/text_mined_hetnet_manuscript/v/e0278f840c7e4cccf89df47b193c15bb27c43ceb/" />
+  <meta name="manubot_html_url_versioned" content="https://greenelab.github.io/text_mined_hetnet_manuscript/v/2bdf3d71ea84d5a6c083f2d1ffea54d736f1389c/" />
 
-  <meta name="manubot_pdf_url_versioned" content="https://greenelab.github.io/text_mined_hetnet_manuscript/v/e0278f840c7e4cccf89df47b193c15bb27c43ceb/manuscript.pdf" />
+  <meta name="manubot_pdf_url_versioned" content="https://greenelab.github.io/text_mined_hetnet_manuscript/v/2bdf3d71ea84d5a6c083f2d1ffea54d736f1389c/manuscript.pdf" />
 
   <meta property="og:type" content="article" />
 
   <meta property="twitter:card" content="summary_large_image" />
 
-  <meta property="og:image" content="https://github.com/greenelab/text_mined_hetnet_manuscript/raw/e0278f840c7e4cccf89df47b193c15bb27c43ceb/thumbnail.png" />
+  <meta property="og:image" content="https://github.com/greenelab/text_mined_hetnet_manuscript/raw/2bdf3d71ea84d5a6c083f2d1ffea54d736f1389c/thumbnail.png" />
 
-  <meta property="twitter:image" content="https://github.com/greenelab/text_mined_hetnet_manuscript/raw/e0278f840c7e4cccf89df47b193c15bb27c43ceb/thumbnail.png" />
+  <meta property="twitter:image" content="https://github.com/greenelab/text_mined_hetnet_manuscript/raw/2bdf3d71ea84d5a6c083f2d1ffea54d736f1389c/thumbnail.png" />
 
   <link rel="icon" type="image/png" sizes="192x192" href="https://manubot.org/favicon-192x192.png" />
 
@@ -112,9 +112,9 @@ _A DOI-citable version of this manuscript is available at <https://doi.org/10.11
 
 <small><em>
 This manuscript
-([permalink](https://greenelab.github.io/text_mined_hetnet_manuscript/v/e0278f840c7e4cccf89df47b193c15bb27c43ceb/))
+([permalink](https://greenelab.github.io/text_mined_hetnet_manuscript/v/2bdf3d71ea84d5a6c083f2d1ffea54d736f1389c/))
 was automatically generated
-from [greenelab/text_mined_hetnet_manuscript@e0278f8](https://github.com/greenelab/text_mined_hetnet_manuscript/tree/e0278f840c7e4cccf89df47b193c15bb27c43ceb)
+from [greenelab/text_mined_hetnet_manuscript@2bdf3d7](https://github.com/greenelab/text_mined_hetnet_manuscript/tree/2bdf3d71ea84d5a6c083f2d1ffea54d736f1389c)
 on January 23, 2020.
 </em></small>
 
@@ -426,6 +426,50 @@ $$\hat{\theta} = argmin_{\theta} -\sum_{\Lambda} \sum_{Y} log P_{\theta}(\Lambda
 
 In the framework we used predictions from the generative model, $\hat{Y} = P_{\hat{\theta}}(Y \mid \Lambda)$, as training classes for our dataset [@vzoBuh4l; @9Jo1af7Z]. 
 
+### Discriminative Model
+
+The generative model produces predicted probabilities for each sentence by integrating output from label functions.
+The discriminative model is a neural network trained to produce classification labels by intergrating predicted probabilities from the generative model as well as with sentence representations via word embeddings.
+The goal of this combined approach is to develop models that learn text features associated with the overall task that go beyond the supplied label functions.
+We used a piecewise convolutional neural network that contains multiple kernel filters as our discriminative model.
+We built a network with multiple filters using a fixed width of 300 (size of word embeddings) and a fixed height of 7 (Figure {@fig:convolutional_network}).
+We choose a fixed height of 7 because this height was previously reported to optimize performance in relationship classification [@fs8rAHoJ].
+We trained this model for 15 epochs using the Adam optimizer [@c6d3lKFX] with pytorch's default parameter settings and a learning rate of 0.001 that decreases by half every epoch until the lower bound of 1e-5 is reached, which we observed was often sufficient for convergence.
+We added a L2 penalty (lambda=0.002) on the network weights to prevent overfitting.
+Lastly, we added a dropout layer (p=0.25) between the fully connected layer and the softmax layer.
+
+![
+The architecture of the discriminative model was a convolutional neural network.
+We performed a convolution step using multiple filters. 
+The filters generated a feature map that was sent into a maximum pooling layer that was designed to extract the largest feature in each map.
+The extracted features were concatenated into a singular vector that was passed into a fully connected network. 
+The fully connected network had 300 neurons for the first layer, 100 neurons for the second layer and 50 neurons for the last layer. 
+The last step from the fully connected network was to generate predictions using a softmax layer.
+](images/figures/convolutional_neural_network/convolutional_neural_nework.png){#fig:convolutional_network}
+
+#### Word Embeddings
+
+Word embeddings are representations that map individual words to real valued vectors of user-specified dimensions.
+These embeddings have been shown to capture the semantic and syntactic information between words [@u5iJzbp9].
+We trained Facebook's fastText [@qUpCDz2v] using all candidate sentences for each individual relationship pair to generate word embeddings.
+FastText uses a skip-gram model [@1GhHIDxuW] that aims to predict the surrounding context for a candidate word and pairs the model with a novel scoring function that treats each word as a bag of character n-grams.
+We trained this model for 20 epochs using a window size of 2 and generated 300-dimensional word embeddings.
+We use the optimized word embeddings as input to our discriminative model. 
+
+#### Calibration of the Discriminative Model
+
+Often many tasks require a machine learning model to output reliable probability predictions. 
+A model is well calibrated if the probabilities emitted from the model match the observed probabilities.
+For example, a well-calibrated model that assigns a class label with 80% probability should have that class appear 80% of the time.
+Deep neural network models can often be poorly calibrated [@QJ6hYH8N; @rLVjMJ5l].
+These models are usually over-confident in their predictions.
+For this reason, we calibrated our convolutional neural network using temperature scaling. 
+Temperature scaling uses a parameter T to scale each value of the logit vector (z) before being passed into the softmax (SM) function.
+
+$$\sigma_{SM}(\frac{z_{i}}{T}) = \frac{\exp(\frac{z_{i}}{T})}{\sum_{i}\exp(\frac{z_{i}}{T})}$$
+
+We found the optimal T by minimizing the negative log likelihood (NLL) of the tune set.
+
 ### Experimental Design
 
 Being able to re-use label functions across edge types would substantially reduce the number of label functions required to extract multiple relationships from biomedical literature.
@@ -590,47 +634,6 @@ This label function emitted a positive or negative label at varying frequencies,
 Zero was the same as distant supervision and one meant that all sentences were randomly labeled.
 We trained the generative model with these label functions added and reported results in terms of AUROC and AUPR.
 
-### Discriminative Model
-
-The discriminative model is a neural network, which we train to predict labels from the generative model.
-The expectation is that the discriminative model can learn more complete features of the text than the label functions used in the generative model.
-We used a convolutional neural network with multiple filters as our discriminative model.
-This network uses multiple filters with fixed widths of 300 dimensions and a fixed height of 7 (Figure {@fig:convolutional_network}), because this height provided the best performance in terms of relationship classification [@fs8rAHoJ].
-We trained this model for 20 epochs using the adam optimizer [@c6d3lKFX] with pytorch's default parameter settings and a learning rate of 0.001.
-We added a L2 penalty on the network weights to prevent overfitting.
-Lastly, we added a dropout layer (p=0.25) between the fully connected layer and the softmax layer.
-
-![
-The architecture of the discriminative model was a convolutional neural network.
-We performed a convolution step using multiple filters. 
-The filters generated a feature map that was sent into a maximum pooling layer that was designed to extract the largest feature in each map.
-The extracted features were concatenated into a singular vector that was passed into a fully connected network. 
-The fully connected network had 300 neurons for the first layer, 100 neurons for the second layer and 50 neurons for the last layer. 
-The last step from the fully connected network was to generate predictions using a softmax layer.
-](images/figures/convolutional_neural_network/convolutional_neural_nework.png){#fig:convolutional_network}
-
-#### Word Embeddings
-
-Word embeddings are representations that map individual words to real valued vectors of user-specified dimensions.
-These embeddings have been shown to capture the semantic and syntactic information between words [@u5iJzbp9].
-We trained Facebook's fastText [@qUpCDz2v] using all candidate sentences for each individual relationship pair to generate word embeddings.
-fastText uses a skipgram model [@1GhHIDxuW] that aims to predict the surrounding context for a candidate word and pairs the model with a novel scoring function that treats each word as a bag of character n-grams.
-We trained this model for 20 epochs using a window size of 2 and generated 300-dimensional word embeddings.
-We use the optimized word embeddings to train a discriminative model. 
-
-#### Calibration of the Discriminative Model
-
-Often many tasks require a machine learning model to output reliable probability predictions. 
-A model is well calibrated if the probabilities emitted from the model match the observed probabilities: a well-calibrated model that assigns a class label with 80% probability should have that class appear 80% of the time.
-Deep neural network models can often be poorly calibrated [@QJ6hYH8N; @rLVjMJ5l].
-These models are usually over-confident in their predictions.
-As a result, we calibrated our convolutional neural network using temperature scaling. 
-Temperature scaling uses a parameter T to scale each value of the logit vector (z) before being passed into the softmax (SM) function.
-
-$$\sigma_{SM}(\frac{z_{i}}{T}) = \frac{\exp(\frac{z_{i}}{T})}{\sum_{i}\exp(\frac{z_{i}}{T})}$$
-
-We found the optimal T by minimizing the negative log likelihood (NLL) of a held out validation set.
-The benefit of using this method is that the model becomes more reliable and the accuracy of the model doesn't change [@QJ6hYH8N].
 
 ## Supplemental Tables and Figures
 
