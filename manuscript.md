@@ -74,19 +74,19 @@ header-includes: '<!--
 
   <link rel="alternate" type="application/pdf" href="https://greenelab.github.io/text_mined_hetnet_manuscript/manuscript.pdf" />
 
-  <link rel="alternate" type="text/html" href="https://greenelab.github.io/text_mined_hetnet_manuscript/v/9ae0c5443269a5dd02ef9e40f7fa4ef879a660db/" />
+  <link rel="alternate" type="text/html" href="https://greenelab.github.io/text_mined_hetnet_manuscript/v/4e9d83a70607712541df6ac5ebabd9050d0c2df2/" />
 
-  <meta name="manubot_html_url_versioned" content="https://greenelab.github.io/text_mined_hetnet_manuscript/v/9ae0c5443269a5dd02ef9e40f7fa4ef879a660db/" />
+  <meta name="manubot_html_url_versioned" content="https://greenelab.github.io/text_mined_hetnet_manuscript/v/4e9d83a70607712541df6ac5ebabd9050d0c2df2/" />
 
-  <meta name="manubot_pdf_url_versioned" content="https://greenelab.github.io/text_mined_hetnet_manuscript/v/9ae0c5443269a5dd02ef9e40f7fa4ef879a660db/manuscript.pdf" />
+  <meta name="manubot_pdf_url_versioned" content="https://greenelab.github.io/text_mined_hetnet_manuscript/v/4e9d83a70607712541df6ac5ebabd9050d0c2df2/manuscript.pdf" />
 
   <meta property="og:type" content="article" />
 
   <meta property="twitter:card" content="summary_large_image" />
 
-  <meta property="og:image" content="https://github.com/greenelab/text_mined_hetnet_manuscript/raw/9ae0c5443269a5dd02ef9e40f7fa4ef879a660db/thumbnail.png" />
+  <meta property="og:image" content="https://github.com/greenelab/text_mined_hetnet_manuscript/raw/4e9d83a70607712541df6ac5ebabd9050d0c2df2/thumbnail.png" />
 
-  <meta property="twitter:image" content="https://github.com/greenelab/text_mined_hetnet_manuscript/raw/9ae0c5443269a5dd02ef9e40f7fa4ef879a660db/thumbnail.png" />
+  <meta property="twitter:image" content="https://github.com/greenelab/text_mined_hetnet_manuscript/raw/4e9d83a70607712541df6ac5ebabd9050d0c2df2/thumbnail.png" />
 
   <link rel="icon" type="image/png" sizes="192x192" href="https://manubot.org/favicon-192x192.png" />
 
@@ -112,9 +112,9 @@ _A DOI-citable version of this manuscript is available at <https://doi.org/10.11
 
 <small><em>
 This manuscript
-([permalink](https://greenelab.github.io/text_mined_hetnet_manuscript/v/9ae0c5443269a5dd02ef9e40f7fa4ef879a660db/))
+([permalink](https://greenelab.github.io/text_mined_hetnet_manuscript/v/4e9d83a70607712541df6ac5ebabd9050d0c2df2/))
 was automatically generated
-from [greenelab/text_mined_hetnet_manuscript@9ae0c54](https://github.com/greenelab/text_mined_hetnet_manuscript/tree/9ae0c5443269a5dd02ef9e40f7fa4ef879a660db)
+from [greenelab/text_mined_hetnet_manuscript@4e9d83a](https://github.com/greenelab/text_mined_hetnet_manuscript/tree/4e9d83a70607712541df6ac5ebabd9050d0c2df2)
 on January 23, 2020.
 </em></small>
 
@@ -203,70 +203,77 @@ Re-using label functions could dramatically reduce time required to populate a k
 
 ### Related Work
 
-Relationship extraction is the process of detecting and classifying semantic relationships from a collection of text.
-This process can be broken down into three different categories: (1) the use of natural language processing techniques such as manually crafted rules and the identification of key text patterns for relationship extraction, (2) the use of unsupervised methods via co-occurrence scores or clustering, and (3) supervised or semi-supervised machine learning using annotated datasets for the classification of documents or sentences.
-In this section, we discuss selected efforts for each type of edge that we include in this project.
+Relationship extraction is the process of detecting semantic relationships from a collection of text.
+This process can be broken down into three different categories: (1) the use of natural language processing techniques such as manually crafted rules and heuristics for relationship extraction, (2) the use of unsupervised methods such as co-occurrence scores or clustering to find patterns within sentences and documents documents, and (3) the use of supervised or semi-supervised machine learning for classifying the presence of a relation within documents or sentences.
+In this section, we briefly discuss selected efforts under each category.
 
-#### Disease-Gene Associations 
+#### Rule Based Extractors
 
-Efforts to extract Disease-associates-Gene (DaG) relationships have often used manually crafted rules or unsupervised methods.
-One study used hand crafted rules based on a sentence's grammatical structure, represented as dependency trees, to extract DaG relationships [@NLxmpSdj].
-Some of these rules inspired certain DaG text pattern label functions in our work.
-Another study used co-occurrence frequencies within abstracts and sentences to score the likelihood of association between disease and gene pairs [@5gG8hwv7].
-The results of this study were incorporated into Hetionet v1 [@O21tn8vf], so this served as one of our distant supervision label functions.
-Another approach built off of the above work by incorporating a supervised classifier, trained via distant supervision, into a scoring scheme [@IGXdryzB].
-Each sentence containing a disease and gene mention is scored using a logistic regression model and combined using the same co-occurrence approach used in Pletscher-Frankild et al. [@5gG8hwv7].
-We compared our results to this approach to measure how well our overall method performs relative to other methods.
-Besides the mentioned three studies, researchers have used co-occurrences for extraction alone [@19zkt9R1G; @WDNuFZ4j; @DGlWGDEt] or in combination with other features to recover DaG relationships [@CxErbNTp].
-One recent effort relied on a bi-clustering approach to detect DaG-relevant sentences from Pubmed abstracts [@CSiMoOrI] with clustering of dependency paths grouping similar sentences together.
-The results of this work supply our domain heuristic label functions.
-These approaches do not rely on a well-annotated training performance and tend to provide excellent recall, though the precision is often worse than with supervised methods [@199TFjkrC; @1ZjlFRHa].
+Rule based extractors rely heavily on expert knowledge to perform extraction.
+Typically, these systems use linguistic rules and heuristics to identify key sentences or phrases.
+For example, a hypothetical extractor focused on protein phosphorylation events would identify sentences containing the phrase "gene X phosphorylates gene Y" [@KEkjqdB0].
+This word is a straightforward indication that two genes have a fundamental role in protein phosphorylation.
+Other phrase extractors have been used to identify drug-disease treatments [@1avvFjJ9], pharmcogenomic events [@107WYOcxW] and protein-protein interactions [@yGMDz6lK; @w32u0Rj9].
+These extractors provide a simple but effective way to extract sentences; however, they depend on extensive knowledge about the text to be properly constructed.
 
-Hand-crafted high-quality datasets [@hbAqN08A; @Y2DcwTrA; @luGt8luc; @1Du6MinB8] often serve as a gold standard for training, tuning, and testing supervised machine learning methods in this setting.
-Support vector machines have been repeatedly used to detect DaG relationships [@hbAqN08A; @3j1T67vB; @GeCe9qfW].
-These models perform well in large feature spaces, but are slow to train as the number of data points becomes large.
-Recently, some studies have used deep neural network models.
-One used a pre-trained recurrent neural network [@riimmjYr], and another used distant supervision [@k7ZUI6FL].
-Due to the success of these two models, we decided to use a deep neural network as our discriminative model.
+A sentence's grammatical structure can also support relationship extraction with dependency trees.
+These trees are data structures that depict a sentence's grammatical relation structure in the form of nodes and edges.
+Nodes represent words and the edges represent the dependency type each word shares between one another.
+For example, a possible extractor would classify sentences as a positive if a sentence contained the following dependency tree path: "gene X (subject)-> promotes (verb)<- cell death (direct object) <- in (preposition) <-tumors (object of preposition)" [@NLxmpSdj].
+This approach provide extremely precise results, but the quantity of positive results remains modest as sentences appear in distinct forms and structure.
+Because of this limitation, recent approaches have incorporated methods on top of rule based extractors such as co-occurrence and machine learning systems [@d3rG3TXb; @OnvaFHG9].
+We discuss the pros and cons of added methods in a later section.
+For this project, we constructed our label functions without the aid of these works; however, approaches discussed in this section provide substantial inspiration for novel label functions in future endeavors.
 
-#### Compound Treats Disease
+#### Unsupervised Extractors
 
-The goal of extracting Compound-treats-Disease (CtD) edges is to identify sentences that mention current drug treatments or propose new uses for existing drugs.
-One study combined an inference model from previously established drug-gene and gene-disease relationships to infer novel drug-disease interactions via co-occurrences [@ETC6lm7S].
-A similar approach has also been applied to CtD extraction [@AdKPf5EO].
-Manually-curated rules have also been applied to PubMed abstracts to address this task [@1avvFjJ9].
-The rules were based on identifying key phrases and wordings related to using drugs to treat a disease, and we used these patterns as inspirations for some of our CtD label functions. 
-Lastly, one study used a  bi-clustering approach to identify sentences relevant to CtD edges [@CSiMoOrI].
-As with DaG edges, we use the results from this study to provide what we term as domain heuristic label functions.
+Unsupervised extractors detect relationships without the need of annotated text.
+Notable approaches exploit the fact that two entities can occur together in text.
+This event is referred to as co-occurrence.
+Extractors utilize these events in by generating statistics on the frequency of entity pairs occurring in text.
+For example, a possible extractor would say gene X is associated with disease Y, because gene X and disease Y appear together more often than individually [@5gG8hwv7].
+This approach has been used to establish the following relationship types: disease-gene relationships [@5gG8hwv7; @WDNuFZ4j; @CxErbNTp; @19zkt9R1G; @DGlWGDEt; @AdKPf5EO], protein-protein interactions [@8GVs1dBG; @B8EOgoNA; @DGlWGDEt], drug-disease treatments [@ETC6lm7S], and tissue-gene relations [@6QECA6Hm].
+Extractors using the co-occurrence strategy provide exceptional recall results; however, these methods may fail to detect underreported relationships, because they depend on entity-pair frequency for detection.
+Junge et al. created a hybrid approach to account for this issue using distant supervision to train a classifier to learn the context of each sentence [@IGXdryzB].
+Once the classifier was trained, they scored every sentence within their corpus.
+Each sentence's score was incorporated into calculating co-occurrence frequencies to establish relationship existence [@IGXdryzB].
+Co-occurrence approaches are powerful in establishing edges on the global scale; however, they cannot identify individual sentences without the need for supervised methods.  
 
-Recent work with supervised machine learning methods has often focused on compounds that induce a disease: an important question for toxicology and the subject of the BioCreative V dataset [@6wNuLZWb].
-We don't consider environmental toxicants in our work, as our source databases for distant supervision are primarily centered around FDA-approved therapies.
+Clustering is an unsupervised approach that extracts relationships from text by group similar sentences together.
+Percha et al. used this technique to group sentences based on their grammatical structure [@CSiMoOrI].
+Using Stanford's Core NLP Parser [@RQkLuc5t] a dependency tree was generated.
+Each tree was clustered based on similarity and each cluster was manually annotated to determine which relationship each group represented [@CSiMoOrI].
+For our project we incorporated the results of this work as domain heuristic label functions.
+Overall, unsupervised approaches are desirable since they do not require well-annotated training data. 
+These approaches provide excellent recall; however, performance can be limited in terms of precision when compared to supervised machine learning methods [@199TFjkrC; @1ZjlFRHa].
 
-#### Compound Binds Gene
+#### Supervised Extractors
 
-The BioCreative VI track 5 task focused on classifying compound-protein interactions and has led to a great deal of work on the topic [@16As8893j].
-The equivalent edge in our networks is Compound-binds-Gene (CbG).
-Curators manually annotated 2,432 PubMed abstracts for five different compound protein interactions (agonist, antagonist, inhibitor, activator and substrate/product production) as part of the BioCreative task. 
-The best performers on this task achieved an F1 score of 64.10% [@16As8893j].
-Numerous additional groups have now used the publicly available dataset, that resulted from this competition, to train supervised machine learning methods [@OnvaFHG9; @i7KpvzCo; @5LOkzCNK; @riimmjYr; @5LOkzCNK; @1H34cFSl8; @16MGWGDUB; @1HjIKY59u; @WP5p3RT3] and semi-supervised machine learning methods [@P2pnebCX].
-These approaches depend on well-annotated training datasets, which creates a bottleneck.
-In addition to supervised and semi-supervised machine learning methods, hand crafted rules [@107WYOcxW] and bi-clustering of dependency trees  [@CSiMoOrI] have been used.
-We use the results from the bi-clustering study to provide a subset of the CbG label functions in this work.
+Supervised extractors consist of training a machine learning classifier and predict the existence of a relationship.
+These classifiers require access to well-annotated datasets, which are usually created via some form of manual curation.
+Previous work consists of research experts curating their own datasets to train classifiers [@hbAqN08A; @Y2DcwTrA; @luGt8luc; @1Du6MinB8; @YWh6tPj; @DWpAeBxB; @szMMEMdC; @L9IIm3Zd; @115pgEuOr]; however, there have been community-wide efforts to create datasets for shared tasks [@6wNuLZWb; @16As8893j; @DR8XM4Ff].
+Shared tasks are open challeges that aim to build the best classifier for natural language processing tasks such as named entity tagging or relationship extraction. 
+Notable example would be the BioCreative community that hosted a number of shared tasks such as predicting compound-protein interactions (BioCreative VI track 5) [@16As8893j] and compound induced diseases [@DR8XM4Ff].
+Often these datasets are well annotated, but are modest in size (2,432 abstracts [@16As8893j] for BioCreative VI and 1500 abstracts for BioCreative V [@DR8XM4Ff]).
+As machine learning classifiers become increasingly complex, these small dataset sizes cannot suffice.
+Plus, these multitude of datasets are uniquely annotated which can generate noticeable differences in terms of classifier performance [@DR8XM4Ff].
+Overall, obtaining large well-annotated datasets still remains as an open non-trivial task.
 
-#### Gene-Gene Interactions
+Before the rise of deep learning, a classifier that was most frequently used was support vector machines.
+This classifier uses a projection function called a kernel to map data into a high dimensional space so datapoints can be easily discerned between classes [@uujIm995].
+This method was used to extract disease-gene associations [@hbAqN08A; @3j1T67vB; @GeCe9qfW], protein-protein interactions[@iiQkIqUX; @OnvaFHG9; @i7KpvzCo] and protein docking information [@1B0lnkj35].
+Generally, svms perform well on small datasets with large feature spaces, but are slow to train as the number of datapoints becomes asymptotically large.
 
-Akin to the DaG edge type, many efforts to extract Gene-interacts-Gene (GiG) relationships used co-occurrence approaches.
-This edge type is more frequently referred to as a protein-protein interaction.
-Even approaches as simple as calculating Z-scores from PubMed abstract co-occurrences can be informative [@q9Fhy8eq], and there are numerous studies using co-occurrences [@yGMDz6lK; @w32u0Rj9; @8GVs1dBG; @DGlWGDEt].
-However, more sophisticated strategies such as distant supervision appear to improve performance [@IGXdryzB].
-Similarly to the other edge types, the bi-clustering approach over dependency trees has also been applied to this edge type [@CSiMoOrI].
-This manuscript provides a set of label functions for our work.
+Deep learning has been increasingly popular throughout the decades as these methods can outperform common machine learning methods [@BQS8ClV0].
+Approaches in this field consist of using various neural network architectures, such as recurrent neural networks [@ibJfUvEe; @5LOkzCNK; @1HjIKY59u; @WP5p3RT3; @P2pnebCX; @SkPpj3hW] and convolutional neural networks [@1H4LpFrU0; @bLKJwjMD; @5LOkzCNK;@P2pnebCX; @16MGWGDUB], to extract relationships from text.
+In fact approaches in this field were the winning model within the BioCreative VI shared task [@16As8893j; @lVAPcw1k].
+Despite the large success of these models, they often require large amounts of data to perform well.
+Obtaining these large datasets is a time consuming tasks, which makes training these models a non-trivial task.
+Distant supervision has been used as solution to fix the barren amount of large datasets [@EHeTvZht].
+Approaches have used this paradigm to extract chemical-gene interactions [@P2pnebCX], disease-gene associations [@IGXdryzB] and protein-protein interactions [@WYud0jQT; @IGXdryzB; @P2pnebCX].
+In fact efforts done in [@WYud0jQT] served as one of the motivating rationales for our work.
+Overall, deep learning has provided exceptional results in terms of relationships extraction and we decided to use a deep neural network as our discriminative model.
 
-Most supervised classifiers used publicly available datasets for evaluation [@YWh6tPj; @DWpAeBxB; @szMMEMdC; @L9IIm3Zd; @115pgEuOr].
-These datasets are used equally among studies, but can generate noticeable  differences in terms of performance [@DR8XM4Ff].
-Support vector machines were a common approach to extract GiG edges [@iiQkIqUX; @1B0lnkj35].
-However, with the growing popularity of deep learning numerous deep neural network architectures have been applied [@ibJfUvEe; @1H4LpFrU0; @bLKJwjMD; @P2pnebCX].
-Distant supervision has also been used in this domain [@WYud0jQT], and in fact this effort was one of the motivating rationales for our work.
 
 
 <style> 
