@@ -74,19 +74,19 @@ header-includes: '<!--
 
   <link rel="alternate" type="application/pdf" href="https://greenelab.github.io/text_mined_hetnet_manuscript/manuscript.pdf" />
 
-  <link rel="alternate" type="text/html" href="https://greenelab.github.io/text_mined_hetnet_manuscript/v/fe91de6685a61fc5d3b9e7936dda8c3146788425/" />
+  <link rel="alternate" type="text/html" href="https://greenelab.github.io/text_mined_hetnet_manuscript/v/4ff5960460ed6c74368aceca1a178413b49d9ad1/" />
 
-  <meta name="manubot_html_url_versioned" content="https://greenelab.github.io/text_mined_hetnet_manuscript/v/fe91de6685a61fc5d3b9e7936dda8c3146788425/" />
+  <meta name="manubot_html_url_versioned" content="https://greenelab.github.io/text_mined_hetnet_manuscript/v/4ff5960460ed6c74368aceca1a178413b49d9ad1/" />
 
-  <meta name="manubot_pdf_url_versioned" content="https://greenelab.github.io/text_mined_hetnet_manuscript/v/fe91de6685a61fc5d3b9e7936dda8c3146788425/manuscript.pdf" />
+  <meta name="manubot_pdf_url_versioned" content="https://greenelab.github.io/text_mined_hetnet_manuscript/v/4ff5960460ed6c74368aceca1a178413b49d9ad1/manuscript.pdf" />
 
   <meta property="og:type" content="article" />
 
   <meta property="twitter:card" content="summary_large_image" />
 
-  <meta property="og:image" content="https://github.com/greenelab/text_mined_hetnet_manuscript/raw/fe91de6685a61fc5d3b9e7936dda8c3146788425/thumbnail.png" />
+  <meta property="og:image" content="https://github.com/greenelab/text_mined_hetnet_manuscript/raw/4ff5960460ed6c74368aceca1a178413b49d9ad1/thumbnail.png" />
 
-  <meta property="twitter:image" content="https://github.com/greenelab/text_mined_hetnet_manuscript/raw/fe91de6685a61fc5d3b9e7936dda8c3146788425/thumbnail.png" />
+  <meta property="twitter:image" content="https://github.com/greenelab/text_mined_hetnet_manuscript/raw/4ff5960460ed6c74368aceca1a178413b49d9ad1/thumbnail.png" />
 
   <link rel="icon" type="image/png" sizes="192x192" href="https://manubot.org/favicon-192x192.png" />
 
@@ -112,9 +112,9 @@ _A DOI-citable version of this manuscript is available at <https://doi.org/10.11
 
 <small><em>
 This manuscript
-([permalink](https://greenelab.github.io/text_mined_hetnet_manuscript/v/fe91de6685a61fc5d3b9e7936dda8c3146788425/))
+([permalink](https://greenelab.github.io/text_mined_hetnet_manuscript/v/4ff5960460ed6c74368aceca1a178413b49d9ad1/))
 was automatically generated
-from [greenelab/text_mined_hetnet_manuscript@fe91de6](https://github.com/greenelab/text_mined_hetnet_manuscript/tree/fe91de6685a61fc5d3b9e7936dda8c3146788425)
+from [greenelab/text_mined_hetnet_manuscript@4ff5960](https://github.com/greenelab/text_mined_hetnet_manuscript/tree/4ff5960460ed6c74368aceca1a178413b49d9ad1)
 on January 23, 2020.
 </em></small>
 
@@ -328,8 +328,72 @@ Data programming circumvents this issue by quickly annotating large datasets by 
 Label functions are simple pythonic functions that emit: a positive label (1), a negative label (-1) or abstain from emitting a label (0).
 We combine these functions using a generative model to output a single annotation, which is a consensus probability score bounded between 0 (low chance of mentioning a relationship) and 1 (high chance of mentioning a relationship).
 We used these annotations to train a discriminator model that makes the final classification step.
-Our label functions fall into three categories: databases, text patterns and domain heuristics.
-We provide examples for each category in our [supplemental methods section](#label-function-categories).  
+
+#### Label Function Categories
+
+Label functions can be constructed in a multitude of ways; however,  many label functions share similar characteristics with one another.  
+We group these characteristics into the following categories: databases, text patterns and domain heuristics.
+Most of our label functions fall into the text pattern category, while the others were distributed across the database and domain heuristic categories (Table {@tbl:label-functions}).
+We describe each category and provide an example using the candidate sentence: "[PTK6]{.gene_color} may be a novel therapeutic target for [pancreatic cancer]{.disease_color}.".
+
+**Databases**: These label functions incorporate existing databases to generate a signal, as seen in distant supervision [@EHeTvZht].
+These functions detect if a candidate sentence's co-mention pair is present in a given database.
+If the pair is present, our label function emits a positive label and abstains otherwise.
+If the pair is not present in any existing database, a separate label function emits a negative label.
+We used a separate label function to prevent a label imbalance problem that we encountered during development: emitting positives and negatives from the same label function causes downstream classifiers to generate almost exclusively negative predictions.
+
+$$ \Lambda_{DB}(\color{#875442}{D}, \color{#02b3e4}{G}) = 
+\begin{cases}
+ 1 & (\color{#875442}{D}, \color{#02b3e4}{G}) \in DB \\
+0 & otherwise \\
+\end{cases} $$
+
+$$ \Lambda_{\neg DB}(\color{#875442}{D}, \color{#02b3e4}{G}) = 
+\begin{cases}
+ -1 & (\color{#875442}{D}, \color{#02b3e4}{G}) \notin DB \\
+0 & otherwise \\
+\end{cases} $$
+
+**Domain Heuristics**: These label functions used results from published text-based analyses to generate a signal. 
+We used dependency path cluster themes generated by Percha et al. [@CSiMoOrI].
+If a candidate sentence's dependency path belonged to a previously generated cluster, then the label function emitted a positive label and abstained otherwise.
+
+$$
+\Lambda_{DH}(\color{#875442}{D}, \color{#02b3e4}{G}) = \begin{cases}
+    1 & Candidate \> Sentence \in Cluster \> Theme\\
+    0 & otherwise \\
+    \end{cases}
+$$
+
+**Text Patterns**: These label functions are designed to use keywords and sentence context to generate a signal. 
+For example, a label function could focus on the number of words between two mentions or focus on the grammatical structure of a sentence.
+These functions emit a positive or negative label depending on the context.
+
+$$ \Lambda_{TP}(\color{#875442}{D}, \color{#02b3e4}{G}) = 
+\begin{cases}
+ 1 & "target" \> \in Candidate \> Sentence \\
+ 0 & otherwise \\
+\end{cases} $$
+
+$$ \Lambda_{TP}(\color{#875442}{D}, \color{#02b3e4}{G}) = 
+\begin{cases}
+ -1 & 	"VB" \> \notin pos\_tags(Candidate \> Sentence) \\
+ 0 & otherwise \\
+\end{cases} $$
+
+Each text pattern label function was constructed by manual examination of sentences within the training set.
+For example, in the candidate sentence above one would extract the keywords "novel therapeutic target" and incorporate them in a text pattern label function.
+After initial construction, we tested and augmented the label function using sentences in the tune set.
+We repeated the above process for each label function in our repertoire. 
+
+| Relationship | Databases (DB) | Text Patterns (TP) | Domain Heuristics (DH) |
+| --- | :---: | :---: | :---: |
+| DaG | 7 | 20 | 10 | 
+| CtD | 3 | 15 | 7 |
+| CbG | 9 | 13 | 7 | 
+| GiG | 9 | 20 | 8 | 
+
+Table: The distribution of each label function per relationship. {#tbl:label-functions} 
 
 ### Training Models
 
@@ -491,67 +555,6 @@ This work was support by [Grant GBMF4552](https://www.moore.org/grant-detail?gra
 <div id="refs"></div>
 
 ## Supplemental Methods {.page_break_before}
-
-### Label Function Categories
-
-We provide examples of label function categories below. Each example regards the following candidate sentence: “[PTK6]{.gene_color} may be a novel therapeutic target for [pancreatic cancer]{.disease_color}.”
-
-**Databases**: These label functions incorporate existing databases to generate a signal, as seen in distant supervision [@EHeTvZht].
-These functions detect if a candidate sentence's co-mention pair is present in a given database.
-If the candidate pair is present, our label function emitted a positive label and abstained otherwise.
-If the candidate pair wasn't present in any existing database, a separate label function emitted a negative label.
-We used a separate label function to prevent a label imbalance problem that we encountered during development: emitting positive and negatives from the same label functions appeared to result in classifiers that predict almost exclusively negative predictions.
-
-$$ \Lambda_{DB}(\color{#875442}{D}, \color{#02b3e4}{G}) = 
-\begin{cases}
- 1 & (\color{#875442}{D}, \color{#02b3e4}{G}) \in DB \\
-0 & otherwise \\
-\end{cases} $$
-
-$$ \Lambda_{\neg DB}(\color{#875442}{D}, \color{#02b3e4}{G}) = 
-\begin{cases}
- -1 & (\color{#875442}{D}, \color{#02b3e4}{G}) \notin DB \\
-0 & otherwise \\
-\end{cases} $$
-
-**Text Patterns**: These label functions are designed to use keywords and sentence context to generate a signal. 
-For example, a label function could focus on the number of words between two mentions or focus on the grammatical structure of a sentence.
-These functions emit a positive or negative label depending on the situation.
-
-$$ \Lambda_{TP}(\color{#875442}{D}, \color{#02b3e4}{G}) = 
-\begin{cases}
- 1 & "target" \> \in Candidate \> Sentence \\
- 0 & otherwise \\
-\end{cases} $$
-
-$$ \Lambda_{TP}(\color{#875442}{D}, \color{#02b3e4}{G}) = 
-\begin{cases}
- -1 & 	"VB" \> \notin pos\_tags(Candidate \> Sentence) \\
- 0 & otherwise \\
-\end{cases} $$
-
-
-**Domain Heuristics**: These label functions use the other experiment results to generate a signal. 
-For this category, we used dependency path cluster themes generated by Percha et al. [@CSiMoOrI].
-If a candidate sentence's dependency path belongs to a previously generated cluster, then the label function will emit a positive label and abstain otherwise.
-
-$$
-\Lambda_{DH}(\color{#875442}{D}, \color{#02b3e4}{G}) = \begin{cases}
-    1 & Candidate \> Sentence \in Cluster \> Theme\\
-    0 & otherwise \\
-    \end{cases}
-$$
-
-Roughly half of our label functions are based on text patterns, while the others are distributed across the databases and domain heuristics (Table {@tbl:label-functions}).
-
-| Relationship | Databases (DB) | Text Patterns (TP) | Domain Heuristics (DH) |
-| --- | :---: | :---: | :---: |
-| DaG | 7 | 20 | 10 | 
-| CtD | 3 | 15 | 7 |
-| CbG | 9 | 13 | 7 | 
-| GiG | 9 | 20 | 8 | 
-
-Table: The distribution of each label function per relationship. {#tbl:label-functions} 
 
 ### Adding Random Noise to Generative Model
 
