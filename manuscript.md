@@ -3,7 +3,7 @@ author-meta:
 - David N. Nicholson
 - Daniel S. Himmelstein
 - Casey S. Greene
-date-meta: '2020-01-23'
+date-meta: '2020-01-24'
 header-includes: '<!--
 
   Manubot generated metadata rendered from header-includes-template.html.
@@ -22,9 +22,9 @@ header-includes: '<!--
 
   <meta property="twitter:title" content="Expanding a Database-derived Biomedical Knowledge Graph via Multi-relation Extraction from Biomedical Abstracts" />
 
-  <meta name="dc.date" content="2020-01-23" />
+  <meta name="dc.date" content="2020-01-24" />
 
-  <meta name="citation_publication_date" content="2020-01-23" />
+  <meta name="citation_publication_date" content="2020-01-24" />
 
   <meta name="dc.language" content="en-US" />
 
@@ -74,19 +74,19 @@ header-includes: '<!--
 
   <link rel="alternate" type="application/pdf" href="https://greenelab.github.io/text_mined_hetnet_manuscript/manuscript.pdf" />
 
-  <link rel="alternate" type="text/html" href="https://greenelab.github.io/text_mined_hetnet_manuscript/v/4e9d83a70607712541df6ac5ebabd9050d0c2df2/" />
+  <link rel="alternate" type="text/html" href="https://greenelab.github.io/text_mined_hetnet_manuscript/v/1be72ee5ce643e59df8f67aae24734666165e2c2/" />
 
-  <meta name="manubot_html_url_versioned" content="https://greenelab.github.io/text_mined_hetnet_manuscript/v/4e9d83a70607712541df6ac5ebabd9050d0c2df2/" />
+  <meta name="manubot_html_url_versioned" content="https://greenelab.github.io/text_mined_hetnet_manuscript/v/1be72ee5ce643e59df8f67aae24734666165e2c2/" />
 
-  <meta name="manubot_pdf_url_versioned" content="https://greenelab.github.io/text_mined_hetnet_manuscript/v/4e9d83a70607712541df6ac5ebabd9050d0c2df2/manuscript.pdf" />
+  <meta name="manubot_pdf_url_versioned" content="https://greenelab.github.io/text_mined_hetnet_manuscript/v/1be72ee5ce643e59df8f67aae24734666165e2c2/manuscript.pdf" />
 
   <meta property="og:type" content="article" />
 
   <meta property="twitter:card" content="summary_large_image" />
 
-  <meta property="og:image" content="https://github.com/greenelab/text_mined_hetnet_manuscript/raw/4e9d83a70607712541df6ac5ebabd9050d0c2df2/thumbnail.png" />
+  <meta property="og:image" content="https://github.com/greenelab/text_mined_hetnet_manuscript/raw/1be72ee5ce643e59df8f67aae24734666165e2c2/thumbnail.png" />
 
-  <meta property="twitter:image" content="https://github.com/greenelab/text_mined_hetnet_manuscript/raw/4e9d83a70607712541df6ac5ebabd9050d0c2df2/thumbnail.png" />
+  <meta property="twitter:image" content="https://github.com/greenelab/text_mined_hetnet_manuscript/raw/1be72ee5ce643e59df8f67aae24734666165e2c2/thumbnail.png" />
 
   <link rel="icon" type="image/png" sizes="192x192" href="https://manubot.org/favicon-192x192.png" />
 
@@ -112,10 +112,10 @@ _A DOI-citable version of this manuscript is available at <https://doi.org/10.11
 
 <small><em>
 This manuscript
-([permalink](https://greenelab.github.io/text_mined_hetnet_manuscript/v/4e9d83a70607712541df6ac5ebabd9050d0c2df2/))
+([permalink](https://greenelab.github.io/text_mined_hetnet_manuscript/v/1be72ee5ce643e59df8f67aae24734666165e2c2/))
 was automatically generated
-from [greenelab/text_mined_hetnet_manuscript@4e9d83a](https://github.com/greenelab/text_mined_hetnet_manuscript/tree/4e9d83a70607712541df6ac5ebabd9050d0c2df2)
-on January 23, 2020.
+from [greenelab/text_mined_hetnet_manuscript@1be72ee](https://github.com/greenelab/text_mined_hetnet_manuscript/tree/1be72ee5ce643e59df8f67aae24734666165e2c2)
+on January 24, 2020.
 </em></small>
 
 ## Authors
@@ -577,20 +577,21 @@ Overall, calbrating deep learning models is a nontrivial task that requires  mor
 
 ## Discussion
 
-We tested the feasibility of re-using label functions to extract relationships from literature.
-Through our sampling experiment, we found that adding relevant label functions increases prediction performance (shown in the on-diagonals of Figures {@fig:auroc_gen_model_performance} and Supplemental Figure {@fig:aupr_gen_model_performance}).
-We found that label functions designed from relatively related edge types can increase performance (seen when GiG label functions predicts CbG and vice versa).
-We noticed that one edge type (DaG) is agnostic to label function source (Figure {@fig:auroc_gen_model_performance} and Supplemental Figure {@fig:aupr_gen_model_performance}). 
-Performance routinely increases when adding a single mismatched label function to our baseline model (the generative model trained only on distant supervision label functions).
-These results led us to hypothesize that adding a small amount of noise aided the model, but our experiment with a random label function reveals that this was not the case (Figures {@fig:auroc_random_label_function_performance} and {@fig:aupr_random_label_function_performance}).
-Based on these results one question still remains: why does performance drastically increase when adding a single label function to our distant supervision baseline?
+We measured the extent to which label functions can be re-used across multiple edge types to extract relationships from literature.
+Through our sampling experiment, we found that adding edge-specific label functions increases performance for the generative model ({@fig:auroc_gen_model_performance}.
+We found that label functions designed from relatively related edge types can increase performance (Gene interacts Gene (GiG) label functions predicting the Compound binds Gene (CbG) edge and vice versa), while the Disease associates Gene (DaG) edge type remained agnostic to label function sources (Figure {@fig:auroc_gen_model_performance} and Supplemental Figure {@fig:aupr_gen_model_performance}).
+Furthermore, we found that using all label functions at once generally hurts performance with the exception being the DaG edge type (Figure {@fig:auroc_grabbag_gen_model_test_set} and Supplemental Figure {@fig:aupr_grabbag_gen_model_test_set}).
+One possibility for this observation is that DaG is a broadly defined edge type, e.g., "associates" contains many concepts related to other edge types such as Disease (up/down)regulating a gene, which makes it more agnostic to label function sources (examples highlighted in our [annotated sentences](https://github.com/greenelab/text_mined_hetnet_manuscript/tree/master/supplementary_materials/annotated_sentences)).  
 
-The discriminative model didn't work as intended. 
-The majority of the time the discriminative model underperformed the generative model (Supplemental Figures {@fig:auroc_discriminative_model_performance} and {@fig:aupr_discriminative_model_performance}).
-Potential reasons for this are the discriminative model overfitting to the generative model's predictions and a negative class bias in some of our datasets (Table {@tbl:candidate-sentences}).
-The challenges with the discriminative model are likely to have led to issues in our downstream analyses: poor model calibration (Supplemental Figure {@fig:discriminative_model_calibration}) and poor recall in detecting existing Hetionet edges (Supplemental Figure {@fig:hetionet_reconstruction}).
-Despite the above complications, our model had similar performance with a published baseline model (Supplemental Figure {@fig:cocoscore_comparison}).
-This implies that with better tuning the discriminative model has the potential to perform better than the baseline model.
+Regarding the discriminator model, adding edge-specific label function substantially improved performance for two out of the four edge types (Compound treats Disease (CtD) and DaG) ({@fig:auroc_disc_model_performance}). 
+GiG and CbG discriminator models showed minor improvements compared to the generative model, but only when nearly all edge-specific label functions are included.
+We came across a large amount of spurious gene mentions when working with the discriminative model and believe these mentions contributed to CbG and GiG's hindered performance.
+We encountered difficulty in calibrating each discriminator model (Figure {@fig:discriminative_model_calibration}).
+The temperature scaling algorithm appears to improve calibration for the highest scores for each model but did not successfully calibrate throughout the entire range of predictions. 
+Improving performance throughout the range may require more labeled examples or may be a limitation of the approach in this setting.
+Even with these limitations, this early-stage approach could recall many existing edges from an existing knowledge base, Hetionet v1, and suggest many new high-confidence edges for inclusion.
+Our findings suggest that further work, including an expansion of edge types and a move to full text from abstracts, may make this approach suitable for building continuously updated knowledge bases to address drug repositioning and other biomedical challenges.  
+ 
 
 
 ## Conclusion and Future Direction
