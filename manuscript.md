@@ -74,19 +74,19 @@ header-includes: '<!--
 
   <link rel="alternate" type="application/pdf" href="https://greenelab.github.io/text_mined_hetnet_manuscript/manuscript.pdf" />
 
-  <link rel="alternate" type="text/html" href="https://greenelab.github.io/text_mined_hetnet_manuscript/v/b6b40ed20f4ee05136ca4838e4ede585f78abbe0/" />
+  <link rel="alternate" type="text/html" href="https://greenelab.github.io/text_mined_hetnet_manuscript/v/ffcd259c180721c3b50d88bf562e70b77d71180e/" />
 
-  <meta name="manubot_html_url_versioned" content="https://greenelab.github.io/text_mined_hetnet_manuscript/v/b6b40ed20f4ee05136ca4838e4ede585f78abbe0/" />
+  <meta name="manubot_html_url_versioned" content="https://greenelab.github.io/text_mined_hetnet_manuscript/v/ffcd259c180721c3b50d88bf562e70b77d71180e/" />
 
-  <meta name="manubot_pdf_url_versioned" content="https://greenelab.github.io/text_mined_hetnet_manuscript/v/b6b40ed20f4ee05136ca4838e4ede585f78abbe0/manuscript.pdf" />
+  <meta name="manubot_pdf_url_versioned" content="https://greenelab.github.io/text_mined_hetnet_manuscript/v/ffcd259c180721c3b50d88bf562e70b77d71180e/manuscript.pdf" />
 
   <meta property="og:type" content="article" />
 
   <meta property="twitter:card" content="summary_large_image" />
 
-  <meta property="og:image" content="https://github.com/greenelab/text_mined_hetnet_manuscript/raw/b6b40ed20f4ee05136ca4838e4ede585f78abbe0/thumbnail.png" />
+  <meta property="og:image" content="https://github.com/greenelab/text_mined_hetnet_manuscript/raw/ffcd259c180721c3b50d88bf562e70b77d71180e/thumbnail.png" />
 
-  <meta property="twitter:image" content="https://github.com/greenelab/text_mined_hetnet_manuscript/raw/b6b40ed20f4ee05136ca4838e4ede585f78abbe0/thumbnail.png" />
+  <meta property="twitter:image" content="https://github.com/greenelab/text_mined_hetnet_manuscript/raw/ffcd259c180721c3b50d88bf562e70b77d71180e/thumbnail.png" />
 
   <link rel="icon" type="image/png" sizes="192x192" href="https://manubot.org/favicon-192x192.png" />
 
@@ -112,9 +112,9 @@ _A DOI-citable version of this manuscript is available at <https://doi.org/10.11
 
 <small><em>
 This manuscript
-([permalink](https://greenelab.github.io/text_mined_hetnet_manuscript/v/b6b40ed20f4ee05136ca4838e4ede585f78abbe0/))
+([permalink](https://greenelab.github.io/text_mined_hetnet_manuscript/v/ffcd259c180721c3b50d88bf562e70b77d71180e/))
 was automatically generated
-from [greenelab/text_mined_hetnet_manuscript@b6b40ed](https://github.com/greenelab/text_mined_hetnet_manuscript/tree/b6b40ed20f4ee05136ca4838e4ede585f78abbe0)
+from [greenelab/text_mined_hetnet_manuscript@ffcd259](https://github.com/greenelab/text_mined_hetnet_manuscript/tree/ffcd259c180721c3b50d88bf562e70b77d71180e)
 on January 28, 2020.
 </em></small>
 
@@ -515,23 +515,21 @@ Each point on the plot shows the average of 50 sample runs, while the error bars
 The baseline and “All” data points consist of sampling from the entire fixed set of label functions.
 ](https://raw.githubusercontent.com/danich1/snorkeling/86037d185a299a1f6dd4dd68605073849c72af6f/figures/label_sampling_experiment/transfer_test_set_auroc.png){#fig:auroc_gen_model_test_set}
 
-We found that sampling from all label function sources at once usually underperformed relative to edge-specific label functions (Figure {#fig:auroc_grabbag_gen_model_test_set}).
+We found that sampling from all label function sources at once usually underperformed relative to edge-specific label functions (Figure {@fig:auroc_grabbag_gen_model_test_set}).
 As more label functions were sampled, the gap between edge-specific sources and all sources widened.
-CbG is a prime example of this trend (Figure {#fig:auroc_grabbag_gen_model_test_set}), while CtD and GiG show a similar but milder trend.
-DaG was the exception to the general rule: the pooled set of label functions improved performance over the edge-specific ones, which aligns with the previously observed results for individual edge types (Figure {#fig:auroc_gen_model_test_set}).
+CbG is a prime example of this trend (Figure {@fig:auroc_grabbag_gen_model_test_set}), while CtD and GiG show a similar but milder trend.
+DaG was the exception to the general rule: the pooled set of label functions improved performance over the edge-specific ones, which aligns with the previously observed results for individual edge types (Figure {@fig:auroc_gen_model_test_set}).
 The decreasing trend when pooling all label functions supports the notion that label functions cannot easily transfer between edge types (exception being CbG on GiG and vise versa).
 
 ![
-A grid of AUROC (A) scores for each edge type.
-Each plot consists of adding a single label function on top of the baseline model.
-This label function emits a positive (shown in blue) or negative (shown in orange) label at specified frequencies, and performance at zero is equivalent to not having a randomly emitting label function.
-The error bars represent 95% confidence intervals for AUROC or AUPR (y-axis) at each emission frequency.
-](https://raw.githubusercontent.com/danich1/snorkeling/ee638b4e45717a86f54a2744a813baaa90bc6b84/figures/gen_model_error_analysis/transfer_test_set_auroc.png){#fig:auroc_random_label_function_performance}
-
-We observed that including one label function of a mismatched type to distant supervision often improved performance, so we evaluated the effects of adding a random label function in the same setting.
-We found that usually adding random noise did not improve performance (Figure {@fig:auroc_random_label_function_performance} and Supplemental Figure {@fig:aupr_random_label_function_performance}).
-For the CbG edge type we did observe slightly increased performance via AUPR (Supplemental Figure {@fig:aupr_random_label_function_performance}).
-However, performance changes in general were smaller than those observed with mismatched label types.
+Using all label functions generally hinders generative model performance.
+Each line plot header depicts the edge type the generative model is trying to predict, while the colors represent the source of label functions.
+For example, orange represents sampling label functions designed to predict the Compound treats Disease (CtD) edge type.
+The x axis shows the number of randomly sampled label functions being incorporated onto the database only baseline model (point at 0).
+The y axis shows area under the receiver operating curve (AUROC).
+Each point on the plot shows the average of 50 sample runs, while the error bars show the 95% confidence intervals of all runs.
+The baseline and “All” data points consist of sampling from the entire fixed set of label functions.
+](https://raw.githubusercontent.com/danich1/snorkeling/86037d185a299a1f6dd4dd68605073849c72af6f/figures/label_sampling_experiment/all_lf_test_set_auroc.png){#fig:auroc_grabbag_gen_model_test_set}
 
 ### Discriminative Model Performance
 
@@ -591,6 +589,20 @@ Our best recall is with the Compound treats Disease (CtD) edge type, where we re
 Plus, we can add over 6,000 new edges to that category.
 In contrast, we could only recall close to 70% of existing edges for the other categories; however, we can add over 40,000 novel edges to each category.
 This highlights the fact that Hetionet v1 is missing a compelling amount of biomedical information and this framework is a viable way to close the information gap.
+
+### Comparison with CoCoScore using Hetionet v1 as an evaluation set
+
+![
+Our extractor shows similar performance to a previously published method when using Hetionet v1 as an evaluation set.
+We compared our model (blue) with the CoCoScore model [@IGXdryzB](green) .
+The y axis represents AUROC and the x axis represents the edge type both models are trying to predict.
+](https://raw.githubusercontent.com/danich1/snorkeling/b6e707ea843ac5d66f62ed09277e6b1d3d4b8bf3/figures/literature_models/coco_score_auroc.png){#fig:cocoscore_comparison}
+
+Our model showed promising performance in terms of recalling edges in Hetionet v1.
+We assessed our model's performance relative to a recently published method [@IGXdryzB].
+Though our method is primarily designed to predicted assertions, not edges, we compared performance at an edge level because this was available for CoCoScore.
+We found that a simple summary approach, max sentence score, provided comparable performance to the CoCoScore for the compound treats disease (CtD) edge type and slightly poorer performance for other edge types (Figure {@fig:cocoscore_comparison}).
+Sentence-level scores can be integrated in multiple ways, and approaches that consider more complexity (e.g., the number of sentences with high-probability) should be evaluated in future work.
 
 
 ## Discussion
@@ -697,7 +709,7 @@ The baseline and “All” data points consist of sampling from the entire fixed
 This makes the error bars appear flat.
 ](https://raw.githubusercontent.com/danich1/snorkeling/1941485a02c8aa9972c67d8f9d3ff96acb0f3b7b/figures/disc_model_experiment/disc_model_test_aupr.png){#fig:aupr_discriminative_model_performance}
 
-#### Model Calibration Tables
+### Discriminative Model Calibration Tables
 
 | Disease Name           | Gene Symbol | Text     | Before Calibration | After Calibration | 
 |------------------------|-------------|---------------------------------------------------------|--------------------|-------------------| 
@@ -818,35 +830,6 @@ Table: Contains the top ten Gene-interacts-Gene confidence scores before and aft
 | PIK3R1       | PTEN         | both [pten]{.gene_color} ( [pi3k]{.gene_color} antagonist ) and pp2 ( unspecific phosphatase ) were down-regulated .  | 0.005              | 0.001             |  
 
 Table: Contains the bottom ten Gene-interacts-Gene confidence scores before and after model calbration. Both gene mentions highlighted in [blue]{.gene_color}. {#tbl:gg_bottom_ten_table}
-
-### Baseline Comparison
-
-![
-Comparion between our model and CoCoScore model [@IGXdryzB].
-We report both model's performance in terms of AUROC and AUPR.
-Our model achieves comparable performance against CoCoScore in terms of AUROC.
-As for AUPR, CoCoScore consistently outperforms our model except for CtD. 
-](https://raw.githubusercontent.com/danich1/snorkeling/0149086785b19f9429c92565d650e9d049c136ff/figures/literature_models/model_comparison.png){#fig:cocoscore_comparison}
-
-Once our discriminator model is calibrated, we grouped sentences based on mention pair (edges).
-We assigned each edge the maximum score over all grouped sentences and compared our model's ability to predict pairs in our test set to a previously published baseline model [@IGXdryzB].
-Performance is reported in terms of AUROC and AUPR (Figure {@fig:cocoscore_comparison}).
-Across edge types our model shows comparable performance against the baseline in terms of AUROC.
-Regarding AUPR, our model shows hindered performance against the baseline.
-The exception for both cases is CtD where our model performs better than the baseline.
-
-### Reconstructing Hetionet
-
-![
-A scatter plot showing the number of edges (log scale) we can add or recall at specified precision levels. 
-The blue depicts edges existing in hetionet and the orange depicts how many novel edges can be added.
-](https://raw.githubusercontent.com/danich1/snorkeling/0149086785b19f9429c92565d650e9d049c136ff/figures/edge_prediction_experiment/edges_added.png){#fig:hetionet_reconstruction}
-
-We evaluated how many edges we can recall/add to Hetionet v1 (Supplemental Figure {@fig:hetionet_reconstruction} and Table {@tbl:edge_prediction_tbl}).
-In our evaluation we used edges assigned to our test set.
-Overall, we can recall a small amount of edges at high precision thresholds.
-A key example is CbG and GiG where we recalled only one exisiting edge at 100% precision.
-Despite the low recall, we are still able to add novel edges to DaG and CtD while retaining modest precision.
 
 #### Top Ten Sentences for Each Edge Type
 
