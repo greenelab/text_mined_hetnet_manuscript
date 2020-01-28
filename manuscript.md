@@ -3,7 +3,7 @@ author-meta:
 - David N. Nicholson
 - Daniel S. Himmelstein
 - Casey S. Greene
-date-meta: '2020-01-24'
+date-meta: '2020-01-28'
 header-includes: '<!--
 
   Manubot generated metadata rendered from header-includes-template.html.
@@ -22,9 +22,9 @@ header-includes: '<!--
 
   <meta property="twitter:title" content="Expanding a Database-derived Biomedical Knowledge Graph via Multi-relation Extraction from Biomedical Abstracts" />
 
-  <meta name="dc.date" content="2020-01-24" />
+  <meta name="dc.date" content="2020-01-28" />
 
-  <meta name="citation_publication_date" content="2020-01-24" />
+  <meta name="citation_publication_date" content="2020-01-28" />
 
   <meta name="dc.language" content="en-US" />
 
@@ -74,19 +74,19 @@ header-includes: '<!--
 
   <link rel="alternate" type="application/pdf" href="https://greenelab.github.io/text_mined_hetnet_manuscript/manuscript.pdf" />
 
-  <link rel="alternate" type="text/html" href="https://greenelab.github.io/text_mined_hetnet_manuscript/v/1be72ee5ce643e59df8f67aae24734666165e2c2/" />
+  <link rel="alternate" type="text/html" href="https://greenelab.github.io/text_mined_hetnet_manuscript/v/b6b40ed20f4ee05136ca4838e4ede585f78abbe0/" />
 
-  <meta name="manubot_html_url_versioned" content="https://greenelab.github.io/text_mined_hetnet_manuscript/v/1be72ee5ce643e59df8f67aae24734666165e2c2/" />
+  <meta name="manubot_html_url_versioned" content="https://greenelab.github.io/text_mined_hetnet_manuscript/v/b6b40ed20f4ee05136ca4838e4ede585f78abbe0/" />
 
-  <meta name="manubot_pdf_url_versioned" content="https://greenelab.github.io/text_mined_hetnet_manuscript/v/1be72ee5ce643e59df8f67aae24734666165e2c2/manuscript.pdf" />
+  <meta name="manubot_pdf_url_versioned" content="https://greenelab.github.io/text_mined_hetnet_manuscript/v/b6b40ed20f4ee05136ca4838e4ede585f78abbe0/manuscript.pdf" />
 
   <meta property="og:type" content="article" />
 
   <meta property="twitter:card" content="summary_large_image" />
 
-  <meta property="og:image" content="https://github.com/greenelab/text_mined_hetnet_manuscript/raw/1be72ee5ce643e59df8f67aae24734666165e2c2/thumbnail.png" />
+  <meta property="og:image" content="https://github.com/greenelab/text_mined_hetnet_manuscript/raw/b6b40ed20f4ee05136ca4838e4ede585f78abbe0/thumbnail.png" />
 
-  <meta property="twitter:image" content="https://github.com/greenelab/text_mined_hetnet_manuscript/raw/1be72ee5ce643e59df8f67aae24734666165e2c2/thumbnail.png" />
+  <meta property="twitter:image" content="https://github.com/greenelab/text_mined_hetnet_manuscript/raw/b6b40ed20f4ee05136ca4838e4ede585f78abbe0/thumbnail.png" />
 
   <link rel="icon" type="image/png" sizes="192x192" href="https://manubot.org/favicon-192x192.png" />
 
@@ -112,10 +112,10 @@ _A DOI-citable version of this manuscript is available at <https://doi.org/10.11
 
 <small><em>
 This manuscript
-([permalink](https://greenelab.github.io/text_mined_hetnet_manuscript/v/1be72ee5ce643e59df8f67aae24734666165e2c2/))
+([permalink](https://greenelab.github.io/text_mined_hetnet_manuscript/v/b6b40ed20f4ee05136ca4838e4ede585f78abbe0/))
 was automatically generated
-from [greenelab/text_mined_hetnet_manuscript@1be72ee](https://github.com/greenelab/text_mined_hetnet_manuscript/tree/1be72ee5ce643e59df8f67aae24734666165e2c2)
-on January 24, 2020.
+from [greenelab/text_mined_hetnet_manuscript@b6b40ed](https://github.com/greenelab/text_mined_hetnet_manuscript/tree/b6b40ed20f4ee05136ca4838e4ede585f78abbe0)
+on January 28, 2020.
 </em></small>
 
 ## Authors
@@ -574,6 +574,24 @@ Applying the temperature scaling calibration algorithm (blue lines) did not subs
 The exception to this pattern is the Disease associates Gene (DaG) model where high confidence scores are shown to be better calibrated.
 Overall, calbrating deep learning models is a nontrivial task that requires  more complex approaches to accomplish.
 
+### Text mined edges can expand a database-derived knowledge graph
+
+![
+Text-mined edges recreate a substantial fraction of an existing knowledge graph and include new predictions.
+This bar chart shows the number of edges we can successfully recall in green and shows the number of new edges that can be added in blue.  
+The recall for the Hetionet v1 knowledge graph is shown as a percentage in parentheses.
+For example, for the compound treats disease edge our method recalls 85% of existing edges as adds 6,088 new edges.
+](https://raw.githubusercontent.com/danich1/snorkeling/6e929e486537c5d105e393e20984b96910c96024/figures/edge_prediction_experiment/edges_added.png){#fig:hetionet_reconstruction}
+
+One of the goals in our work is to measure the extent to which learning multiple edge types could construct a biomedical knowledge graph.
+Hetionet v1 is a knowledge graph that was constructed from biomedical databases.
+We measured this framework's recall and quantified how many new edges could be added with high confidence.
+Overall, we were able to recall more than half of preexisting edges for all edge types (Figure {@fig:hetionet_reconstruction}) and report our top ten scoring sentences for each edge type in Supplemental Table {@tbl:edge_prediction_tbl}.
+Our best recall is with the Compound treats Disease (CtD) edge type, where we retain 85% of preexisting edges.
+Plus, we can add over 6,000 new edges to that category.
+In contrast, we could only recall close to 70% of existing edges for the other categories; however, we can add over 40,000 novel edges to each category.
+This highlights the fact that Hetionet v1 is missing a compelling amount of biomedical information and this framework is a viable way to close the information gap.
+
 
 ## Discussion
 
@@ -874,4 +892,5 @@ Despite the low recall, we are still able to add novel edges to DaG and CtD whil
 | [G]{.gene_color}i[G]{.gene_color}       | RET         | EDNRB       | 0.816                       | 0.96                            | 136          | Novel                | mutations in the [ret]{.gene_color} gene , which codes for a receptor tyrosine kinase , and in [ednrb]{.gene_color} which codes for the endothelin-b receptor , have been shown to be associated with hscr in humans .  | 
 | [G]{.gene_color}i[G]{.gene_color}       | PKD1        | PKD2        | 1                           | 0.959                           | 1614         | Existing             | approximately 85 % of adpkd cases are caused by mutations in the [pkd1]{.gene_color} gene , while mutations in the [pkd2]{.gene_color} gene account for the remaining 15 % of cases . | 
 | [G]{.gene_color}i[G]{.gene_color}       | LYZ         | CTCF        | 0.999                       | 0.959                           | 2            | Novel                | in conjunction with the thyroid receptor ( tr ) , [ctcf]{.gene_color} binding to the [lysozyme]{.gene_color} gene transcriptional silencer mediates the thyroid hormone response element ( tre ) - dependent transcriptional repression . |  
+
 Table: Contains the top ten predictions for each edge type. Highlighted words represent entities mentioned within the given sentence. {#tbl:edge_prediction_tbl}
