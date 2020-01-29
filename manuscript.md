@@ -74,19 +74,19 @@ header-includes: '<!--
 
   <link rel="alternate" type="application/pdf" href="https://greenelab.github.io/text_mined_hetnet_manuscript/manuscript.pdf" />
 
-  <link rel="alternate" type="text/html" href="https://greenelab.github.io/text_mined_hetnet_manuscript/v/c8516d9d311cb32f063043872037c9b7077e54d9/" />
+  <link rel="alternate" type="text/html" href="https://greenelab.github.io/text_mined_hetnet_manuscript/v/1149d5d4ab45ee7ff8cec0698148f421bb01b290/" />
 
-  <meta name="manubot_html_url_versioned" content="https://greenelab.github.io/text_mined_hetnet_manuscript/v/c8516d9d311cb32f063043872037c9b7077e54d9/" />
+  <meta name="manubot_html_url_versioned" content="https://greenelab.github.io/text_mined_hetnet_manuscript/v/1149d5d4ab45ee7ff8cec0698148f421bb01b290/" />
 
-  <meta name="manubot_pdf_url_versioned" content="https://greenelab.github.io/text_mined_hetnet_manuscript/v/c8516d9d311cb32f063043872037c9b7077e54d9/manuscript.pdf" />
+  <meta name="manubot_pdf_url_versioned" content="https://greenelab.github.io/text_mined_hetnet_manuscript/v/1149d5d4ab45ee7ff8cec0698148f421bb01b290/manuscript.pdf" />
 
   <meta property="og:type" content="article" />
 
   <meta property="twitter:card" content="summary_large_image" />
 
-  <meta property="og:image" content="https://github.com/greenelab/text_mined_hetnet_manuscript/raw/c8516d9d311cb32f063043872037c9b7077e54d9/thumbnail.png" />
+  <meta property="og:image" content="https://github.com/greenelab/text_mined_hetnet_manuscript/raw/1149d5d4ab45ee7ff8cec0698148f421bb01b290/thumbnail.png" />
 
-  <meta property="twitter:image" content="https://github.com/greenelab/text_mined_hetnet_manuscript/raw/c8516d9d311cb32f063043872037c9b7077e54d9/thumbnail.png" />
+  <meta property="twitter:image" content="https://github.com/greenelab/text_mined_hetnet_manuscript/raw/1149d5d4ab45ee7ff8cec0698148f421bb01b290/thumbnail.png" />
 
   <link rel="icon" type="image/png" sizes="192x192" href="https://manubot.org/favicon-192x192.png" />
 
@@ -112,9 +112,9 @@ _A DOI-citable version of this manuscript is available at <https://doi.org/10.11
 
 <small><em>
 This manuscript
-([permalink](https://greenelab.github.io/text_mined_hetnet_manuscript/v/c8516d9d311cb32f063043872037c9b7077e54d9/))
+([permalink](https://greenelab.github.io/text_mined_hetnet_manuscript/v/1149d5d4ab45ee7ff8cec0698148f421bb01b290/))
 was automatically generated
-from [greenelab/text_mined_hetnet_manuscript@c8516d9](https://github.com/greenelab/text_mined_hetnet_manuscript/tree/c8516d9d311cb32f063043872037c9b7077e54d9)
+from [greenelab/text_mined_hetnet_manuscript@1149d5d](https://github.com/greenelab/text_mined_hetnet_manuscript/tree/1149d5d4ab45ee7ff8cec0698148f421bb01b290)
 on January 29, 2020.
 </em></small>
 
@@ -307,7 +307,7 @@ We downloaded PubTator on June 30, 2017, at which point it contained 10,775,748 
 Then we filtered out mention tags that were not contained in Hetionet v1.
 We used the Stanford CoreNLP parser [@RQkLuc5t] to tag parts of speech and generate dependency trees.
 We extracted sentences with two or more mentions, termed candidate sentences.
-Each candidate sentence was stratified by co-mention pair to produce a training set, tuning set and a testing set (shown in Table {@tbl:candidate-sentences}).
+Each candidate sentence was stratified by co-mention pair to produce a training set, tuning set and a testing set (shown in Supplemental Table {@tbl:candidate-sentences}).
 Each unique co-mention pair was sorted into four categories: (1) in Hetionet v1 and has sentences, (2) in Hetionet v1 and doesn't have sentences, (3) not in Hetionet v1 and does have sentences and (4) not in Hetionet v1 and doesn't have sentences.
 Within these four categories each pair is randomly assigned their own individual partition rank (a continuous number between 0 and 1).
 Any rank lower than 0.7 is sorted into the training set, while any rank greater than 0.7 and lower than 0.9 is assigned to the tuning set.
@@ -343,7 +343,7 @@ Using a calibrated discriminative model (see Supplemental Methods), we scored ev
 We took the max score within each candidate group and this score represents the probability of the existence of an edge. 
 We established edges by using a cutoff score that produced an equal error rate between the false positives and false negatives.
 We report the number of preexisting edges we could recall as well as the number of novel edges we can incorporate. 
-Lastly, we compared our framework with an previously established unsupervised approach [@IGXdryzB].
+Lastly, we compared our framework with a previously established unsupervised approach [@IGXdryzB].
 
 
 ## Results
@@ -356,7 +356,7 @@ Our hypothesis was that certain edge types share similar linguistic features suc
 This shared characteristic would make certain edge types amenable to label function reuse.
 We designed a set of experiments to test this hypothesis on an individual level (edge vs edge) as well as a global level (collective pool of sources). 
 We observed that performance increased when edge-specific label functions were added to an edge-specific baseline model, while label function reuse usually provided less benefit (AUROC Figure {@fig:auroc_gen_model_test_set}, AUPR Supplemental Figure {@fig:aupr_gen_model_test_set}).
-We also evaluated randomly selecting label functions from among all sets and observed similar performance (AUROC Supplemental Figure {@fig:auroc_grabbag_gen_model_test_set}, AUPR Supplemental Figure {@ fig:aupr_grabbag_gen_model_test_set})
+We also evaluated randomly selecting label functions from among all sets and observed similar performance (AUROC Supplemental Figure {@fig:auroc_grabbag_gen_model_test_set}, AUPR Supplemental Figure {@fig:aupr_grabbag_gen_model_test_set})
 The quintessential example of this overarching trend is the Compound treats Disease (CtD) edge type, where edge-specific label functions always outperformed transferred label functions.
 However, there are hints of label function transferability for selected edge types and label function sources. 
 Performance increases as more CbG label functions are incorporated to the GiG baseline model and vice versa.
