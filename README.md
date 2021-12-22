@@ -6,7 +6,6 @@
 [![PDF Manuscript](https://img.shields.io/badge/manuscript-PDF-blue.svg)](https://greenelab.github.io/text_mined_hetnet_manuscript/manuscript.pdf)
 [![GitHub Actions Status](https://github.com/manubot/rootstock/workflows/Manubot/badge.svg)](https://github.com/greenelab/text_mined_hetnet_manuscript/actions)
 
-
 ## Manuscript description
 
 <!-- usage note: edit this section. -->
@@ -85,7 +84,7 @@ The `gh-pages` branch uses [GitHub Pages](https://pages.github.com/) to host the
 + **HTML manuscript** at https://greenelab.github.io/text_mined_hetnet_manuscript/
 + **PDF manuscript** at https://greenelab.github.io/text_mined_hetnet_manuscript/manuscript.pdf
 
-For continuous integration configuration details, see [`.github/workflows/manubot.yaml`](.github/workflows/manubot.yaml) if using GitHub Actions or [`.travis.yml`](.travis.yml) if using Travis CI.
+For continuous integration configuration details, see [`.github/workflows/manubot.yaml`](.github/workflows/manubot.yaml).
 
 ## License
 
