@@ -46,19 +46,7 @@ set +o xtrace  # disable xtrace in subshell for private key operations
 if [ -v MANUBOT_SSH_PRIVATE_KEY ]; then
   base64 --decode <<< "$MANUBOT_SSH_PRIVATE_KEY" | ssh-add -
 else
-<<<<<<< HEAD
-echo >&2 "DeprecationWarning: Loading deploy.key from an encrypted file.
-In the future, using the MANUBOT_ACCESS_TOKEN or MANUBOT_SSH_PRIVATE_KEY environment variable may be required."
-openssl aes-256-cbc \
-  -K $encrypted_1197c51c43b1_key \
-  -iv $encrypted_1197c51c43b1_iv \
-  -in ci/deploy.key.enc \
-  -out ci/deploy.key -d
-chmod 600 ci/deploy.key
-ssh-add ci/deploy.key
-=======
   echo >&2 "Deployment will fail since neither of the following environment variables are set: MANUBOT_ACCESS_TOKEN or MANUBOT_SSH_PRIVATE_KEY."
->>>>>>> c4a394e4293751fdca07f17bb731a54ebdfdb50c
 fi
 )
 fi
