@@ -1,100 +1,5 @@
 ---
-author-meta:
-- David N. Nicholson
-- Daniel S. Himmelstein
-- Casey S. Greene
-date-meta: '2020-01-29'
-header-includes: '<!--
-
-  Manubot generated metadata rendered from header-includes-template.html.
-
-  Suggest improvements at https://github.com/manubot/manubot/blob/master/manubot/process/header-includes-template.html
-
-  -->
-
-  <meta name="dc.format" content="text/html" />
-
-  <meta name="dc.title" content="Expanding a Database-derived Biomedical Knowledge Graph via Multi-relation Extraction from Biomedical Abstracts" />
-
-  <meta name="citation_title" content="Expanding a Database-derived Biomedical Knowledge Graph via Multi-relation Extraction from Biomedical Abstracts" />
-
-  <meta property="og:title" content="Expanding a Database-derived Biomedical Knowledge Graph via Multi-relation Extraction from Biomedical Abstracts" />
-
-  <meta property="twitter:title" content="Expanding a Database-derived Biomedical Knowledge Graph via Multi-relation Extraction from Biomedical Abstracts" />
-
-  <meta name="dc.date" content="2020-01-29" />
-
-  <meta name="citation_publication_date" content="2020-01-29" />
-
-  <meta name="dc.language" content="en-US" />
-
-  <meta name="citation_language" content="en-US" />
-
-  <meta name="dc.relation.ispartof" content="Manubot" />
-
-  <meta name="dc.publisher" content="Manubot" />
-
-  <meta name="citation_journal_title" content="Manubot" />
-
-  <meta name="citation_technical_report_institution" content="Manubot" />
-
-  <meta name="citation_author" content="David N. Nicholson" />
-
-  <meta name="citation_author_institution" content="Department of Systems Pharmacology and Translational Therapeutics, University of Pennsylvania" />
-
-  <meta name="citation_author_orcid" content="0000-0003-0002-5761" />
-
-  <meta name="twitter:creator" content="@None" />
-
-  <meta name="citation_author" content="Daniel S. Himmelstein" />
-
-  <meta name="citation_author_institution" content="Department of Systems Pharmacology and Translational Therapeutics, University of Pennsylvania" />
-
-  <meta name="citation_author_orcid" content="0000-0002-3012-7446" />
-
-  <meta name="twitter:creator" content="@dhimmel" />
-
-  <meta name="citation_author" content="Casey S. Greene" />
-
-  <meta name="citation_author_institution" content="Department of Systems Pharmacology and Translational Therapeutics, University of Pennsylvania" />
-
-  <meta name="citation_author_orcid" content="0000-0001-8713-9213" />
-
-  <meta name="twitter:creator" content="@GreeneScientist" />
-
-  <link rel="canonical" href="https://greenelab.github.io/text_mined_hetnet_manuscript/" />
-
-  <meta property="og:url" content="https://greenelab.github.io/text_mined_hetnet_manuscript/" />
-
-  <meta property="twitter:url" content="https://greenelab.github.io/text_mined_hetnet_manuscript/" />
-
-  <meta name="citation_fulltext_html_url" content="https://greenelab.github.io/text_mined_hetnet_manuscript/" />
-
-  <meta name="citation_pdf_url" content="https://greenelab.github.io/text_mined_hetnet_manuscript/manuscript.pdf" />
-
-  <link rel="alternate" type="application/pdf" href="https://greenelab.github.io/text_mined_hetnet_manuscript/manuscript.pdf" />
-
-  <link rel="alternate" type="text/html" href="https://greenelab.github.io/text_mined_hetnet_manuscript/v/1149d5d4ab45ee7ff8cec0698148f421bb01b290/" />
-
-  <meta name="manubot_html_url_versioned" content="https://greenelab.github.io/text_mined_hetnet_manuscript/v/1149d5d4ab45ee7ff8cec0698148f421bb01b290/" />
-
-  <meta name="manubot_pdf_url_versioned" content="https://greenelab.github.io/text_mined_hetnet_manuscript/v/1149d5d4ab45ee7ff8cec0698148f421bb01b290/manuscript.pdf" />
-
-  <meta property="og:type" content="article" />
-
-  <meta property="twitter:card" content="summary_large_image" />
-
-  <meta property="og:image" content="https://github.com/greenelab/text_mined_hetnet_manuscript/raw/1149d5d4ab45ee7ff8cec0698148f421bb01b290/thumbnail.png" />
-
-  <meta property="twitter:image" content="https://github.com/greenelab/text_mined_hetnet_manuscript/raw/1149d5d4ab45ee7ff8cec0698148f421bb01b290/thumbnail.png" />
-
-  <link rel="icon" type="image/png" sizes="192x192" href="https://manubot.org/favicon-192x192.png" />
-
-  <link rel="mask-icon" href="https://manubot.org/safari-pinned-tab.svg" color="#ad1457" />
-
-  <meta name="theme-color" content="#ad1457" />
-
-  <!-- end Manubot generated metadata -->'
+title: Expanding a Database-derived Biomedical Knowledge Graph via Multi-relation Extraction from Biomedical Abstracts
 keywords:
 - machine learning
 - weak supervision
@@ -102,7 +7,64 @@ keywords:
 - heterogenous netowrks
 - text mining
 lang: en-US
-title: Expanding a Database-derived Biomedical Knowledge Graph via Multi-relation Extraction from Biomedical Abstracts
+date-meta: '2021-12-22'
+author-meta:
+- David N. Nicholson
+- Daniel S. Himmelstein
+- Casey S. Greene
+header-includes: |-
+  <!--
+  Manubot generated metadata rendered from header-includes-template.html.
+  Suggest improvements at https://github.com/manubot/manubot/blob/main/manubot/process/header-includes-template.html
+  -->
+  <meta name="dc.format" content="text/html" />
+  <meta name="dc.title" content="Expanding a Database-derived Biomedical Knowledge Graph via Multi-relation Extraction from Biomedical Abstracts" />
+  <meta name="citation_title" content="Expanding a Database-derived Biomedical Knowledge Graph via Multi-relation Extraction from Biomedical Abstracts" />
+  <meta property="og:title" content="Expanding a Database-derived Biomedical Knowledge Graph via Multi-relation Extraction from Biomedical Abstracts" />
+  <meta property="twitter:title" content="Expanding a Database-derived Biomedical Knowledge Graph via Multi-relation Extraction from Biomedical Abstracts" />
+  <meta name="dc.date" content="2021-12-22" />
+  <meta name="citation_publication_date" content="2021-12-22" />
+  <meta name="dc.language" content="en-US" />
+  <meta name="citation_language" content="en-US" />
+  <meta name="dc.relation.ispartof" content="Manubot" />
+  <meta name="dc.publisher" content="Manubot" />
+  <meta name="citation_journal_title" content="Manubot" />
+  <meta name="citation_technical_report_institution" content="Manubot" />
+  <meta name="citation_author" content="David N. Nicholson" />
+  <meta name="citation_author_institution" content="Department of Systems Pharmacology and Translational Therapeutics, University of Pennsylvania" />
+  <meta name="citation_author_orcid" content="0000-0003-0002-5761" />
+  <meta name="twitter:creator" content="@None" />
+  <meta name="citation_author" content="Daniel S. Himmelstein" />
+  <meta name="citation_author_institution" content="Department of Systems Pharmacology and Translational Therapeutics, University of Pennsylvania" />
+  <meta name="citation_author_orcid" content="0000-0002-3012-7446" />
+  <meta name="twitter:creator" content="@dhimmel" />
+  <meta name="citation_author" content="Casey S. Greene" />
+  <meta name="citation_author_institution" content="Department of Systems Pharmacology and Translational Therapeutics, University of Pennsylvania" />
+  <meta name="citation_author_orcid" content="0000-0001-8713-9213" />
+  <meta name="twitter:creator" content="@GreeneScientist" />
+  <link rel="canonical" href="https://greenelab.github.io/text_mined_hetnet_manuscript/" />
+  <meta property="og:url" content="https://greenelab.github.io/text_mined_hetnet_manuscript/" />
+  <meta property="twitter:url" content="https://greenelab.github.io/text_mined_hetnet_manuscript/" />
+  <meta name="citation_fulltext_html_url" content="https://greenelab.github.io/text_mined_hetnet_manuscript/" />
+  <meta name="citation_pdf_url" content="https://greenelab.github.io/text_mined_hetnet_manuscript/manuscript.pdf" />
+  <link rel="alternate" type="application/pdf" href="https://greenelab.github.io/text_mined_hetnet_manuscript/manuscript.pdf" />
+  <link rel="alternate" type="text/html" href="https://greenelab.github.io/text_mined_hetnet_manuscript/v/470690b46afb1f76962aa2bc69ac1ed5dd0f00e9/" />
+  <meta name="manubot_html_url_versioned" content="https://greenelab.github.io/text_mined_hetnet_manuscript/v/470690b46afb1f76962aa2bc69ac1ed5dd0f00e9/" />
+  <meta name="manubot_pdf_url_versioned" content="https://greenelab.github.io/text_mined_hetnet_manuscript/v/470690b46afb1f76962aa2bc69ac1ed5dd0f00e9/manuscript.pdf" />
+  <meta property="og:type" content="article" />
+  <meta property="twitter:card" content="summary_large_image" />
+  <meta property="og:image" content="https://github.com/greenelab/text_mined_hetnet_manuscript/raw/470690b46afb1f76962aa2bc69ac1ed5dd0f00e9/thumbnail.png" />
+  <meta property="twitter:image" content="https://github.com/greenelab/text_mined_hetnet_manuscript/raw/470690b46afb1f76962aa2bc69ac1ed5dd0f00e9/thumbnail.png" />
+  <link rel="icon" type="image/png" sizes="192x192" href="https://manubot.org/favicon-192x192.png" />
+  <link rel="mask-icon" href="https://manubot.org/safari-pinned-tab.svg" color="#ad1457" />
+  <meta name="theme-color" content="#ad1457" />
+  <!-- end Manubot generated metadata -->
+bibliography:
+- content/manual-references.json
+manubot-output-bibliography: output/references.json
+manubot-output-citekeys: output/citations.tsv
+manubot-requests-cache-path: ci/cache/requests-cache
+manubot-clear-requests-cache: false
 ...
 
 
@@ -112,10 +74,10 @@ _A DOI-citable version of this manuscript is available at <https://doi.org/10.11
 
 <small><em>
 This manuscript
-([permalink](https://greenelab.github.io/text_mined_hetnet_manuscript/v/1149d5d4ab45ee7ff8cec0698148f421bb01b290/))
+([permalink](https://greenelab.github.io/text_mined_hetnet_manuscript/v/470690b46afb1f76962aa2bc69ac1ed5dd0f00e9/))
 was automatically generated
-from [greenelab/text_mined_hetnet_manuscript@1149d5d](https://github.com/greenelab/text_mined_hetnet_manuscript/tree/1149d5d4ab45ee7ff8cec0698148f421bb01b290)
-on January 29, 2020.
+from [greenelab/text_mined_hetnet_manuscript@470690b](https://github.com/greenelab/text_mined_hetnet_manuscript/tree/470690b46afb1f76962aa2bc69ac1ed5dd0f00e9)
+on December 22, 2021.
 </em></small>
 
 ## Authors
@@ -123,9 +85,9 @@ on January 29, 2020.
 
 
 + **David N. Nicholson**<br>
-    ![ORCID icon](images/orcid.svg){.inline_icon}
+    ![ORCID icon](images/orcid.svg){.inline_icon width=16 height=16}
     [0000-0003-0002-5761](https://orcid.org/0000-0003-0002-5761)
-    · ![GitHub icon](images/github.svg){.inline_icon}
+    · ![GitHub icon](images/github.svg){.inline_icon width=16 height=16}
     [danich1](https://github.com/danich1)<br>
   <small>
      Department of Systems Pharmacology and Translational Therapeutics, University of Pennsylvania
@@ -133,11 +95,11 @@ on January 29, 2020.
   </small>
 
 + **Daniel S. Himmelstein**<br>
-    ![ORCID icon](images/orcid.svg){.inline_icon}
+    ![ORCID icon](images/orcid.svg){.inline_icon width=16 height=16}
     [0000-0002-3012-7446](https://orcid.org/0000-0002-3012-7446)
-    · ![GitHub icon](images/github.svg){.inline_icon}
+    · ![GitHub icon](images/github.svg){.inline_icon width=16 height=16}
     [dhimmel](https://github.com/dhimmel)
-    · ![Twitter icon](images/twitter.svg){.inline_icon}
+    · ![Twitter icon](images/twitter.svg){.inline_icon width=16 height=16}
     [dhimmel](https://twitter.com/dhimmel)<br>
   <small>
      Department of Systems Pharmacology and Translational Therapeutics, University of Pennsylvania
@@ -145,11 +107,11 @@ on January 29, 2020.
   </small>
 
 + **Casey S. Greene**<br>
-    ![ORCID icon](images/orcid.svg){.inline_icon}
+    ![ORCID icon](images/orcid.svg){.inline_icon width=16 height=16}
     [0000-0001-8713-9213](https://orcid.org/0000-0001-8713-9213)
-    · ![GitHub icon](images/github.svg){.inline_icon}
+    · ![GitHub icon](images/github.svg){.inline_icon width=16 height=16}
     [cgreene](https://github.com/cgreene)
-    · ![Twitter icon](images/twitter.svg){.inline_icon}
+    · ![Twitter icon](images/twitter.svg){.inline_icon width=16 height=16}
     [GreeneScientist](https://twitter.com/GreeneScientist)<br>
   <small>
      Department of Systems Pharmacology and Translational Therapeutics, University of Pennsylvania
@@ -175,22 +137,22 @@ We expect that continued development of this strategy has the potential to swift
 ## Introduction
 
 Knowledge bases are important resources that hold complex structured and unstructured information. 
-These resources have been used in important tasks such as network analysis for drug repurposing discovery [@u8pIAt5j; @bPvC638e; @O21tn8vf] or as a source of training labels for text mining systems [@EHeTvZht; @CVHSURuI; @HS4ARwmZ]. 
-Populating knowledge bases often requires highly trained scientists to read biomedical literature and summarize the results [@N1Ai0gaI].
+These resources have been used in important tasks such as network analysis for drug repurposing discovery [@doi:10.1371/journal.pone.0084912; @doi:10.1101/385617; @doi:10.7554/eLife.26726] or as a source of training labels for text mining systems [@doi:10.3115/1690219.1690287; @doi:10.1101/444398; @doi:10.1186/s12859-019-2873-7]. 
+Populating knowledge bases often requires highly trained scientists to read biomedical literature and summarize the results [@doi:10.1093/bib/bbn043].
 This time-consuming process is referred to as manual curation.
-In 2007, researchers estimated that filling a knowledge base via manual curation would require approximately 8.4 years to complete [@UdzvLgBM]. 
-The rate of publications continues to exponentially increase [@1DBISRlwN], so using only manual curation to fully populate a knowledge base has become impractical.  
+In 2007, researchers estimated that filling a knowledge base via manual curation would require approximately 8.4 years to complete [@doi:10.1093/bioinformatics/btm229]. 
+The rate of publications continues to exponentially increase [@doi:10.1002/asi.23329], so using only manual curation to fully populate a knowledge base has become impractical.  
 
-Relationship extraction has been studied as a solution towards handling the challenge posed by an exponentially growing body of literature [@N1Ai0gaI].
+Relationship extraction has been studied as a solution towards handling the challenge posed by an exponentially growing body of literature [@doi:10.1093/bib/bbn043].
 This process consists of creating an expert system to automatically scan, detect and extract relationships from textual sources.
 Typically, these systems utilize machine learning techniques that require extensive corpora of well-labeled training data.
 These corpora are difficult to obtain, because they are constructed via extensive manual curation pipelines.  
 
 Distant supervision is a technique also designed to sidestep the dependence on manual curation and quickly generate large training datasets.
-This technique assumes that positive examples established in selected databases can be applied to any sentence that contains them [@EHeTvZht].
-The central problem with this technique is that generated labels are often of low quality which results in an expansive amount of false positives [@mwM58zzr].  
+This technique assumes that positive examples established in selected databases can be applied to any sentence that contains them [@doi:10.3115/1690219.1690287].
+The central problem with this technique is that generated labels are often of low quality which results in an expansive amount of false positives [@raw:Jiang2018RevisitingDS].  
 
-Ratner et al. [@5Il3kN32] recently introduced "data programming" as a solution.
+Ratner et al. [@arxiv:1605.07723] recently introduced "data programming" as a solution.
 Data programming is a paradigm that combines distant supervision with simple rules and heuristics written as small programs called label functions.
 These label functions are consolidated via a noise aware generative model that is designed to produce training labels for large datasets.
 Using this paradigm can dramatically reduce the time required to obtain sufficient training data; however, writing a useful label function requires a significant amount of time and error analysis.
@@ -212,17 +174,17 @@ In this section, we briefly discuss selected efforts under each category.
 
 Rule based extractors rely heavily on expert knowledge to perform extraction.
 Typically, these systems use linguistic rules and heuristics to identify key sentences or phrases.
-For example, a hypothetical extractor focused on protein phosphorylation events would identify sentences containing the phrase "gene X phosphorylates gene Y" [@KEkjqdB0].
+For example, a hypothetical extractor focused on protein phosphorylation events would identify sentences containing the phrase "gene X phosphorylates gene Y" [@doi:10.1109/TCBB.2014.2372765].
 This phrase is a straightforward indication that two genes have a fundamental role in protein phosphorylation.
-Other phrase extractors have been used to identify drug-disease treatments [@1avvFjJ9], pharmcogenomic events [@107WYOcxW] and protein-protein interactions [@yGMDz6lK; @w32u0Rj9].
+Other phrase extractors have been used to identify drug-disease treatments [@tag:ctd_medline], pharmcogenomic events [@tag:pharmpresso] and protein-protein interactions [@tag:ppinterfinder; @tag:hpiminer].
 These extractors provide a simple and effective way to extract sentences; however, they depend on extensive knowledge about the text to be properly constructed.
 
 A sentence's grammatical structure can also support relationship extraction via dependency trees.
 Dependency trees are data structures that depict a sentence's grammatical relation structure in the form of nodes and edges.
 Nodes represent words and edges represent the dependency type each word shares between one another.
-For example, a possible extractor would classify sentences as a positive if a sentence contained the following dependency tree path: "gene X (subject)-> promotes (verb)<- cell death (direct object) <- in (preposition) <-tumors (object of preposition)" [@NLxmpSdj].
+For example, a possible extractor would classify sentences as a positive if a sentence contained the following dependency tree path: "gene X (subject)-> promotes (verb)<- cell death (direct object) <- in (preposition) <-tumors (object of preposition)" [@tag:pkde4j].
 This approach provides extremely precise results, but the quantity of positive results remains modest as sentences appear in distinct forms and structure.
-Because of this limitation, recent approaches have incorporated methods on top of rule based extractors such as co-occurrence and machine learning systems [@d3rG3TXb; @OnvaFHG9].
+Because of this limitation, recent approaches have incorporated methods on top of rule based extractors such as co-occurrence and machine learning systems [@doi:10.1186/s12859-018-2103-8; @tag:limtox].
 We discuss the pros and cons of added methods in a later section.
 For this project, we constructed our label functions without the aid of these works; however, approaches discussed in this section provide substantial inspiration for novel label functions in future endeavors.
 
@@ -232,46 +194,46 @@ Unsupervised extractors detect relationships without the need of annotated text.
 Notable approaches exploit the fact that two entities can occur together in text.
 This event is referred to as co-occurrence.
 Extractors utilize these events by generating statistics on the frequency of entity pairs occurring in text.
-For example, a possible extractor would say gene X is associated with disease Y, because gene X and disease Y appear together more often than individually [@5gG8hwv7].
-This approach has been used to establish the following relationship types: disease-gene relationships [@5gG8hwv7; @WDNuFZ4j; @CxErbNTp; @19zkt9R1G; @DGlWGDEt; @AdKPf5EO], protein-protein interactions [@8GVs1dBG; @B8EOgoNA; @DGlWGDEt], drug-disease treatments [@ETC6lm7S], and tissue-gene relations [@6QECA6Hm].
+For example, a possible extractor would say gene X is associated with disease Y, because gene X and disease Y appear together more often than individually [@tag:diseases].
+This approach has been used to establish the following relationship types: disease-gene relationships [@tag:diseases; @tag:polysearch; @tag:dg_text_pubmed; @tag:lgscore; @tag:full_text_co_abstracts; @tag:copub_discovery], protein-protein interactions [@tag:protein_protein_co_network; @doi:10.1093/database/bau012; @tag:full_text_co_abstracts], drug-disease treatments [@tag:abc_drugs], and tissue-gene relations [@doi:10.7717/peerj.1054].
 Extractors using the co-occurrence strategy provide exceptional recall results; however, these methods may fail to detect underreported relationships, because they depend on entity-pair frequency for detection.
-Junge et al. created a hybrid approach to account for this issue using distant supervision to train a classifier to learn the context of each sentence [@IGXdryzB].
-Once the classifier was trained, they scored every sentence within their corpus, and each sentence's score was incorporated into calculating co-occurrence frequencies to establish relationship existence [@IGXdryzB].
+Junge et al. created a hybrid approach to account for this issue using distant supervision to train a classifier to learn the context of each sentence [@tag:cocoscore].
+Once the classifier was trained, they scored every sentence within their corpus, and each sentence's score was incorporated into calculating co-occurrence frequencies to establish relationship existence [@tag:cocoscore].
 Co-occurrence approaches are powerful in establishing edges on the global scale; however, they cannot identify individual sentences without the need for supervised methods.  
 
 Clustering is an unsupervised approach that extracts relationships from text by grouping similar sentences together.
-Percha et al. used this technique to group sentences based on their grammatical structure [@CSiMoOrI].
-Using Stanford's Core NLP Parser [@RQkLuc5t], a dependency tree was generated for every sentence in each Pubmed abstract [@CSiMoOrI].
-Each tree was clustered based on similarity and each cluster was manually annotated to determine which relationship each group represented [@CSiMoOrI].
+Percha et al. used this technique to group sentences based on their grammatical structure [@tag:global_network].
+Using Stanford's Core NLP Parser [@doi:10.3115/v1/P14-5010], a dependency tree was generated for every sentence in each Pubmed abstract [@tag:global_network].
+Each tree was clustered based on similarity and each cluster was manually annotated to determine which relationship each group represented [@tag:global_network].
 For our project we incorporated the results of this work as domain heuristic label functions.
 Overall, unsupervised approaches are desirable since they do not require well-annotated training data. 
-Such approaches provide excellent recall; however, performance can be limited in terms of precision when compared to supervised machine learning methods [@199TFjkrC; @1ZjlFRHa].
+Such approaches provide excellent recall; however, performance can be limited in terms of precision when compared to supervised machine learning methods [@doi:10.1038/nrg1768; @doi:10.1016/j.ymeth.2015.01.015].
 
 #### Supervised Extractors
 
 Supervised extractors consist of training a machine learning classifier to predict the existence of a relationship within text.
 These classifiers require access to well-annotated datasets, which are usually created via some form of manual curation.
-Previous work consists of research experts curating their own datasets to train classifiers [@hbAqN08A; @Y2DcwTrA; @YWh6tPj; @DWpAeBxB; @L9IIm3Zd]; however, there have been community-wide efforts to create datasets for shared tasks [@6wNuLZWb; @16As8893j; @DR8XM4Ff].
+Previous work consists of research experts curating their own datasets to train classifiers [@tag:befree; @tag:eu_adr; @tag:aimed; @tag:bioinfer; @tag:hprd50]; however, there have been community-wide efforts to create datasets for shared tasks [@tag:biocreative_v; @raw:biocreative/chemprot; @doi:10.1186/1471-2105-9-S3-S6].
 Shared tasks are open challenges that aim to build the best classifier for natural language processing tasks such as named entity tagging or relationship extraction. 
-A notable example is the BioCreative community that hosted a number of shared tasks such as predicting compound-protein interactions (BioCreative VI track 5) [@16As8893j] and compound induced diseases [@DR8XM4Ff].
-Often these datasets are well annotated, but are modest in size (2,432 abstracts  for BioCreative VI [@16As8893j] and 1500 abstracts for BioCreative V [@DR8XM4Ff]).
+A notable example is the BioCreative community that hosted a number of shared tasks such as predicting compound-protein interactions (BioCreative VI track 5) [@raw:biocreative/chemprot] and compound induced diseases [@doi:10.1186/1471-2105-9-S3-S6].
+Often these datasets are well annotated, but are modest in size (2,432 abstracts  for BioCreative VI [@raw:biocreative/chemprot] and 1500 abstracts for BioCreative V [@doi:10.1186/1471-2105-9-S3-S6]).
 As machine learning classifiers become increasingly complex, these small dataset sizes cannot suffice.
-Plus, these multitude of datasets are uniquely annotated which can generate noticeable differences in terms of classifier performance [@DR8XM4Ff].
+Plus, these multitude of datasets are uniquely annotated which can generate noticeable differences in terms of classifier performance [@doi:10.1186/1471-2105-9-S3-S6].
 Overall, obtaining large well-annotated datasets still remains as an open non-trivial task.
 
 Before the rise of deep learning, a classifier that was most frequently used was support vector machines.
-This classifier uses a projection function called a kernel to map data onto a high dimensional space so datapoints can be easily discerned between classes [@uujIm995].
-This method was used to extract disease-gene associations [@hbAqN08A; @3j1T67vB; @GeCe9qfW], protein-protein interactions[@iiQkIqUX; @OnvaFHG9; @i7KpvzCo] and protein docking information [@1B0lnkj35].
+This classifier uses a projection function called a kernel to map data onto a high dimensional space so datapoints can be easily discerned between classes [@doi:10.1109/5254.708428].
+This method was used to extract disease-gene associations [@tag:befree; @tag:dtminer; @tag:ensemble_svm], protein-protein interactions[@tag:ppi_graph_kernels; @tag:limtox; @tag:lptk] and protein docking information [@tag:protein_docking].
 Generally, support vector machines perform well on small datasets with large feature spaces but are slow to train as the number of datapoints becomes asymptotically large.
 
-Deep learning has been increasingly popular as these methods can outperform common machine learning methods [@BQS8ClV0].
-Approaches in this field consist of using various neural network architectures, such as recurrent neural networks [@ibJfUvEe; @5LOkzCNK; @1HjIKY59u; @WP5p3RT3; @P2pnebCX; @SkPpj3hW] and convolutional neural networks [@1H4LpFrU0; @bLKJwjMD; @5LOkzCNK;@P2pnebCX; @16MGWGDUB], to extract relationships from text.
-In fact approaches in this field were the winning model within the BioCreative VI shared task [@16As8893j; @lVAPcw1k].
+Deep learning has been increasingly popular as these methods can outperform common machine learning methods [@doi:10.1016/j.neunet.2014.09.003].
+Approaches in this field consist of using various neural network architectures, such as recurrent neural networks [@tag:ppi_bilstm; @tag:cbg_ensemble_dl; @tag:cbg_neural_attention; @tag:recursive_nn; @tag:semi_supervised_vae; @tag:biobert] and convolutional neural networks [@tag:ppi_deep_conv; @tag:mcdepcnn; @tag:cbg_ensemble_dl;@tag:semi_supervised_vae; @tag:cbg_transfer_learning], to extract relationships from text.
+In fact approaches in this field were the winning model within the BioCreative VI shared task [@raw:biocreative/chemprot; @raw:chemprot_winner].
 Despite the substantial success of these models, they often require large amounts of data to perform well.
 Obtaining large datasets is a time-consuming task, which makes training these models a non-trivial challenge.
-Distant supervision has been used as a solution to fix the barren amount of large datasets [@EHeTvZht].
-Approaches have used this paradigm to extract chemical-gene interactions [@P2pnebCX], disease-gene associations [@IGXdryzB] and protein-protein interactions [@WYud0jQT; @IGXdryzB; @P2pnebCX].
-In fact, efforts done in [@WYud0jQT] served as one of the motivating rationales for our work.  
+Distant supervision has been used as a solution to fix the barren amount of large datasets [@doi:10.3115/1690219.1690287].
+Approaches have used this paradigm to extract chemical-gene interactions [@tag:semi_supervised_vae], disease-gene associations [@tag:cocoscore] and protein-protein interactions [@tag:deep_dive; @tag:cocoscore; @tag:semi_supervised_vae].
+In fact, efforts done in [@tag:deep_dive] served as one of the motivating rationales for our work.  
 
 Overall, deep learning has provided exceptional results in terms of relationships extraction.
 Thus, we decided to use a deep neural network as our discriminative model.
@@ -288,10 +250,10 @@ span.compound_color { color:#e91e63 }
 
 ### Hetionet
 
-Hetionet v1 [@O21tn8vf] is a large heterogenous network that contains pharmacological and biological information.
+Hetionet v1 [@doi:10.7554/eLife.26726] is a large heterogenous network that contains pharmacological and biological information.
 This network depicts information in the form of nodes and edges of different types: nodes that represent biological and pharmacological entities and edges which represent relationships between entities. 
 Hetionet v1 contains 47,031 nodes with 11 different data types and 2,250,197 edges that represent 24 different relationship types (Figure {@fig:hetionet}).
-Edges in Hetionet v1 were obtained from open databases, such as the GWAS Catalog [@16cIDAXhG] and DrugBank [@1FI8iuYiQ].
+Edges in Hetionet v1 were obtained from open databases, such as the GWAS Catalog [@doi:10.1093/nar/gkw1133] and DrugBank [@doi:10.1093/nar/gkx1037].
 For this project, we analyzed performance over a subset of the Hetionet v1 edge types: disease associates with a gene (DaG), compound binds to a gene (CbG), compound treating a disease (CtD) and gene interacts with gene (GiG) (bolded in Figure {@fig:hetionet}).
 
 ![
@@ -301,11 +263,11 @@ We examined performance on the highlighted subgraph; however, the long-term visi
 
 ### Dataset
 
-We used PubTator [@13vw5RIy4] as input to our analysis.
-PubTator provides MEDLINE abstracts that have been annotated with well-established entity recognition tools including DNorm [@vtuZ3Wx7] for disease mentions, GeneTUKit [@4S2HMNpa] for gene mentions, Gnorm [@1AkC7QdyP] for gene normalizations and a dictionary based search system for compound mentions [@r501gnuM].
+We used PubTator [@doi:10.1093/nar/gkt441] as input to our analysis.
+PubTator provides MEDLINE abstracts that have been annotated with well-established entity recognition tools including DNorm [@doi:10.1093/bioinformatics/btt474] for disease mentions, GeneTUKit [@doi:10.1093/bioinformatics/btr042] for gene mentions, Gnorm [@doi:10.1186/1471-2105-12-S8-S5] for gene normalizations and a dictionary based search system for compound mentions [@doi:10.1093/database/bas037].
 We downloaded PubTator on June 30, 2017, at which point it contained 10,775,748 abstracts. 
 Then we filtered out mention tags that were not contained in Hetionet v1.
-We used the Stanford CoreNLP parser [@RQkLuc5t] to tag parts of speech and generate dependency trees.
+We used the Stanford CoreNLP parser [@doi:10.3115/v1/P14-5010] to tag parts of speech and generate dependency trees.
 We extracted sentences with two or more mentions, termed candidate sentences.
 Each candidate sentence was stratified by co-mention pair to produce a training set, tuning set and a testing set (shown in Supplemental Table {@tbl:candidate-sentences}).
 Each unique co-mention pair was sorted into four categories: (1) in Hetionet v1 and has sentences, (2) in Hetionet v1 and doesn't have sentences, (3) not in Hetionet v1 and does have sentences and (4) not in Hetionet v1 and doesn't have sentences.
@@ -320,7 +282,7 @@ We hand labeled five hundred to a thousand candidate sentences of each edge type
 ### Label Functions for Annotating Sentences
 
 The challenge of having too few ground truth annotations is common to many natural language processing settings, even when unannotated text is abundant.
-Data programming circumvents this issue by quickly annotating large datasets by using multiple noisy signals emitted by label functions [@5Il3kN32].
+Data programming circumvents this issue by quickly annotating large datasets by using multiple noisy signals emitted by label functions [@arxiv:1605.07723].
 Label functions are simple pythonic functions that emit: a positive label (1), a negative label (-1) or abstain from emitting a label (0).
 These functions can be grouped into multiple categories (see Supplement Methods).
 We combined these functions using a generative model to output a single annotation, which is a consensus probability score bounded between 0 (low chance of mentioning a relationship) and 1 (high chance of mentioning a relationship).
@@ -330,7 +292,7 @@ We used these annotations to train a discriminative model that makes the final c
 
 Being able to re-use label functions across edge types would substantially reduce the number of label functions required to extract multiple relationships from biomedical literature.
 We first established a baseline by training a generative model using only distant supervision label functions designed for the target edge type (see Supplemental Methods).
-For example, in the Gene interacts Gene (GiG) edge type we used label functions that returned a 1 if the pair of genes were included in the Human Interaction database [@LCyCrr7W], the iRefIndex database [@gtV3bOpd] or in the Incomplete Interactome database [@2jkcXYxN].
+For example, in the Gene interacts Gene (GiG) edge type we used label functions that returned a 1 if the pair of genes were included in the Human Interaction database [@doi:10.1016/j.cell.2014.10.050], the iRefIndex database [@doi:10.1186/1471-2105-9-405] or in the Incomplete Interactome database [@doi:10.1126/science.1257601].
 Then we compared the baseline model with models that also included text and domain-heuristic label functions.
 Using a sampling with replacement approach, we sampled these text and domain-heuristic label functions separately within edge types, across edge types, and from a pool of all label functions.
 We compared within-edge-type performance to across-edge-type and all-edge-type performance.
@@ -343,7 +305,7 @@ Using a calibrated discriminative model (see Supplemental Methods), we scored ev
 We took the max score within each candidate group and this score represents the probability of the existence of an edge. 
 We established edges by using a cutoff score that produced an equal error rate between the false positives and false negatives.
 We report the number of preexisting edges we could recall as well as the number of novel edges we can incorporate. 
-Lastly, we compared our framework with a previously established unsupervised approach [@IGXdryzB].
+Lastly, we compared our framework with a previously established unsupervised approach [@tag:cocoscore].
 
 
 ## Results
@@ -426,7 +388,7 @@ Our findings suggest that further work, including an expansion of edge types and
 
 ## Conclusion and Future Direction
 
-Filling out knowledge bases via manual curation can be an arduous and erroneous task [@UdzvLgBM].
+Filling out knowledge bases via manual curation can be an arduous and erroneous task [@doi:10.1093/bioinformatics/btm229].
 As the rate of publications increases, relying on manual curation alone becomes impractical.
 Data programming, a paradigm that uses label functions as a means to speed up the annotation process, can be used as a solution for this problem.
 An obstacle for this paradigm, however, is creating useful label functions, which takes a considerable amount of time. 
@@ -436,9 +398,9 @@ The discriminative model's performance improves as more edge-specific label func
 
 This work sets up the foundation for creating a common framework that mines text to create edges.
 Within this framework we would continuously incorporate new knowledge as novel findings are published, while providing a single confidence score for an edge via sentence score consolidation.
-As opposed to many existing knowledge graphs (for example, Hetionet v1 where text-derived edges generally cannot be exactly attributed to excerpts from literature [@O21tn8vf; @L2B5V7XC]), our approach has the potential to annotate each edge based on its source sentences.
-In addition, edges generated with this approach would be unencumbered from upstream licensing or copyright restrictions, enabling openly licensed hetnets at a scale not previously possible [@4G0GW8oe; @137tbemL9; @1GwdMLPbV].
-New multitask learning [@9Jo1af7Z] strategies may make it even more practical to reuse label functions to construct continuously updating literature-derived knowledge graphs.
+As opposed to many existing knowledge graphs (for example, Hetionet v1 where text-derived edges generally cannot be exactly attributed to excerpts from literature [@doi:10.7554/eLife.26726; @doi:10.15363/thinklab.d67]), our approach has the potential to annotate each edge based on its source sentences.
+In addition, edges generated with this approach would be unencumbered from upstream licensing or copyright restrictions, enabling openly licensed hetnets at a scale not previously possible [@doi:10.15363/thinklab.d107; @doi:10.1038/536016a; @doi:10.1371/journal.pone.0213090].
+New multitask learning [@doi:10.1145/3209889.3209898] strategies may make it even more practical to reuse label functions to construct continuously updating literature-derived knowledge graphs.
 
 
 ## Supplemental Information
@@ -467,7 +429,7 @@ We grouped these characteristics into the following categories: databases, text 
 Most of our label functions fall into the text pattern category, while the others were distributed across the database and domain heuristic categories (Supplemental Table {@tbl:label-functions}).
 Further, we described each category and provided an example that refers to the following candidate sentence: "[PTK6]{.gene_color} may be a novel therapeutic target for [pancreatic cancer]{.disease_color}".
 
-**Databases**: These label functions incorporate existing databases to generate a signal, as seen in distant supervision [@EHeTvZht].
+**Databases**: These label functions incorporate existing databases to generate a signal, as seen in distant supervision [@doi:10.3115/1690219.1690287].
 These functions detect if a candidate sentence's co-mention pair is present in a given database.
 If the pair is present, our label function emits a positive label and abstains otherwise.
 If the pair is not present in any existing database, a separate label function emits a negative label.
@@ -486,7 +448,7 @@ $$ \Lambda_{\neg DB}(\color{#875442}{D}, \color{#02b3e4}{G}) =
 \end{cases} $$
 
 **Domain Heuristics**: These label functions used results from published text-based analyses to generate a signal. 
-For our project, we used dependency path cluster themes generated by Percha et al. [@CSiMoOrI].
+For our project, we used dependency path cluster themes generated by Percha et al. [@tag:global_network].
 If a candidate sentence's dependency path belonged to a previously generated cluster, then the label function emitted a positive label and abstained otherwise.
 
 $$
@@ -552,7 +514,7 @@ This model optimizes the weights ($\theta$) by minimizing the negative log likel
 
 $$\hat{\theta} = argmin_{\theta} -\sum_{\Lambda} \sum_{Y} log P_{\theta}(\Lambda, Y)$$
 
-In the framework we used predictions from the generative model, $\hat{Y} = P_{\hat{\theta}}(Y \mid \Lambda)$, as training classes for our dataset [@vzoBuh4l; @9Jo1af7Z]. 
+In the framework we used predictions from the generative model, $\hat{Y} = P_{\hat{\theta}}(Y \mid \Lambda)$, as training classes for our dataset [@doi:10.14778/3157794.3157797; @doi:10.1145/3209889.3209898]. 
 
 #### Discriminative Model
 
@@ -560,8 +522,8 @@ The discriminative model is a neural network trained to produce classification l
 The goal of this combined approach is to develop models that learn text features associated with the overall task, beyond the supplied label functions.
 We used a piecewise convolutional neural network that contains multiple kernel filters as our discriminative model.
 We built a network with multiple filters using a fixed width of 300 (size of word embeddings) and a fixed height of 7 (Figure {@fig:convolutional_network}).
-We chose a fixed height of 7 because this height was previously reported to optimize performance in relationship classification [@fs8rAHoJ].
-We trained this model for 15 epochs using the Adam optimizer [@c6d3lKFX] with PyTorch's default parameter settings and a learning rate of 0.001 that decreases by half every epoch until the lower bound of 1e-5 is reached, which we observed was often sufficient for convergence.
+We chose a fixed height of 7 because this height was previously reported to optimize performance in relationship classification [@arxiv:1510.03820].
+We trained this model for 15 epochs using the Adam optimizer [@arxiv:1412.6980] with PyTorch's default parameter settings and a learning rate of 0.001 that decreases by half every epoch until the lower bound of 1e-5 is reached, which we observed was often sufficient for convergence.
 We added a L2 penalty (lambda=0.002) on the network weights to prevent overfitting.
 Lastly, we added a dropout layer (p=0.25) between the fully connected layer and the softmax layer.
 
@@ -577,9 +539,9 @@ The last step of the fully connected network was to generate predictions using a
 #### Word Embeddings
 
 Word embeddings are representations that map individual words to real valued vectors of user-specified dimensions.
-These embeddings have been shown to capture the semantic and syntactic information between words [@u5iJzbp9].
-We trained Facebook's fastText [@qUpCDz2v] using all candidate sentences for each individual relationship pair to generate word embeddings.
-FastText uses a skip-gram model [@1GhHIDxuW] that aims to predict the surrounding context for a candidate word and pairs the model with a novel scoring function that treats each word as a bag of character n-grams.
+These embeddings have been shown to capture the semantic and syntactic information between words [@arxiv:1310.4546].
+We trained Facebook's fastText [@arxiv:1607.04606] using all candidate sentences for each individual relationship pair to generate word embeddings.
+FastText uses a skip-gram model [@arxiv:1301.3781] that aims to predict the surrounding context for a candidate word and pairs the model with a novel scoring function that treats each word as a bag of character n-grams.
 We trained this model for 20 epochs using a window size of 2 and generated 300-dimensional word embeddings.
 We use the optimized word embeddings as input to our discriminative model. 
 
@@ -588,9 +550,9 @@ We use the optimized word embeddings as input to our discriminative model.
 Often many tasks require a machine learning model to output reliable probability predictions. 
 A model is well calibrated if the probabilities emitted from the model match the observed probabilities.
 For example, a well-calibrated model that assigns a class label with 80% probability should have that class appear 80% of the time.
-Deep neural network models can often be poorly calibrated [@QJ6hYH8N; @rLVjMJ5l].
+Deep neural network models can often be poorly calibrated [@arxiv:1706.04599; @arxiv:1807.00263].
 These models are usually over-confident in their predictions.
-For this reason, we calibrated our convolutional neural network using temperature scaling [@QJ6hYH8N]. 
+For this reason, we calibrated our convolutional neural network using temperature scaling [@arxiv:1706.04599]. 
 Temperature scaling uses a parameter T to scale each value of the logit vector (z) before being passed into the softmax (SM) function.
 
 $$\sigma_{SM}(\frac{z_{i}}{T}) = \frac{\exp(\frac{z_{i}}{T})}{\sum_{i}\exp(\frac{z_{i}}{T})}$$
@@ -656,7 +618,7 @@ A perfectly calibrated model would align straight along the diagonal line.
 ](https://raw.githubusercontent.com/danich1/snorkeling/c76e683a7bbc97482335ed4ac9ef8ab81c46114d/figures/model_calibration_experiment/model_calibration.png){#fig:discriminative_model_calibration}
 
 Even deep learning models with impressive AUROC and AUPR statistics can be subject to poor calibration.
-Typically, these models are overconfident in their predictions [@QJ6hYH8N; @rLVjMJ5l].
+Typically, these models are overconfident in their predictions [@arxiv:1706.04599; @arxiv:1807.00263].
 We attempted to use temperature scaling to fix the calibration of the best performing discriminative models (Figure {@fig:discriminative_model_calibration}).
 Before calibration (green lines), our models were aligned with the ideal calibration only when predicting low probability scores (close to 0.25).
 Applying the temperature scaling calibration algorithm (blue lines) did not substantially improve the calibration of the model in most cases.
@@ -684,12 +646,12 @@ This highlights the fact that Hetionet v1 is missing a compelling amount of biom
 
 ![
 Our extractor shows similar performance to a previously published method when using Hetionet v1 as an evaluation set.
-We compared our model (blue) with the CoCoScore model [@IGXdryzB] (green).
+We compared our model (blue) with the CoCoScore model [@tag:cocoscore] (green).
 The y axis represents AUROC and the x axis represents the edge type both models are trying to predict.
 ](https://raw.githubusercontent.com/danich1/snorkeling/b6e707ea843ac5d66f62ed09277e6b1d3d4b8bf3/figures/literature_models/coco_score_auroc.png){#fig:cocoscore_comparison}
 
 Our model showed promising performance in terms of recalling edges in Hetionet v1.
-We assessed our model's performance relative to a recently published method [@IGXdryzB].
+We assessed our model's performance relative to a recently published method [@tag:cocoscore].
 Though our method is primarily designed to predict assertions, not edges, we compared performance at an edge level because this was available for CoCoScore.
 We found that a simple summary approach, max sentence score, provided comparable performance to the CoCoScore for the compound treats disease (CtD) edge type and slightly poorer performance for other edge types (Supplemental Figure {@fig:cocoscore_comparison}).
 Sentence-level scores can be integrated in multiple ways, and approaches that consider more complexity (e.g., the number of sentences with high-probability) should be evaluated in future work.
