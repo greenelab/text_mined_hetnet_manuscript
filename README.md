@@ -1,15 +1,14 @@
 # Output directory containing the formatted manuscript
 
-The [`gh-pages`](https://github.com/greenelab/text_mined_hetnet_manuscript/tree/gh-pages) branch hosts the contents of this directory at https://greenelab.github.io/text_mined_hetnet_manuscript/.
-The permalink for this webpage version is https://greenelab.github.io/text_mined_hetnet_manuscript/v/1149d5d4ab45ee7ff8cec0698148f421bb01b290/.
-To redirect to the permalink for the latest manuscript version at anytime, use the link https://greenelab.github.io/text_mined_hetnet_manuscript/v/freeze/.
+The [`gh-pages`](https://github.com/greenelab/text_mined_hetnet_manuscript/tree/gh-pages) branch hosts the contents of this directory at <https://greenelab.github.io/text_mined_hetnet_manuscript/>.
+The permalink for this webpage version is <https://greenelab.github.io/text_mined_hetnet_manuscript/v/470690b46afb1f76962aa2bc69ac1ed5dd0f00e9/>.
+To redirect to the permalink for the latest manuscript version at anytime, use the link <https://greenelab.github.io/text_mined_hetnet_manuscript/v/freeze/>.
 
 ## Files
 
-This directory contains the following files, which are mostly ignored on the `master` branch:
+This directory contains the following files, which are mostly ignored on the `main` branch:
 
 + [`index.html`](index.html) is an HTML manuscript.
-+ [`github-pandoc.css`](github-pandoc.css) sets the display style for `index.html`.
 + [`manuscript.pdf`](manuscript.pdf) is a PDF manuscript.
 
 The `v` directory contains directories for each manuscript version.
@@ -25,7 +24,7 @@ Therefore, `.ots` files are initially incomplete and should be upgraded at a lat
 The `manubot webpage` call during continuous deployment identifies files matched by `webpage/v/**/*.ots` and attempts to upgrade them.
 You can also manually upgrade timestamps, by running the following in the `gh-pages` branch:
 
-```sh
+```shell
 ots upgrade v/*/*.ots
 rm v/*/*.ots.bak
 git add v/*/*.ots
@@ -36,4 +35,4 @@ Verifying timestamps with the `ots verify` command requires running a local bitc
 ## Source
 
 The manuscripts in this directory were built from
-[`1149d5d4ab45ee7ff8cec0698148f421bb01b290`](https://github.com/greenelab/text_mined_hetnet_manuscript/commit/1149d5d4ab45ee7ff8cec0698148f421bb01b290).
+[`470690b46afb1f76962aa2bc69ac1ed5dd0f00e9`](https://github.com/greenelab/text_mined_hetnet_manuscript/commit/470690b46afb1f76962aa2bc69ac1ed5dd0f00e9).
