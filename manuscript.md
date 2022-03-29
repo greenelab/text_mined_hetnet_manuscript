@@ -7,7 +7,7 @@ keywords:
 - heterogenous netowrks
 - text mining
 lang: en-US
-date-meta: '2021-12-22'
+date-meta: '2022-03-29'
 author-meta:
 - David N. Nicholson
 - Daniel S. Himmelstein
@@ -22,8 +22,8 @@ header-includes: |-
   <meta name="citation_title" content="Expanding a Database-derived Biomedical Knowledge Graph via Multi-relation Extraction from Biomedical Abstracts" />
   <meta property="og:title" content="Expanding a Database-derived Biomedical Knowledge Graph via Multi-relation Extraction from Biomedical Abstracts" />
   <meta property="twitter:title" content="Expanding a Database-derived Biomedical Knowledge Graph via Multi-relation Extraction from Biomedical Abstracts" />
-  <meta name="dc.date" content="2021-12-22" />
-  <meta name="citation_publication_date" content="2021-12-22" />
+  <meta name="dc.date" content="2022-03-29" />
+  <meta name="citation_publication_date" content="2022-03-29" />
   <meta name="dc.language" content="en-US" />
   <meta name="citation_language" content="en-US" />
   <meta name="dc.relation.ispartof" content="Manubot" />
@@ -48,13 +48,13 @@ header-includes: |-
   <meta name="citation_fulltext_html_url" content="https://greenelab.github.io/text_mined_hetnet_manuscript/" />
   <meta name="citation_pdf_url" content="https://greenelab.github.io/text_mined_hetnet_manuscript/manuscript.pdf" />
   <link rel="alternate" type="application/pdf" href="https://greenelab.github.io/text_mined_hetnet_manuscript/manuscript.pdf" />
-  <link rel="alternate" type="text/html" href="https://greenelab.github.io/text_mined_hetnet_manuscript/v/470690b46afb1f76962aa2bc69ac1ed5dd0f00e9/" />
-  <meta name="manubot_html_url_versioned" content="https://greenelab.github.io/text_mined_hetnet_manuscript/v/470690b46afb1f76962aa2bc69ac1ed5dd0f00e9/" />
-  <meta name="manubot_pdf_url_versioned" content="https://greenelab.github.io/text_mined_hetnet_manuscript/v/470690b46afb1f76962aa2bc69ac1ed5dd0f00e9/manuscript.pdf" />
+  <link rel="alternate" type="text/html" href="https://greenelab.github.io/text_mined_hetnet_manuscript/v/8e28137c7e9f2396d06fe3f61136cbfe8c9b2680/" />
+  <meta name="manubot_html_url_versioned" content="https://greenelab.github.io/text_mined_hetnet_manuscript/v/8e28137c7e9f2396d06fe3f61136cbfe8c9b2680/" />
+  <meta name="manubot_pdf_url_versioned" content="https://greenelab.github.io/text_mined_hetnet_manuscript/v/8e28137c7e9f2396d06fe3f61136cbfe8c9b2680/manuscript.pdf" />
   <meta property="og:type" content="article" />
   <meta property="twitter:card" content="summary_large_image" />
-  <meta property="og:image" content="https://github.com/greenelab/text_mined_hetnet_manuscript/raw/470690b46afb1f76962aa2bc69ac1ed5dd0f00e9/thumbnail.png" />
-  <meta property="twitter:image" content="https://github.com/greenelab/text_mined_hetnet_manuscript/raw/470690b46afb1f76962aa2bc69ac1ed5dd0f00e9/thumbnail.png" />
+  <meta property="og:image" content="https://github.com/greenelab/text_mined_hetnet_manuscript/raw/8e28137c7e9f2396d06fe3f61136cbfe8c9b2680/thumbnail.png" />
+  <meta property="twitter:image" content="https://github.com/greenelab/text_mined_hetnet_manuscript/raw/8e28137c7e9f2396d06fe3f61136cbfe8c9b2680/thumbnail.png" />
   <link rel="icon" type="image/png" sizes="192x192" href="https://manubot.org/favicon-192x192.png" />
   <link rel="mask-icon" href="https://manubot.org/safari-pinned-tab.svg" color="#ad1457" />
   <meta name="theme-color" content="#ad1457" />
@@ -74,10 +74,10 @@ _A DOI-citable version of this manuscript is available at <https://doi.org/10.11
 
 <small><em>
 This manuscript
-([permalink](https://greenelab.github.io/text_mined_hetnet_manuscript/v/470690b46afb1f76962aa2bc69ac1ed5dd0f00e9/))
+([permalink](https://greenelab.github.io/text_mined_hetnet_manuscript/v/8e28137c7e9f2396d06fe3f61136cbfe8c9b2680/))
 was automatically generated
-from [greenelab/text_mined_hetnet_manuscript@470690b](https://github.com/greenelab/text_mined_hetnet_manuscript/tree/470690b46afb1f76962aa2bc69ac1ed5dd0f00e9)
-on December 22, 2021.
+from [greenelab/text_mined_hetnet_manuscript@8e28137](https://github.com/greenelab/text_mined_hetnet_manuscript/tree/8e28137c7e9f2396d06fe3f61136cbfe8c9b2680)
+on March 29, 2022.
 </em></small>
 
 ## Authors
@@ -250,11 +250,12 @@ span.compound_color { color:#e91e63 }
 
 ### Hetionet
 
-Hetionet v1 [@doi:10.7554/eLife.26726] is a large heterogenous network that contains pharmacological and biological information.
-This network depicts information in the form of nodes and edges of different types: nodes that represent biological and pharmacological entities and edges which represent relationships between entities. 
+Hetionet v1 [@doi:10.7554/eLife.26726] is a heterogeneous network that contains pharmacological and biological information.
+This network depicts information in the form of nodes and edges of different types.
+Nodes in this network represent biological and pharmacological entities, while edges represent relationships between entities.
 Hetionet v1 contains 47,031 nodes with 11 different data types and 2,250,197 edges that represent 24 different relationship types (Figure {@fig:hetionet}).
-Edges in Hetionet v1 were obtained from open databases, such as the GWAS Catalog [@doi:10.1093/nar/gkw1133] and DrugBank [@doi:10.1093/nar/gkx1037].
-For this project, we analyzed performance over a subset of the Hetionet v1 edge types: disease associates with a gene (DaG), compound binds to a gene (CbG), compound treating a disease (CtD) and gene interacts with gene (GiG) (bolded in Figure {@fig:hetionet}).
+Edges in Hetionet v1 were obtained from open databases, such as the GWAS Catalog [@doi:10.1093/nar/gkw1133], Human Interaction database [@doi:10.1016/j.cell.2014.10.050] and DrugBank [@doi:10.1093/nar/gkx1037].
+For this project, we analyzed performance over a subset of the Hetionet v1 edge types: disease associates with a gene (DaG), compound binds to a gene (CbG), compound treating a disease (CtD), and gene interacts with gene (GiG) (bolded in Figure {@fig:hetionet}).
 
 ![
 A metagraph (schema) of Hetionet v1 where biomedical entities are represented as nodes and the relationships between them are represented as edges.
@@ -263,30 +264,108 @@ We examined performance on the highlighted subgraph; however, the long-term visi
 
 ### Dataset
 
-We used PubTator [@doi:10.1093/nar/gkt441] as input to our analysis.
-PubTator provides MEDLINE abstracts that have been annotated with well-established entity recognition tools including DNorm [@doi:10.1093/bioinformatics/btt474] for disease mentions, GeneTUKit [@doi:10.1093/bioinformatics/btr042] for gene mentions, Gnorm [@doi:10.1186/1471-2105-12-S8-S5] for gene normalizations and a dictionary based search system for compound mentions [@doi:10.1093/database/bas037].
-We downloaded PubTator on June 30, 2017, at which point it contained 10,775,748 abstracts. 
-Then we filtered out mention tags that were not contained in Hetionet v1.
-We used the Stanford CoreNLP parser [@doi:10.3115/v1/P14-5010] to tag parts of speech and generate dependency trees.
-We extracted sentences with two or more mentions, termed candidate sentences.
-Each candidate sentence was stratified by co-mention pair to produce a training set, tuning set and a testing set (shown in Supplemental Table {@tbl:candidate-sentences}).
-Each unique co-mention pair was sorted into four categories: (1) in Hetionet v1 and has sentences, (2) in Hetionet v1 and doesn't have sentences, (3) not in Hetionet v1 and does have sentences and (4) not in Hetionet v1 and doesn't have sentences.
-Within these four categories each pair is randomly assigned their own individual partition rank (a continuous number between 0 and 1).
-Any rank lower than 0.7 is sorted into the training set, while any rank greater than 0.7 and lower than 0.9 is assigned to the tuning set.
-The rest of the pairs with a rank greater than or equal to 0.9 is assigned to the test set.
-Sentences that contain more than one co-mention pair are treated as multiple individual candidates.
-We hand labeled five hundred to a thousand candidate sentences of each edge type to obtain a ground truth set (Supplemental Table {@tbl:candidate-sentences})[^1].
+We used PubTator Central [@doi:10.1093/nar/gkz389] as input to our analysis.
+PubTator Central provides MEDLINE abstracts that have been annotated with well-established entity recognition tools including Tagger One [@doi:10.1093/bioinformatics/btw343] for disease, chemical and cell line entities, tmVar [@doi:10.1093/bioinformatics/btx541] for genetic variation tagging, GNormPlus [@doi:10.1155/2015/918710] for gene entities and SR4GN [@doi:10.1371/journal.pone.0038460] for species entities.
+We downloaded PubTator Central on March 1, 2020, at which point it contained approximately 30,000,000 documents.
+After downloading, we filtered out annotated entities that were not contained in Hetionet v1.
+We extracted sentences with two or more annotations and termed these sentences as candidate sentences.
+We used the Spacy's English natural language processing (NLP) pipeline (en\_core\_web\_sm) [@spacy2] to generate dependency trees and parts of speech tags for every extracted candidate sentence.
+Each candidate sentence was stratified by their corresponding abstract ID to produce a training set, tuning set, and a testing set.
+We used random assortment to assign dataset labels to each abstract. 
+Every abstract had a 70% chance of being labeled training, 20% chance of being labeled tuning, and 10% chance of being labeled testing.
+Despite the power of data programming, all text mining systems need to have ground truth labels to be well-calibrated.
+We hand-labeled five hundred to a thousand candidate sentences of each edge type to obtain a ground truth set (Table {@tbl:candidate-sentences}).
 
-[^1]: Labeled sentences are available [here](https://github.com/greenelab/text_mined_hetnet_manuscript/tree/master/supplementary_materials/annotated_sentences).
+| Relationship | Train | Tune | Test |
+| :--- | :---: | :---: | :---: |
+| Disease Associates Gene | 2.49 M | 696K (397+, 603-) | 348K (351+, 649-) |
+| Compound Binds Gene | 2.4M | 684K (37+, 463-) | 341k (31+, 469-) |
+| Compound Treats Disease | 1.5M | 441K (96+, 404-) | 223K (112+, 388-) |
+| Gene Interacts Gene | 11.2M | 2.19M (60+, 440-) | 1.62M (76+, 424-) |
+
+Table: Statistics of Candidate Sentences. 
+We sorted each abstract into a training, tuning and testing set.
+Numbers in parentheses show the number of positives and negatives that resulted from the hand-labeling process.
+{#tbl:candidate-sentences}
+
 
 ### Label Functions for Annotating Sentences
 
-The challenge of having too few ground truth annotations is common to many natural language processing settings, even when unannotated text is abundant.
-Data programming circumvents this issue by quickly annotating large datasets by using multiple noisy signals emitted by label functions [@arxiv:1605.07723].
-Label functions are simple pythonic functions that emit: a positive label (1), a negative label (-1) or abstain from emitting a label (0).
-These functions can be grouped into multiple categories (see Supplement Methods).
-We combined these functions using a generative model to output a single annotation, which is a consensus probability score bounded between 0 (low chance of mentioning a relationship) and 1 (high chance of mentioning a relationship).
-We used these annotations to train a discriminative model that makes the final classification step.
+The challenge of having too few ground truth annotations is familiar to many natural language processing applications, even when unannotated text is abundant.
+Data programming circumvents this issue by quickly annotating large datasets using multiple noisy signals emitted by label functions [@arxiv:1605.07723].
+Label functions are simple pythonic functions that emit: a positive label (1), a negative label (0), or abstain from emitting a label (-1).
+These functions can use different approaches or techniques to emit a label; however, these functions can be grouped into simple categories discussed below.
+Once constructed, these functions are combined using a generative model to output a single annotation. 
+This single annotation is a consensus probability score bounded between 0 (low chance of mentioning a relationship) and 1 (high chance of mentioning a relationship).
+We used these annotations to train a discriminative model for the final classification step.
+
+#### Label Function Categories
+
+Label functions can be constructed in various ways; however, they also share similar characteristics.
+We grouped functions into databases and text patterns.
+The majority of our label functions fall into the text pattern category (Supplemental Table {@tbl:label-functions}).
+Further, we described each label function category and provided an example that refers to the following candidate sentence: "[PTK6]{.gene_color} may be a novel therapeutic target for [pancreatic cancer]{.disease_color}".
+
+**Databases**: These label functions incorporate existing databases to generate a signal, as seen in distant supervision [@doi:10.3115/1690219.1690287].
+These functions detect if a candidate sentence's co-mention pair is present in a given database.
+Our label function emits a positive label if the pair is present and abstains otherwise.
+If the pair is not present in any existing database, a separate label function emits a negative label.
+We used a separate label function to prevent a label imbalance problem, which can occur when a single function labels every possible sentence despite being correct or not.
+If this problem isn't handled correctly, the generative model could become biased and only emit one prediction (solely positive or solely negative) for every sentence.
+
+$$ \Lambda_{DB}(\color{#875442}{D}, \color{#02b3e4}{G}) = 
+\begin{cases}
+ 1 & (\color{#875442}{D}, \color{#02b3e4}{G}) \in DB \\
+0 & otherwise \\
+\end{cases} $$
+
+$$ \Lambda_{\neg DB}(\color{#875442}{D}, \color{#02b3e4}{G}) = 
+\begin{cases}
+ -1 & (\color{#875442}{D}, \color{#02b3e4}{G}) \notin DB \\
+0 & otherwise \\
+\end{cases} $$
+
+
+**Text Patterns**: These label functions are designed to use keywords or sentence context to generate a signal. 
+For example, a label function could focus on the number of words between two mentions and emit a label if two mentions are too close.
+Alternatively, a label function could focus on the parts of speech contained within a sentence and ensures a verb is present.
+Besides parts of speech, a label function could exploit dependency parse trees to emit a label.
+These trees are akin to the tree data structure where words are nodes and edges are how each word modifies each other.
+Label functions that use these parse trees will test if the generated tree matches a pattern and emits a positive label if true.
+For our analysis, we used previously identified patterns designed for biomedical text to generate our label functions [@tag:global_network].
+
+$$ \Lambda_{TP}(\color{#875442}{D}, \color{#02b3e4}{G}) = 
+\begin{cases}
+ 1 & "target" \> \in Candidate \> Sentence \\
+ -1 & otherwise \\
+\end{cases} $$
+
+$$ \Lambda_{TP}(\color{#875442}{D}, \color{#02b3e4}{G}) = 
+\begin{cases}
+ 0 & 	"VB" \> \notin pos\_tags(Candidate \> Sentence) \\
+ -1 & otherwise \\
+\end{cases} $$
+
+$$
+\Lambda_{TP}(\color{#875442}{D}, \color{#02b3e4}{G}) = \begin{cases}
+    1 & dep(Candidate \> Sentence) \in Cluster \> Theme\\
+    -1 & otherwise \\
+    \end{cases}
+$$
+
+Each text pattern label function was constructed via manual examination of sentences within the training set.
+For example, using the candidate sentence above, one would identify the phrase "novel therapeutic target" and incorporate this phrase into a global list that a label function would use to check if present in a sentence.
+After initial construction, we tested and augmented the label function using sentences in the tune set.
+We repeated this process for every label function in our repertoire. 
+
+| Relationship | Databases (DB) | Text Patterns (TP)
+| --- | :---: | :---: | :---: |
+| DaG | 7 | 30 | 
+| CtD | 3 | 22 |
+| CbG | 9 | 20 |
+| GiG | 9 | 28 |
+
+Table: The distribution of each label function per relationship. {#tbl:label-functions} 
 
 ### Experimental Design
 
@@ -406,6 +485,7 @@ New multitask learning [@doi:10.1145/3209889.3209898] strategies may make it eve
 ## Supplemental Information
 
 An online version of this manuscript is available at <https://greenelab.github.io/text_mined_hetnet_manuscript/>.
+Labeled sentences are available at [https://github.com/greenelab/text_mined_hetnet_manuscript/tree/master/supplementary_materials/annotated_sentences](https://github.com/greenelab/text_mined_hetnet_manuscript/tree/master/supplementary_materials/annotated_sentences).
 Source code for this work is available under open licenses at: <https://github.com/greenelab/snorkeling/>.
 
 ## Acknowledgements
@@ -421,72 +501,6 @@ This work was support by [Grant GBMF4552](https://www.moore.org/grant-detail?gra
 <div id="refs"></div>
 
 ## Supplemental Methods
-
-#### Label Function Categories
-
-Label functions can be constructed in a multitude of ways; however,  many label functions share similar characteristics with one another.
-We grouped these characteristics into the following categories: databases, text patterns and domain heuristics.
-Most of our label functions fall into the text pattern category, while the others were distributed across the database and domain heuristic categories (Supplemental Table {@tbl:label-functions}).
-Further, we described each category and provided an example that refers to the following candidate sentence: "[PTK6]{.gene_color} may be a novel therapeutic target for [pancreatic cancer]{.disease_color}".
-
-**Databases**: These label functions incorporate existing databases to generate a signal, as seen in distant supervision [@doi:10.3115/1690219.1690287].
-These functions detect if a candidate sentence's co-mention pair is present in a given database.
-If the pair is present, our label function emits a positive label and abstains otherwise.
-If the pair is not present in any existing database, a separate label function emits a negative label.
-We used a separate label function to prevent a label imbalance problem that we encountered during development: emitting positives and negatives from the same label function causes downstream classifiers to generate almost exclusively negative predictions.
-
-$$ \Lambda_{DB}(\color{#875442}{D}, \color{#02b3e4}{G}) = 
-\begin{cases}
- 1 & (\color{#875442}{D}, \color{#02b3e4}{G}) \in DB \\
-0 & otherwise \\
-\end{cases} $$
-
-$$ \Lambda_{\neg DB}(\color{#875442}{D}, \color{#02b3e4}{G}) = 
-\begin{cases}
- -1 & (\color{#875442}{D}, \color{#02b3e4}{G}) \notin DB \\
-0 & otherwise \\
-\end{cases} $$
-
-**Domain Heuristics**: These label functions used results from published text-based analyses to generate a signal. 
-For our project, we used dependency path cluster themes generated by Percha et al. [@tag:global_network].
-If a candidate sentence's dependency path belonged to a previously generated cluster, then the label function emitted a positive label and abstained otherwise.
-
-$$
-\Lambda_{DH}(\color{#875442}{D}, \color{#02b3e4}{G}) = \begin{cases}
-    1 & Candidate \> Sentence \in Cluster \> Theme\\
-    0 & otherwise \\
-    \end{cases}
-$$
-
-**Text Patterns**: These label functions are designed to use keywords and sentence context to generate a signal. 
-For example, a label function could focus on the number of words between two mentions or focus on the grammatical structure of a sentence.
-These functions emit a positive or negative label depending on the context.
-
-$$ \Lambda_{TP}(\color{#875442}{D}, \color{#02b3e4}{G}) = 
-\begin{cases}
- 1 & "target" \> \in Candidate \> Sentence \\
- 0 & otherwise \\
-\end{cases} $$
-
-$$ \Lambda_{TP}(\color{#875442}{D}, \color{#02b3e4}{G}) = 
-\begin{cases}
- -1 & 	"VB" \> \notin pos\_tags(Candidate \> Sentence) \\
- 0 & otherwise \\
-\end{cases} $$
-
-Each text pattern label function was constructed by manual examination of sentences within the training set.
-For example, in the candidate sentence above, one would extract the keywords "novel therapeutic target" and incorporate them in a text pattern label function.
-After initial construction, we tested and augmented the label function using sentences in the tune set.
-We repeated this process for every label function in our repertoire. 
-
-| Relationship | Databases (DB) | Text Patterns (TP) | Domain Heuristics (DH) |
-| --- | :---: | :---: | :---: |
-| DaG | 7 | 20 | 10 | 
-| CtD | 3 | 15 | 7 |
-| CbG | 9 | 13 | 7 | 
-| GiG | 9 | 20 | 8 | 
-
-Table: The distribution of each label function per relationship. {#tbl:label-functions} 
 
 ### Training Models
 
@@ -658,19 +672,6 @@ Sentence-level scores can be integrated in multiple ways, and approaches that co
 
 ## Supplemental Tables
 
-### Distribution of Candidate Sentences
-
-| Relationship | Train | Tune | Test |
-| :--- | :---: | :---: | :---: |
-| Disease Associates Gene | 2.35 M |31K (397+, 603-) | 313K (351+, 649-) |
-| Compound Binds Gene | 1.7M | 468K (37+, 463-) | 227k (31+, 469-) |
-| Compound Treats Disease | 1.013M | 96K (96+, 404-) | 32K (112+, 388-) |
-| Gene Interacts Gene | 12.6M | 1.056M (60+, 440-) | 257K (76+, 424-) |
-
-Table: Statistics of Candidate Sentences. 
-We sorted each candidate sentence into a training, tuning and testing set.
-Numbers in parentheses show the number of positives and negatives that resulted from the hand-labeling process.
-{#tbl:candidate-sentences}
 
 ### Discriminative Model Calibration Tables
 
