@@ -186,5 +186,87 @@
     },
     "title": "Revisiting distant supervision for relation extraction",
     "type": "paper-conference"
+  },
+   {
+    "URL": "https://www.aclweb.org/anthology/2020.emnlp-demos.6",
+    "author": [
+      {
+        "family": "Wolf",
+        "given": "Thomas"
+      },
+      {
+        "family": "Debut",
+        "given": "Lysandre"
+      },
+      {
+        "family": "Sanh",
+        "given": "Victor"
+      },
+      {
+        "family": "Chaumond",
+        "given": "Julien"
+      },
+      {
+        "family": "Delangue",
+        "given": "Clement"
+      },
+      {
+        "family": "Moi",
+        "given": "Anthony"
+      },
+      {
+        "family": "Cistac",
+        "given": "Perric"
+      },
+      {
+        "family": "Ma",
+        "given": "Clara"
+      },
+      {
+        "family": "Jernite",
+        "given": "Yacine"
+      },
+      {
+        "family": "Plu",
+        "given": "Julien"
+      },
+      {
+        "family": "Xu",
+        "given": "Canwen"
+      },
+      {
+        "family": "Le Scao",
+        "given": "Teven"
+      },
+      {
+        "family": "Gugger",
+        "given": "Sylvain"
+      },
+      {
+        "family": "Drame",
+        "given": "Mariama"
+      },
+      {
+        "family": "Lhoest",
+        "given": "Quentin"
+      },
+      {
+        "family": "Rush",
+        "given": "Alexander M."
+      }
+    ],
+    "id": "Wolf_Transformers_State-of-the-Art_Natural_2020",
+    "issued": {
+      "date-parts": [
+        [
+          2020,
+          10
+        ]
+      ]
+    },
+    "page": "38-45",
+    "publisher": "Association for Computational Linguistics",
+    "title": "<span class=\"nocase\">Transformers: State-of-the-Art Natural Language Processing</span>",
+    "type": "paper-conference"
   }
 ]
