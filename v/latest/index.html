@@ -7,7 +7,7 @@
   <meta name="author" content="David N. Nicholson" />
   <meta name="author" content="Daniel S. Himmelstein" />
   <meta name="author" content="Casey S. Greene" />
-  <meta name="dcterms.date" content="2021-12-22" />
+  <meta name="dcterms.date" content="2022-03-29" />
   <meta name="keywords" content="machine learning, weak supervision, natural language processing, heterogenous netowrks, text mining" />
   <title>Expanding a Database-derived Biomedical Knowledge Graph via Multi-relation Extraction from Biomedical Abstracts</title>
   <style>
@@ -49,8 +49,8 @@
   <meta name="citation_title" content="Expanding a Database-derived Biomedical Knowledge Graph via Multi-relation Extraction from Biomedical Abstracts" />
   <meta property="og:title" content="Expanding a Database-derived Biomedical Knowledge Graph via Multi-relation Extraction from Biomedical Abstracts" />
   <meta property="twitter:title" content="Expanding a Database-derived Biomedical Knowledge Graph via Multi-relation Extraction from Biomedical Abstracts" />
-  <meta name="dc.date" content="2021-12-22" />
-  <meta name="citation_publication_date" content="2021-12-22" />
+  <meta name="dc.date" content="2022-03-29" />
+  <meta name="citation_publication_date" content="2022-03-29" />
   <meta name="dc.language" content="en-US" />
   <meta name="citation_language" content="en-US" />
   <meta name="dc.relation.ispartof" content="Manubot" />
@@ -75,13 +75,13 @@
   <meta name="citation_fulltext_html_url" content="https://greenelab.github.io/text_mined_hetnet_manuscript/" />
   <meta name="citation_pdf_url" content="https://greenelab.github.io/text_mined_hetnet_manuscript/manuscript.pdf" />
   <link rel="alternate" type="application/pdf" href="https://greenelab.github.io/text_mined_hetnet_manuscript/manuscript.pdf" />
-  <link rel="alternate" type="text/html" href="https://greenelab.github.io/text_mined_hetnet_manuscript/v/470690b46afb1f76962aa2bc69ac1ed5dd0f00e9/" />
-  <meta name="manubot_html_url_versioned" content="https://greenelab.github.io/text_mined_hetnet_manuscript/v/470690b46afb1f76962aa2bc69ac1ed5dd0f00e9/" />
-  <meta name="manubot_pdf_url_versioned" content="https://greenelab.github.io/text_mined_hetnet_manuscript/v/470690b46afb1f76962aa2bc69ac1ed5dd0f00e9/manuscript.pdf" />
+  <link rel="alternate" type="text/html" href="https://greenelab.github.io/text_mined_hetnet_manuscript/v/8e28137c7e9f2396d06fe3f61136cbfe8c9b2680/" />
+  <meta name="manubot_html_url_versioned" content="https://greenelab.github.io/text_mined_hetnet_manuscript/v/8e28137c7e9f2396d06fe3f61136cbfe8c9b2680/" />
+  <meta name="manubot_pdf_url_versioned" content="https://greenelab.github.io/text_mined_hetnet_manuscript/v/8e28137c7e9f2396d06fe3f61136cbfe8c9b2680/manuscript.pdf" />
   <meta property="og:type" content="article" />
   <meta property="twitter:card" content="summary_large_image" />
-  <meta property="og:image" content="https://github.com/greenelab/text_mined_hetnet_manuscript/raw/470690b46afb1f76962aa2bc69ac1ed5dd0f00e9/thumbnail.png" />
-  <meta property="twitter:image" content="https://github.com/greenelab/text_mined_hetnet_manuscript/raw/470690b46afb1f76962aa2bc69ac1ed5dd0f00e9/thumbnail.png" />
+  <meta property="og:image" content="https://github.com/greenelab/text_mined_hetnet_manuscript/raw/8e28137c7e9f2396d06fe3f61136cbfe8c9b2680/thumbnail.png" />
+  <meta property="twitter:image" content="https://github.com/greenelab/text_mined_hetnet_manuscript/raw/8e28137c7e9f2396d06fe3f61136cbfe8c9b2680/thumbnail.png" />
   <link rel="icon" type="image/png" sizes="192x192" href="https://manubot.org/favicon-192x192.png" />
   <link rel="mask-icon" href="https://manubot.org/safari-pinned-tab.svg" color="#ad1457" />
   <meta name="theme-color" content="#ad1457" />
@@ -94,10 +94,10 @@
 <p><em>A DOI-citable version of this manuscript is available at <a href="https://doi.org/10.1101/730085" class="uri">https://doi.org/10.1101/730085</a></em>.</p>
 <p><small><em>
 This manuscript
-(<a href="https://greenelab.github.io/text_mined_hetnet_manuscript/v/470690b46afb1f76962aa2bc69ac1ed5dd0f00e9/">permalink</a>)
+(<a href="https://greenelab.github.io/text_mined_hetnet_manuscript/v/8e28137c7e9f2396d06fe3f61136cbfe8c9b2680/">permalink</a>)
 was automatically generated
-from <a href="https://github.com/greenelab/text_mined_hetnet_manuscript/tree/470690b46afb1f76962aa2bc69ac1ed5dd0f00e9">greenelab/text_mined_hetnet_manuscript@470690b</a>
-on December 22, 2021.
+from <a href="https://github.com/greenelab/text_mined_hetnet_manuscript/tree/8e28137c7e9f2396d06fe3f61136cbfe8c9b2680">greenelab/text_mined_hetnet_manuscript@8e28137</a>
+on March 29, 2022.
 </em></small></p>
 <h2 id="authors">Authors</h2>
 <ul>
@@ -236,11 +236,12 @@ span.compound_color { color:#e91e63 }
  </style>
 <h2 id="methods-and-materials">Methods and Materials</h2>
 <h3 id="hetionet">Hetionet</h3>
-<p>Hetionet v1 <span class="citation" data-cites="O21tn8vf"><a href="#ref-O21tn8vf" role="doc-biblioref">[3]</a></span> is a large heterogenous network that contains pharmacological and biological information.
-This network depicts information in the form of nodes and edges of different types: nodes that represent biological and pharmacological entities and edges which represent relationships between entities.
+<p>Hetionet v1 <span class="citation" data-cites="O21tn8vf"><a href="#ref-O21tn8vf" role="doc-biblioref">[3]</a></span> is a heterogeneous network that contains pharmacological and biological information.
+This network depicts information in the form of nodes and edges of different types.
+Nodes in this network represent biological and pharmacological entities, while edges represent relationships between entities.
 Hetionet v1 contains 47,031 nodes with 11 different data types and 2,250,197 edges that represent 24 different relationship types (Figure <a href="#fig:hetionet">1</a>).
-Edges in Hetionet v1 were obtained from open databases, such as the GWAS Catalog <span class="citation" data-cites="16cIDAXhG"><a href="#ref-16cIDAXhG" role="doc-biblioref">[22]</a></span> and DrugBank <span class="citation" data-cites="1FI8iuYiQ"><a href="#ref-1FI8iuYiQ" role="doc-biblioref">[23]</a></span>.
-For this project, we analyzed performance over a subset of the Hetionet v1 edge types: disease associates with a gene (DaG), compound binds to a gene (CbG), compound treating a disease (CtD) and gene interacts with gene (GiG) (bolded in Figure <a href="#fig:hetionet">1</a>).</p>
+Edges in Hetionet v1 were obtained from open databases, such as the GWAS Catalog <span class="citation" data-cites="16cIDAXhG"><a href="#ref-16cIDAXhG" role="doc-biblioref">[22]</a></span>, Human Interaction database <span class="citation" data-cites="LCyCrr7W"><a href="#ref-LCyCrr7W" role="doc-biblioref">[23]</a></span> and DrugBank <span class="citation" data-cites="1FI8iuYiQ"><a href="#ref-1FI8iuYiQ" role="doc-biblioref">[24]</a></span>.
+For this project, we analyzed performance over a subset of the Hetionet v1 edge types: disease associates with a gene (DaG), compound binds to a gene (CbG), compound treating a disease (CtD), and gene interacts with gene (GiG) (bolded in Figure <a href="#fig:hetionet">1</a>).</p>
 <div id="fig:hetionet" class="fignos">
 <figure>
 <img src="images/figures/hetionet/metagraph_highlighted_edges.png" alt="Figure 1: A metagraph (schema) of Hetionet v1 where biomedical entities are represented as nodes and the relationships between them are represented as edges. We examined performance on the highlighted subgraph; however, the long-term vision is to capture edges for the entire graph." /><figcaption aria-hidden="true"><span>Figure 1:</span> A metagraph (schema) of Hetionet v1 where biomedical entities are represented as nodes and the relationships between them are represented as edges.
@@ -248,30 +249,158 @@ We examined performance on the highlighted subgraph; however, the long-term visi
 </figure>
 </div>
 <h3 id="dataset">Dataset</h3>
-<p>We used PubTator <span class="citation" data-cites="13vw5RIy4"><a href="#ref-13vw5RIy4" role="doc-biblioref">[24]</a></span> as input to our analysis.
-PubTator provides MEDLINE abstracts that have been annotated with well-established entity recognition tools including DNorm <span class="citation" data-cites="vtuZ3Wx7"><a href="#ref-vtuZ3Wx7" role="doc-biblioref">[25]</a></span> for disease mentions, GeneTUKit <span class="citation" data-cites="4S2HMNpa"><a href="#ref-4S2HMNpa" role="doc-biblioref">[26]</a></span> for gene mentions, Gnorm <span class="citation" data-cites="1AkC7QdyP"><a href="#ref-1AkC7QdyP" role="doc-biblioref">[27]</a></span> for gene normalizations and a dictionary based search system for compound mentions <span class="citation" data-cites="r501gnuM"><a href="#ref-r501gnuM" role="doc-biblioref">[28]</a></span>.
-We downloaded PubTator on June 30, 2017, at which point it contained 10,775,748 abstracts.
-Then we filtered out mention tags that were not contained in Hetionet v1.
-We used the Stanford CoreNLP parser <span class="citation" data-cites="RQkLuc5t"><a href="#ref-RQkLuc5t" role="doc-biblioref">[15]</a></span> to tag parts of speech and generate dependency trees.
-We extracted sentences with two or more mentions, termed candidate sentences.
-Each candidate sentence was stratified by co-mention pair to produce a training set, tuning set and a testing set (shown in Supplemental Table <a href="#tbl:candidate-sentences">2</a>).
-Each unique co-mention pair was sorted into four categories: (1) in Hetionet v1 and has sentences, (2) in Hetionet v1 and doesn’t have sentences, (3) not in Hetionet v1 and does have sentences and (4) not in Hetionet v1 and doesn’t have sentences.
-Within these four categories each pair is randomly assigned their own individual partition rank (a continuous number between 0 and 1).
-Any rank lower than 0.7 is sorted into the training set, while any rank greater than 0.7 and lower than 0.9 is assigned to the tuning set.
-The rest of the pairs with a rank greater than or equal to 0.9 is assigned to the test set.
-Sentences that contain more than one co-mention pair are treated as multiple individual candidates.
-We hand labeled five hundred to a thousand candidate sentences of each edge type to obtain a ground truth set (Supplemental Table <a href="#tbl:candidate-sentences">2</a>)<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>.</p>
+<p>We used PubTator Central <span class="citation" data-cites="18ZyyTcTe"><a href="#ref-18ZyyTcTe" role="doc-biblioref">[25]</a></span> as input to our analysis.
+PubTator Central provides MEDLINE abstracts that have been annotated with well-established entity recognition tools including Tagger One <span class="citation" data-cites="11YUuHulp"><a href="#ref-11YUuHulp" role="doc-biblioref">[26]</a></span> for disease, chemical and cell line entities, tmVar <span class="citation" data-cites="17LQKv7vO"><a href="#ref-17LQKv7vO" role="doc-biblioref">[27]</a></span> for genetic variation tagging, GNormPlus <span class="citation" data-cites="aOPX10e0"><a href="#ref-aOPX10e0" role="doc-biblioref">[28]</a></span> for gene entities and SR4GN <span class="citation" data-cites="NXIFrudx"><a href="#ref-NXIFrudx" role="doc-biblioref">[29]</a></span> for species entities.
+We downloaded PubTator Central on March 1, 2020, at which point it contained approximately 30,000,000 documents.
+After downloading, we filtered out annotated entities that were not contained in Hetionet v1.
+We extracted sentences with two or more annotations and termed these sentences as candidate sentences.
+We used the Spacy’s English natural language processing (NLP) pipeline (en_core_web_sm) <span class="citation" data-cites="q2fFAZTG"><a href="#ref-q2fFAZTG" role="doc-biblioref">[30]</a></span> to generate dependency trees and parts of speech tags for every extracted candidate sentence.
+Each candidate sentence was stratified by their corresponding abstract ID to produce a training set, tuning set, and a testing set.
+We used random assortment to assign dataset labels to each abstract.
+Every abstract had a 70% chance of being labeled training, 20% chance of being labeled tuning, and 10% chance of being labeled testing.
+Despite the power of data programming, all text mining systems need to have ground truth labels to be well-calibrated.
+We hand-labeled five hundred to a thousand candidate sentences of each edge type to obtain a ground truth set (Table <a href="#tbl:candidate-sentences">1</a>).</p>
+<div id="tbl:candidate-sentences" class="tablenos">
+<table id="tbl:candidate-sentences">
+<caption><span>Table 1:</span> Statistics of Candidate Sentences.
+We sorted each abstract into a training, tuning and testing set.
+Numbers in parentheses show the number of positives and negatives that resulted from the hand-labeling process.
+</caption>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Relationship</th>
+<th style="text-align: center;">Train</th>
+<th style="text-align: center;">Tune</th>
+<th style="text-align: center;">Test</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Disease Associates Gene</td>
+<td style="text-align: center;">2.49 M</td>
+<td style="text-align: center;">696K (397+, 603-)</td>
+<td style="text-align: center;">348K (351+, 649-)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Compound Binds Gene</td>
+<td style="text-align: center;">2.4M</td>
+<td style="text-align: center;">684K (37+, 463-)</td>
+<td style="text-align: center;">341k (31+, 469-)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Compound Treats Disease</td>
+<td style="text-align: center;">1.5M</td>
+<td style="text-align: center;">441K (96+, 404-)</td>
+<td style="text-align: center;">223K (112+, 388-)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Gene Interacts Gene</td>
+<td style="text-align: center;">11.2M</td>
+<td style="text-align: center;">2.19M (60+, 440-)</td>
+<td style="text-align: center;">1.62M (76+, 424-)</td>
+</tr>
+</tbody>
+</table>
+</div>
 <h3 id="label-functions-for-annotating-sentences">Label Functions for Annotating Sentences</h3>
-<p>The challenge of having too few ground truth annotations is common to many natural language processing settings, even when unannotated text is abundant.
-Data programming circumvents this issue by quickly annotating large datasets by using multiple noisy signals emitted by label functions <span class="citation" data-cites="5Il3kN32"><a href="#ref-5Il3kN32" role="doc-biblioref">[10]</a></span>.
-Label functions are simple pythonic functions that emit: a positive label (1), a negative label (-1) or abstain from emitting a label (0).
-These functions can be grouped into multiple categories (see Supplement Methods).
-We combined these functions using a generative model to output a single annotation, which is a consensus probability score bounded between 0 (low chance of mentioning a relationship) and 1 (high chance of mentioning a relationship).
-We used these annotations to train a discriminative model that makes the final classification step.</p>
+<p>The challenge of having too few ground truth annotations is familiar to many natural language processing applications, even when unannotated text is abundant.
+Data programming circumvents this issue by quickly annotating large datasets using multiple noisy signals emitted by label functions <span class="citation" data-cites="5Il3kN32"><a href="#ref-5Il3kN32" role="doc-biblioref">[10]</a></span>.
+Label functions are simple pythonic functions that emit: a positive label (1), a negative label (0), or abstain from emitting a label (-1).
+These functions can use different approaches or techniques to emit a label; however, these functions can be grouped into simple categories discussed below.
+Once constructed, these functions are combined using a generative model to output a single annotation.
+This single annotation is a consensus probability score bounded between 0 (low chance of mentioning a relationship) and 1 (high chance of mentioning a relationship).
+We used these annotations to train a discriminative model for the final classification step.</p>
+<h4 id="label-function-categories">Label Function Categories</h4>
+<p>Label functions can be constructed in various ways; however, they also share similar characteristics.
+We grouped functions into databases and text patterns.
+The majority of our label functions fall into the text pattern category (Supplemental Table <a href="#tbl:label-functions">2</a>).
+Further, we described each label function category and provided an example that refers to the following candidate sentence: “<span class="gene_color">PTK6</span> may be a novel therapeutic target for <span class="disease_color">pancreatic cancer</span>”.</p>
+<p><strong>Databases</strong>: These label functions incorporate existing databases to generate a signal, as seen in distant supervision <span class="citation" data-cites="EHeTvZht"><a href="#ref-EHeTvZht" role="doc-biblioref">[4]</a></span>.
+These functions detect if a candidate sentence’s co-mention pair is present in a given database.
+Our label function emits a positive label if the pair is present and abstains otherwise.
+If the pair is not present in any existing database, a separate label function emits a negative label.
+We used a separate label function to prevent a label imbalance problem, which can occur when a single function labels every possible sentence despite being correct or not.
+If this problem isn’t handled correctly, the generative model could become biased and only emit one prediction (solely positive or solely negative) for every sentence.</p>
+<p><span class="math display">\[ \Lambda_{DB}(\color{#875442}{D}, \color{#02b3e4}{G}) = 
+\begin{cases}
+ 1 &amp; (\color{#875442}{D}, \color{#02b3e4}{G}) \in DB \\
+0 &amp; otherwise \\
+\end{cases} \]</span></p>
+<p><span class="math display">\[ \Lambda_{\neg DB}(\color{#875442}{D}, \color{#02b3e4}{G}) = 
+\begin{cases}
+ -1 &amp; (\color{#875442}{D}, \color{#02b3e4}{G}) \notin DB \\
+0 &amp; otherwise \\
+\end{cases} \]</span></p>
+<p><strong>Text Patterns</strong>: These label functions are designed to use keywords or sentence context to generate a signal.
+For example, a label function could focus on the number of words between two mentions and emit a label if two mentions are too close.
+Alternatively, a label function could focus on the parts of speech contained within a sentence and ensures a verb is present.
+Besides parts of speech, a label function could exploit dependency parse trees to emit a label.
+These trees are akin to the tree data structure where words are nodes and edges are how each word modifies each other.
+Label functions that use these parse trees will test if the generated tree matches a pattern and emits a positive label if true.
+For our analysis, we used previously identified patterns designed for biomedical text to generate our label functions <span class="citation" data-cites="tag:global_network"><a href="#ref-tag:global_network" role="doc-biblioref"><strong>tag:global_network?</strong></a></span>.</p>
+<p><span class="math display">\[ \Lambda_{TP}(\color{#875442}{D}, \color{#02b3e4}{G}) = 
+\begin{cases}
+ 1 &amp; &quot;target&quot; \&gt; \in Candidate \&gt; Sentence \\
+ -1 &amp; otherwise \\
+\end{cases} \]</span></p>
+<p><span class="math display">\[ \Lambda_{TP}(\color{#875442}{D}, \color{#02b3e4}{G}) = 
+\begin{cases}
+ 0 &amp;    &quot;VB&quot; \&gt; \notin pos\_tags(Candidate \&gt; Sentence) \\
+ -1 &amp; otherwise \\
+\end{cases} \]</span></p>
+<p><span class="math display">\[
+\Lambda_{TP}(\color{#875442}{D}, \color{#02b3e4}{G}) = \begin{cases}
+    1 &amp; dep(Candidate \&gt; Sentence) \in Cluster \&gt; Theme\\
+    -1 &amp; otherwise \\
+    \end{cases}
+\]</span></p>
+<p>Each text pattern label function was constructed via manual examination of sentences within the training set.
+For example, using the candidate sentence above, one would identify the phrase “novel therapeutic target” and incorporate this phrase into a global list that a label function would use to check if present in a sentence.
+After initial construction, we tested and augmented the label function using sentences in the tune set.
+We repeated this process for every label function in our repertoire.</p>
+<div id="tbl:label-functions" class="tablenos">
+<table id="tbl:label-functions">
+<caption><span>Table 2:</span> The distribution of each label function per relationship. </caption>
+<thead>
+<tr class="header">
+<th>Relationship</th>
+<th style="text-align: center;">Databases (DB)</th>
+<th style="text-align: center;">Text Patterns (TP)</th>
+<th style="text-align: center;"></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>DaG</td>
+<td style="text-align: center;">7</td>
+<td style="text-align: center;">30</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="even">
+<td>CtD</td>
+<td style="text-align: center;">3</td>
+<td style="text-align: center;">22</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="odd">
+<td>CbG</td>
+<td style="text-align: center;">9</td>
+<td style="text-align: center;">20</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="even">
+<td>GiG</td>
+<td style="text-align: center;">9</td>
+<td style="text-align: center;">28</td>
+<td style="text-align: center;"></td>
+</tr>
+</tbody>
+</table>
+</div>
 <h3 id="experimental-design">Experimental Design</h3>
 <p>Being able to re-use label functions across edge types would substantially reduce the number of label functions required to extract multiple relationships from biomedical literature.
 We first established a baseline by training a generative model using only distant supervision label functions designed for the target edge type (see Supplemental Methods).
-For example, in the Gene interacts Gene (GiG) edge type we used label functions that returned a 1 if the pair of genes were included in the Human Interaction database <span class="citation" data-cites="LCyCrr7W"><a href="#ref-LCyCrr7W" role="doc-biblioref">[29]</a></span>, the iRefIndex database <span class="citation" data-cites="gtV3bOpd"><a href="#ref-gtV3bOpd" role="doc-biblioref">[30]</a></span> or in the Incomplete Interactome database <span class="citation" data-cites="2jkcXYxN"><a href="#ref-2jkcXYxN" role="doc-biblioref">[31]</a></span>.
+For example, in the Gene interacts Gene (GiG) edge type we used label functions that returned a 1 if the pair of genes were included in the Human Interaction database <span class="citation" data-cites="LCyCrr7W"><a href="#ref-LCyCrr7W" role="doc-biblioref">[23]</a></span>, the iRefIndex database <span class="citation" data-cites="gtV3bOpd"><a href="#ref-gtV3bOpd" role="doc-biblioref">[31]</a></span> or in the Incomplete Interactome database <span class="citation" data-cites="2jkcXYxN"><a href="#ref-2jkcXYxN" role="doc-biblioref">[32]</a></span>.
 Then we compared the baseline model with models that also included text and domain-heuristic label functions.
 Using a sampling with replacement approach, we sampled these text and domain-heuristic label functions separately within edge types, across edge types, and from a pool of all label functions.
 We compared within-edge-type performance to across-edge-type and all-edge-type performance.
@@ -362,11 +491,12 @@ We conclude that label functions may be re-used with closely related edge types,
 The discriminative model’s performance improves as more edge-specific label functions are incorporated into the generative model; however, we did notice that performance greatly depends on the annotations provided by the generative model.</p>
 <p>This work sets up the foundation for creating a common framework that mines text to create edges.
 Within this framework we would continuously incorporate new knowledge as novel findings are published, while providing a single confidence score for an edge via sentence score consolidation.
-As opposed to many existing knowledge graphs (for example, Hetionet v1 where text-derived edges generally cannot be exactly attributed to excerpts from literature <span class="citation" data-cites="O21tn8vf L2B5V7XC"><a href="#ref-O21tn8vf" role="doc-biblioref">[3]</a>, <a href="#ref-L2B5V7XC" role="doc-biblioref">[32]</a></span>), our approach has the potential to annotate each edge based on its source sentences.
-In addition, edges generated with this approach would be unencumbered from upstream licensing or copyright restrictions, enabling openly licensed hetnets at a scale not previously possible <span class="citation" data-cites="4G0GW8oe 137tbemL9 1GwdMLPbV"><a href="#ref-4G0GW8oe" role="doc-biblioref">[33]</a>–<a href="#ref-1GwdMLPbV" role="doc-biblioref">[35]</a></span>.
-New multitask learning <span class="citation" data-cites="9Jo1af7Z"><a href="#ref-9Jo1af7Z" role="doc-biblioref">[36]</a></span> strategies may make it even more practical to reuse label functions to construct continuously updating literature-derived knowledge graphs.</p>
+As opposed to many existing knowledge graphs (for example, Hetionet v1 where text-derived edges generally cannot be exactly attributed to excerpts from literature <span class="citation" data-cites="O21tn8vf L2B5V7XC"><a href="#ref-O21tn8vf" role="doc-biblioref">[3]</a>, <a href="#ref-L2B5V7XC" role="doc-biblioref">[33]</a></span>), our approach has the potential to annotate each edge based on its source sentences.
+In addition, edges generated with this approach would be unencumbered from upstream licensing or copyright restrictions, enabling openly licensed hetnets at a scale not previously possible <span class="citation" data-cites="4G0GW8oe 137tbemL9 1GwdMLPbV"><a href="#ref-4G0GW8oe" role="doc-biblioref">[34]</a>–<a href="#ref-1GwdMLPbV" role="doc-biblioref">[36]</a></span>.
+New multitask learning <span class="citation" data-cites="9Jo1af7Z"><a href="#ref-9Jo1af7Z" role="doc-biblioref">[37]</a></span> strategies may make it even more practical to reuse label functions to construct continuously updating literature-derived knowledge graphs.</p>
 <h2 id="supplemental-information">Supplemental Information</h2>
 <p>An online version of this manuscript is available at <a href="https://greenelab.github.io/text_mined_hetnet_manuscript/" class="uri">https://greenelab.github.io/text_mined_hetnet_manuscript/</a>.
+Labeled sentences are available at <a href="https://github.com/greenelab/text_mined_hetnet_manuscript/tree/master/supplementary_materials/annotated_sentences">https://github.com/greenelab/text_mined_hetnet_manuscript/tree/master/supplementary_materials/annotated_sentences</a>.
 Source code for this work is available under open licenses at: <a href="https://github.com/greenelab/snorkeling/" class="uri">https://github.com/greenelab/snorkeling/</a>.</p>
 <h2 id="acknowledgements">Acknowledgements</h2>
 <p>The authors would like to thank Christopher Ré’s group at Stanford University, especially Alex Ratner and Steven Bach, for their assistance with this project.
@@ -376,224 +506,142 @@ This work was support by <a href="https://www.moore.org/grant-detail?grantId=GBM
 <!-- Explicitly insert bibliography here -->
 <div id="refs" class="references csl-bib-body" role="doc-bibliography">
 <div id="ref-u8pIAt5j" class="csl-entry" role="doc-biblioentry">
-<div class="csl-left-margin">[1] </div><div class="csl-right-inline">R. Gramatica, T. Di Matteo, S. Giorgetti, M. Barbiani, D. Bevec, and T. Aste, <span>“Graph Theory Enables Drug Repurposing – How a Mathematical Model Can Drive the Discovery of Hidden Mechanisms of Action,”</span> <em>PLoS ONE</em>, vol. 9, no. 1, p. e84912, Jan. 2014 [Online]. Available: <a href="https://doi.org/gf45zp">https://doi.org/gf45zp</a></div>
+<div class="csl-left-margin">[1] </div><div class="csl-right-inline">R. Gramatica, T. Di Matteo, S. Giorgetti, M. Barbiani, D. Bevec, and T. Aste, <span>“Graph Theory Enables Drug Repurposing – How a Mathematical Model Can Drive the Discovery of Hidden Mechanisms of Action,”</span> <em>PLoS ONE</em>, vol. 9, no. 1, p. e84912, Jan. 2014 [Online]. Available: <a href="https://doi.org/gf45zp">https://doi.org/gf45zp</a>. [Accessed: 29-Mar-2022]</div>
 </div>
 <div id="ref-bPvC638e" class="csl-entry" role="doc-biblioentry">
-<div class="csl-left-margin">[2] </div><div class="csl-right-inline">M. Alshahrani and R. Hoehndorf, <span>“Drug repurposing through joint learning on knowledge graphs and literature,”</span> <em>Cold Spring Harbor Laboratory</em>, Aug. 2018 [Online]. Available: <a href="https://doi.org/gf45zk">https://doi.org/gf45zk</a></div>
+<div class="csl-left-margin">[2] </div><div class="csl-right-inline">M. Alshahrani and R. Hoehndorf, <span>“Drug repurposing through joint learning on knowledge graphs and literature,”</span> Bioinformatics, preprint, Aug. 2018 [Online]. Available: <a href="https://doi.org/gf45zk">https://doi.org/gf45zk</a>. [Accessed: 29-Mar-2022]</div>
 </div>
 <div id="ref-O21tn8vf" class="csl-entry" role="doc-biblioentry">
-<div class="csl-left-margin">[3] </div><div class="csl-right-inline">D. S. Himmelstein <em>et al.</em>, <span>“Systematic integration of biomedical knowledge prioritizes drugs for repurposing,”</span> <em>eLife</em>, vol. 6, p. e26726, Sep. 2017 [Online]. Available: <a href="https://doi.org/cdfk">https://doi.org/cdfk</a></div>
+<div class="csl-left-margin">[3] </div><div class="csl-right-inline">D. S. Himmelstein <em>et al.</em>, <span>“Systematic integration of biomedical knowledge prioritizes drugs for repurposing,”</span> <em>eLife</em>, vol. 6, p. e26726, Sep. 2017 [Online]. Available: <a href="https://doi.org/cdfk">https://doi.org/cdfk</a>. [Accessed: 29-Mar-2022]</div>
 </div>
 <div id="ref-EHeTvZht" class="csl-entry" role="doc-biblioentry">
-<div class="csl-left-margin">[4] </div><div class="csl-right-inline">M. Mintz, S. Bills, R. Snow, and D. Jurafsky, <span>“Distant supervision for relation extraction without labeled data,”</span> <em>Association for Computational Linguistics (ACL)</em>, 2009 [Online]. Available: <a href="https://doi.org/fg9q43">https://doi.org/fg9q43</a></div>
+<div class="csl-left-margin">[4] </div><div class="csl-right-inline">M. Mintz, S. Bills, R. Snow, and D. Jurafsky, <span>“Distant supervision for relation extraction without labeled data,”</span> in <em>Proceedings of the Joint Conference of the 47th Annual Meeting of the ACL and the 4th International Joint Conference on Natural Language Processing of the AFNLP: Volume 2 - ACL-IJCNLP '09</em>, Suntec, Singapore, 2009, vol. 2, p. 1003 [Online]. Available: <a href="https://doi.org/fg9q43">https://doi.org/fg9q43</a>. [Accessed: 29-Mar-2022]</div>
 </div>
 <div id="ref-CVHSURuI" class="csl-entry" role="doc-biblioentry">
-<div class="csl-left-margin">[5] </div><div class="csl-right-inline">A. Junge and L. J. Jensen, <span>“CoCoScore: Context-aware co-occurrence scoring for text mining applications using distant supervision,”</span> <em>Cold Spring Harbor Laboratory</em>, Oct. 2018 [Online]. Available: <a href="https://doi.org/gf45zm">https://doi.org/gf45zm</a></div>
+<div class="csl-left-margin">[5] </div><div class="csl-right-inline">A. Junge and L. J. Jensen, <span>“CoCoScore: Context-aware co-occurrence scoring for text mining applications using distant supervision,”</span> Bioinformatics, preprint, Oct. 2018 [Online]. Available: <a href="https://doi.org/gf45zm">https://doi.org/gf45zm</a>. [Accessed: 29-Mar-2022]</div>
 </div>
 <div id="ref-HS4ARwmZ" class="csl-entry" role="doc-biblioentry">
-<div class="csl-left-margin">[6] </div><div class="csl-right-inline">H. Zhou, C. Lang, Z. Liu, S. Ning, Y. Lin, and L. Du, <span>“Knowledge-guided convolutional networks for chemical-disease relation extraction,”</span> <em>BMC Bioinformatics</em>, vol. 20, no. 1, p. 260, May 2019 [Online]. Available: <a href="https://doi.org/gf45zn">https://doi.org/gf45zn</a></div>
+<div class="csl-left-margin">[6] </div><div class="csl-right-inline">H. Zhou, C. Lang, Z. Liu, S. Ning, Y. Lin, and L. Du, <span>“Knowledge-guided convolutional networks for chemical-disease relation extraction,”</span> <em>BMC Bioinformatics</em>, vol. 20, no. 1, p. 260, Dec. 2019 [Online]. Available: <a href="https://doi.org/gf45zn">https://doi.org/gf45zn</a>. [Accessed: 29-Mar-2022]</div>
 </div>
 <div id="ref-N1Ai0gaI" class="csl-entry" role="doc-biblioentry">
-<div class="csl-left-margin">[7] </div><div class="csl-right-inline">R. Winnenburg, T. Wachter, C. Plake, A. Doms, and M. Schroeder, <span>“Facts from text: can text mining help to scale-up high-quality manual curation of gene products with ontologies?”</span> <em>Briefings in Bioinformatics</em>, vol. 9, no. 6, pp. 466–478, Jul. 2008 [Online]. Available: <a href="https://doi.org/bfsnwg">https://doi.org/bfsnwg</a></div>
+<div class="csl-left-margin">[7] </div><div class="csl-right-inline">R. Winnenburg, T. Wachter, C. Plake, A. Doms, and M. Schroeder, <span>“Facts from text: can text mining help to scale-up high-quality manual curation of gene products with ontologies?”</span> <em>Briefings in Bioinformatics</em>, vol. 9, no. 6, pp. 466–478, Jul. 2008 [Online]. Available: <a href="https://doi.org/bfsnwg">https://doi.org/bfsnwg</a>. [Accessed: 29-Mar-2022]</div>
 </div>
 <div id="ref-UdzvLgBM" class="csl-entry" role="doc-biblioentry">
-<div class="csl-left-margin">[8] </div><div class="csl-right-inline">W. A. Baumgartner, K. B. Cohen, L. M. Fox, G. Acquaah-Mensah, and L. Hunter, <span>“Manual curation is not sufficient for annotation of genomic databases,”</span> <em>Bioinformatics</em>, vol. 23, no. 13, pp. i41–i48, Jul. 2007 [Online]. Available: <a href="https://doi.org/dtck86">https://doi.org/dtck86</a></div>
+<div class="csl-left-margin">[8] </div><div class="csl-right-inline">W. A. Baumgartner, K. B. Cohen, L. M. Fox, G. Acquaah-Mensah, and L. Hunter, <span>“Manual curation is not sufficient for annotation of genomic databases,”</span> <em>Bioinformatics</em>, vol. 23, no. 13, pp. i41–i48, Jul. 2007 [Online]. Available: <a href="https://doi.org/dtck86">https://doi.org/dtck86</a>. [Accessed: 29-Mar-2022]</div>
 </div>
 <div id="ref-1DBISRlwN" class="csl-entry" role="doc-biblioentry">
-<div class="csl-left-margin">[9] </div><div class="csl-right-inline">L. Bornmann and R. Mutz, <span>“Growth rates of modern science: A bibliometric analysis based on the number of publications and cited references,”</span> <em>Journal of the Association for Information Science and Technology</em>, vol. 66, no. 11, pp. 2215–2222, Nov. 2015 [Online]. Available: <a href="https://doi.org/gfj5zc">https://doi.org/gfj5zc</a></div>
+<div class="csl-left-margin">[9] </div><div class="csl-right-inline">L. Bornmann and R. Mutz, <span>“Growth rates of modern science: A bibliometric analysis based on the number of publications and cited references: Growth Rates of Modern Science: A Bibliometric Analysis Based on the Number of Publications and Cited References,”</span> <em>Journal of the Association for Information Science and Technology</em>, vol. 66, no. 11, pp. 2215–2222, Nov. 2015 [Online]. Available: <a href="https://doi.org/gfj5zc">https://doi.org/gfj5zc</a>. [Accessed: 29-Mar-2022]</div>
 </div>
 <div id="ref-5Il3kN32" class="csl-entry" role="doc-biblioentry">
 <div class="csl-left-margin">[10] </div><div class="csl-right-inline">A. Ratner, C. De Sa, S. Wu, D. Selsam, and C. Ré, <span>“Data Programming: Creating Large Training Sets, Quickly,”</span> arXiv, 1605.07723, Dec. 2018 [Online]. Available: <a href="https://arxiv.org/abs/1605.07723">https://arxiv.org/abs/1605.07723</a></div>
 </div>
 <div id="ref-KEkjqdB0" class="csl-entry" role="doc-biblioentry">
-<div class="csl-left-margin">[11] </div><div class="csl-right-inline">M. Torii, C. N. Arighi, G. Li, Q. Wang, C. H. Wu, and K. Vijay-Shanker, <span>“RLIMS-P 2.0: A Generalizable Rule-Based Information Extraction System for Literature Mining of Protein Phosphorylation Information,”</span> <em>IEEE/ACM Transactions on Computational Biology and Bioinformatics</em>, vol. 12, no. 1, pp. 17–29, Jan. 2015 [Online]. Available: <a href="https://doi.org/gf8fpv">https://doi.org/gf8fpv</a></div>
+<div class="csl-left-margin">[11] </div><div class="csl-right-inline">M. Torii, C. N. Arighi, G. Li, Q. Wang, C. H. Wu, and K. Vijay-Shanker, <span>“RLIMS-P 2.0: A Generalizable Rule-Based Information Extraction System for Literature Mining of Protein Phosphorylation Information,”</span> <em>IEEE/ACM Transactions on Computational Biology and Bioinformatics</em>, vol. 12, no. 1, pp. 17–29, Jan. 2015 [Online]. Available: <a href="https://doi.org/gf8fpv">https://doi.org/gf8fpv</a>. [Accessed: 29-Mar-2022]</div>
 </div>
 <div id="ref-d3rG3TXb" class="csl-entry" role="doc-biblioentry">
-<div class="csl-left-margin">[12] </div><div class="csl-right-inline">H.-M. Müller, K. M. Van Auken, Y. Li, and P. W. Sternberg, <span>“Textpresso Central: a customizable platform for searching, text mining, viewing, and curating biomedical literature,”</span> <em>BMC Bioinformatics</em>, vol. 19, no. 1, p. 94, Mar. 2018 [Online]. Available: <a href="https://doi.org/gf7rbz">https://doi.org/gf7rbz</a></div>
+<div class="csl-left-margin">[12] </div><div class="csl-right-inline">H.-M. Müller, K. M. Van Auken, Y. Li, and P. W. Sternberg, <span>“Textpresso Central: a customizable platform for searching, text mining, viewing, and curating biomedical literature,”</span> <em>BMC Bioinformatics</em>, vol. 19, no. 1, p. 94, Dec. 2018 [Online]. Available: <a href="https://doi.org/gf7rbz">https://doi.org/gf7rbz</a>. [Accessed: 29-Mar-2022]</div>
 </div>
 <div id="ref-B8EOgoNA" class="csl-entry" role="doc-biblioentry">
-<div class="csl-left-margin">[13] </div><div class="csl-right-inline">J. X. Binder <em>et al.</em>, <span>“COMPARTMENTS: unification and visualization of protein subcellular localization evidence,”</span> <em>Database</em>, vol. 2014, no. 0, pp. bau012–bau012, Feb. 2014 [Online]. Available: <a href="https://doi.org/btbm">https://doi.org/btbm</a></div>
+<div class="csl-left-margin">[13] </div><div class="csl-right-inline">J. X. Binder <em>et al.</em>, <span>“COMPARTMENTS: unification and visualization of protein subcellular localization evidence,”</span> <em>Database</em>, vol. 2014, no. 0, pp. bau012–bau012, Feb. 2014 [Online]. Available: <a href="https://doi.org/btbm">https://doi.org/btbm</a>. [Accessed: 29-Mar-2022]</div>
 </div>
 <div id="ref-6QECA6Hm" class="csl-entry" role="doc-biblioentry">
-<div class="csl-left-margin">[14] </div><div class="csl-right-inline">A. Santos, K. Tsafou, C. Stolte, S. Pletscher-Frankild, S. I. O’Donoghue, and L. J. Jensen, <span>“Comprehensive comparison of large-scale tissue expression datasets,”</span> <em>PeerJ</em>, vol. 3, p. e1054, Jun. 2015 [Online]. Available: <a href="https://doi.org/f3mn6p">https://doi.org/f3mn6p</a></div>
+<div class="csl-left-margin">[14] </div><div class="csl-right-inline">A. Santos, K. Tsafou, C. Stolte, S. Pletscher-Frankild, S. I. O’Donoghue, and L. J. Jensen, <span>“Comprehensive comparison of large-scale tissue expression datasets,”</span> <em>PeerJ</em>, vol. 3, p. e1054, Jun. 2015 [Online]. Available: <a href="https://doi.org/f3mn6p">https://doi.org/f3mn6p</a>. [Accessed: 29-Mar-2022]</div>
 </div>
 <div id="ref-RQkLuc5t" class="csl-entry" role="doc-biblioentry">
-<div class="csl-left-margin">[15] </div><div class="csl-right-inline">C. Manning, M. Surdeanu, J. Bauer, J. Finkel, S. Bethard, and D. McClosky, <span>“The Stanford CoreNLP Natural Language Processing Toolkit,”</span> <em>Association for Computational Linguistics (ACL)</em>, 2014 [Online]. Available: <a href="https://doi.org/gf3xhp">https://doi.org/gf3xhp</a></div>
+<div class="csl-left-margin">[15] </div><div class="csl-right-inline">C. Manning, M. Surdeanu, J. Bauer, J. Finkel, S. Bethard, and D. McClosky, <span>“The Stanford CoreNLP Natural Language Processing Toolkit,”</span> in <em>Proceedings of 52nd Annual Meeting of the Association for Computational Linguistics: System Demonstrations</em>, Baltimore, Maryland, 2014, pp. 55–60 [Online]. Available: <a href="https://doi.org/gf3xhp">https://doi.org/gf3xhp</a>. [Accessed: 29-Mar-2022]</div>
 </div>
 <div id="ref-199TFjkrC" class="csl-entry" role="doc-biblioentry">
-<div class="csl-left-margin">[16] </div><div class="csl-right-inline">L. J. Jensen, J. Saric, and P. Bork, <span>“Literature mining for the biologist: from information retrieval to biological discovery,”</span> <em>Nature Reviews Genetics</em>, vol. 7, no. 2, pp. 119–129, Feb. 2006 [Online]. Available: <a href="https://doi.org/bgq7q9">https://doi.org/bgq7q9</a></div>
+<div class="csl-left-margin">[16] </div><div class="csl-right-inline">L. J. Jensen, J. Saric, and P. Bork, <span>“Literature mining for the biologist: from information retrieval to biological discovery,”</span> <em>Nature Reviews Genetics</em>, vol. 7, no. 2, pp. 119–129, Feb. 2006 [Online]. Available: <a href="https://doi.org/bgq7q9">https://doi.org/bgq7q9</a>. [Accessed: 29-Mar-2022]</div>
 </div>
 <div id="ref-1ZjlFRHa" class="csl-entry" role="doc-biblioentry">
-<div class="csl-left-margin">[17] </div><div class="csl-right-inline">W. W. M. Fleuren and W. Alkema, <span>“Application of text mining in the biomedical domain,”</span> <em>Methods</em>, vol. 74, pp. 97–106, Mar. 2015 [Online]. Available: <a href="https://doi.org/f64p6n">https://doi.org/f64p6n</a></div>
+<div class="csl-left-margin">[17] </div><div class="csl-right-inline">W. W. M. Fleuren and W. Alkema, <span>“Application of text mining in the biomedical domain,”</span> <em>Methods</em>, vol. 74, pp. 97–106, Mar. 2015 [Online]. Available: <a href="https://doi.org/f64p6n">https://doi.org/f64p6n</a>. [Accessed: 29-Mar-2022]</div>
 </div>
 <div id="ref-16As8893j" class="csl-entry" role="doc-biblioentry">
 <div class="csl-left-margin">[18] </div><div class="csl-right-inline">M. Krallinger, O. Rabal, S. A. Akhondi, <em>et al.</em>, <span>“Overview of the biocreative vi chemical-protein interaction track,”</span> in <em>Proceedings of the sixth biocreative challenge evaluation workshop</em>, 2017, vol. 1, pp. 141–146 [Online]. Available: <a href="https://www.semanticscholar.org/paper/Overview-of-the-BioCreative-VI-chemical-protein-Krallinger-Rabal/eed781f498b563df5a9e8a241c67d63dd1d92ad5">https://www.semanticscholar.org/paper/Overview-of-the-BioCreative-VI-chemical-protein-Krallinger-Rabal/eed781f498b563df5a9e8a241c67d63dd1d92ad5</a></div>
 </div>
 <div id="ref-DR8XM4Ff" class="csl-entry" role="doc-biblioentry">
-<div class="csl-left-margin">[19] </div><div class="csl-right-inline">S. Pyysalo, A. Airola, J. Heimonen, J. Björne, F. Ginter, and T. Salakoski, <span>“Comparative analysis of five protein-protein interaction corpora,”</span> <em>BMC Bioinformatics</em>, vol. 9, no. S3, p. S6, Apr. 2008 [Online]. Available: <a href="https://doi.org/fh3df7">https://doi.org/fh3df7</a></div>
+<div class="csl-left-margin">[19] </div><div class="csl-right-inline">S. Pyysalo, A. Airola, J. Heimonen, J. Björne, F. Ginter, and T. Salakoski, <span>“Comparative analysis of five protein-protein interaction corpora,”</span> <em>BMC Bioinformatics</em>, vol. 9, no. S3, p. S6, Apr. 2008 [Online]. Available: <a href="https://doi.org/fh3df7">https://doi.org/fh3df7</a>. [Accessed: 29-Mar-2022]</div>
 </div>
 <div id="ref-uujIm995" class="csl-entry" role="doc-biblioentry">
-<div class="csl-left-margin">[20] </div><div class="csl-right-inline">M. A. Hearst, S. T. Dumais, E. Osuna, J. Platt, and B. Scholkopf, <span>“Support vector machines,”</span> <em>IEEE Intelligent Systems and their Applications</em>, vol. 13, no. 4, pp. 18–28, Jul. 1998 [Online]. Available: <a href="https://doi.org/fwgxrj">https://doi.org/fwgxrj</a></div>
+<div class="csl-left-margin">[20] </div><div class="csl-right-inline">M. A. Hearst, S. T. Dumais, E. Osuna, J. Platt, and B. Scholkopf, <span>“Support vector machines,”</span> <em>IEEE Intelligent Systems and their Applications</em>, vol. 13, no. 4, pp. 18–28, Jul. 1998 [Online]. Available: <a href="https://doi.org/fwgxrj">https://doi.org/fwgxrj</a>. [Accessed: 29-Mar-2022]</div>
 </div>
 <div id="ref-BQS8ClV0" class="csl-entry" role="doc-biblioentry">
-<div class="csl-left-margin">[21] </div><div class="csl-right-inline">J. Schmidhuber, <span>“Deep learning in neural networks: An overview,”</span> <em>Neural Networks</em>, vol. 61, pp. 85–117, Jan. 2015 [Online]. Available: <a href="https://doi.org/f6v78n">https://doi.org/f6v78n</a></div>
+<div class="csl-left-margin">[21] </div><div class="csl-right-inline">J. Schmidhuber, <span>“Deep learning in neural networks: An overview,”</span> <em>Neural Networks</em>, vol. 61, pp. 85–117, Jan. 2015 [Online]. Available: <a href="https://doi.org/f6v78n">https://doi.org/f6v78n</a>. [Accessed: 29-Mar-2022]</div>
 </div>
 <div id="ref-16cIDAXhG" class="csl-entry" role="doc-biblioentry">
-<div class="csl-left-margin">[22] </div><div class="csl-right-inline">J. MacArthur <em>et al.</em>, <span>“The new NHGRI-EBI Catalog of published genome-wide association studies (GWAS Catalog),”</span> <em>Nucleic Acids Research</em>, vol. 45, no. D1, pp. D896–D901, Jan. 2017 [Online]. Available: <a href="https://doi.org/f9v7cp">https://doi.org/f9v7cp</a></div>
-</div>
-<div id="ref-1FI8iuYiQ" class="csl-entry" role="doc-biblioentry">
-<div class="csl-left-margin">[23] </div><div class="csl-right-inline">D. S. Wishart <em>et al.</em>, <span>“DrugBank 5.0: a major update to the DrugBank database for 2018,”</span> <em>Nucleic Acids Research</em>, vol. 46, no. D1, pp. D1074–D1082, Jan. 2018 [Online]. Available: <a href="https://doi.org/gcwtzk">https://doi.org/gcwtzk</a></div>
-</div>
-<div id="ref-13vw5RIy4" class="csl-entry" role="doc-biblioentry">
-<div class="csl-left-margin">[24] </div><div class="csl-right-inline">C.-H. Wei, H.-Y. Kao, and Z. Lu, <span>“PubTator: a web-based text mining tool for assisting biocuration,”</span> <em>Nucleic Acids Research</em>, vol. 41, no. W1, pp. W518–W522, Jul. 2013 [Online]. Available: <a href="https://doi.org/f475th">https://doi.org/f475th</a></div>
-</div>
-<div id="ref-vtuZ3Wx7" class="csl-entry" role="doc-biblioentry">
-<div class="csl-left-margin">[25] </div><div class="csl-right-inline">R. Leaman, R. Islamaj Dogan, and Z. Lu, <span>“DNorm: disease name normalization with pairwise learning to rank,”</span> <em>Bioinformatics</em>, vol. 29, no. 22, pp. 2909–2917, Aug. 2013 [Online]. Available: <a href="https://doi.org/f5gj9n">https://doi.org/f5gj9n</a></div>
-</div>
-<div id="ref-4S2HMNpa" class="csl-entry" role="doc-biblioentry">
-<div class="csl-left-margin">[26] </div><div class="csl-right-inline">M. Huang, J. Liu, and X. Zhu, <span>“GeneTUKit: a software for document-level gene normalization,”</span> <em>Bioinformatics</em>, vol. 27, no. 7, pp. 1032–1033, Feb. 2011 [Online]. Available: <a href="https://doi.org/dng2cb">https://doi.org/dng2cb</a></div>
-</div>
-<div id="ref-1AkC7QdyP" class="csl-entry" role="doc-biblioentry">
-<div class="csl-left-margin">[27] </div><div class="csl-right-inline">C.-H. Wei and H.-Y. Kao, <span>“Cross-species gene normalization by species inference,”</span> <em>BMC Bioinformatics</em>, vol. 12, no. S8, p. S5, Oct. 2011 [Online]. Available: <a href="https://doi.org/dnmvds">https://doi.org/dnmvds</a></div>
-</div>
-<div id="ref-r501gnuM" class="csl-entry" role="doc-biblioentry">
-<div class="csl-left-margin">[28] </div><div class="csl-right-inline">T. C. Wiegers, A. P. Davis, and C. J. Mattingly, <span>“Collaborative biocuration--text-mining development task for document prioritization for curation,”</span> <em>Database</em>, vol. 2012, no. 0, pp. bas037–bas037, Nov. 2012 [Online]. Available: <a href="https://doi.org/gbb3zw">https://doi.org/gbb3zw</a></div>
+<div class="csl-left-margin">[22] </div><div class="csl-right-inline">J. MacArthur <em>et al.</em>, <span>“The new NHGRI-EBI Catalog of published genome-wide association studies (GWAS Catalog),”</span> <em>Nucleic Acids Research</em>, vol. 45, no. D1, pp. D896–D901, Jan. 2017 [Online]. Available: <a href="https://doi.org/f9v7cp">https://doi.org/f9v7cp</a>. [Accessed: 29-Mar-2022]</div>
 </div>
 <div id="ref-LCyCrr7W" class="csl-entry" role="doc-biblioentry">
-<div class="csl-left-margin">[29] </div><div class="csl-right-inline">T. Rolland <em>et al.</em>, <span>“A Proteome-Scale Map of the Human Interactome Network,”</span> <em>Cell</em>, vol. 159, no. 5, pp. 1212–1226, Nov. 2014 [Online]. Available: <a href="https://doi.org/f3mn6x">https://doi.org/f3mn6x</a></div>
+<div class="csl-left-margin">[23] </div><div class="csl-right-inline">T. Rolland <em>et al.</em>, <span>“A Proteome-Scale Map of the Human Interactome Network,”</span> <em>Cell</em>, vol. 159, no. 5, pp. 1212–1226, Nov. 2014 [Online]. Available: <a href="https://doi.org/f3mn6x">https://doi.org/f3mn6x</a>. [Accessed: 29-Mar-2022]</div>
+</div>
+<div id="ref-1FI8iuYiQ" class="csl-entry" role="doc-biblioentry">
+<div class="csl-left-margin">[24] </div><div class="csl-right-inline">D. S. Wishart <em>et al.</em>, <span>“DrugBank 5.0: a major update to the DrugBank database for 2018,”</span> <em>Nucleic Acids Research</em>, vol. 46, no. D1, pp. D1074–D1082, Jan. 2018 [Online]. Available: <a href="https://doi.org/gcwtzk">https://doi.org/gcwtzk</a>. [Accessed: 29-Mar-2022]</div>
+</div>
+<div id="ref-18ZyyTcTe" class="csl-entry" role="doc-biblioentry">
+<div class="csl-left-margin">[25] </div><div class="csl-right-inline">C.-H. Wei, A. Allot, R. Leaman, and Z. Lu, <span>“PubTator central: automated concept annotation for biomedical full text articles,”</span> <em>Nucleic Acids Research</em>, vol. 47, no. W1, pp. W587–W593, Jul. 2019 [Online]. Available: <a href="https://doi.org/ggzfsc">https://doi.org/ggzfsc</a>. [Accessed: 29-Mar-2022]</div>
+</div>
+<div id="ref-11YUuHulp" class="csl-entry" role="doc-biblioentry">
+<div class="csl-left-margin">[26] </div><div class="csl-right-inline">R. Leaman and Z. Lu, <span>“TaggerOne: joint named entity recognition and normalization with semi-Markov Models,”</span> <em>Bioinformatics</em>, vol. 32, no. 18, pp. 2839–2846, Sep. 2016 [Online]. Available: <a href="https://doi.org/f855dg">https://doi.org/f855dg</a>. [Accessed: 29-Mar-2022]</div>
+</div>
+<div id="ref-17LQKv7vO" class="csl-entry" role="doc-biblioentry">
+<div class="csl-left-margin">[27] </div><div class="csl-right-inline">C.-H. Wei, L. Phan, J. Feltz, R. Maiti, T. Hefferon, and Z. Lu, <span>“tmVar 2.0: integrating genomic variant information from literature with dbSNP and ClinVar for precision medicine,”</span> <em>Bioinformatics</em>, vol. 34, no. 1, pp. 80–87, Jan. 2018 [Online]. Available: <a href="https://doi.org/gbzsmc">https://doi.org/gbzsmc</a>. [Accessed: 29-Mar-2022]</div>
+</div>
+<div id="ref-aOPX10e0" class="csl-entry" role="doc-biblioentry">
+<div class="csl-left-margin">[28] </div><div class="csl-right-inline">C.-H. Wei, H.-Y. Kao, and Z. Lu, <span>“GNormPlus: An Integrative Approach for Tagging Genes, Gene Families, and Protein Domains,”</span> <em>BioMed Research International</em>, vol. 2015, pp. 1–7, 2015 [Online]. Available: <a href="https://doi.org/gb85jb">https://doi.org/gb85jb</a>. [Accessed: 29-Mar-2022]</div>
+</div>
+<div id="ref-NXIFrudx" class="csl-entry" role="doc-biblioentry">
+<div class="csl-left-margin">[29] </div><div class="csl-right-inline">C.-H. Wei, H.-Y. Kao, and Z. Lu, <span>“SR4GN: A Species Recognition Software Tool for Gene Normalization,”</span> <em>PLoS ONE</em>, vol. 7, no. 6, p. e38460, Jun. 2012 [Online]. Available: <a href="https://doi.org/gpq498">https://doi.org/gpq498</a>. [Accessed: 29-Mar-2022]</div>
+</div>
+<div id="ref-q2fFAZTG" class="csl-entry" role="doc-biblioentry">
+<div class="csl-left-margin">[30] </div><div class="csl-right-inline">M. Honnibal and I. Montani, <span>“spaCy 2: Natural language understanding with Bloom embeddings, convolutional neural networks and incremental parsing,”</span> 2017. </div>
 </div>
 <div id="ref-gtV3bOpd" class="csl-entry" role="doc-biblioentry">
-<div class="csl-left-margin">[30] </div><div class="csl-right-inline">S. Razick, G. Magklaras, and I. M. Donaldson, <span>“iRefIndex: A consolidated protein interaction database with provenance,”</span> <em>BMC Bioinformatics</em>, vol. 9, no. 1, p. 405, Sep. 2008 [Online]. Available: <a href="https://doi.org/b99bjj">https://doi.org/b99bjj</a></div>
+<div class="csl-left-margin">[31] </div><div class="csl-right-inline">S. Razick, G. Magklaras, and I. M. Donaldson, <span>“iRefIndex: A consolidated protein interaction database with provenance,”</span> <em>BMC Bioinformatics</em>, vol. 9, no. 1, p. 405, Dec. 2008 [Online]. Available: <a href="https://doi.org/b99bjj">https://doi.org/b99bjj</a>. [Accessed: 29-Mar-2022]</div>
 </div>
 <div id="ref-2jkcXYxN" class="csl-entry" role="doc-biblioentry">
-<div class="csl-left-margin">[31] </div><div class="csl-right-inline">J. Menche <em>et al.</em>, <span>“Uncovering disease-disease relationships through the incomplete interactome,”</span> <em>Science</em>, vol. 347, no. 6224, pp. 1257601–1257601, Feb. 2015 [Online]. Available: <a href="https://doi.org/f3mn6z">https://doi.org/f3mn6z</a></div>
+<div class="csl-left-margin">[32] </div><div class="csl-right-inline">J. Menche <em>et al.</em>, <span>“Uncovering disease-disease relationships through the incomplete interactome,”</span> <em>Science</em>, vol. 347, no. 6224, pp. 1257601–1257601, Feb. 2015 [Online]. Available: <a href="https://doi.org/f3mn6z">https://doi.org/f3mn6z</a>. [Accessed: 29-Mar-2022]</div>
 </div>
 <div id="ref-L2B5V7XC" class="csl-entry" role="doc-biblioentry">
-<div class="csl-left-margin">[32] </div><div class="csl-right-inline">D. Himmelstein and A. Pankov, <span>“Mining knowledge from MEDLINE articles and their indexed MeSH terms,”</span> May 2015 [Online]. Available: <a href="https://doi.org/f3mqwp">https://doi.org/f3mqwp</a></div>
+<div class="csl-left-margin">[33] </div><div class="csl-right-inline"><span>“[No title found].”</span> [Online]. Available: <a href="https://doi.org/f3mqwp">https://doi.org/f3mqwp</a></div>
 </div>
 <div id="ref-4G0GW8oe" class="csl-entry" role="doc-biblioentry">
-<div class="csl-left-margin">[33] </div><div class="csl-right-inline">D. Himmelstein, L. J. Jensen, M. Smith, K. Fortney, and C. Chung, <span>“Integrating resources with disparate licensing into an open network,”</span> Aug. 2015 [Online]. Available: <a href="https://doi.org/bfmk">https://doi.org/bfmk</a></div>
+<div class="csl-left-margin">[34] </div><div class="csl-right-inline"><span>“[No title found].”</span> [Online]. Available: <a href="https://doi.org/bfmk">https://doi.org/bfmk</a></div>
 </div>
 <div id="ref-137tbemL9" class="csl-entry" role="doc-biblioentry">
-<div class="csl-left-margin">[34] </div><div class="csl-right-inline">S. Oxenham, <span>“Legal confusion threatens to slow data science,”</span> <em>Nature</em>, vol. 536, no. 7614, pp. 16–17, Aug. 2016 [Online]. Available: <a href="https://doi.org/bndt">https://doi.org/bndt</a></div>
+<div class="csl-left-margin">[35] </div><div class="csl-right-inline">S. Oxenham, <span>“Legal confusion threatens to slow data science,”</span> <em>Nature</em>, vol. 536, no. 7614, pp. 16–17, Aug. 2016 [Online]. Available: <a href="https://doi.org/bndt">https://doi.org/bndt</a>. [Accessed: 29-Mar-2022]</div>
 </div>
 <div id="ref-1GwdMLPbV" class="csl-entry" role="doc-biblioentry">
-<div class="csl-left-margin">[35] </div><div class="csl-right-inline">S. Carbon, R. Champieux, J. A. McMurry, L. Winfree, L. R. Wyatt, and M. A. Haendel, <span>“An analysis and metric of reusable data licensing practices for biomedical resources,”</span> <em>PLOS ONE</em>, vol. 14, no. 3, p. e0213090, Mar. 2019 [Online]. Available: <a href="https://doi.org/gf5m8v">https://doi.org/gf5m8v</a></div>
+<div class="csl-left-margin">[36] </div><div class="csl-right-inline">S. Carbon, R. Champieux, J. A. McMurry, L. Winfree, L. R. Wyatt, and M. A. Haendel, <span>“An analysis and metric of reusable data licensing practices for biomedical resources,”</span> <em>PLOS ONE</em>, vol. 14, no. 3, p. e0213090, Mar. 2019 [Online]. Available: <a href="https://doi.org/gf5m8v">https://doi.org/gf5m8v</a>. [Accessed: 29-Mar-2022]</div>
 </div>
 <div id="ref-9Jo1af7Z" class="csl-entry" role="doc-biblioentry">
-<div class="csl-left-margin">[36] </div><div class="csl-right-inline">A. Ratner, B. Hancock, J. Dunnmon, R. Goldman, and C. Ré, <span>“Snorkel MeTaL,”</span> <em>Association for Computing Machinery (ACM)</em>, Jun. 2018 [Online]. Available: <a href="https://doi.org/gf3xk7">https://doi.org/gf3xk7</a></div>
+<div class="csl-left-margin">[37] </div><div class="csl-right-inline">A. Ratner, B. Hancock, J. Dunnmon, R. Goldman, and C. Ré, <span>“Snorkel MeTaL: Weak Supervision for Multi-Task Learning,”</span> in <em>Proceedings of the Second Workshop on Data Management for End-To-End Machine Learning</em>, Houston TX USA, 2018, pp. 1–4 [Online]. Available: <a href="https://doi.org/gf3xk7">https://doi.org/gf3xk7</a>. [Accessed: 29-Mar-2022]</div>
 </div>
 <div id="ref-vzoBuh4l" class="csl-entry" role="doc-biblioentry">
-<div class="csl-left-margin">[37] </div><div class="csl-right-inline">A. Ratner, S. H. Bach, H. Ehrenberg, J. Fries, S. Wu, and C. Ré, <span>“Snorkel,”</span> <em>Proceedings of the VLDB Endowment</em>, vol. 11, no. 3, pp. 269–282, Nov. 2017 [Online]. Available: <a href="https://doi.org/ch44">https://doi.org/ch44</a></div>
+<div class="csl-left-margin">[38] </div><div class="csl-right-inline">A. Ratner, S. H. Bach, H. Ehrenberg, J. Fries, S. Wu, and C. Ré, <span>“Snorkel: rapid training data creation with weak supervision,”</span> <em>Proceedings of the VLDB Endowment</em>, vol. 11, no. 3, pp. 269–282, Nov. 2017 [Online]. Available: <a href="https://doi.org/ch44">https://doi.org/ch44</a>. [Accessed: 29-Mar-2022]</div>
 </div>
 <div id="ref-fs8rAHoJ" class="csl-entry" role="doc-biblioentry">
-<div class="csl-left-margin">[38] </div><div class="csl-right-inline">Y. Zhang and B. Wallace, <span>“A Sensitivity Analysis of (and Practitioners' Guide to) Convolutional Neural Networks for Sentence Classification,”</span> arXiv, 1510.03820, Apr. 2016 [Online]. Available: <a href="https://arxiv.org/abs/1510.03820">https://arxiv.org/abs/1510.03820</a></div>
+<div class="csl-left-margin">[39] </div><div class="csl-right-inline">Y. Zhang and B. Wallace, <span>“A Sensitivity Analysis of (and Practitioners' Guide to) Convolutional Neural Networks for Sentence Classification,”</span> arXiv, 1510.03820, Apr. 2016 [Online]. Available: <a href="https://arxiv.org/abs/1510.03820">https://arxiv.org/abs/1510.03820</a></div>
 </div>
 <div id="ref-c6d3lKFX" class="csl-entry" role="doc-biblioentry">
-<div class="csl-left-margin">[39] </div><div class="csl-right-inline">D. P. Kingma and J. Ba, <span>“Adam: A Method for Stochastic Optimization,”</span> arXiv, 1412.6980, Jan. 2017 [Online]. Available: <a href="https://arxiv.org/abs/1412.6980">https://arxiv.org/abs/1412.6980</a></div>
+<div class="csl-left-margin">[40] </div><div class="csl-right-inline">D. P. Kingma and J. Ba, <span>“Adam: A Method for Stochastic Optimization,”</span> arXiv, 1412.6980, Jan. 2017 [Online]. Available: <a href="https://arxiv.org/abs/1412.6980">https://arxiv.org/abs/1412.6980</a></div>
 </div>
 <div id="ref-u5iJzbp9" class="csl-entry" role="doc-biblioentry">
-<div class="csl-left-margin">[40] </div><div class="csl-right-inline">T. Mikolov, I. Sutskever, K. Chen, G. Corrado, and J. Dean, <span>“Distributed Representations of Words and Phrases and their Compositionality,”</span> arXiv, 1310.4546, Oct. 2013 [Online]. Available: <a href="https://arxiv.org/abs/1310.4546">https://arxiv.org/abs/1310.4546</a></div>
+<div class="csl-left-margin">[41] </div><div class="csl-right-inline">T. Mikolov, I. Sutskever, K. Chen, G. Corrado, and J. Dean, <span>“Distributed Representations of Words and Phrases and their Compositionality,”</span> arXiv, 1310.4546, Oct. 2013 [Online]. Available: <a href="https://arxiv.org/abs/1310.4546">https://arxiv.org/abs/1310.4546</a></div>
 </div>
 <div id="ref-qUpCDz2v" class="csl-entry" role="doc-biblioentry">
-<div class="csl-left-margin">[41] </div><div class="csl-right-inline">P. Bojanowski, E. Grave, A. Joulin, and T. Mikolov, <span>“Enriching Word Vectors with Subword Information,”</span> arXiv, 1607.04606, Jun. 2017 [Online]. Available: <a href="https://arxiv.org/abs/1607.04606">https://arxiv.org/abs/1607.04606</a></div>
+<div class="csl-left-margin">[42] </div><div class="csl-right-inline">P. Bojanowski, E. Grave, A. Joulin, and T. Mikolov, <span>“Enriching Word Vectors with Subword Information,”</span> arXiv, 1607.04606, Jun. 2017 [Online]. Available: <a href="https://arxiv.org/abs/1607.04606">https://arxiv.org/abs/1607.04606</a></div>
 </div>
 <div id="ref-1GhHIDxuW" class="csl-entry" role="doc-biblioentry">
-<div class="csl-left-margin">[42] </div><div class="csl-right-inline">T. Mikolov, K. Chen, G. Corrado, and J. Dean, <span>“Efficient Estimation of Word Representations in Vector Space,”</span> arXiv, 1301.3781, Sep. 2013 [Online]. Available: <a href="https://arxiv.org/abs/1301.3781">https://arxiv.org/abs/1301.3781</a></div>
+<div class="csl-left-margin">[43] </div><div class="csl-right-inline">T. Mikolov, K. Chen, G. Corrado, and J. Dean, <span>“Efficient Estimation of Word Representations in Vector Space,”</span> arXiv, 1301.3781, Sep. 2013 [Online]. Available: <a href="https://arxiv.org/abs/1301.3781">https://arxiv.org/abs/1301.3781</a></div>
 </div>
 <div id="ref-QJ6hYH8N" class="csl-entry" role="doc-biblioentry">
-<div class="csl-left-margin">[43] </div><div class="csl-right-inline">C. Guo, G. Pleiss, Y. Sun, and K. Q. Weinberger, <span>“On Calibration of Modern Neural Networks,”</span> arXiv, 1706.04599, Aug. 2017 [Online]. Available: <a href="https://arxiv.org/abs/1706.04599">https://arxiv.org/abs/1706.04599</a></div>
+<div class="csl-left-margin">[44] </div><div class="csl-right-inline">C. Guo, G. Pleiss, Y. Sun, and K. Q. Weinberger, <span>“On Calibration of Modern Neural Networks,”</span> arXiv, 1706.04599, Aug. 2017 [Online]. Available: <a href="https://arxiv.org/abs/1706.04599">https://arxiv.org/abs/1706.04599</a></div>
 </div>
 <div id="ref-rLVjMJ5l" class="csl-entry" role="doc-biblioentry">
-<div class="csl-left-margin">[44] </div><div class="csl-right-inline">V. Kuleshov, N. Fenner, and S. Ermon, <span>“Accurate Uncertainties for Deep Learning Using Calibrated Regression,”</span> arXiv, 1807.00263, Jul. 2018 [Online]. Available: <a href="https://arxiv.org/abs/1807.00263">https://arxiv.org/abs/1807.00263</a></div>
+<div class="csl-left-margin">[45] </div><div class="csl-right-inline">V. Kuleshov, N. Fenner, and S. Ermon, <span>“Accurate Uncertainties for Deep Learning Using Calibrated Regression,”</span> arXiv, 1807.00263, Jul. 2018 [Online]. Available: <a href="https://arxiv.org/abs/1807.00263">https://arxiv.org/abs/1807.00263</a></div>
 </div>
 </div>
 <h2 id="supplemental-methods">Supplemental Methods</h2>
-<h4 id="label-function-categories">Label Function Categories</h4>
-<p>Label functions can be constructed in a multitude of ways; however, many label functions share similar characteristics with one another.
-We grouped these characteristics into the following categories: databases, text patterns and domain heuristics.
-Most of our label functions fall into the text pattern category, while the others were distributed across the database and domain heuristic categories (Supplemental Table <a href="#tbl:label-functions">1</a>).
-Further, we described each category and provided an example that refers to the following candidate sentence: “<span class="gene_color">PTK6</span> may be a novel therapeutic target for <span class="disease_color">pancreatic cancer</span>”.</p>
-<p><strong>Databases</strong>: These label functions incorporate existing databases to generate a signal, as seen in distant supervision <span class="citation" data-cites="EHeTvZht"><a href="#ref-EHeTvZht" role="doc-biblioref">[4]</a></span>.
-These functions detect if a candidate sentence’s co-mention pair is present in a given database.
-If the pair is present, our label function emits a positive label and abstains otherwise.
-If the pair is not present in any existing database, a separate label function emits a negative label.
-We used a separate label function to prevent a label imbalance problem that we encountered during development: emitting positives and negatives from the same label function causes downstream classifiers to generate almost exclusively negative predictions.</p>
-<p><span class="math display">\[ \Lambda_{DB}(\color{#875442}{D}, \color{#02b3e4}{G}) = 
-\begin{cases}
- 1 &amp; (\color{#875442}{D}, \color{#02b3e4}{G}) \in DB \\
-0 &amp; otherwise \\
-\end{cases} \]</span></p>
-<p><span class="math display">\[ \Lambda_{\neg DB}(\color{#875442}{D}, \color{#02b3e4}{G}) = 
-\begin{cases}
- -1 &amp; (\color{#875442}{D}, \color{#02b3e4}{G}) \notin DB \\
-0 &amp; otherwise \\
-\end{cases} \]</span></p>
-<p><strong>Domain Heuristics</strong>: These label functions used results from published text-based analyses to generate a signal.
-For our project, we used dependency path cluster themes generated by Percha et al. <span class="citation" data-cites="tag:global_network"><a href="#ref-tag:global_network" role="doc-biblioref"><strong>tag:global_network?</strong></a></span>.
-If a candidate sentence’s dependency path belonged to a previously generated cluster, then the label function emitted a positive label and abstained otherwise.</p>
-<p><span class="math display">\[
-\Lambda_{DH}(\color{#875442}{D}, \color{#02b3e4}{G}) = \begin{cases}
-    1 &amp; Candidate \&gt; Sentence \in Cluster \&gt; Theme\\
-    0 &amp; otherwise \\
-    \end{cases}
-\]</span></p>
-<p><strong>Text Patterns</strong>: These label functions are designed to use keywords and sentence context to generate a signal.
-For example, a label function could focus on the number of words between two mentions or focus on the grammatical structure of a sentence.
-These functions emit a positive or negative label depending on the context.</p>
-<p><span class="math display">\[ \Lambda_{TP}(\color{#875442}{D}, \color{#02b3e4}{G}) = 
-\begin{cases}
- 1 &amp; &quot;target&quot; \&gt; \in Candidate \&gt; Sentence \\
- 0 &amp; otherwise \\
-\end{cases} \]</span></p>
-<p><span class="math display">\[ \Lambda_{TP}(\color{#875442}{D}, \color{#02b3e4}{G}) = 
-\begin{cases}
- -1 &amp;   &quot;VB&quot; \&gt; \notin pos\_tags(Candidate \&gt; Sentence) \\
- 0 &amp; otherwise \\
-\end{cases} \]</span></p>
-<p>Each text pattern label function was constructed by manual examination of sentences within the training set.
-For example, in the candidate sentence above, one would extract the keywords “novel therapeutic target” and incorporate them in a text pattern label function.
-After initial construction, we tested and augmented the label function using sentences in the tune set.
-We repeated this process for every label function in our repertoire.</p>
-<div id="tbl:label-functions" class="tablenos">
-<table id="tbl:label-functions">
-<caption><span>Table 1:</span> The distribution of each label function per relationship. </caption>
-<thead>
-<tr class="header">
-<th>Relationship</th>
-<th style="text-align: center;">Databases (DB)</th>
-<th style="text-align: center;">Text Patterns (TP)</th>
-<th style="text-align: center;">Domain Heuristics (DH)</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>DaG</td>
-<td style="text-align: center;">7</td>
-<td style="text-align: center;">20</td>
-<td style="text-align: center;">10</td>
-</tr>
-<tr class="even">
-<td>CtD</td>
-<td style="text-align: center;">3</td>
-<td style="text-align: center;">15</td>
-<td style="text-align: center;">7</td>
-</tr>
-<tr class="odd">
-<td>CbG</td>
-<td style="text-align: center;">9</td>
-<td style="text-align: center;">13</td>
-<td style="text-align: center;">7</td>
-</tr>
-<tr class="even">
-<td>GiG</td>
-<td style="text-align: center;">9</td>
-<td style="text-align: center;">20</td>
-<td style="text-align: center;">8</td>
-</tr>
-</tbody>
-</table>
-</div>
 <h3 id="training-models">Training Models</h3>
 <h4 id="generative-model">Generative Model</h4>
 <p>The generative model is a core part of this automatic annotation framework.
@@ -612,14 +660,14 @@ The summary statistics used by the generative model are as follows:</p>
 <em>Acc</em> is the individual label function’s accuracy given the training class.
 This model optimizes the weights (<span class="math inline">\(\theta\)</span>) by minimizing the negative log likelihood:</p>
 <p><span class="math display">\[\hat{\theta} = argmin_{\theta} -\sum_{\Lambda} \sum_{Y} log P_{\theta}(\Lambda, Y)\]</span></p>
-<p>In the framework we used predictions from the generative model, <span class="math inline">\(\hat{Y} = P_{\hat{\theta}}(Y \mid \Lambda)\)</span>, as training classes for our dataset <span class="citation" data-cites="vzoBuh4l 9Jo1af7Z"><a href="#ref-9Jo1af7Z" role="doc-biblioref">[36]</a>, <a href="#ref-vzoBuh4l" role="doc-biblioref">[37]</a></span>.</p>
+<p>In the framework we used predictions from the generative model, <span class="math inline">\(\hat{Y} = P_{\hat{\theta}}(Y \mid \Lambda)\)</span>, as training classes for our dataset <span class="citation" data-cites="vzoBuh4l 9Jo1af7Z"><a href="#ref-9Jo1af7Z" role="doc-biblioref">[37]</a>, <a href="#ref-vzoBuh4l" role="doc-biblioref">[38]</a></span>.</p>
 <h4 id="discriminative-model">Discriminative Model</h4>
 <p>The discriminative model is a neural network trained to produce classification labels by integrating predicted probabilities from the generative model along with sentence representations via word embeddings.
 The goal of this combined approach is to develop models that learn text features associated with the overall task, beyond the supplied label functions.
 We used a piecewise convolutional neural network that contains multiple kernel filters as our discriminative model.
 We built a network with multiple filters using a fixed width of 300 (size of word embeddings) and a fixed height of 7 (Figure <a href="#fig:convolutional_network">4</a>).
-We chose a fixed height of 7 because this height was previously reported to optimize performance in relationship classification <span class="citation" data-cites="fs8rAHoJ"><a href="#ref-fs8rAHoJ" role="doc-biblioref">[38]</a></span>.
-We trained this model for 15 epochs using the Adam optimizer <span class="citation" data-cites="c6d3lKFX"><a href="#ref-c6d3lKFX" role="doc-biblioref">[39]</a></span> with PyTorch’s default parameter settings and a learning rate of 0.001 that decreases by half every epoch until the lower bound of 1e-5 is reached, which we observed was often sufficient for convergence.
+We chose a fixed height of 7 because this height was previously reported to optimize performance in relationship classification <span class="citation" data-cites="fs8rAHoJ"><a href="#ref-fs8rAHoJ" role="doc-biblioref">[39]</a></span>.
+We trained this model for 15 epochs using the Adam optimizer <span class="citation" data-cites="c6d3lKFX"><a href="#ref-c6d3lKFX" role="doc-biblioref">[40]</a></span> with PyTorch’s default parameter settings and a learning rate of 0.001 that decreases by half every epoch until the lower bound of 1e-5 is reached, which we observed was often sufficient for convergence.
 We added a L2 penalty (lambda=0.002) on the network weights to prevent overfitting.
 Lastly, we added a dropout layer (p=0.25) between the fully connected layer and the softmax layer.</p>
 <div id="fig:convolutional_network" class="fignos">
@@ -634,18 +682,18 @@ The last step of the fully connected network was to generate predictions using a
 </div>
 <h4 id="word-embeddings">Word Embeddings</h4>
 <p>Word embeddings are representations that map individual words to real valued vectors of user-specified dimensions.
-These embeddings have been shown to capture the semantic and syntactic information between words <span class="citation" data-cites="u5iJzbp9"><a href="#ref-u5iJzbp9" role="doc-biblioref">[40]</a></span>.
-We trained Facebook’s fastText <span class="citation" data-cites="qUpCDz2v"><a href="#ref-qUpCDz2v" role="doc-biblioref">[41]</a></span> using all candidate sentences for each individual relationship pair to generate word embeddings.
-FastText uses a skip-gram model <span class="citation" data-cites="1GhHIDxuW"><a href="#ref-1GhHIDxuW" role="doc-biblioref">[42]</a></span> that aims to predict the surrounding context for a candidate word and pairs the model with a novel scoring function that treats each word as a bag of character n-grams.
+These embeddings have been shown to capture the semantic and syntactic information between words <span class="citation" data-cites="u5iJzbp9"><a href="#ref-u5iJzbp9" role="doc-biblioref">[41]</a></span>.
+We trained Facebook’s fastText <span class="citation" data-cites="qUpCDz2v"><a href="#ref-qUpCDz2v" role="doc-biblioref">[42]</a></span> using all candidate sentences for each individual relationship pair to generate word embeddings.
+FastText uses a skip-gram model <span class="citation" data-cites="1GhHIDxuW"><a href="#ref-1GhHIDxuW" role="doc-biblioref">[43]</a></span> that aims to predict the surrounding context for a candidate word and pairs the model with a novel scoring function that treats each word as a bag of character n-grams.
 We trained this model for 20 epochs using a window size of 2 and generated 300-dimensional word embeddings.
 We use the optimized word embeddings as input to our discriminative model.</p>
 <h4 id="calibration-of-the-discriminative-model">Calibration of the Discriminative Model</h4>
 <p>Often many tasks require a machine learning model to output reliable probability predictions.
 A model is well calibrated if the probabilities emitted from the model match the observed probabilities.
 For example, a well-calibrated model that assigns a class label with 80% probability should have that class appear 80% of the time.
-Deep neural network models can often be poorly calibrated <span class="citation" data-cites="QJ6hYH8N rLVjMJ5l"><a href="#ref-QJ6hYH8N" role="doc-biblioref">[43]</a>, <a href="#ref-rLVjMJ5l" role="doc-biblioref">[44]</a></span>.
+Deep neural network models can often be poorly calibrated <span class="citation" data-cites="QJ6hYH8N rLVjMJ5l"><a href="#ref-QJ6hYH8N" role="doc-biblioref">[44]</a>, <a href="#ref-rLVjMJ5l" role="doc-biblioref">[45]</a></span>.
 These models are usually over-confident in their predictions.
-For this reason, we calibrated our convolutional neural network using temperature scaling <span class="citation" data-cites="QJ6hYH8N"><a href="#ref-QJ6hYH8N" role="doc-biblioref">[43]</a></span>.
+For this reason, we calibrated our convolutional neural network using temperature scaling <span class="citation" data-cites="QJ6hYH8N"><a href="#ref-QJ6hYH8N" role="doc-biblioref">[44]</a></span>.
 Temperature scaling uses a parameter T to scale each value of the logit vector (z) before being passed into the softmax (SM) function.</p>
 <p><span class="math display">\[\sigma_{SM}(\frac{z_{i}}{T}) = \frac{\exp(\frac{z_{i}}{T})}{\sum_{i}\exp(\frac{z_{i}}{T})}\]</span></p>
 <p>We found the optimal T by minimizing the negative log likelihood (NLL) of the tune set.</p>
@@ -707,7 +755,7 @@ A perfectly calibrated model would align straight along the diagonal line.</figc
 </figure>
 </div>
 <p>Even deep learning models with impressive AUROC and AUPR statistics can be subject to poor calibration.
-Typically, these models are overconfident in their predictions <span class="citation" data-cites="QJ6hYH8N rLVjMJ5l"><a href="#ref-QJ6hYH8N" role="doc-biblioref">[43]</a>, <a href="#ref-rLVjMJ5l" role="doc-biblioref">[44]</a></span>.
+Typically, these models are overconfident in their predictions <span class="citation" data-cites="QJ6hYH8N rLVjMJ5l"><a href="#ref-QJ6hYH8N" role="doc-biblioref">[44]</a>, <a href="#ref-rLVjMJ5l" role="doc-biblioref">[45]</a></span>.
 We attempted to use temperature scaling to fix the calibration of the best performing discriminative models (Figure <a href="#fig:discriminative_model_calibration">9</a>).
 Before calibration (green lines), our models were aligned with the ideal calibration only when predicting low probability scores (close to 0.25).
 Applying the temperature scaling calibration algorithm (blue lines) did not substantially improve the calibration of the model in most cases.
@@ -743,49 +791,6 @@ Though our method is primarily designed to predict assertions, not edges, we com
 We found that a simple summary approach, max sentence score, provided comparable performance to the CoCoScore for the compound treats disease (CtD) edge type and slightly poorer performance for other edge types (Supplemental Figure <a href="#fig:cocoscore_comparison">11</a>).
 Sentence-level scores can be integrated in multiple ways, and approaches that consider more complexity (e.g., the number of sentences with high-probability) should be evaluated in future work.</p>
 <h2 id="supplemental-tables">Supplemental Tables</h2>
-<h3 id="distribution-of-candidate-sentences">Distribution of Candidate Sentences</h3>
-<div id="tbl:candidate-sentences" class="tablenos">
-<table id="tbl:candidate-sentences">
-<caption><span>Table 2:</span> Statistics of Candidate Sentences.
-We sorted each candidate sentence into a training, tuning and testing set.
-Numbers in parentheses show the number of positives and negatives that resulted from the hand-labeling process.
-</caption>
-<thead>
-<tr class="header">
-<th style="text-align: left;">Relationship</th>
-<th style="text-align: center;">Train</th>
-<th style="text-align: center;">Tune</th>
-<th style="text-align: center;">Test</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td style="text-align: left;">Disease Associates Gene</td>
-<td style="text-align: center;">2.35 M</td>
-<td style="text-align: center;">31K (397+, 603-)</td>
-<td style="text-align: center;">313K (351+, 649-)</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Compound Binds Gene</td>
-<td style="text-align: center;">1.7M</td>
-<td style="text-align: center;">468K (37+, 463-)</td>
-<td style="text-align: center;">227k (31+, 469-)</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Compound Treats Disease</td>
-<td style="text-align: center;">1.013M</td>
-<td style="text-align: center;">96K (96+, 404-)</td>
-<td style="text-align: center;">32K (112+, 388-)</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Gene Interacts Gene</td>
-<td style="text-align: center;">12.6M</td>
-<td style="text-align: center;">1.056M (60+, 440-)</td>
-<td style="text-align: center;">257K (76+, 424-)</td>
-</tr>
-</tbody>
-</table>
-</div>
 <h3 id="discriminative-model-calibration-tables">Discriminative Model Calibration Tables</h3>
 <div id="tbl:dg_top_ten_table" class="tablenos">
 <table id="tbl:dg_top_ten_table">
@@ -1961,12 +1966,6 @@ Numbers in parentheses show the number of positives and negatives that resulted 
 </tbody>
 </table>
 </div>
-<section class="footnotes footnotes-end-of-document" role="doc-endnotes">
-<hr />
-<ol>
-<li id="fn1" role="doc-endnote"><p>Labeled sentences are available <a href="https://github.com/greenelab/text_mined_hetnet_manuscript/tree/master/supplementary_materials/annotated_sentences">here</a>.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-</ol>
-</section>
 <!-- default theme -->
 
 <style>
