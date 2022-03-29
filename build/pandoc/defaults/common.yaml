@@ -9,5 +9,5 @@ filters:
 - citeproc
 wrap: preserve
 metadata:
-  csl: build/assets/ieee.csl
+  csl: build/assets/style.csl
   link-citations: true
