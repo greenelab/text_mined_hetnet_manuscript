@@ -48,13 +48,13 @@ header-includes: |-
   <meta name="citation_fulltext_html_url" content="https://greenelab.github.io/text_mined_hetnet_manuscript/" />
   <meta name="citation_pdf_url" content="https://greenelab.github.io/text_mined_hetnet_manuscript/manuscript.pdf" />
   <link rel="alternate" type="application/pdf" href="https://greenelab.github.io/text_mined_hetnet_manuscript/manuscript.pdf" />
-  <link rel="alternate" type="text/html" href="https://greenelab.github.io/text_mined_hetnet_manuscript/v/8e28137c7e9f2396d06fe3f61136cbfe8c9b2680/" />
-  <meta name="manubot_html_url_versioned" content="https://greenelab.github.io/text_mined_hetnet_manuscript/v/8e28137c7e9f2396d06fe3f61136cbfe8c9b2680/" />
-  <meta name="manubot_pdf_url_versioned" content="https://greenelab.github.io/text_mined_hetnet_manuscript/v/8e28137c7e9f2396d06fe3f61136cbfe8c9b2680/manuscript.pdf" />
+  <link rel="alternate" type="text/html" href="https://greenelab.github.io/text_mined_hetnet_manuscript/v/eb3aee7ed2f42d3c5fbb9467a17d6999a94b2fcf/" />
+  <meta name="manubot_html_url_versioned" content="https://greenelab.github.io/text_mined_hetnet_manuscript/v/eb3aee7ed2f42d3c5fbb9467a17d6999a94b2fcf/" />
+  <meta name="manubot_pdf_url_versioned" content="https://greenelab.github.io/text_mined_hetnet_manuscript/v/eb3aee7ed2f42d3c5fbb9467a17d6999a94b2fcf/manuscript.pdf" />
   <meta property="og:type" content="article" />
   <meta property="twitter:card" content="summary_large_image" />
-  <meta property="og:image" content="https://github.com/greenelab/text_mined_hetnet_manuscript/raw/8e28137c7e9f2396d06fe3f61136cbfe8c9b2680/thumbnail.png" />
-  <meta property="twitter:image" content="https://github.com/greenelab/text_mined_hetnet_manuscript/raw/8e28137c7e9f2396d06fe3f61136cbfe8c9b2680/thumbnail.png" />
+  <meta property="og:image" content="https://github.com/greenelab/text_mined_hetnet_manuscript/raw/eb3aee7ed2f42d3c5fbb9467a17d6999a94b2fcf/thumbnail.png" />
+  <meta property="twitter:image" content="https://github.com/greenelab/text_mined_hetnet_manuscript/raw/eb3aee7ed2f42d3c5fbb9467a17d6999a94b2fcf/thumbnail.png" />
   <link rel="icon" type="image/png" sizes="192x192" href="https://manubot.org/favicon-192x192.png" />
   <link rel="mask-icon" href="https://manubot.org/safari-pinned-tab.svg" color="#ad1457" />
   <meta name="theme-color" content="#ad1457" />
@@ -74,9 +74,9 @@ _A DOI-citable version of this manuscript is available at <https://doi.org/10.11
 
 <small><em>
 This manuscript
-([permalink](https://greenelab.github.io/text_mined_hetnet_manuscript/v/8e28137c7e9f2396d06fe3f61136cbfe8c9b2680/))
+([permalink](https://greenelab.github.io/text_mined_hetnet_manuscript/v/eb3aee7ed2f42d3c5fbb9467a17d6999a94b2fcf/))
 was automatically generated
-from [greenelab/text_mined_hetnet_manuscript@8e28137](https://github.com/greenelab/text_mined_hetnet_manuscript/tree/8e28137c7e9f2396d06fe3f61136cbfe8c9b2680)
+from [greenelab/text_mined_hetnet_manuscript@eb3aee7](https://github.com/greenelab/text_mined_hetnet_manuscript/tree/eb3aee7ed2f42d3c5fbb9467a17d6999a94b2fcf)
 on March 29, 2022.
 </em></small>
 
@@ -367,24 +367,52 @@ We repeated this process for every label function in our repertoire.
 
 Table: The distribution of each label function per relationship. {#tbl:label-functions} 
 
+### Training Models
+
+#### Generative Model
+
+The generative model is a core part of this automatic annotation framework.
+It integrates multiple signals emitted by label functions to assign each candidate sentence the most appropriate training class.
+This model takes as input a label function output in the form of a matrix where rows represent candidate sentences, and columns represent each label function ($\Lambda^{nxm}$).
+Once constructed, this model treats the true training class ($Y$) as a latent variable and assumes that each label function is independent of one another.
+Under these two assumptions, the model finds the optimal parameters by minimizing a loglikelihood function marginalized over the latent training class.
+
+$$
+\hat{\theta} = argmin_{\theta}\sum_{Y}-log(P_{\theta}(\Lambda, Y)) 
+$$
+
+Following optimization, the model emits a probability estimate that each sentence belongs to the positive training class.
+At this step, each probability estimate can be discretized via a chosen threshold into a positive or negative class.
+We used a threshold of 0.5 for discretizing our training classes within our analysis.
+For more information on how the likelihood function is constructed and minimized, refer to [@doi:10.1007/s00778-019-00552-1].
+
+#### Discriminative Model
+
+The discriminative model is the final step in this framework.
+This model uses training labels generated from the generative model combined with sentence features to classify the presence of a biomedical relationship.
+Typically, the discriminative model is a neural network.
+We used BioBERT [@arxiv:1901.08746], a BERT [@doi:10.18653/v1/N19-1423] model trained on all papers and abstracts within Pubmed Central [@doi:10.1073/pnas.98.2.381], as our discriminative model.
+BioBERT provides its own set of word embeddings, dense vectors representing words that models such as neural networks can use to construct sentence features.
+We downloaded a pre-trained version of this model using huggingface's transformer python package [@Wolf_Transformers_State-of-the-Art_Natural_2020] and fine-tuned it using our generated training labels.
+Our fine-tuning approach involved freezing all downstream layers except for the classification head of this model.
+Next, we trained this model for 10 epochs using the Adam optimizer [@arxiv:1412.6980] with huggingface's default parameter settings and a learning rate of 0.001.
+
 ### Experimental Design
 
-Being able to re-use label functions across edge types would substantially reduce the number of label functions required to extract multiple relationships from biomedical literature.
+Reusing label functions across edge types would substantially reduce the number of label functions required to extract multiple relationships from biomedical literature.
 We first established a baseline by training a generative model using only distant supervision label functions designed for the target edge type (see Supplemental Methods).
-For example, in the Gene interacts Gene (GiG) edge type we used label functions that returned a 1 if the pair of genes were included in the Human Interaction database [@doi:10.1016/j.cell.2014.10.050], the iRefIndex database [@doi:10.1186/1471-2105-9-405] or in the Incomplete Interactome database [@doi:10.1126/science.1257601].
-Then we compared the baseline model with models that also included text and domain-heuristic label functions.
-Using a sampling with replacement approach, we sampled these text and domain-heuristic label functions separately within edge types, across edge types, and from a pool of all label functions.
+Then we compared the baseline model with models that incorporated a set number of text pattern label functions.
+Using a sampling with replacement approach, we sampled these text pattern label functions from three different groups: within edge types, across edge types, and from a pool of all label functions.
 We compared within-edge-type performance to across-edge-type and all-edge-type performance.
-For each edge type we sampled a fixed number of label functions consisting of five evenly spaced numbers between one and the total number of possible label functions.
+We sampled a fixed number of label functions for each edge type consisting of five evenly spaced numbers between one and the total number of possible label functions.
 We repeated this sampling process 50 times for each point.
-Furthermore, at each point we also trained the discriminative model using annotations from the generative model trained on edge-specific label functions (see Supplemental Methods).
-We report performance of both models in terms of the area under the receiver operating characteristic curve (AUROC) and the area under the precision-recall curve (AUPR).
+Furthermore, we also trained the discriminative model using annotations from the generative model trained on edge-specific label functions at each point.
+We report the performance of both models in terms of the area under the receiver operating characteristic curve (AUROC) and the area under the precision-recall curve (AUPR).
 Ensuing model evaluations, we quantified the number of edges we could incorporate into Hetionet v1.
-Using a calibrated discriminative model (see Supplemental Methods), we scored every candidate sentence within our dataset and grouped candidates based on their mention pair. 
-We took the max score within each candidate group and this score represents the probability of the existence of an edge. 
-We established edges by using a cutoff score that produced an equal error rate between the false positives and false negatives.
-We report the number of preexisting edges we could recall as well as the number of novel edges we can incorporate. 
-Lastly, we compared our framework with a previously established unsupervised approach [@tag:cocoscore].
+We used our best performing discriminative model to score every candidate sentence within our dataset and grouped candidates based on their mention pair. 
+We took the max score within each candidate group, and this score represents the probability of the existence of an edge. 
+We established edges using a cutoff score that produced an equal error rate between the false positives and false negatives.
+Lastly, we report the number of preexisting edges we could recall and the number of novel edges we can incorporate.
 
 
 ## Results
@@ -499,79 +527,6 @@ This work was support by [Grant GBMF4552](https://www.moore.org/grant-detail?gra
 
 <!-- Explicitly insert bibliography here -->
 <div id="refs"></div>
-
-## Supplemental Methods
-
-### Training Models
-
-#### Generative Model
-
-The generative model is a core part of this automatic annotation framework.
-It integrates multiple signals emitted by label functions and assigns a training class to each candidate sentence.
-This model assigns training classes by estimating the joint probability distribution of the latent true class ($Y$) and label function signals ($\Lambda$), ($P_{\theta}(\Lambda, Y)$).
-Assuming each label function is conditionally independent, the joint distribution is defined as follows:  
-
-$$
-P_{\theta}(\Lambda, Y) = \frac{\exp(\sum_{i=1}^{m} \theta^{T}F_{i}(\Lambda, y))}
-{\sum_{\Lambda'}\sum_{y'} \exp(\sum_{i=1}^{m} \theta^{T}F_{i}(\Lambda', y'))}
-$$  
-
-where $m$ is the number of candidate sentences, $F$ is the vector of summary statistics and $\theta$ is a vector of weights for each summary statistic.
-The summary statistics used by the generative model are as follows:  
-
-$$F^{Lab}_{i,j}(\Lambda, Y) = \unicode{x1D7D9}\{\Lambda_{i,j} \neq 0\}$$
-$$F^{Acc}_{i,j}(\Lambda, Y) = \unicode{x1D7D9}\{\Lambda_{i,j} = y_{i,j}\}$$   
-
-*Lab* is the label function's propensity (the frequency of a label function emitting a signal).
-*Acc* is the individual label function's accuracy given the training class.
-This model optimizes the weights ($\theta$) by minimizing the negative log likelihood:
-
-$$\hat{\theta} = argmin_{\theta} -\sum_{\Lambda} \sum_{Y} log P_{\theta}(\Lambda, Y)$$
-
-In the framework we used predictions from the generative model, $\hat{Y} = P_{\hat{\theta}}(Y \mid \Lambda)$, as training classes for our dataset [@doi:10.14778/3157794.3157797; @doi:10.1145/3209889.3209898]. 
-
-#### Discriminative Model
-
-The discriminative model is a neural network trained to produce classification labels by integrating predicted probabilities from the generative model along with sentence representations via word embeddings.
-The goal of this combined approach is to develop models that learn text features associated with the overall task, beyond the supplied label functions.
-We used a piecewise convolutional neural network that contains multiple kernel filters as our discriminative model.
-We built a network with multiple filters using a fixed width of 300 (size of word embeddings) and a fixed height of 7 (Figure {@fig:convolutional_network}).
-We chose a fixed height of 7 because this height was previously reported to optimize performance in relationship classification [@arxiv:1510.03820].
-We trained this model for 15 epochs using the Adam optimizer [@arxiv:1412.6980] with PyTorch's default parameter settings and a learning rate of 0.001 that decreases by half every epoch until the lower bound of 1e-5 is reached, which we observed was often sufficient for convergence.
-We added a L2 penalty (lambda=0.002) on the network weights to prevent overfitting.
-Lastly, we added a dropout layer (p=0.25) between the fully connected layer and the softmax layer.
-
-![
-The architecture of the discriminative model was a convolutional neural network.
-We performed a convolution step using multiple filters. 
-The filters generated a feature map that was sent into a maximum pooling layer that was designed to extract the largest feature in each map.
-The extracted features were concatenated into a singular vector that was passed into a fully connected network. 
-The fully connected network had 300 neurons for the first layer, 100 neurons for the second layer and 50 neurons for the last layer. 
-The last step of the fully connected network was to generate predictions using a softmax layer.
-](images/figures/convolutional_neural_network/convolutional_neural_nework.png){#fig:convolutional_network}
-
-#### Word Embeddings
-
-Word embeddings are representations that map individual words to real valued vectors of user-specified dimensions.
-These embeddings have been shown to capture the semantic and syntactic information between words [@arxiv:1310.4546].
-We trained Facebook's fastText [@arxiv:1607.04606] using all candidate sentences for each individual relationship pair to generate word embeddings.
-FastText uses a skip-gram model [@arxiv:1301.3781] that aims to predict the surrounding context for a candidate word and pairs the model with a novel scoring function that treats each word as a bag of character n-grams.
-We trained this model for 20 epochs using a window size of 2 and generated 300-dimensional word embeddings.
-We use the optimized word embeddings as input to our discriminative model. 
-
-#### Calibration of the Discriminative Model
-
-Often many tasks require a machine learning model to output reliable probability predictions. 
-A model is well calibrated if the probabilities emitted from the model match the observed probabilities.
-For example, a well-calibrated model that assigns a class label with 80% probability should have that class appear 80% of the time.
-Deep neural network models can often be poorly calibrated [@arxiv:1706.04599; @arxiv:1807.00263].
-These models are usually over-confident in their predictions.
-For this reason, we calibrated our convolutional neural network using temperature scaling [@arxiv:1706.04599]. 
-Temperature scaling uses a parameter T to scale each value of the logit vector (z) before being passed into the softmax (SM) function.
-
-$$\sigma_{SM}(\frac{z_{i}}{T}) = \frac{\exp(\frac{z_{i}}{T})}{\sum_{i}\exp(\frac{z_{i}}{T})}$$
-
-We found the optimal T by minimizing the negative log likelihood (NLL) of the tune set.
 
 ## Supplemental Figures
 
