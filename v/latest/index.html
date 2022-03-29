@@ -75,13 +75,13 @@
   <meta name="citation_fulltext_html_url" content="https://greenelab.github.io/text_mined_hetnet_manuscript/" />
   <meta name="citation_pdf_url" content="https://greenelab.github.io/text_mined_hetnet_manuscript/manuscript.pdf" />
   <link rel="alternate" type="application/pdf" href="https://greenelab.github.io/text_mined_hetnet_manuscript/manuscript.pdf" />
-  <link rel="alternate" type="text/html" href="https://greenelab.github.io/text_mined_hetnet_manuscript/v/8e28137c7e9f2396d06fe3f61136cbfe8c9b2680/" />
-  <meta name="manubot_html_url_versioned" content="https://greenelab.github.io/text_mined_hetnet_manuscript/v/8e28137c7e9f2396d06fe3f61136cbfe8c9b2680/" />
-  <meta name="manubot_pdf_url_versioned" content="https://greenelab.github.io/text_mined_hetnet_manuscript/v/8e28137c7e9f2396d06fe3f61136cbfe8c9b2680/manuscript.pdf" />
+  <link rel="alternate" type="text/html" href="https://greenelab.github.io/text_mined_hetnet_manuscript/v/eb3aee7ed2f42d3c5fbb9467a17d6999a94b2fcf/" />
+  <meta name="manubot_html_url_versioned" content="https://greenelab.github.io/text_mined_hetnet_manuscript/v/eb3aee7ed2f42d3c5fbb9467a17d6999a94b2fcf/" />
+  <meta name="manubot_pdf_url_versioned" content="https://greenelab.github.io/text_mined_hetnet_manuscript/v/eb3aee7ed2f42d3c5fbb9467a17d6999a94b2fcf/manuscript.pdf" />
   <meta property="og:type" content="article" />
   <meta property="twitter:card" content="summary_large_image" />
-  <meta property="og:image" content="https://github.com/greenelab/text_mined_hetnet_manuscript/raw/8e28137c7e9f2396d06fe3f61136cbfe8c9b2680/thumbnail.png" />
-  <meta property="twitter:image" content="https://github.com/greenelab/text_mined_hetnet_manuscript/raw/8e28137c7e9f2396d06fe3f61136cbfe8c9b2680/thumbnail.png" />
+  <meta property="og:image" content="https://github.com/greenelab/text_mined_hetnet_manuscript/raw/eb3aee7ed2f42d3c5fbb9467a17d6999a94b2fcf/thumbnail.png" />
+  <meta property="twitter:image" content="https://github.com/greenelab/text_mined_hetnet_manuscript/raw/eb3aee7ed2f42d3c5fbb9467a17d6999a94b2fcf/thumbnail.png" />
   <link rel="icon" type="image/png" sizes="192x192" href="https://manubot.org/favicon-192x192.png" />
   <link rel="mask-icon" href="https://manubot.org/safari-pinned-tab.svg" color="#ad1457" />
   <meta name="theme-color" content="#ad1457" />
@@ -94,9 +94,9 @@
 <p><em>A DOI-citable version of this manuscript is available at <a href="https://doi.org/10.1101/730085" class="uri">https://doi.org/10.1101/730085</a></em>.</p>
 <p><small><em>
 This manuscript
-(<a href="https://greenelab.github.io/text_mined_hetnet_manuscript/v/8e28137c7e9f2396d06fe3f61136cbfe8c9b2680/">permalink</a>)
+(<a href="https://greenelab.github.io/text_mined_hetnet_manuscript/v/eb3aee7ed2f42d3c5fbb9467a17d6999a94b2fcf/">permalink</a>)
 was automatically generated
-from <a href="https://github.com/greenelab/text_mined_hetnet_manuscript/tree/8e28137c7e9f2396d06fe3f61136cbfe8c9b2680">greenelab/text_mined_hetnet_manuscript@8e28137</a>
+from <a href="https://github.com/greenelab/text_mined_hetnet_manuscript/tree/eb3aee7ed2f42d3c5fbb9467a17d6999a94b2fcf">greenelab/text_mined_hetnet_manuscript@eb3aee7</a>
 on March 29, 2022.
 </em></small></p>
 <h2 id="authors">Authors</h2>
@@ -397,23 +397,44 @@ We repeated this process for every label function in our repertoire.</p>
 </tbody>
 </table>
 </div>
+<h3 id="training-models">Training Models</h3>
+<h4 id="generative-model">Generative Model</h4>
+<p>The generative model is a core part of this automatic annotation framework.
+It integrates multiple signals emitted by label functions to assign each candidate sentence the most appropriate training class.
+This model takes as input a label function output in the form of a matrix where rows represent candidate sentences, and columns represent each label function (<span class="math inline">\(\Lambda^{nxm}\)</span>).
+Once constructed, this model treats the true training class (<span class="math inline">\(Y\)</span>) as a latent variable and assumes that each label function is independent of one another.
+Under these two assumptions, the model finds the optimal parameters by minimizing a loglikelihood function marginalized over the latent training class.</p>
+<p><span class="math display">\[
+\hat{\theta} = argmin_{\theta}\sum_{Y}-log(P_{\theta}(\Lambda, Y)) 
+\]</span></p>
+<p>Following optimization, the model emits a probability estimate that each sentence belongs to the positive training class.
+At this step, each probability estimate can be discretized via a chosen threshold into a positive or negative class.
+We used a threshold of 0.5 for discretizing our training classes within our analysis.
+For more information on how the likelihood function is constructed and minimized, refer to <span class="citation" data-cites="M3TiGlfS"><a href="#ref-M3TiGlfS" role="doc-biblioref">[31]</a></span>.</p>
+<h4 id="discriminative-model">Discriminative Model</h4>
+<p>The discriminative model is the final step in this framework.
+This model uses training labels generated from the generative model combined with sentence features to classify the presence of a biomedical relationship.
+Typically, the discriminative model is a neural network.
+We used BioBERT <span class="citation" data-cites="riimmjYr"><a href="#ref-riimmjYr" role="doc-biblioref">[32]</a></span>, a BERT <span class="citation" data-cites="POJM5tCR"><a href="#ref-POJM5tCR" role="doc-biblioref">[33]</a></span> model trained on all papers and abstracts within Pubmed Central <span class="citation" data-cites="u294RvPz"><a href="#ref-u294RvPz" role="doc-biblioref">[34]</a></span>, as our discriminative model.
+BioBERT provides its own set of word embeddings, dense vectors representing words that models such as neural networks can use to construct sentence features.
+We downloaded a pre-trained version of this model using huggingface’s transformer python package <span class="citation" data-cites="187nWRTVH"><a href="#ref-187nWRTVH" role="doc-biblioref">[35]</a></span> and fine-tuned it using our generated training labels.
+Our fine-tuning approach involved freezing all downstream layers except for the classification head of this model.
+Next, we trained this model for 10 epochs using the Adam optimizer <span class="citation" data-cites="c6d3lKFX"><a href="#ref-c6d3lKFX" role="doc-biblioref">[36]</a></span> with huggingface’s default parameter settings and a learning rate of 0.001.</p>
 <h3 id="experimental-design">Experimental Design</h3>
-<p>Being able to re-use label functions across edge types would substantially reduce the number of label functions required to extract multiple relationships from biomedical literature.
+<p>Reusing label functions across edge types would substantially reduce the number of label functions required to extract multiple relationships from biomedical literature.
 We first established a baseline by training a generative model using only distant supervision label functions designed for the target edge type (see Supplemental Methods).
-For example, in the Gene interacts Gene (GiG) edge type we used label functions that returned a 1 if the pair of genes were included in the Human Interaction database <span class="citation" data-cites="LCyCrr7W"><a href="#ref-LCyCrr7W" role="doc-biblioref">[23]</a></span>, the iRefIndex database <span class="citation" data-cites="gtV3bOpd"><a href="#ref-gtV3bOpd" role="doc-biblioref">[31]</a></span> or in the Incomplete Interactome database <span class="citation" data-cites="2jkcXYxN"><a href="#ref-2jkcXYxN" role="doc-biblioref">[32]</a></span>.
-Then we compared the baseline model with models that also included text and domain-heuristic label functions.
-Using a sampling with replacement approach, we sampled these text and domain-heuristic label functions separately within edge types, across edge types, and from a pool of all label functions.
+Then we compared the baseline model with models that incorporated a set number of text pattern label functions.
+Using a sampling with replacement approach, we sampled these text pattern label functions from three different groups: within edge types, across edge types, and from a pool of all label functions.
 We compared within-edge-type performance to across-edge-type and all-edge-type performance.
-For each edge type we sampled a fixed number of label functions consisting of five evenly spaced numbers between one and the total number of possible label functions.
+We sampled a fixed number of label functions for each edge type consisting of five evenly spaced numbers between one and the total number of possible label functions.
 We repeated this sampling process 50 times for each point.
-Furthermore, at each point we also trained the discriminative model using annotations from the generative model trained on edge-specific label functions (see Supplemental Methods).
-We report performance of both models in terms of the area under the receiver operating characteristic curve (AUROC) and the area under the precision-recall curve (AUPR).
+Furthermore, we also trained the discriminative model using annotations from the generative model trained on edge-specific label functions at each point.
+We report the performance of both models in terms of the area under the receiver operating characteristic curve (AUROC) and the area under the precision-recall curve (AUPR).
 Ensuing model evaluations, we quantified the number of edges we could incorporate into Hetionet v1.
-Using a calibrated discriminative model (see Supplemental Methods), we scored every candidate sentence within our dataset and grouped candidates based on their mention pair.
-We took the max score within each candidate group and this score represents the probability of the existence of an edge.
-We established edges by using a cutoff score that produced an equal error rate between the false positives and false negatives.
-We report the number of preexisting edges we could recall as well as the number of novel edges we can incorporate.
-Lastly, we compared our framework with a previously established unsupervised approach <span class="citation" data-cites="tag:cocoscore"><a href="#ref-tag:cocoscore" role="doc-biblioref"><strong>tag:cocoscore?</strong></a></span>.</p>
+We used our best performing discriminative model to score every candidate sentence within our dataset and grouped candidates based on their mention pair.
+We took the max score within each candidate group, and this score represents the probability of the existence of an edge.
+We established edges using a cutoff score that produced an equal error rate between the false positives and false negatives.
+Lastly, we report the number of preexisting edges we could recall and the number of novel edges we can incorporate.</p>
 <h2 id="results">Results</h2>
 <h3 id="generative-model-using-randomly-sampled-label-functions">Generative Model Using Randomly Sampled Label Functions</h3>
 <p>Creating label functions is a labor-intensive process that can take days to accomplish.
@@ -421,8 +442,8 @@ We sought to accelerate this process by measuring the extent to which label func
 Our hypothesis was that certain edge types share similar linguistic features such as keywords and/or sentence structure.
 This shared characteristic would make certain edge types amenable to label function reuse.
 We designed a set of experiments to test this hypothesis on an individual level (edge vs edge) as well as a global level (collective pool of sources).
-We observed that performance increased when edge-specific label functions were added to an edge-specific baseline model, while label function reuse usually provided less benefit (AUROC Figure <a href="#fig:auroc_gen_model_test_set">2</a>, AUPR Supplemental Figure <a href="#fig:aupr_gen_model_test_set">5</a>).
-We also evaluated randomly selecting label functions from among all sets and observed similar performance (AUROC Supplemental Figure <a href="#fig:auroc_grabbag_gen_model_test_set">6</a>, AUPR Supplemental Figure <a href="#fig:aupr_grabbag_gen_model_test_set">7</a>)
+We observed that performance increased when edge-specific label functions were added to an edge-specific baseline model, while label function reuse usually provided less benefit (AUROC Figure <a href="#fig:auroc_gen_model_test_set">2</a>, AUPR Supplemental Figure <a href="#fig:aupr_gen_model_test_set">4</a>).
+We also evaluated randomly selecting label functions from among all sets and observed similar performance (AUROC Supplemental Figure <a href="#fig:auroc_grabbag_gen_model_test_set">5</a>, AUPR Supplemental Figure <a href="#fig:aupr_grabbag_gen_model_test_set">6</a>)
 The quintessential example of this overarching trend is the Compound treats Disease (CtD) edge type, where edge-specific label functions always outperformed transferred label functions.
 However, there are hints of label function transferability for selected edge types and label function sources.
 Performance increases as more CbG label functions are incorporated to the GiG baseline model and vice versa.
@@ -440,20 +461,20 @@ Each point on the plot shows the average of 50 sample runs, while the error bars
 The baseline and “All” data points consist of sampling from the entire fixed set of label functions.</figcaption>
 </figure>
 </div>
-<p>We found that sampling from all label function sources at once usually underperformed relative to edge-specific label functions (Supplemental Figures <a href="#fig:auroc_grabbag_gen_model_test_set">6</a> and <a href="#fig:aupr_grabbag_gen_model_test_set">7</a>).
+<p>We found that sampling from all label function sources at once usually underperformed relative to edge-specific label functions (Supplemental Figures <a href="#fig:auroc_grabbag_gen_model_test_set">5</a> and <a href="#fig:aupr_grabbag_gen_model_test_set">6</a>).
 As more label functions were sampled, the gap between edge-specific sources and all sources widened.
-CbG is a prime example of this trend (Supplemental Figures <a href="#fig:auroc_grabbag_gen_model_test_set">6</a> and <a href="#fig:aupr_grabbag_gen_model_test_set">7</a>), while CtD and GiG show a similar but milder trend.
+CbG is a prime example of this trend (Supplemental Figures <a href="#fig:auroc_grabbag_gen_model_test_set">5</a> and <a href="#fig:aupr_grabbag_gen_model_test_set">6</a>), while CtD and GiG show a similar but milder trend.
 DaG was the exception to the general rule: the pooled set of label functions improved performance over the edge-specific ones, which aligns with the previously observed results for individual edge types (Figure <a href="#fig:auroc_gen_model_test_set">2</a>).
 The decreasing trend when pooling all label functions supports the notion that label functions cannot easily transfer between edge types (exception being CbG on GiG and vice versa).</p>
 <h3 id="discriminative-model-performance">Discriminative Model Performance</h3>
 <p>The discriminative model is designed to augment performance over the generative model by incorporating textual features along with estimated training labels.
 The discriminative model is a piecewise convolutional neural network trained over word embeddings (See Methods and Materials).
-We found that the discriminative model generally out-performed the generative model as more edge-specific label functions are incorporated (Figure <a href="#fig:auroc_discriminative_model_performance">3</a> and Supplemental Figure <a href="#fig:aupr_discriminative_model_performance">8</a>).
+We found that the discriminative model generally out-performed the generative model as more edge-specific label functions are incorporated (Figure <a href="#fig:auroc_discriminative_model_performance">3</a> and Supplemental Figure <a href="#fig:aupr_discriminative_model_performance">7</a>).
 The discriminative model’s performance is often poorest when very few edge-specific label functions are added to the baseline model (seen in Disease associates Gene (DaG), Compound binds Gene (CbG) and Gene interacts Gene (GiG)).
 This suggests that generative models trained with more label functions produce outputs that are more suitable for training discriminative models.
 An exception to this trend is Compound treats Disease (CtD) where the discriminative model out-performs the generative model at all levels of sampling.
 We observed the opposite trend with the Compound-binds-Gene (CbG) edges: the discriminative model was always poorer or indistinguishable from the generative model.
-Interestingly, the AUPR for CbG plateaus below the generative model and decreases when all edge-specific label functions are used (Supplemental Figure <a href="#fig:aupr_discriminative_model_performance">8</a>).
+Interestingly, the AUPR for CbG plateaus below the generative model and decreases when all edge-specific label functions are used (Supplemental Figure <a href="#fig:aupr_discriminative_model_performance">7</a>).
 This suggests that the discriminative model might be predicting more false positives in this setting.
 Incorporating more edge-specific label functions usually improves performance for the discriminative model over the generative model.</p>
 <div id="fig:auroc_discriminative_model_performance" class="fignos">
@@ -469,17 +490,17 @@ The baseline and “All” data points consist of sampling from the entire fixed
 <h2 id="discussion">Discussion</h2>
 <p>We measured the extent to which label functions can be re-used across multiple edge types to extract relationships from literature.
 Through our sampling experiment, we found that adding edge-specific label functions increases performance for the generative model (Figure <a href="#fig:auroc_gen_model_test_set">2</a>).
-We found that label functions designed from relatively related edge types can increase performance (Gene interacts Gene (GiG) label functions predicting the Compound binds Gene (CbG) edge and vice versa), while the Disease associates Gene (DaG) edge type remained agnostic to label function sources (Figure <a href="#fig:auroc_gen_model_test_set">2</a> and Supplemental Figure <a href="#fig:aupr_gen_model_test_set">5</a>).
-Furthermore, we found that using all label functions at once generally hurts performance with the exception being the DaG edge type (Supplemental Figures <a href="#fig:auroc_grabbag_gen_model_test_set">6</a> and <a href="#fig:aupr_grabbag_gen_model_test_set">7</a>).
+We found that label functions designed from relatively related edge types can increase performance (Gene interacts Gene (GiG) label functions predicting the Compound binds Gene (CbG) edge and vice versa), while the Disease associates Gene (DaG) edge type remained agnostic to label function sources (Figure <a href="#fig:auroc_gen_model_test_set">2</a> and Supplemental Figure <a href="#fig:aupr_gen_model_test_set">4</a>).
+Furthermore, we found that using all label functions at once generally hurts performance with the exception being the DaG edge type (Supplemental Figures <a href="#fig:auroc_grabbag_gen_model_test_set">5</a> and <a href="#fig:aupr_grabbag_gen_model_test_set">6</a>).
 One possibility for this observation is that DaG is a broadly defined edge type.
 For example, DaG may contain many concepts related to other edge types such as Disease (up/down) regulating a Gene, which makes it more agnostic to label function sources (examples highlighted in our <a href="https://github.com/greenelab/text_mined_hetnet_manuscript/tree/master/supplementary_materials/annotated_sentences">annotated sentences</a>).</p>
-<p>Regarding the discriminative model, adding edge-specific label function substantially improved performance for two out of the four edge types (Compound treats Disease (CtD) and Disease associates Gene (DaG)) (Figure <a href="#fig:auroc_discriminative_model_performance">3</a> and Supplemental Figure <a href="#fig:aupr_discriminative_model_performance">8</a>).
-Gene interacts Gene (GiG) and Compound binds Gene (CbG) discriminative models showed minor improvements compared to the generative model, but only when nearly all edge-specific label functions are included (Figure <a href="#fig:auroc_discriminative_model_performance">3</a> and Supplemental Figure <a href="#fig:aupr_discriminative_model_performance">8</a>).
+<p>Regarding the discriminative model, adding edge-specific label function substantially improved performance for two out of the four edge types (Compound treats Disease (CtD) and Disease associates Gene (DaG)) (Figure <a href="#fig:auroc_discriminative_model_performance">3</a> and Supplemental Figure <a href="#fig:aupr_discriminative_model_performance">7</a>).
+Gene interacts Gene (GiG) and Compound binds Gene (CbG) discriminative models showed minor improvements compared to the generative model, but only when nearly all edge-specific label functions are included (Figure <a href="#fig:auroc_discriminative_model_performance">3</a> and Supplemental Figure <a href="#fig:aupr_discriminative_model_performance">7</a>).
 We came across a large amount of spurious gene mentions when working with the discriminative model and believe that these mentions contributed to CbG and GiG’s hindered performance.
-We encountered difficulty in calibrating each discriminative model (Supplemental Figure <a href="#fig:discriminative_model_calibration">9</a>).
+We encountered difficulty in calibrating each discriminative model (Supplemental Figure <a href="#fig:discriminative_model_calibration">8</a>).
 The temperature scaling algorithm appears to improve calibration for the highest scores for each model but did not successfully calibrate throughout the entire range of predictions.
 Improving performance for all predictions may require more labeled examples or may be a limitation of the approach in this setting.
-Even with these limitations, this early-stage approach could recall many existing edges from an existing knowledge base, Hetionet v1, and suggest many new high-confidence edges for inclusion (Supplemental Figure <a href="#fig:hetionet_reconstruction">10</a>).
+Even with these limitations, this early-stage approach could recall many existing edges from an existing knowledge base, Hetionet v1, and suggest many new high-confidence edges for inclusion (Supplemental Figure <a href="#fig:hetionet_reconstruction">9</a>).
 Our findings suggest that further work, including an expansion of edge types and a move to full text from abstracts, may make this approach suitable for building continuously updated knowledge bases to address drug repositioning and other biomedical challenges.</p>
 <h2 id="conclusion-and-future-direction">Conclusion and Future Direction</h2>
 <p>Filling out knowledge bases via manual curation can be an arduous and erroneous task <span class="citation" data-cites="UdzvLgBM"><a href="#ref-UdzvLgBM" role="doc-biblioref">[8]</a></span>.
@@ -491,9 +512,9 @@ We conclude that label functions may be re-used with closely related edge types,
 The discriminative model’s performance improves as more edge-specific label functions are incorporated into the generative model; however, we did notice that performance greatly depends on the annotations provided by the generative model.</p>
 <p>This work sets up the foundation for creating a common framework that mines text to create edges.
 Within this framework we would continuously incorporate new knowledge as novel findings are published, while providing a single confidence score for an edge via sentence score consolidation.
-As opposed to many existing knowledge graphs (for example, Hetionet v1 where text-derived edges generally cannot be exactly attributed to excerpts from literature <span class="citation" data-cites="O21tn8vf L2B5V7XC"><a href="#ref-O21tn8vf" role="doc-biblioref">[3]</a>, <a href="#ref-L2B5V7XC" role="doc-biblioref">[33]</a></span>), our approach has the potential to annotate each edge based on its source sentences.
-In addition, edges generated with this approach would be unencumbered from upstream licensing or copyright restrictions, enabling openly licensed hetnets at a scale not previously possible <span class="citation" data-cites="4G0GW8oe 137tbemL9 1GwdMLPbV"><a href="#ref-4G0GW8oe" role="doc-biblioref">[34]</a>–<a href="#ref-1GwdMLPbV" role="doc-biblioref">[36]</a></span>.
-New multitask learning <span class="citation" data-cites="9Jo1af7Z"><a href="#ref-9Jo1af7Z" role="doc-biblioref">[37]</a></span> strategies may make it even more practical to reuse label functions to construct continuously updating literature-derived knowledge graphs.</p>
+As opposed to many existing knowledge graphs (for example, Hetionet v1 where text-derived edges generally cannot be exactly attributed to excerpts from literature <span class="citation" data-cites="O21tn8vf L2B5V7XC"><a href="#ref-O21tn8vf" role="doc-biblioref">[3]</a>, <a href="#ref-L2B5V7XC" role="doc-biblioref">[37]</a></span>), our approach has the potential to annotate each edge based on its source sentences.
+In addition, edges generated with this approach would be unencumbered from upstream licensing or copyright restrictions, enabling openly licensed hetnets at a scale not previously possible <span class="citation" data-cites="4G0GW8oe 137tbemL9 1GwdMLPbV"><a href="#ref-4G0GW8oe" role="doc-biblioref">[38]</a>–<a href="#ref-1GwdMLPbV" role="doc-biblioref">[40]</a></span>.
+New multitask learning <span class="citation" data-cites="9Jo1af7Z"><a href="#ref-9Jo1af7Z" role="doc-biblioref">[41]</a></span> strategies may make it even more practical to reuse label functions to construct continuously updating literature-derived knowledge graphs.</p>
 <h2 id="supplemental-information">Supplemental Information</h2>
 <p>An online version of this manuscript is available at <a href="https://greenelab.github.io/text_mined_hetnet_manuscript/" class="uri">https://greenelab.github.io/text_mined_hetnet_manuscript/</a>.
 Labeled sentences are available at <a href="https://github.com/greenelab/text_mined_hetnet_manuscript/tree/master/supplementary_materials/annotated_sentences">https://github.com/greenelab/text_mined_hetnet_manuscript/tree/master/supplementary_materials/annotated_sentences</a>.
@@ -595,114 +616,52 @@ This work was support by <a href="https://www.moore.org/grant-detail?grantId=GBM
 <div id="ref-q2fFAZTG" class="csl-entry" role="doc-biblioentry">
 <div class="csl-left-margin">[30] </div><div class="csl-right-inline">M. Honnibal and I. Montani, <span>“spaCy 2: Natural language understanding with Bloom embeddings, convolutional neural networks and incremental parsing,”</span> 2017. </div>
 </div>
-<div id="ref-gtV3bOpd" class="csl-entry" role="doc-biblioentry">
-<div class="csl-left-margin">[31] </div><div class="csl-right-inline">S. Razick, G. Magklaras, and I. M. Donaldson, <span>“iRefIndex: A consolidated protein interaction database with provenance,”</span> <em>BMC Bioinformatics</em>, vol. 9, no. 1, p. 405, Dec. 2008 [Online]. Available: <a href="https://doi.org/b99bjj">https://doi.org/b99bjj</a>. [Accessed: 29-Mar-2022]</div>
+<div id="ref-M3TiGlfS" class="csl-entry" role="doc-biblioentry">
+<div class="csl-left-margin">[31] </div><div class="csl-right-inline">A. Ratner, S. H. Bach, H. Ehrenberg, J. Fries, S. Wu, and C. Ré, <span>“Snorkel: rapid training data creation with weak supervision,”</span> <em>The VLDB Journal</em>, vol. 29, no. 2–3, pp. 709–730, May 2020 [Online]. Available: <a href="https://doi.org/ghbw5f">https://doi.org/ghbw5f</a>. [Accessed: 29-Mar-2022]</div>
 </div>
-<div id="ref-2jkcXYxN" class="csl-entry" role="doc-biblioentry">
-<div class="csl-left-margin">[32] </div><div class="csl-right-inline">J. Menche <em>et al.</em>, <span>“Uncovering disease-disease relationships through the incomplete interactome,”</span> <em>Science</em>, vol. 347, no. 6224, pp. 1257601–1257601, Feb. 2015 [Online]. Available: <a href="https://doi.org/f3mn6z">https://doi.org/f3mn6z</a>. [Accessed: 29-Mar-2022]</div>
+<div id="ref-riimmjYr" class="csl-entry" role="doc-biblioentry">
+<div class="csl-left-margin">[32] </div><div class="csl-right-inline">J. Lee <em>et al.</em>, <span>“BioBERT: a pre-trained biomedical language representation model for biomedical text mining,”</span> arXiv, 1901.08746, Oct. 2019 [Online]. Available: <a href="https://arxiv.org/abs/1901.08746">https://arxiv.org/abs/1901.08746</a></div>
 </div>
-<div id="ref-L2B5V7XC" class="csl-entry" role="doc-biblioentry">
-<div class="csl-left-margin">[33] </div><div class="csl-right-inline"><span>“[No title found].”</span> [Online]. Available: <a href="https://doi.org/f3mqwp">https://doi.org/f3mqwp</a></div>
+<div id="ref-POJM5tCR" class="csl-entry" role="doc-biblioentry">
+<div class="csl-left-margin">[33] </div><div class="csl-right-inline">J. Devlin, M.-W. Chang, K. Lee, and K. Toutanova, <span>“[No title found],”</span> in <em>Proceedings of the 2019 Conference of the North</em>, Minneapolis, Minnesota, 2019, pp. 4171–4186 [Online]. Available: <a href="https://doi.org/ggbwf6">https://doi.org/ggbwf6</a>. [Accessed: 29-Mar-2022]</div>
 </div>
-<div id="ref-4G0GW8oe" class="csl-entry" role="doc-biblioentry">
-<div class="csl-left-margin">[34] </div><div class="csl-right-inline"><span>“[No title found].”</span> [Online]. Available: <a href="https://doi.org/bfmk">https://doi.org/bfmk</a></div>
+<div id="ref-u294RvPz" class="csl-entry" role="doc-biblioentry">
+<div class="csl-left-margin">[34] </div><div class="csl-right-inline">R. J. Roberts, <span>“PubMed Central: The GenBank of the published literature,”</span> <em>Proceedings of the National Academy of Sciences</em>, vol. 98, no. 2, pp. 381–382, Jan. 2001 [Online]. Available: <a href="https://doi.org/bbn9k8">https://doi.org/bbn9k8</a>. [Accessed: 29-Mar-2022]</div>
 </div>
-<div id="ref-137tbemL9" class="csl-entry" role="doc-biblioentry">
-<div class="csl-left-margin">[35] </div><div class="csl-right-inline">S. Oxenham, <span>“Legal confusion threatens to slow data science,”</span> <em>Nature</em>, vol. 536, no. 7614, pp. 16–17, Aug. 2016 [Online]. Available: <a href="https://doi.org/bndt">https://doi.org/bndt</a>. [Accessed: 29-Mar-2022]</div>
-</div>
-<div id="ref-1GwdMLPbV" class="csl-entry" role="doc-biblioentry">
-<div class="csl-left-margin">[36] </div><div class="csl-right-inline">S. Carbon, R. Champieux, J. A. McMurry, L. Winfree, L. R. Wyatt, and M. A. Haendel, <span>“An analysis and metric of reusable data licensing practices for biomedical resources,”</span> <em>PLOS ONE</em>, vol. 14, no. 3, p. e0213090, Mar. 2019 [Online]. Available: <a href="https://doi.org/gf5m8v">https://doi.org/gf5m8v</a>. [Accessed: 29-Mar-2022]</div>
-</div>
-<div id="ref-9Jo1af7Z" class="csl-entry" role="doc-biblioentry">
-<div class="csl-left-margin">[37] </div><div class="csl-right-inline">A. Ratner, B. Hancock, J. Dunnmon, R. Goldman, and C. Ré, <span>“Snorkel MeTaL: Weak Supervision for Multi-Task Learning,”</span> in <em>Proceedings of the Second Workshop on Data Management for End-To-End Machine Learning</em>, Houston TX USA, 2018, pp. 1–4 [Online]. Available: <a href="https://doi.org/gf3xk7">https://doi.org/gf3xk7</a>. [Accessed: 29-Mar-2022]</div>
-</div>
-<div id="ref-vzoBuh4l" class="csl-entry" role="doc-biblioentry">
-<div class="csl-left-margin">[38] </div><div class="csl-right-inline">A. Ratner, S. H. Bach, H. Ehrenberg, J. Fries, S. Wu, and C. Ré, <span>“Snorkel: rapid training data creation with weak supervision,”</span> <em>Proceedings of the VLDB Endowment</em>, vol. 11, no. 3, pp. 269–282, Nov. 2017 [Online]. Available: <a href="https://doi.org/ch44">https://doi.org/ch44</a>. [Accessed: 29-Mar-2022]</div>
-</div>
-<div id="ref-fs8rAHoJ" class="csl-entry" role="doc-biblioentry">
-<div class="csl-left-margin">[39] </div><div class="csl-right-inline">Y. Zhang and B. Wallace, <span>“A Sensitivity Analysis of (and Practitioners' Guide to) Convolutional Neural Networks for Sentence Classification,”</span> arXiv, 1510.03820, Apr. 2016 [Online]. Available: <a href="https://arxiv.org/abs/1510.03820">https://arxiv.org/abs/1510.03820</a></div>
+<div id="ref-187nWRTVH" class="csl-entry" role="doc-biblioentry">
+<div class="csl-left-margin">[35] </div><div class="csl-right-inline">T. Wolf <em>et al.</em>, <span>“&lt;span class="nocase"&gt;Transformers: State-of-the-Art Natural Language Processing&lt;/span&gt;,”</span> 2020, pp. 38–45 [Online]. Available: <a href="https://www.aclweb.org/anthology/2020.emnlp-demos.6">https://www.aclweb.org/anthology/2020.emnlp-demos.6</a></div>
 </div>
 <div id="ref-c6d3lKFX" class="csl-entry" role="doc-biblioentry">
-<div class="csl-left-margin">[40] </div><div class="csl-right-inline">D. P. Kingma and J. Ba, <span>“Adam: A Method for Stochastic Optimization,”</span> arXiv, 1412.6980, Jan. 2017 [Online]. Available: <a href="https://arxiv.org/abs/1412.6980">https://arxiv.org/abs/1412.6980</a></div>
+<div class="csl-left-margin">[36] </div><div class="csl-right-inline">D. P. Kingma and J. Ba, <span>“Adam: A Method for Stochastic Optimization,”</span> arXiv, 1412.6980, Jan. 2017 [Online]. Available: <a href="https://arxiv.org/abs/1412.6980">https://arxiv.org/abs/1412.6980</a></div>
 </div>
-<div id="ref-u5iJzbp9" class="csl-entry" role="doc-biblioentry">
-<div class="csl-left-margin">[41] </div><div class="csl-right-inline">T. Mikolov, I. Sutskever, K. Chen, G. Corrado, and J. Dean, <span>“Distributed Representations of Words and Phrases and their Compositionality,”</span> arXiv, 1310.4546, Oct. 2013 [Online]. Available: <a href="https://arxiv.org/abs/1310.4546">https://arxiv.org/abs/1310.4546</a></div>
+<div id="ref-L2B5V7XC" class="csl-entry" role="doc-biblioentry">
+<div class="csl-left-margin">[37] </div><div class="csl-right-inline"><span>“[No title found].”</span> [Online]. Available: <a href="https://doi.org/f3mqwp">https://doi.org/f3mqwp</a></div>
 </div>
-<div id="ref-qUpCDz2v" class="csl-entry" role="doc-biblioentry">
-<div class="csl-left-margin">[42] </div><div class="csl-right-inline">P. Bojanowski, E. Grave, A. Joulin, and T. Mikolov, <span>“Enriching Word Vectors with Subword Information,”</span> arXiv, 1607.04606, Jun. 2017 [Online]. Available: <a href="https://arxiv.org/abs/1607.04606">https://arxiv.org/abs/1607.04606</a></div>
+<div id="ref-4G0GW8oe" class="csl-entry" role="doc-biblioentry">
+<div class="csl-left-margin">[38] </div><div class="csl-right-inline"><span>“[No title found].”</span> [Online]. Available: <a href="https://doi.org/bfmk">https://doi.org/bfmk</a></div>
 </div>
-<div id="ref-1GhHIDxuW" class="csl-entry" role="doc-biblioentry">
-<div class="csl-left-margin">[43] </div><div class="csl-right-inline">T. Mikolov, K. Chen, G. Corrado, and J. Dean, <span>“Efficient Estimation of Word Representations in Vector Space,”</span> arXiv, 1301.3781, Sep. 2013 [Online]. Available: <a href="https://arxiv.org/abs/1301.3781">https://arxiv.org/abs/1301.3781</a></div>
+<div id="ref-137tbemL9" class="csl-entry" role="doc-biblioentry">
+<div class="csl-left-margin">[39] </div><div class="csl-right-inline">S. Oxenham, <span>“Legal confusion threatens to slow data science,”</span> <em>Nature</em>, vol. 536, no. 7614, pp. 16–17, Aug. 2016 [Online]. Available: <a href="https://doi.org/bndt">https://doi.org/bndt</a>. [Accessed: 29-Mar-2022]</div>
+</div>
+<div id="ref-1GwdMLPbV" class="csl-entry" role="doc-biblioentry">
+<div class="csl-left-margin">[40] </div><div class="csl-right-inline">S. Carbon, R. Champieux, J. A. McMurry, L. Winfree, L. R. Wyatt, and M. A. Haendel, <span>“An analysis and metric of reusable data licensing practices for biomedical resources,”</span> <em>PLOS ONE</em>, vol. 14, no. 3, p. e0213090, Mar. 2019 [Online]. Available: <a href="https://doi.org/gf5m8v">https://doi.org/gf5m8v</a>. [Accessed: 29-Mar-2022]</div>
+</div>
+<div id="ref-9Jo1af7Z" class="csl-entry" role="doc-biblioentry">
+<div class="csl-left-margin">[41] </div><div class="csl-right-inline">A. Ratner, B. Hancock, J. Dunnmon, R. Goldman, and C. Ré, <span>“Snorkel MeTaL: Weak Supervision for Multi-Task Learning,”</span> in <em>Proceedings of the Second Workshop on Data Management for End-To-End Machine Learning</em>, Houston TX USA, 2018, pp. 1–4 [Online]. Available: <a href="https://doi.org/gf3xk7">https://doi.org/gf3xk7</a>. [Accessed: 29-Mar-2022]</div>
 </div>
 <div id="ref-QJ6hYH8N" class="csl-entry" role="doc-biblioentry">
-<div class="csl-left-margin">[44] </div><div class="csl-right-inline">C. Guo, G. Pleiss, Y. Sun, and K. Q. Weinberger, <span>“On Calibration of Modern Neural Networks,”</span> arXiv, 1706.04599, Aug. 2017 [Online]. Available: <a href="https://arxiv.org/abs/1706.04599">https://arxiv.org/abs/1706.04599</a></div>
+<div class="csl-left-margin">[42] </div><div class="csl-right-inline">C. Guo, G. Pleiss, Y. Sun, and K. Q. Weinberger, <span>“On Calibration of Modern Neural Networks,”</span> arXiv, 1706.04599, Aug. 2017 [Online]. Available: <a href="https://arxiv.org/abs/1706.04599">https://arxiv.org/abs/1706.04599</a></div>
 </div>
 <div id="ref-rLVjMJ5l" class="csl-entry" role="doc-biblioentry">
-<div class="csl-left-margin">[45] </div><div class="csl-right-inline">V. Kuleshov, N. Fenner, and S. Ermon, <span>“Accurate Uncertainties for Deep Learning Using Calibrated Regression,”</span> arXiv, 1807.00263, Jul. 2018 [Online]. Available: <a href="https://arxiv.org/abs/1807.00263">https://arxiv.org/abs/1807.00263</a></div>
+<div class="csl-left-margin">[43] </div><div class="csl-right-inline">V. Kuleshov, N. Fenner, and S. Ermon, <span>“Accurate Uncertainties for Deep Learning Using Calibrated Regression,”</span> arXiv, 1807.00263, Jul. 2018 [Online]. Available: <a href="https://arxiv.org/abs/1807.00263">https://arxiv.org/abs/1807.00263</a></div>
 </div>
 </div>
-<h2 id="supplemental-methods">Supplemental Methods</h2>
-<h3 id="training-models">Training Models</h3>
-<h4 id="generative-model">Generative Model</h4>
-<p>The generative model is a core part of this automatic annotation framework.
-It integrates multiple signals emitted by label functions and assigns a training class to each candidate sentence.
-This model assigns training classes by estimating the joint probability distribution of the latent true class (<span class="math inline">\(Y\)</span>) and label function signals (<span class="math inline">\(\Lambda\)</span>), (<span class="math inline">\(P_{\theta}(\Lambda, Y)\)</span>).
-Assuming each label function is conditionally independent, the joint distribution is defined as follows:</p>
-<p><span class="math display">\[
-P_{\theta}(\Lambda, Y) = \frac{\exp(\sum_{i=1}^{m} \theta^{T}F_{i}(\Lambda, y))}
-{\sum_{\Lambda&#39;}\sum_{y&#39;} \exp(\sum_{i=1}^{m} \theta^{T}F_{i}(\Lambda&#39;, y&#39;))}
-\]</span></p>
-<p>where <span class="math inline">\(m\)</span> is the number of candidate sentences, <span class="math inline">\(F\)</span> is the vector of summary statistics and <span class="math inline">\(\theta\)</span> is a vector of weights for each summary statistic.
-The summary statistics used by the generative model are as follows:</p>
-<p><span class="math display">\[F^{Lab}_{i,j}(\Lambda, Y) = \unicode{x1D7D9}\{\Lambda_{i,j} \neq 0\}\]</span>
-<span class="math display">\[F^{Acc}_{i,j}(\Lambda, Y) = \unicode{x1D7D9}\{\Lambda_{i,j} = y_{i,j}\}\]</span></p>
-<p><em>Lab</em> is the label function’s propensity (the frequency of a label function emitting a signal).
-<em>Acc</em> is the individual label function’s accuracy given the training class.
-This model optimizes the weights (<span class="math inline">\(\theta\)</span>) by minimizing the negative log likelihood:</p>
-<p><span class="math display">\[\hat{\theta} = argmin_{\theta} -\sum_{\Lambda} \sum_{Y} log P_{\theta}(\Lambda, Y)\]</span></p>
-<p>In the framework we used predictions from the generative model, <span class="math inline">\(\hat{Y} = P_{\hat{\theta}}(Y \mid \Lambda)\)</span>, as training classes for our dataset <span class="citation" data-cites="vzoBuh4l 9Jo1af7Z"><a href="#ref-9Jo1af7Z" role="doc-biblioref">[37]</a>, <a href="#ref-vzoBuh4l" role="doc-biblioref">[38]</a></span>.</p>
-<h4 id="discriminative-model">Discriminative Model</h4>
-<p>The discriminative model is a neural network trained to produce classification labels by integrating predicted probabilities from the generative model along with sentence representations via word embeddings.
-The goal of this combined approach is to develop models that learn text features associated with the overall task, beyond the supplied label functions.
-We used a piecewise convolutional neural network that contains multiple kernel filters as our discriminative model.
-We built a network with multiple filters using a fixed width of 300 (size of word embeddings) and a fixed height of 7 (Figure <a href="#fig:convolutional_network">4</a>).
-We chose a fixed height of 7 because this height was previously reported to optimize performance in relationship classification <span class="citation" data-cites="fs8rAHoJ"><a href="#ref-fs8rAHoJ" role="doc-biblioref">[39]</a></span>.
-We trained this model for 15 epochs using the Adam optimizer <span class="citation" data-cites="c6d3lKFX"><a href="#ref-c6d3lKFX" role="doc-biblioref">[40]</a></span> with PyTorch’s default parameter settings and a learning rate of 0.001 that decreases by half every epoch until the lower bound of 1e-5 is reached, which we observed was often sufficient for convergence.
-We added a L2 penalty (lambda=0.002) on the network weights to prevent overfitting.
-Lastly, we added a dropout layer (p=0.25) between the fully connected layer and the softmax layer.</p>
-<div id="fig:convolutional_network" class="fignos">
-<figure>
-<img src="images/figures/convolutional_neural_network/convolutional_neural_nework.png" alt="Figure 4: The architecture of the discriminative model was a convolutional neural network. We performed a convolution step using multiple filters. The filters generated a feature map that was sent into a maximum pooling layer that was designed to extract the largest feature in each map. The extracted features were concatenated into a singular vector that was passed into a fully connected network. The fully connected network had 300 neurons for the first layer, 100 neurons for the second layer and 50 neurons for the last layer. The last step of the fully connected network was to generate predictions using a softmax layer." /><figcaption aria-hidden="true"><span>Figure 4:</span> The architecture of the discriminative model was a convolutional neural network.
-We performed a convolution step using multiple filters.
-The filters generated a feature map that was sent into a maximum pooling layer that was designed to extract the largest feature in each map.
-The extracted features were concatenated into a singular vector that was passed into a fully connected network.
-The fully connected network had 300 neurons for the first layer, 100 neurons for the second layer and 50 neurons for the last layer.
-The last step of the fully connected network was to generate predictions using a softmax layer.</figcaption>
-</figure>
-</div>
-<h4 id="word-embeddings">Word Embeddings</h4>
-<p>Word embeddings are representations that map individual words to real valued vectors of user-specified dimensions.
-These embeddings have been shown to capture the semantic and syntactic information between words <span class="citation" data-cites="u5iJzbp9"><a href="#ref-u5iJzbp9" role="doc-biblioref">[41]</a></span>.
-We trained Facebook’s fastText <span class="citation" data-cites="qUpCDz2v"><a href="#ref-qUpCDz2v" role="doc-biblioref">[42]</a></span> using all candidate sentences for each individual relationship pair to generate word embeddings.
-FastText uses a skip-gram model <span class="citation" data-cites="1GhHIDxuW"><a href="#ref-1GhHIDxuW" role="doc-biblioref">[43]</a></span> that aims to predict the surrounding context for a candidate word and pairs the model with a novel scoring function that treats each word as a bag of character n-grams.
-We trained this model for 20 epochs using a window size of 2 and generated 300-dimensional word embeddings.
-We use the optimized word embeddings as input to our discriminative model.</p>
-<h4 id="calibration-of-the-discriminative-model">Calibration of the Discriminative Model</h4>
-<p>Often many tasks require a machine learning model to output reliable probability predictions.
-A model is well calibrated if the probabilities emitted from the model match the observed probabilities.
-For example, a well-calibrated model that assigns a class label with 80% probability should have that class appear 80% of the time.
-Deep neural network models can often be poorly calibrated <span class="citation" data-cites="QJ6hYH8N rLVjMJ5l"><a href="#ref-QJ6hYH8N" role="doc-biblioref">[44]</a>, <a href="#ref-rLVjMJ5l" role="doc-biblioref">[45]</a></span>.
-These models are usually over-confident in their predictions.
-For this reason, we calibrated our convolutional neural network using temperature scaling <span class="citation" data-cites="QJ6hYH8N"><a href="#ref-QJ6hYH8N" role="doc-biblioref">[44]</a></span>.
-Temperature scaling uses a parameter T to scale each value of the logit vector (z) before being passed into the softmax (SM) function.</p>
-<p><span class="math display">\[\sigma_{SM}(\frac{z_{i}}{T}) = \frac{\exp(\frac{z_{i}}{T})}{\sum_{i}\exp(\frac{z_{i}}{T})}\]</span></p>
-<p>We found the optimal T by minimizing the negative log likelihood (NLL) of the tune set.</p>
 <h2 id="supplemental-figures">Supplemental Figures</h2>
 <h3 id="generative-model-using-randomly-sampled-label-functions-1">Generative Model Using Randomly Sampled Label Functions</h3>
 <h4 id="individual-sources">Individual Sources</h4>
 <div id="fig:aupr_gen_model_test_set" class="fignos">
 <figure>
-<img src="https://raw.githubusercontent.com/danich1/snorkeling/86037d185a299a1f6dd4dd68605073849c72af6f/figures/label_sampling_experiment/transfer_test_set_aupr.png" alt="Figure 5: Edge-specific label functions improves performance over edge-mismatch label functions. Each line plot header depicts the edge type the generative model is trying to predict, while the colors represent the source of label functions. For example orange represents sampling label functions designed to predict the Compound treats Disease (CtD) edge type. The x axis shows the number of randomly sampled label functions being incorporated into the database-only baseline model (point at 0). The y axis shows area under the precision recall curve (AUPR). Each point on the plot shows the average of 50 sample runs, while the error bars show the 95% confidence intervals of all runs. The baseline and “All” data points consist of sampling from the entire fixed set of label functions." /><figcaption aria-hidden="true"><span>Figure 5:</span> Edge-specific label functions improves performance over edge-mismatch label functions.
+<img src="https://raw.githubusercontent.com/danich1/snorkeling/86037d185a299a1f6dd4dd68605073849c72af6f/figures/label_sampling_experiment/transfer_test_set_aupr.png" alt="Figure 4: Edge-specific label functions improves performance over edge-mismatch label functions. Each line plot header depicts the edge type the generative model is trying to predict, while the colors represent the source of label functions. For example orange represents sampling label functions designed to predict the Compound treats Disease (CtD) edge type. The x axis shows the number of randomly sampled label functions being incorporated into the database-only baseline model (point at 0). The y axis shows area under the precision recall curve (AUPR). Each point on the plot shows the average of 50 sample runs, while the error bars show the 95% confidence intervals of all runs. The baseline and “All” data points consist of sampling from the entire fixed set of label functions." /><figcaption aria-hidden="true"><span>Figure 4:</span> Edge-specific label functions improves performance over edge-mismatch label functions.
 Each line plot header depicts the edge type the generative model is trying to predict, while the colors represent the source of label functions.
 For example orange represents sampling label functions designed to predict the Compound treats Disease (CtD) edge type.
 The x axis shows the number of randomly sampled label functions being incorporated into the database-only baseline model (point at 0).
@@ -714,7 +673,7 @@ The baseline and “All” data points consist of sampling from the entire fixed
 <h4 id="collective-pool-of-sources">Collective Pool of Sources</h4>
 <div id="fig:auroc_grabbag_gen_model_test_set" class="fignos">
 <figure>
-<img src="https://raw.githubusercontent.com/danich1/snorkeling/86037d185a299a1f6dd4dd68605073849c72af6f/figures/label_sampling_experiment/all_lf_test_set_auroc.png" alt="Figure 6: Using all label functions generally hinders generative model performance. Each line plot header depicts the edge type the generative model is trying to predict, while the colors represent the source of label functions. For example, orange represents sampling label functions designed to predict the Compound treats Disease (CtD) edge type. The x axis shows the number of randomly sampled label functions being incorporated into the database-only baseline model (point at 0). The y axis shows area under the receiver operating curve (AUROC). Each point on the plot shows the average of 50 sample runs, while the error bars show the 95% confidence intervals of all runs. The baseline and “All” data points consist of sampling from the entire fixed set of label functions." /><figcaption aria-hidden="true"><span>Figure 6:</span> Using all label functions generally hinders generative model performance.
+<img src="https://raw.githubusercontent.com/danich1/snorkeling/86037d185a299a1f6dd4dd68605073849c72af6f/figures/label_sampling_experiment/all_lf_test_set_auroc.png" alt="Figure 5: Using all label functions generally hinders generative model performance. Each line plot header depicts the edge type the generative model is trying to predict, while the colors represent the source of label functions. For example, orange represents sampling label functions designed to predict the Compound treats Disease (CtD) edge type. The x axis shows the number of randomly sampled label functions being incorporated into the database-only baseline model (point at 0). The y axis shows area under the receiver operating curve (AUROC). Each point on the plot shows the average of 50 sample runs, while the error bars show the 95% confidence intervals of all runs. The baseline and “All” data points consist of sampling from the entire fixed set of label functions." /><figcaption aria-hidden="true"><span>Figure 5:</span> Using all label functions generally hinders generative model performance.
 Each line plot header depicts the edge type the generative model is trying to predict, while the colors represent the source of label functions.
 For example, orange represents sampling label functions designed to predict the Compound treats Disease (CtD) edge type.
 The x axis shows the number of randomly sampled label functions being incorporated into the database-only baseline model (point at 0).
@@ -725,7 +684,7 @@ The baseline and “All” data points consist of sampling from the entire fixed
 </div>
 <div id="fig:aupr_grabbag_gen_model_test_set" class="fignos">
 <figure>
-<img src="https://raw.githubusercontent.com/danich1/snorkeling/86037d185a299a1f6dd4dd68605073849c72af6f/figures/label_sampling_experiment/all_lf_test_set_aupr.png" alt="Figure 7: Using all label functions generally hinders generative model performance. Each line plot header depicts the edge type the generative model is trying to predict, while the colors represent the source of label functions. For example, orange represents sampling label functions designed to predict the Compound treats Disease (CtD) edge type. The x axis shows the number of randomly sampled label functions being incorporated into the database-only baseline model (point at 0). The y axis shows area under the precision recall curve (AUPR). Each point on the plot shows the average of 50 sample runs, while the error bars show the 95% confidence intervals of all runs. The baseline and “All” data points consist of sampling from the entire fixed set of label functions." /><figcaption aria-hidden="true"><span>Figure 7:</span> Using all label functions generally hinders generative model performance.
+<img src="https://raw.githubusercontent.com/danich1/snorkeling/86037d185a299a1f6dd4dd68605073849c72af6f/figures/label_sampling_experiment/all_lf_test_set_aupr.png" alt="Figure 6: Using all label functions generally hinders generative model performance. Each line plot header depicts the edge type the generative model is trying to predict, while the colors represent the source of label functions. For example, orange represents sampling label functions designed to predict the Compound treats Disease (CtD) edge type. The x axis shows the number of randomly sampled label functions being incorporated into the database-only baseline model (point at 0). The y axis shows area under the precision recall curve (AUPR). Each point on the plot shows the average of 50 sample runs, while the error bars show the 95% confidence intervals of all runs. The baseline and “All” data points consist of sampling from the entire fixed set of label functions." /><figcaption aria-hidden="true"><span>Figure 6:</span> Using all label functions generally hinders generative model performance.
 Each line plot header depicts the edge type the generative model is trying to predict, while the colors represent the source of label functions.
 For example, orange represents sampling label functions designed to predict the Compound treats Disease (CtD) edge type.
 The x axis shows the number of randomly sampled label functions being incorporated into the database-only baseline model (point at 0).
@@ -737,7 +696,7 @@ The baseline and “All” data points consist of sampling from the entire fixed
 <h3 id="discriminative-model-performance-1">Discriminative Model Performance</h3>
 <div id="fig:aupr_discriminative_model_performance" class="fignos">
 <figure>
-<img src="https://raw.githubusercontent.com/danich1/snorkeling/c76e683a7bbc97482335ed4ac9ef8ab81c46114d/figures/disc_model_experiment/disc_model_test_aupr.png" alt="Figure 8: The discriminator model improves performance as the number of edge-specific label functions is added to the baseline model. The line plot headers represents the specific edge type the discriminator model is trying to predict. The x-axis shows the number of randomly sampled label functions incorporated on top of the baseline model (point at 0). The y axis shows the area under the precision recall curve (AUPR). Each datapoint shows the average of 50 sample runs, while the error bars represents the 95% confidence interval at each point. The baseline and “All” data points consist of sampling from the entire fixed set of label functions." /><figcaption aria-hidden="true"><span>Figure 8:</span> The discriminator model improves performance as the number of edge-specific label functions is added to the baseline model.
+<img src="https://raw.githubusercontent.com/danich1/snorkeling/c76e683a7bbc97482335ed4ac9ef8ab81c46114d/figures/disc_model_experiment/disc_model_test_aupr.png" alt="Figure 7: The discriminator model improves performance as the number of edge-specific label functions is added to the baseline model. The line plot headers represents the specific edge type the discriminator model is trying to predict. The x-axis shows the number of randomly sampled label functions incorporated on top of the baseline model (point at 0). The y axis shows the area under the precision recall curve (AUPR). Each datapoint shows the average of 50 sample runs, while the error bars represents the 95% confidence interval at each point. The baseline and “All” data points consist of sampling from the entire fixed set of label functions." /><figcaption aria-hidden="true"><span>Figure 7:</span> The discriminator model improves performance as the number of edge-specific label functions is added to the baseline model.
 The line plot headers represents the specific edge type the discriminator model is trying to predict.
 The x-axis shows the number of randomly sampled label functions incorporated on top of the baseline model (point at 0).
 The y axis shows the area under the precision recall curve (AUPR).
@@ -748,15 +707,15 @@ The baseline and “All” data points consist of sampling from the entire fixed
 <h3 id="discriminative-model-calibration">Discriminative Model Calibration</h3>
 <div id="fig:discriminative_model_calibration" class="fignos">
 <figure>
-<img src="https://raw.githubusercontent.com/danich1/snorkeling/c76e683a7bbc97482335ed4ac9ef8ab81c46114d/figures/model_calibration_experiment/model_calibration.png" alt="Figure 9: Deep learning models are overconfident in their predictions and need to be calibrated after training. These are calibration plots for the discriminative model, where the green line represents the predictions before calibration and the blue line shows predictions after calibration. Data points that lie closer to the diagonal line show better model calibration, while data points far from the diagonal line show poor performance. A perfectly calibrated model would align straight along the diagonal line." /><figcaption aria-hidden="true"><span>Figure 9:</span> Deep learning models are overconfident in their predictions and need to be calibrated after training.
+<img src="https://raw.githubusercontent.com/danich1/snorkeling/c76e683a7bbc97482335ed4ac9ef8ab81c46114d/figures/model_calibration_experiment/model_calibration.png" alt="Figure 8: Deep learning models are overconfident in their predictions and need to be calibrated after training. These are calibration plots for the discriminative model, where the green line represents the predictions before calibration and the blue line shows predictions after calibration. Data points that lie closer to the diagonal line show better model calibration, while data points far from the diagonal line show poor performance. A perfectly calibrated model would align straight along the diagonal line." /><figcaption aria-hidden="true"><span>Figure 8:</span> Deep learning models are overconfident in their predictions and need to be calibrated after training.
 These are calibration plots for the discriminative model, where the green line represents the predictions before calibration and the blue line shows predictions after calibration.
 Data points that lie closer to the diagonal line show better model calibration, while data points far from the diagonal line show poor performance.
 A perfectly calibrated model would align straight along the diagonal line.</figcaption>
 </figure>
 </div>
 <p>Even deep learning models with impressive AUROC and AUPR statistics can be subject to poor calibration.
-Typically, these models are overconfident in their predictions <span class="citation" data-cites="QJ6hYH8N rLVjMJ5l"><a href="#ref-QJ6hYH8N" role="doc-biblioref">[44]</a>, <a href="#ref-rLVjMJ5l" role="doc-biblioref">[45]</a></span>.
-We attempted to use temperature scaling to fix the calibration of the best performing discriminative models (Figure <a href="#fig:discriminative_model_calibration">9</a>).
+Typically, these models are overconfident in their predictions <span class="citation" data-cites="QJ6hYH8N rLVjMJ5l"><a href="#ref-QJ6hYH8N" role="doc-biblioref">[42]</a>, <a href="#ref-rLVjMJ5l" role="doc-biblioref">[43]</a></span>.
+We attempted to use temperature scaling to fix the calibration of the best performing discriminative models (Figure <a href="#fig:discriminative_model_calibration">8</a>).
 Before calibration (green lines), our models were aligned with the ideal calibration only when predicting low probability scores (close to 0.25).
 Applying the temperature scaling calibration algorithm (blue lines) did not substantially improve the calibration of the model in most cases.
 The exception to this pattern is the Disease associates Gene (DaG) model where high confidence scores are shown to be better calibrated.
@@ -764,7 +723,7 @@ Overall, calbrating deep learning models is a nontrivial task that requires more
 <h3 id="text-mined-edges-can-expand-a-database-derived-knowledge-graph">Text Mined Edges Can Expand a Database-derived Knowledge Graph</h3>
 <div id="fig:hetionet_reconstruction" class="fignos">
 <figure>
-<img src="https://raw.githubusercontent.com/danich1/snorkeling/c76e683a7bbc97482335ed4ac9ef8ab81c46114d/figures/edge_prediction_experiment/edges_added.png" alt="Figure 10: Text-mined edges recreate a substantial fraction of an existing knowledge graph and include new predictions. This bar chart shows the number of edges we can successfully recall in green and shows the number of new edges that can be added in blue. The recall for the Hetionet v1 knowledge graph is shown as a percentage in parentheses. For example, for the Compound treats Disease (CtD) edge our method recalls 85% of existing edges and adds 6,088 new edges." /><figcaption aria-hidden="true"><span>Figure 10:</span> Text-mined edges recreate a substantial fraction of an existing knowledge graph and include new predictions.
+<img src="https://raw.githubusercontent.com/danich1/snorkeling/c76e683a7bbc97482335ed4ac9ef8ab81c46114d/figures/edge_prediction_experiment/edges_added.png" alt="Figure 9: Text-mined edges recreate a substantial fraction of an existing knowledge graph and include new predictions. This bar chart shows the number of edges we can successfully recall in green and shows the number of new edges that can be added in blue. The recall for the Hetionet v1 knowledge graph is shown as a percentage in parentheses. For example, for the Compound treats Disease (CtD) edge our method recalls 85% of existing edges and adds 6,088 new edges." /><figcaption aria-hidden="true"><span>Figure 9:</span> Text-mined edges recreate a substantial fraction of an existing knowledge graph and include new predictions.
 This bar chart shows the number of edges we can successfully recall in green and shows the number of new edges that can be added in blue.<br />
 The recall for the Hetionet v1 knowledge graph is shown as a percentage in parentheses.
 For example, for the Compound treats Disease (CtD) edge our method recalls 85% of existing edges and adds 6,088 new edges.</figcaption>
@@ -772,7 +731,7 @@ For example, for the Compound treats Disease (CtD) edge our method recalls 85% o
 </div>
 <p>One of the goals in our work is to measure the extent to which learning multiple edge types could construct a biomedical knowledge graph.
 Using Hetionet v1 as an evaluation set, we measured this framework’s recall and quantified how many new edges could be added with high confidence.
-Overall, we were able to recall more than half of preexisting edges for all edge types (Figure <a href="#fig:hetionet_reconstruction">10</a>) and report our top ten scoring sentences for each edge type in Supplemental Table <a href="#tbl:edge_prediction_tbl">11</a>.
+Overall, we were able to recall more than half of preexisting edges for all edge types (Figure <a href="#fig:hetionet_reconstruction">9</a>) and report our top ten scoring sentences for each edge type in Supplemental Table <a href="#tbl:edge_prediction_tbl">11</a>.
 Our best recall is with the Compound treats Disease (CtD) edge type, where we retain 85% of preexisting edges.
 Plus, we can add over 6,000 new edges to that category.
 In contrast, we could only recall close to 70% of existing edges for the other categories; however, we can add over 40,000 novel edges to each category.
@@ -780,7 +739,7 @@ This highlights the fact that Hetionet v1 is missing a compelling amount of biom
 <h3 id="comparison-with-cocoscore-using-hetionet-v1-as-an-evaluation-set">Comparison with CoCoScore using Hetionet v1 as an Evaluation Set</h3>
 <div id="fig:cocoscore_comparison" class="fignos">
 <figure>
-<img src="https://raw.githubusercontent.com/danich1/snorkeling/b6e707ea843ac5d66f62ed09277e6b1d3d4b8bf3/figures/literature_models/coco_score_auroc.png" alt="Figure 11: Our extractor shows similar performance to a previously published method when using Hetionet v1 as an evaluation set. We compared our model (blue) with the CoCoScore model tag:cocoscore? (green). The y axis represents AUROC and the x axis represents the edge type both models are trying to predict." /><figcaption aria-hidden="true"><span>Figure 11:</span> Our extractor shows similar performance to a previously published method when using Hetionet v1 as an evaluation set.
+<img src="https://raw.githubusercontent.com/danich1/snorkeling/b6e707ea843ac5d66f62ed09277e6b1d3d4b8bf3/figures/literature_models/coco_score_auroc.png" alt="Figure 10: Our extractor shows similar performance to a previously published method when using Hetionet v1 as an evaluation set. We compared our model (blue) with the CoCoScore model tag:cocoscore? (green). The y axis represents AUROC and the x axis represents the edge type both models are trying to predict." /><figcaption aria-hidden="true"><span>Figure 10:</span> Our extractor shows similar performance to a previously published method when using Hetionet v1 as an evaluation set.
 We compared our model (blue) with the CoCoScore model <span class="citation" data-cites="tag:cocoscore"><a href="#ref-tag:cocoscore" role="doc-biblioref"><strong>tag:cocoscore?</strong></a></span> (green).
 The y axis represents AUROC and the x axis represents the edge type both models are trying to predict.</figcaption>
 </figure>
@@ -788,7 +747,7 @@ The y axis represents AUROC and the x axis represents the edge type both models 
 <p>Our model showed promising performance in terms of recalling edges in Hetionet v1.
 We assessed our model’s performance relative to a recently published method <span class="citation" data-cites="tag:cocoscore"><a href="#ref-tag:cocoscore" role="doc-biblioref"><strong>tag:cocoscore?</strong></a></span>.
 Though our method is primarily designed to predict assertions, not edges, we compared performance at an edge level because this was available for CoCoScore.
-We found that a simple summary approach, max sentence score, provided comparable performance to the CoCoScore for the compound treats disease (CtD) edge type and slightly poorer performance for other edge types (Supplemental Figure <a href="#fig:cocoscore_comparison">11</a>).
+We found that a simple summary approach, max sentence score, provided comparable performance to the CoCoScore for the compound treats disease (CtD) edge type and slightly poorer performance for other edge types (Supplemental Figure <a href="#fig:cocoscore_comparison">10</a>).
 Sentence-level scores can be integrated in multiple ways, and approaches that consider more complexity (e.g., the number of sentences with high-probability) should be evaluated in future work.</p>
 <h2 id="supplemental-tables">Supplemental Tables</h2>
 <h3 id="discriminative-model-calibration-tables">Discriminative Model Calibration Tables</h3>
