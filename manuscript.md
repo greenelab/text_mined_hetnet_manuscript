@@ -7,7 +7,7 @@ keywords:
 - heterogenous netowrks
 - text mining
 lang: en-US
-date-meta: '2022-03-29'
+date-meta: '2022-04-01'
 author-meta:
 - David N. Nicholson
 - Daniel S. Himmelstein
@@ -22,8 +22,8 @@ header-includes: |-
   <meta name="citation_title" content="Expanding a Database-derived Biomedical Knowledge Graph via Multi-relation Extraction from Biomedical Abstracts" />
   <meta property="og:title" content="Expanding a Database-derived Biomedical Knowledge Graph via Multi-relation Extraction from Biomedical Abstracts" />
   <meta property="twitter:title" content="Expanding a Database-derived Biomedical Knowledge Graph via Multi-relation Extraction from Biomedical Abstracts" />
-  <meta name="dc.date" content="2022-03-29" />
-  <meta name="citation_publication_date" content="2022-03-29" />
+  <meta name="dc.date" content="2022-04-01" />
+  <meta name="citation_publication_date" content="2022-04-01" />
   <meta name="dc.language" content="en-US" />
   <meta name="citation_language" content="en-US" />
   <meta name="dc.relation.ispartof" content="Manubot" />
@@ -48,13 +48,13 @@ header-includes: |-
   <meta name="citation_fulltext_html_url" content="https://greenelab.github.io/text_mined_hetnet_manuscript/" />
   <meta name="citation_pdf_url" content="https://greenelab.github.io/text_mined_hetnet_manuscript/manuscript.pdf" />
   <link rel="alternate" type="application/pdf" href="https://greenelab.github.io/text_mined_hetnet_manuscript/manuscript.pdf" />
-  <link rel="alternate" type="text/html" href="https://greenelab.github.io/text_mined_hetnet_manuscript/v/eb3aee7ed2f42d3c5fbb9467a17d6999a94b2fcf/" />
-  <meta name="manubot_html_url_versioned" content="https://greenelab.github.io/text_mined_hetnet_manuscript/v/eb3aee7ed2f42d3c5fbb9467a17d6999a94b2fcf/" />
-  <meta name="manubot_pdf_url_versioned" content="https://greenelab.github.io/text_mined_hetnet_manuscript/v/eb3aee7ed2f42d3c5fbb9467a17d6999a94b2fcf/manuscript.pdf" />
+  <link rel="alternate" type="text/html" href="https://greenelab.github.io/text_mined_hetnet_manuscript/v/2672fbc9430b989de284f80a02c138db7dc60e78/" />
+  <meta name="manubot_html_url_versioned" content="https://greenelab.github.io/text_mined_hetnet_manuscript/v/2672fbc9430b989de284f80a02c138db7dc60e78/" />
+  <meta name="manubot_pdf_url_versioned" content="https://greenelab.github.io/text_mined_hetnet_manuscript/v/2672fbc9430b989de284f80a02c138db7dc60e78/manuscript.pdf" />
   <meta property="og:type" content="article" />
   <meta property="twitter:card" content="summary_large_image" />
-  <meta property="og:image" content="https://github.com/greenelab/text_mined_hetnet_manuscript/raw/eb3aee7ed2f42d3c5fbb9467a17d6999a94b2fcf/thumbnail.png" />
-  <meta property="twitter:image" content="https://github.com/greenelab/text_mined_hetnet_manuscript/raw/eb3aee7ed2f42d3c5fbb9467a17d6999a94b2fcf/thumbnail.png" />
+  <meta property="og:image" content="https://github.com/greenelab/text_mined_hetnet_manuscript/raw/2672fbc9430b989de284f80a02c138db7dc60e78/thumbnail.png" />
+  <meta property="twitter:image" content="https://github.com/greenelab/text_mined_hetnet_manuscript/raw/2672fbc9430b989de284f80a02c138db7dc60e78/thumbnail.png" />
   <link rel="icon" type="image/png" sizes="192x192" href="https://manubot.org/favicon-192x192.png" />
   <link rel="mask-icon" href="https://manubot.org/safari-pinned-tab.svg" color="#ad1457" />
   <meta name="theme-color" content="#ad1457" />
@@ -74,10 +74,10 @@ _A DOI-citable version of this manuscript is available at <https://doi.org/10.11
 
 <small><em>
 This manuscript
-([permalink](https://greenelab.github.io/text_mined_hetnet_manuscript/v/eb3aee7ed2f42d3c5fbb9467a17d6999a94b2fcf/))
+([permalink](https://greenelab.github.io/text_mined_hetnet_manuscript/v/2672fbc9430b989de284f80a02c138db7dc60e78/))
 was automatically generated
-from [greenelab/text_mined_hetnet_manuscript@eb3aee7](https://github.com/greenelab/text_mined_hetnet_manuscript/tree/eb3aee7ed2f42d3c5fbb9467a17d6999a94b2fcf)
-on March 29, 2022.
+from [greenelab/text_mined_hetnet_manuscript@2672fbc](https://github.com/greenelab/text_mined_hetnet_manuscript/tree/2672fbc9430b989de284f80a02c138db7dc60e78)
+on April 1, 2022.
 </em></small>
 
 ## Authors
@@ -420,34 +420,43 @@ Lastly, we report the number of preexisting edges we could recall and the number
 ### Generative Model Using Randomly Sampled Label Functions
 
 Creating label functions is a labor-intensive process that can take days to accomplish.
-We sought to accelerate this process by measuring the extent to which label functions can be reused.
-Our hypothesis was that certain edge types share similar linguistic features such as keywords and/or sentence structure.
-This shared characteristic would make certain edge types amenable to label function reuse.
-We designed a set of experiments to test this hypothesis on an individual level (edge vs edge) as well as a global level (collective pool of sources). 
+We sought to accelerate this process by measuring how well label functions can be reused.
+We evaluated this by performing an experiment where label functions are sampled on an individual (edge vs. edge) level and a global (collective pool of sources) level.
 We observed that performance increased when edge-specific label functions were added to an edge-specific baseline model, while label function reuse usually provided less benefit (AUROC Figure {@fig:auroc_gen_model_test_set}, AUPR Supplemental Figure {@fig:aupr_gen_model_test_set}).
-We also evaluated randomly selecting label functions from among all sets and observed similar performance (AUROC Supplemental Figure {@fig:auroc_grabbag_gen_model_test_set}, AUPR Supplemental Figure {@fig:aupr_grabbag_gen_model_test_set})
-The quintessential example of this overarching trend is the Compound treats Disease (CtD) edge type, where edge-specific label functions always outperformed transferred label functions.
-However, there are hints of label function transferability for selected edge types and label function sources. 
-Performance increases as more CbG label functions are incorporated to the GiG baseline model and vice versa.
-This suggests that sentences for GiG and CbG may share similar linguistic features or terminology that allows for label functions to be reused.
+The quintessential example of this overarching trend is the Compound treats Disease (CtD) edge type, where edge-specific label functions consistently outperformed transferred label functions.
+However, there is evidence that label function transferability may be feasible for selected edge types and label function sources. 
+Performance increases as more GiG label functions are incorporated into the CbG baseline model and vice versa.
+This trend suggests that sentences for GiG and CbG may share similar linguistic features or terminology that allows for label functions to be reused, which could relate to both describing physical interaction relationships.
 Perplexingly, edge-specific Disease associates Gene (DaG) label functions did not improve performance over label functions drawn from other edge types.
-Overall, only CbG and GiG showed significant signs of reusability which suggests label functions could be shared between the two edge types.
+Overall, only CbG and GiG showed significant signs of reusability.
+This pattern suggests that label function transferability may be possible for these two edge types.
 
 ![
-Edge-specific label functions are better performing than edge-mismatch label functions, but certain mismatch situations show signs of successful transfer.
+Edge-specific label functions perform better than edge-mismatch label functions, but certain mismatch situations show signs of successful transfer.
 Each line plot header depicts the edge type the generative model is trying to predict, while the colors represent the source of label functions.
 For example, orange represents sampling label functions designed to predict the Compound treats Disease (CtD) edge type.
-The x axis shows the number of randomly sampled label functions being incorporated into the database-only baseline model (point at 0).
-The y axis shows area under the receiver operating curve (AUROC).
+The x-axis shows the number of randomly sampled label functions incorporated as an addition to the database-only baseline model (the point at 0).
+The y-axis shows the area under the receiver operating curve (AUROC).
 Each point on the plot shows the average of 50 sample runs, while the error bars show the 95% confidence intervals of all runs.
 The baseline and “All” data points consist of sampling from the entire fixed set of label functions.
-](https://raw.githubusercontent.com/danich1/snorkeling/86037d185a299a1f6dd4dd68605073849c72af6f/figures/label_sampling_experiment/transfer_test_set_auroc.png){#fig:auroc_gen_model_test_set}
+](https://raw.githubusercontent.com/danich1/snorkeling-full-text/80c9c899e91418af6fba7c74c9bc28b04be78458/figure_generation/output/figure_two.png){#fig:auroc_gen_model_test_set}
 
-We found that sampling from all label function sources at once usually underperformed relative to edge-specific label functions (Supplemental Figures {@fig:auroc_grabbag_gen_model_test_set} and {@fig:aupr_grabbag_gen_model_test_set}).
-As more label functions were sampled, the gap between edge-specific sources and all sources widened.
-CbG is a prime example of this trend (Supplemental Figures {@fig:auroc_grabbag_gen_model_test_set} and {@fig:aupr_grabbag_gen_model_test_set}), while CtD and GiG show a similar but milder trend.
-DaG was the exception to the general rule: the pooled set of label functions improved performance over the edge-specific ones, which aligns with the previously observed results for individual edge types (Figure {@fig:auroc_gen_model_test_set}).
-The decreasing trend when pooling all label functions supports the notion that label functions cannot easily transfer between edge types (exception being CbG on GiG and vice versa).
+We found that sampling from all label function sources at once usually underperformed relative to edge-specific label functions (Figure {@fig:auroc_grabbag_gen_model_test_set} and Supplemental Figure {@fig:aupr_grabbag_gen_model_test_set}).
+The gap between edge-specific sources and all sources widened as we sampled more label functions.
+CbG is a prime example of this trend (Figure {@fig:auroc_grabbag_gen_model_test_set} and Supplemental Figure {@fig:aupr_grabbag_gen_model_test_set}), while CtD and GiG show a similar but milder trend.
+DaG was the exception to the general rule.
+The pooled set of label functions improved performance over the edge-specific ones, which aligns with the previously observed results for individual edge types (Figure {@fig:auroc_gen_model_test_set}).
+When pooling all label functions, the decreasing trend supports the notion that label functions cannot simply transfer between edge types (exception being CbG on GiG and vice versa).
+
+![
+Using all label functions generally hinders generative model performance.
+Each line plot header depicts the edge type the generative model is trying to predict, while the colors represent the source of label functions.
+For example, orange represents sampling label functions designed to predict the Compound treats Disease (CtD) edge type.
+The x-axis shows the number of randomly sampled label functions incorporated as an addition to the database-only baseline model (the point at 0).
+The y-axis shows the area under the receiver operating curve (AUROC).
+Each point on the plot shows the average of 50 sample runs, while the error bars show the 95% confidence intervals of all runs.
+The baseline and “All” data points consist of sampling from the entire fixed set of label functions.
+](https://raw.githubusercontent.com/danich1/snorkeling-full-text/80c9c899e91418af6fba7c74c9bc28b04be78458/figure_generation/output/figure_four.png){#fig:auroc_grabbag_gen_model_test_set}
 
 
 ### Discriminative Model Performance
@@ -535,14 +544,14 @@ This work was support by [Grant GBMF4552](https://www.moore.org/grant-detail?gra
 #### Individual Sources
 
 ![
-Edge-specific label functions improves performance over edge-mismatch label functions.
+Edge-specific label functions improve performance over edge-mismatch label functions.
 Each line plot header depicts the edge type the generative model is trying to predict, while the colors represent the source of label functions.
-For example orange represents sampling label functions designed to predict the Compound treats Disease (CtD) edge type.
-The x axis shows the number of randomly sampled label functions being incorporated into the database-only baseline model (point at 0).
-The y axis shows area under the precision recall curve (AUPR).
+For example, orange represents sampling label functions designed to predict the Compound treats Disease (CtD) edge type.
+The x-axis shows the number of randomly sampled label functions incorporated as an addition to the database-only baseline model (the point at 0).
+The y-axis shows the area under the precision-recall curve (AUPR).
 Each point on the plot shows the average of 50 sample runs, while the error bars show the 95% confidence intervals of all runs.
 The baseline and “All” data points consist of sampling from the entire fixed set of label functions.
-](https://raw.githubusercontent.com/danich1/snorkeling/86037d185a299a1f6dd4dd68605073849c72af6f/figures/label_sampling_experiment/transfer_test_set_aupr.png){#fig:aupr_gen_model_test_set}
+](https://raw.githubusercontent.com/danich1/snorkeling-full-text/80c9c899e91418af6fba7c74c9bc28b04be78458/figure_generation/output/figure_three.png){#fig:aupr_gen_model_test_set}
 
 #### Collective Pool of Sources 
 
@@ -550,21 +559,11 @@ The baseline and “All” data points consist of sampling from the entire fixed
 Using all label functions generally hinders generative model performance.
 Each line plot header depicts the edge type the generative model is trying to predict, while the colors represent the source of label functions.
 For example, orange represents sampling label functions designed to predict the Compound treats Disease (CtD) edge type.
-The x axis shows the number of randomly sampled label functions being incorporated into the database-only baseline model (point at 0).
-The y axis shows area under the receiver operating curve (AUROC).
+The x-axis shows the number of randomly sampled label functions incorporated as an addition to the database-only baseline model (the point at 0).
+The y-axis shows the area under the precision-recall curve (AUPR).
 Each point on the plot shows the average of 50 sample runs, while the error bars show the 95% confidence intervals of all runs.
 The baseline and “All” data points consist of sampling from the entire fixed set of label functions.
-](https://raw.githubusercontent.com/danich1/snorkeling/86037d185a299a1f6dd4dd68605073849c72af6f/figures/label_sampling_experiment/all_lf_test_set_auroc.png){#fig:auroc_grabbag_gen_model_test_set}
-
-![
-Using all label functions generally hinders generative model performance.
-Each line plot header depicts the edge type the generative model is trying to predict, while the colors represent the source of label functions.
-For example, orange represents sampling label functions designed to predict the Compound treats Disease (CtD) edge type.
-The x axis shows the number of randomly sampled label functions being incorporated into the database-only baseline model (point at 0).
-The y axis shows area under the precision recall curve (AUPR).
-Each point on the plot shows the average of 50 sample runs, while the error bars show the 95% confidence intervals of all runs.
-The baseline and “All” data points consist of sampling from the entire fixed set of label functions.
-](https://raw.githubusercontent.com/danich1/snorkeling/86037d185a299a1f6dd4dd68605073849c72af6f/figures/label_sampling_experiment/all_lf_test_set_aupr.png){#fig:aupr_grabbag_gen_model_test_set}
+](https://raw.githubusercontent.com/danich1/snorkeling-full-text/80c9c899e91418af6fba7c74c9bc28b04be78458/figure_generation/output/figure_five.png){#fig:aupr_grabbag_gen_model_test_set}
 
 ### Discriminative Model Performance
 
