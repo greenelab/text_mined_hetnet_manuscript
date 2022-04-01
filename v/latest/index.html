@@ -7,7 +7,7 @@
   <meta name="author" content="David N. Nicholson" />
   <meta name="author" content="Daniel S. Himmelstein" />
   <meta name="author" content="Casey S. Greene" />
-  <meta name="dcterms.date" content="2022-03-29" />
+  <meta name="dcterms.date" content="2022-04-01" />
   <meta name="keywords" content="machine learning, weak supervision, natural language processing, heterogenous netowrks, text mining" />
   <title>Expanding a Database-derived Biomedical Knowledge Graph via Multi-relation Extraction from Biomedical Abstracts</title>
   <style>
@@ -49,8 +49,8 @@
   <meta name="citation_title" content="Expanding a Database-derived Biomedical Knowledge Graph via Multi-relation Extraction from Biomedical Abstracts" />
   <meta property="og:title" content="Expanding a Database-derived Biomedical Knowledge Graph via Multi-relation Extraction from Biomedical Abstracts" />
   <meta property="twitter:title" content="Expanding a Database-derived Biomedical Knowledge Graph via Multi-relation Extraction from Biomedical Abstracts" />
-  <meta name="dc.date" content="2022-03-29" />
-  <meta name="citation_publication_date" content="2022-03-29" />
+  <meta name="dc.date" content="2022-04-01" />
+  <meta name="citation_publication_date" content="2022-04-01" />
   <meta name="dc.language" content="en-US" />
   <meta name="citation_language" content="en-US" />
   <meta name="dc.relation.ispartof" content="Manubot" />
@@ -75,13 +75,13 @@
   <meta name="citation_fulltext_html_url" content="https://greenelab.github.io/text_mined_hetnet_manuscript/" />
   <meta name="citation_pdf_url" content="https://greenelab.github.io/text_mined_hetnet_manuscript/manuscript.pdf" />
   <link rel="alternate" type="application/pdf" href="https://greenelab.github.io/text_mined_hetnet_manuscript/manuscript.pdf" />
-  <link rel="alternate" type="text/html" href="https://greenelab.github.io/text_mined_hetnet_manuscript/v/eb3aee7ed2f42d3c5fbb9467a17d6999a94b2fcf/" />
-  <meta name="manubot_html_url_versioned" content="https://greenelab.github.io/text_mined_hetnet_manuscript/v/eb3aee7ed2f42d3c5fbb9467a17d6999a94b2fcf/" />
-  <meta name="manubot_pdf_url_versioned" content="https://greenelab.github.io/text_mined_hetnet_manuscript/v/eb3aee7ed2f42d3c5fbb9467a17d6999a94b2fcf/manuscript.pdf" />
+  <link rel="alternate" type="text/html" href="https://greenelab.github.io/text_mined_hetnet_manuscript/v/2672fbc9430b989de284f80a02c138db7dc60e78/" />
+  <meta name="manubot_html_url_versioned" content="https://greenelab.github.io/text_mined_hetnet_manuscript/v/2672fbc9430b989de284f80a02c138db7dc60e78/" />
+  <meta name="manubot_pdf_url_versioned" content="https://greenelab.github.io/text_mined_hetnet_manuscript/v/2672fbc9430b989de284f80a02c138db7dc60e78/manuscript.pdf" />
   <meta property="og:type" content="article" />
   <meta property="twitter:card" content="summary_large_image" />
-  <meta property="og:image" content="https://github.com/greenelab/text_mined_hetnet_manuscript/raw/eb3aee7ed2f42d3c5fbb9467a17d6999a94b2fcf/thumbnail.png" />
-  <meta property="twitter:image" content="https://github.com/greenelab/text_mined_hetnet_manuscript/raw/eb3aee7ed2f42d3c5fbb9467a17d6999a94b2fcf/thumbnail.png" />
+  <meta property="og:image" content="https://github.com/greenelab/text_mined_hetnet_manuscript/raw/2672fbc9430b989de284f80a02c138db7dc60e78/thumbnail.png" />
+  <meta property="twitter:image" content="https://github.com/greenelab/text_mined_hetnet_manuscript/raw/2672fbc9430b989de284f80a02c138db7dc60e78/thumbnail.png" />
   <link rel="icon" type="image/png" sizes="192x192" href="https://manubot.org/favicon-192x192.png" />
   <link rel="mask-icon" href="https://manubot.org/safari-pinned-tab.svg" color="#ad1457" />
   <meta name="theme-color" content="#ad1457" />
@@ -94,10 +94,10 @@
 <p><em>A DOI-citable version of this manuscript is available at <a href="https://doi.org/10.1101/730085" class="uri">https://doi.org/10.1101/730085</a></em>.</p>
 <p><small><em>
 This manuscript
-(<a href="https://greenelab.github.io/text_mined_hetnet_manuscript/v/eb3aee7ed2f42d3c5fbb9467a17d6999a94b2fcf/">permalink</a>)
+(<a href="https://greenelab.github.io/text_mined_hetnet_manuscript/v/2672fbc9430b989de284f80a02c138db7dc60e78/">permalink</a>)
 was automatically generated
-from <a href="https://github.com/greenelab/text_mined_hetnet_manuscript/tree/eb3aee7ed2f42d3c5fbb9467a17d6999a94b2fcf">greenelab/text_mined_hetnet_manuscript@eb3aee7</a>
-on March 29, 2022.
+from <a href="https://github.com/greenelab/text_mined_hetnet_manuscript/tree/2672fbc9430b989de284f80a02c138db7dc60e78">greenelab/text_mined_hetnet_manuscript@2672fbc</a>
+on April 1, 2022.
 </em></small></p>
 <h2 id="authors">Authors</h2>
 <ul>
@@ -438,38 +438,48 @@ Lastly, we report the number of preexisting edges we could recall and the number
 <h2 id="results">Results</h2>
 <h3 id="generative-model-using-randomly-sampled-label-functions">Generative Model Using Randomly Sampled Label Functions</h3>
 <p>Creating label functions is a labor-intensive process that can take days to accomplish.
-We sought to accelerate this process by measuring the extent to which label functions can be reused.
-Our hypothesis was that certain edge types share similar linguistic features such as keywords and/or sentence structure.
-This shared characteristic would make certain edge types amenable to label function reuse.
-We designed a set of experiments to test this hypothesis on an individual level (edge vs edge) as well as a global level (collective pool of sources).
-We observed that performance increased when edge-specific label functions were added to an edge-specific baseline model, while label function reuse usually provided less benefit (AUROC Figure <a href="#fig:auroc_gen_model_test_set">2</a>, AUPR Supplemental Figure <a href="#fig:aupr_gen_model_test_set">4</a>).
-We also evaluated randomly selecting label functions from among all sets and observed similar performance (AUROC Supplemental Figure <a href="#fig:auroc_grabbag_gen_model_test_set">5</a>, AUPR Supplemental Figure <a href="#fig:aupr_grabbag_gen_model_test_set">6</a>)
-The quintessential example of this overarching trend is the Compound treats Disease (CtD) edge type, where edge-specific label functions always outperformed transferred label functions.
-However, there are hints of label function transferability for selected edge types and label function sources.
-Performance increases as more CbG label functions are incorporated to the GiG baseline model and vice versa.
-This suggests that sentences for GiG and CbG may share similar linguistic features or terminology that allows for label functions to be reused.
+We sought to accelerate this process by measuring how well label functions can be reused.
+We evaluated this by performing an experiment where label functions are sampled on an individual (edge vs. edge) level and a global (collective pool of sources) level.
+We observed that performance increased when edge-specific label functions were added to an edge-specific baseline model, while label function reuse usually provided less benefit (AUROC Figure <a href="#fig:auroc_gen_model_test_set">2</a>, AUPR Supplemental Figure <a href="#fig:aupr_gen_model_test_set">5</a>).
+The quintessential example of this overarching trend is the Compound treats Disease (CtD) edge type, where edge-specific label functions consistently outperformed transferred label functions.
+However, there is evidence that label function transferability may be feasible for selected edge types and label function sources.
+Performance increases as more GiG label functions are incorporated into the CbG baseline model and vice versa.
+This trend suggests that sentences for GiG and CbG may share similar linguistic features or terminology that allows for label functions to be reused, which could relate to both describing physical interaction relationships.
 Perplexingly, edge-specific Disease associates Gene (DaG) label functions did not improve performance over label functions drawn from other edge types.
-Overall, only CbG and GiG showed significant signs of reusability which suggests label functions could be shared between the two edge types.</p>
+Overall, only CbG and GiG showed significant signs of reusability.
+This pattern suggests that label function transferability may be possible for these two edge types.</p>
 <div id="fig:auroc_gen_model_test_set" class="fignos">
 <figure>
-<img src="https://raw.githubusercontent.com/danich1/snorkeling/86037d185a299a1f6dd4dd68605073849c72af6f/figures/label_sampling_experiment/transfer_test_set_auroc.png" alt="Figure 2: Edge-specific label functions are better performing than edge-mismatch label functions, but certain mismatch situations show signs of successful transfer. Each line plot header depicts the edge type the generative model is trying to predict, while the colors represent the source of label functions. For example, orange represents sampling label functions designed to predict the Compound treats Disease (CtD) edge type. The x axis shows the number of randomly sampled label functions being incorporated into the database-only baseline model (point at 0). The y axis shows area under the receiver operating curve (AUROC). Each point on the plot shows the average of 50 sample runs, while the error bars show the 95% confidence intervals of all runs. The baseline and “All” data points consist of sampling from the entire fixed set of label functions." /><figcaption aria-hidden="true"><span>Figure 2:</span> Edge-specific label functions are better performing than edge-mismatch label functions, but certain mismatch situations show signs of successful transfer.
+<img src="https://raw.githubusercontent.com/danich1/snorkeling-full-text/80c9c899e91418af6fba7c74c9bc28b04be78458/figure_generation/output/figure_two.png" alt="Figure 2: Edge-specific label functions perform better than edge-mismatch label functions, but certain mismatch situations show signs of successful transfer. Each line plot header depicts the edge type the generative model is trying to predict, while the colors represent the source of label functions. For example, orange represents sampling label functions designed to predict the Compound treats Disease (CtD) edge type. The x-axis shows the number of randomly sampled label functions incorporated as an addition to the database-only baseline model (the point at 0). The y-axis shows the area under the receiver operating curve (AUROC). Each point on the plot shows the average of 50 sample runs, while the error bars show the 95% confidence intervals of all runs. The baseline and “All” data points consist of sampling from the entire fixed set of label functions." /><figcaption aria-hidden="true"><span>Figure 2:</span> Edge-specific label functions perform better than edge-mismatch label functions, but certain mismatch situations show signs of successful transfer.
 Each line plot header depicts the edge type the generative model is trying to predict, while the colors represent the source of label functions.
 For example, orange represents sampling label functions designed to predict the Compound treats Disease (CtD) edge type.
-The x axis shows the number of randomly sampled label functions being incorporated into the database-only baseline model (point at 0).
-The y axis shows area under the receiver operating curve (AUROC).
+The x-axis shows the number of randomly sampled label functions incorporated as an addition to the database-only baseline model (the point at 0).
+The y-axis shows the area under the receiver operating curve (AUROC).
 Each point on the plot shows the average of 50 sample runs, while the error bars show the 95% confidence intervals of all runs.
 The baseline and “All” data points consist of sampling from the entire fixed set of label functions.</figcaption>
 </figure>
 </div>
-<p>We found that sampling from all label function sources at once usually underperformed relative to edge-specific label functions (Supplemental Figures <a href="#fig:auroc_grabbag_gen_model_test_set">5</a> and <a href="#fig:aupr_grabbag_gen_model_test_set">6</a>).
-As more label functions were sampled, the gap between edge-specific sources and all sources widened.
-CbG is a prime example of this trend (Supplemental Figures <a href="#fig:auroc_grabbag_gen_model_test_set">5</a> and <a href="#fig:aupr_grabbag_gen_model_test_set">6</a>), while CtD and GiG show a similar but milder trend.
-DaG was the exception to the general rule: the pooled set of label functions improved performance over the edge-specific ones, which aligns with the previously observed results for individual edge types (Figure <a href="#fig:auroc_gen_model_test_set">2</a>).
-The decreasing trend when pooling all label functions supports the notion that label functions cannot easily transfer between edge types (exception being CbG on GiG and vice versa).</p>
+<p>We found that sampling from all label function sources at once usually underperformed relative to edge-specific label functions (Figure <a href="#fig:auroc_grabbag_gen_model_test_set">3</a> and Supplemental Figure <a href="#fig:aupr_grabbag_gen_model_test_set">6</a>).
+The gap between edge-specific sources and all sources widened as we sampled more label functions.
+CbG is a prime example of this trend (Figure <a href="#fig:auroc_grabbag_gen_model_test_set">3</a> and Supplemental Figure <a href="#fig:aupr_grabbag_gen_model_test_set">6</a>), while CtD and GiG show a similar but milder trend.
+DaG was the exception to the general rule.
+The pooled set of label functions improved performance over the edge-specific ones, which aligns with the previously observed results for individual edge types (Figure <a href="#fig:auroc_gen_model_test_set">2</a>).
+When pooling all label functions, the decreasing trend supports the notion that label functions cannot simply transfer between edge types (exception being CbG on GiG and vice versa).</p>
+<div id="fig:auroc_grabbag_gen_model_test_set" class="fignos">
+<figure>
+<img src="https://raw.githubusercontent.com/danich1/snorkeling-full-text/80c9c899e91418af6fba7c74c9bc28b04be78458/figure_generation/output/figure_four.png" alt="Figure 3: Using all label functions generally hinders generative model performance. Each line plot header depicts the edge type the generative model is trying to predict, while the colors represent the source of label functions. For example, orange represents sampling label functions designed to predict the Compound treats Disease (CtD) edge type. The x-axis shows the number of randomly sampled label functions incorporated as an addition to the database-only baseline model (the point at 0). The y-axis shows the area under the receiver operating curve (AUROC). Each point on the plot shows the average of 50 sample runs, while the error bars show the 95% confidence intervals of all runs. The baseline and “All” data points consist of sampling from the entire fixed set of label functions." /><figcaption aria-hidden="true"><span>Figure 3:</span> Using all label functions generally hinders generative model performance.
+Each line plot header depicts the edge type the generative model is trying to predict, while the colors represent the source of label functions.
+For example, orange represents sampling label functions designed to predict the Compound treats Disease (CtD) edge type.
+The x-axis shows the number of randomly sampled label functions incorporated as an addition to the database-only baseline model (the point at 0).
+The y-axis shows the area under the receiver operating curve (AUROC).
+Each point on the plot shows the average of 50 sample runs, while the error bars show the 95% confidence intervals of all runs.
+The baseline and “All” data points consist of sampling from the entire fixed set of label functions.</figcaption>
+</figure>
+</div>
 <h3 id="discriminative-model-performance">Discriminative Model Performance</h3>
 <p>The discriminative model is designed to augment performance over the generative model by incorporating textual features along with estimated training labels.
 The discriminative model is a piecewise convolutional neural network trained over word embeddings (See Methods and Materials).
-We found that the discriminative model generally out-performed the generative model as more edge-specific label functions are incorporated (Figure <a href="#fig:auroc_discriminative_model_performance">3</a> and Supplemental Figure <a href="#fig:aupr_discriminative_model_performance">7</a>).
+We found that the discriminative model generally out-performed the generative model as more edge-specific label functions are incorporated (Figure <a href="#fig:auroc_discriminative_model_performance">4</a> and Supplemental Figure <a href="#fig:aupr_discriminative_model_performance">7</a>).
 The discriminative model’s performance is often poorest when very few edge-specific label functions are added to the baseline model (seen in Disease associates Gene (DaG), Compound binds Gene (CbG) and Gene interacts Gene (GiG)).
 This suggests that generative models trained with more label functions produce outputs that are more suitable for training discriminative models.
 An exception to this trend is Compound treats Disease (CtD) where the discriminative model out-performs the generative model at all levels of sampling.
@@ -479,7 +489,7 @@ This suggests that the discriminative model might be predicting more false posit
 Incorporating more edge-specific label functions usually improves performance for the discriminative model over the generative model.</p>
 <div id="fig:auroc_discriminative_model_performance" class="fignos">
 <figure>
-<img src="https://raw.githubusercontent.com/danich1/snorkeling/c76e683a7bbc97482335ed4ac9ef8ab81c46114d/figures/disc_model_experiment/disc_model_test_auroc.png" alt="Figure 3: The discriminative model usually improves at a faster rate than the generative model as more edge-specific label function are included. The line plot headers represent the specific edge type the discriminative model is trying to predict. The x-axis shows the number of randomly sampled label functions that are incorporated into the baseline model (point at 0). The y axis shows the area under the receiver operating curve (AUROC). Each datapoint represents the average of 50 sample runs and the error bars represent the 95% confidence interval of each run. The baseline and “All” data points consist of sampling from the entire fixed set of label functions." /><figcaption aria-hidden="true"><span>Figure 3:</span> The discriminative model usually improves at a faster rate than the generative model as more edge-specific label function are included.
+<img src="https://raw.githubusercontent.com/danich1/snorkeling/c76e683a7bbc97482335ed4ac9ef8ab81c46114d/figures/disc_model_experiment/disc_model_test_auroc.png" alt="Figure 4: The discriminative model usually improves at a faster rate than the generative model as more edge-specific label function are included. The line plot headers represent the specific edge type the discriminative model is trying to predict. The x-axis shows the number of randomly sampled label functions that are incorporated into the baseline model (point at 0). The y axis shows the area under the receiver operating curve (AUROC). Each datapoint represents the average of 50 sample runs and the error bars represent the 95% confidence interval of each run. The baseline and “All” data points consist of sampling from the entire fixed set of label functions." /><figcaption aria-hidden="true"><span>Figure 4:</span> The discriminative model usually improves at a faster rate than the generative model as more edge-specific label function are included.
 The line plot headers represent the specific edge type the discriminative model is trying to predict.
 The x-axis shows the number of randomly sampled label functions that are incorporated into the baseline model (point at 0).
 The y axis shows the area under the receiver operating curve (AUROC).
@@ -490,12 +500,12 @@ The baseline and “All” data points consist of sampling from the entire fixed
 <h2 id="discussion">Discussion</h2>
 <p>We measured the extent to which label functions can be re-used across multiple edge types to extract relationships from literature.
 Through our sampling experiment, we found that adding edge-specific label functions increases performance for the generative model (Figure <a href="#fig:auroc_gen_model_test_set">2</a>).
-We found that label functions designed from relatively related edge types can increase performance (Gene interacts Gene (GiG) label functions predicting the Compound binds Gene (CbG) edge and vice versa), while the Disease associates Gene (DaG) edge type remained agnostic to label function sources (Figure <a href="#fig:auroc_gen_model_test_set">2</a> and Supplemental Figure <a href="#fig:aupr_gen_model_test_set">4</a>).
-Furthermore, we found that using all label functions at once generally hurts performance with the exception being the DaG edge type (Supplemental Figures <a href="#fig:auroc_grabbag_gen_model_test_set">5</a> and <a href="#fig:aupr_grabbag_gen_model_test_set">6</a>).
+We found that label functions designed from relatively related edge types can increase performance (Gene interacts Gene (GiG) label functions predicting the Compound binds Gene (CbG) edge and vice versa), while the Disease associates Gene (DaG) edge type remained agnostic to label function sources (Figure <a href="#fig:auroc_gen_model_test_set">2</a> and Supplemental Figure <a href="#fig:aupr_gen_model_test_set">5</a>).
+Furthermore, we found that using all label functions at once generally hurts performance with the exception being the DaG edge type (Supplemental Figures <a href="#fig:auroc_grabbag_gen_model_test_set">3</a> and <a href="#fig:aupr_grabbag_gen_model_test_set">6</a>).
 One possibility for this observation is that DaG is a broadly defined edge type.
 For example, DaG may contain many concepts related to other edge types such as Disease (up/down) regulating a Gene, which makes it more agnostic to label function sources (examples highlighted in our <a href="https://github.com/greenelab/text_mined_hetnet_manuscript/tree/master/supplementary_materials/annotated_sentences">annotated sentences</a>).</p>
-<p>Regarding the discriminative model, adding edge-specific label function substantially improved performance for two out of the four edge types (Compound treats Disease (CtD) and Disease associates Gene (DaG)) (Figure <a href="#fig:auroc_discriminative_model_performance">3</a> and Supplemental Figure <a href="#fig:aupr_discriminative_model_performance">7</a>).
-Gene interacts Gene (GiG) and Compound binds Gene (CbG) discriminative models showed minor improvements compared to the generative model, but only when nearly all edge-specific label functions are included (Figure <a href="#fig:auroc_discriminative_model_performance">3</a> and Supplemental Figure <a href="#fig:aupr_discriminative_model_performance">7</a>).
+<p>Regarding the discriminative model, adding edge-specific label function substantially improved performance for two out of the four edge types (Compound treats Disease (CtD) and Disease associates Gene (DaG)) (Figure <a href="#fig:auroc_discriminative_model_performance">4</a> and Supplemental Figure <a href="#fig:aupr_discriminative_model_performance">7</a>).
+Gene interacts Gene (GiG) and Compound binds Gene (CbG) discriminative models showed minor improvements compared to the generative model, but only when nearly all edge-specific label functions are included (Figure <a href="#fig:auroc_discriminative_model_performance">4</a> and Supplemental Figure <a href="#fig:aupr_discriminative_model_performance">7</a>).
 We came across a large amount of spurious gene mentions when working with the discriminative model and believe that these mentions contributed to CbG and GiG’s hindered performance.
 We encountered difficulty in calibrating each discriminative model (Supplemental Figure <a href="#fig:discriminative_model_calibration">8</a>).
 The temperature scaling algorithm appears to improve calibration for the highest scores for each model but did not successfully calibrate throughout the entire range of predictions.
@@ -527,106 +537,106 @@ This work was support by <a href="https://www.moore.org/grant-detail?grantId=GBM
 <!-- Explicitly insert bibliography here -->
 <div id="refs" class="references csl-bib-body" role="doc-bibliography">
 <div id="ref-u8pIAt5j" class="csl-entry" role="doc-biblioentry">
-<div class="csl-left-margin">[1] </div><div class="csl-right-inline">R. Gramatica, T. Di Matteo, S. Giorgetti, M. Barbiani, D. Bevec, and T. Aste, <span>“Graph Theory Enables Drug Repurposing – How a Mathematical Model Can Drive the Discovery of Hidden Mechanisms of Action,”</span> <em>PLoS ONE</em>, vol. 9, no. 1, p. e84912, Jan. 2014 [Online]. Available: <a href="https://doi.org/gf45zp">https://doi.org/gf45zp</a>. [Accessed: 29-Mar-2022]</div>
+<div class="csl-left-margin">[1] </div><div class="csl-right-inline">R. Gramatica, T. Di Matteo, S. Giorgetti, M. Barbiani, D. Bevec, and T. Aste, <span>“Graph Theory Enables Drug Repurposing – How a Mathematical Model Can Drive the Discovery of Hidden Mechanisms of Action,”</span> <em>PLoS ONE</em>, vol. 9, no. 1, p. e84912, Jan. 2014 [Online]. Available: <a href="https://doi.org/gf45zp">https://doi.org/gf45zp</a>. [Accessed: 01-Apr-2022]</div>
 </div>
 <div id="ref-bPvC638e" class="csl-entry" role="doc-biblioentry">
-<div class="csl-left-margin">[2] </div><div class="csl-right-inline">M. Alshahrani and R. Hoehndorf, <span>“Drug repurposing through joint learning on knowledge graphs and literature,”</span> Bioinformatics, preprint, Aug. 2018 [Online]. Available: <a href="https://doi.org/gf45zk">https://doi.org/gf45zk</a>. [Accessed: 29-Mar-2022]</div>
+<div class="csl-left-margin">[2] </div><div class="csl-right-inline">M. Alshahrani and R. Hoehndorf, <span>“Drug repurposing through joint learning on knowledge graphs and literature,”</span> Bioinformatics, preprint, Aug. 2018 [Online]. Available: <a href="https://doi.org/gf45zk">https://doi.org/gf45zk</a>. [Accessed: 01-Apr-2022]</div>
 </div>
 <div id="ref-O21tn8vf" class="csl-entry" role="doc-biblioentry">
-<div class="csl-left-margin">[3] </div><div class="csl-right-inline">D. S. Himmelstein <em>et al.</em>, <span>“Systematic integration of biomedical knowledge prioritizes drugs for repurposing,”</span> <em>eLife</em>, vol. 6, p. e26726, Sep. 2017 [Online]. Available: <a href="https://doi.org/cdfk">https://doi.org/cdfk</a>. [Accessed: 29-Mar-2022]</div>
+<div class="csl-left-margin">[3] </div><div class="csl-right-inline">D. S. Himmelstein <em>et al.</em>, <span>“Systematic integration of biomedical knowledge prioritizes drugs for repurposing,”</span> <em>eLife</em>, vol. 6, p. e26726, Sep. 2017 [Online]. Available: <a href="https://doi.org/cdfk">https://doi.org/cdfk</a>. [Accessed: 01-Apr-2022]</div>
 </div>
 <div id="ref-EHeTvZht" class="csl-entry" role="doc-biblioentry">
-<div class="csl-left-margin">[4] </div><div class="csl-right-inline">M. Mintz, S. Bills, R. Snow, and D. Jurafsky, <span>“Distant supervision for relation extraction without labeled data,”</span> in <em>Proceedings of the Joint Conference of the 47th Annual Meeting of the ACL and the 4th International Joint Conference on Natural Language Processing of the AFNLP: Volume 2 - ACL-IJCNLP '09</em>, Suntec, Singapore, 2009, vol. 2, p. 1003 [Online]. Available: <a href="https://doi.org/fg9q43">https://doi.org/fg9q43</a>. [Accessed: 29-Mar-2022]</div>
+<div class="csl-left-margin">[4] </div><div class="csl-right-inline">M. Mintz, S. Bills, R. Snow, and D. Jurafsky, <span>“Distant supervision for relation extraction without labeled data,”</span> in <em>Proceedings of the Joint Conference of the 47th Annual Meeting of the ACL and the 4th International Joint Conference on Natural Language Processing of the AFNLP: Volume 2 - ACL-IJCNLP '09</em>, Suntec, Singapore, 2009, vol. 2, p. 1003 [Online]. Available: <a href="https://doi.org/fg9q43">https://doi.org/fg9q43</a>. [Accessed: 01-Apr-2022]</div>
 </div>
 <div id="ref-CVHSURuI" class="csl-entry" role="doc-biblioentry">
-<div class="csl-left-margin">[5] </div><div class="csl-right-inline">A. Junge and L. J. Jensen, <span>“CoCoScore: Context-aware co-occurrence scoring for text mining applications using distant supervision,”</span> Bioinformatics, preprint, Oct. 2018 [Online]. Available: <a href="https://doi.org/gf45zm">https://doi.org/gf45zm</a>. [Accessed: 29-Mar-2022]</div>
+<div class="csl-left-margin">[5] </div><div class="csl-right-inline">A. Junge and L. J. Jensen, <span>“CoCoScore: Context-aware co-occurrence scoring for text mining applications using distant supervision,”</span> Bioinformatics, preprint, Oct. 2018 [Online]. Available: <a href="https://doi.org/gf45zm">https://doi.org/gf45zm</a>. [Accessed: 01-Apr-2022]</div>
 </div>
 <div id="ref-HS4ARwmZ" class="csl-entry" role="doc-biblioentry">
-<div class="csl-left-margin">[6] </div><div class="csl-right-inline">H. Zhou, C. Lang, Z. Liu, S. Ning, Y. Lin, and L. Du, <span>“Knowledge-guided convolutional networks for chemical-disease relation extraction,”</span> <em>BMC Bioinformatics</em>, vol. 20, no. 1, p. 260, Dec. 2019 [Online]. Available: <a href="https://doi.org/gf45zn">https://doi.org/gf45zn</a>. [Accessed: 29-Mar-2022]</div>
+<div class="csl-left-margin">[6] </div><div class="csl-right-inline">H. Zhou, C. Lang, Z. Liu, S. Ning, Y. Lin, and L. Du, <span>“Knowledge-guided convolutional networks for chemical-disease relation extraction,”</span> <em>BMC Bioinformatics</em>, vol. 20, no. 1, p. 260, Dec. 2019 [Online]. Available: <a href="https://doi.org/gf45zn">https://doi.org/gf45zn</a>. [Accessed: 01-Apr-2022]</div>
 </div>
 <div id="ref-N1Ai0gaI" class="csl-entry" role="doc-biblioentry">
-<div class="csl-left-margin">[7] </div><div class="csl-right-inline">R. Winnenburg, T. Wachter, C. Plake, A. Doms, and M. Schroeder, <span>“Facts from text: can text mining help to scale-up high-quality manual curation of gene products with ontologies?”</span> <em>Briefings in Bioinformatics</em>, vol. 9, no. 6, pp. 466–478, Jul. 2008 [Online]. Available: <a href="https://doi.org/bfsnwg">https://doi.org/bfsnwg</a>. [Accessed: 29-Mar-2022]</div>
+<div class="csl-left-margin">[7] </div><div class="csl-right-inline">R. Winnenburg, T. Wachter, C. Plake, A. Doms, and M. Schroeder, <span>“Facts from text: can text mining help to scale-up high-quality manual curation of gene products with ontologies?”</span> <em>Briefings in Bioinformatics</em>, vol. 9, no. 6, pp. 466–478, Jul. 2008 [Online]. Available: <a href="https://doi.org/bfsnwg">https://doi.org/bfsnwg</a>. [Accessed: 01-Apr-2022]</div>
 </div>
 <div id="ref-UdzvLgBM" class="csl-entry" role="doc-biblioentry">
-<div class="csl-left-margin">[8] </div><div class="csl-right-inline">W. A. Baumgartner, K. B. Cohen, L. M. Fox, G. Acquaah-Mensah, and L. Hunter, <span>“Manual curation is not sufficient for annotation of genomic databases,”</span> <em>Bioinformatics</em>, vol. 23, no. 13, pp. i41–i48, Jul. 2007 [Online]. Available: <a href="https://doi.org/dtck86">https://doi.org/dtck86</a>. [Accessed: 29-Mar-2022]</div>
+<div class="csl-left-margin">[8] </div><div class="csl-right-inline">W. A. Baumgartner, K. B. Cohen, L. M. Fox, G. Acquaah-Mensah, and L. Hunter, <span>“Manual curation is not sufficient for annotation of genomic databases,”</span> <em>Bioinformatics</em>, vol. 23, no. 13, pp. i41–i48, Jul. 2007 [Online]. Available: <a href="https://doi.org/dtck86">https://doi.org/dtck86</a>. [Accessed: 01-Apr-2022]</div>
 </div>
 <div id="ref-1DBISRlwN" class="csl-entry" role="doc-biblioentry">
-<div class="csl-left-margin">[9] </div><div class="csl-right-inline">L. Bornmann and R. Mutz, <span>“Growth rates of modern science: A bibliometric analysis based on the number of publications and cited references: Growth Rates of Modern Science: A Bibliometric Analysis Based on the Number of Publications and Cited References,”</span> <em>Journal of the Association for Information Science and Technology</em>, vol. 66, no. 11, pp. 2215–2222, Nov. 2015 [Online]. Available: <a href="https://doi.org/gfj5zc">https://doi.org/gfj5zc</a>. [Accessed: 29-Mar-2022]</div>
+<div class="csl-left-margin">[9] </div><div class="csl-right-inline">L. Bornmann and R. Mutz, <span>“Growth rates of modern science: A bibliometric analysis based on the number of publications and cited references: Growth Rates of Modern Science: A Bibliometric Analysis Based on the Number of Publications and Cited References,”</span> <em>Journal of the Association for Information Science and Technology</em>, vol. 66, no. 11, pp. 2215–2222, Nov. 2015 [Online]. Available: <a href="https://doi.org/gfj5zc">https://doi.org/gfj5zc</a>. [Accessed: 01-Apr-2022]</div>
 </div>
 <div id="ref-5Il3kN32" class="csl-entry" role="doc-biblioentry">
 <div class="csl-left-margin">[10] </div><div class="csl-right-inline">A. Ratner, C. De Sa, S. Wu, D. Selsam, and C. Ré, <span>“Data Programming: Creating Large Training Sets, Quickly,”</span> arXiv, 1605.07723, Dec. 2018 [Online]. Available: <a href="https://arxiv.org/abs/1605.07723">https://arxiv.org/abs/1605.07723</a></div>
 </div>
 <div id="ref-KEkjqdB0" class="csl-entry" role="doc-biblioentry">
-<div class="csl-left-margin">[11] </div><div class="csl-right-inline">M. Torii, C. N. Arighi, G. Li, Q. Wang, C. H. Wu, and K. Vijay-Shanker, <span>“RLIMS-P 2.0: A Generalizable Rule-Based Information Extraction System for Literature Mining of Protein Phosphorylation Information,”</span> <em>IEEE/ACM Transactions on Computational Biology and Bioinformatics</em>, vol. 12, no. 1, pp. 17–29, Jan. 2015 [Online]. Available: <a href="https://doi.org/gf8fpv">https://doi.org/gf8fpv</a>. [Accessed: 29-Mar-2022]</div>
+<div class="csl-left-margin">[11] </div><div class="csl-right-inline">M. Torii, C. N. Arighi, G. Li, Q. Wang, C. H. Wu, and K. Vijay-Shanker, <span>“RLIMS-P 2.0: A Generalizable Rule-Based Information Extraction System for Literature Mining of Protein Phosphorylation Information,”</span> <em>IEEE/ACM Transactions on Computational Biology and Bioinformatics</em>, vol. 12, no. 1, pp. 17–29, Jan. 2015 [Online]. Available: <a href="https://doi.org/gf8fpv">https://doi.org/gf8fpv</a>. [Accessed: 01-Apr-2022]</div>
 </div>
 <div id="ref-d3rG3TXb" class="csl-entry" role="doc-biblioentry">
-<div class="csl-left-margin">[12] </div><div class="csl-right-inline">H.-M. Müller, K. M. Van Auken, Y. Li, and P. W. Sternberg, <span>“Textpresso Central: a customizable platform for searching, text mining, viewing, and curating biomedical literature,”</span> <em>BMC Bioinformatics</em>, vol. 19, no. 1, p. 94, Dec. 2018 [Online]. Available: <a href="https://doi.org/gf7rbz">https://doi.org/gf7rbz</a>. [Accessed: 29-Mar-2022]</div>
+<div class="csl-left-margin">[12] </div><div class="csl-right-inline">H.-M. Müller, K. M. Van Auken, Y. Li, and P. W. Sternberg, <span>“Textpresso Central: a customizable platform for searching, text mining, viewing, and curating biomedical literature,”</span> <em>BMC Bioinformatics</em>, vol. 19, no. 1, p. 94, Dec. 2018 [Online]. Available: <a href="https://doi.org/gf7rbz">https://doi.org/gf7rbz</a>. [Accessed: 01-Apr-2022]</div>
 </div>
 <div id="ref-B8EOgoNA" class="csl-entry" role="doc-biblioentry">
-<div class="csl-left-margin">[13] </div><div class="csl-right-inline">J. X. Binder <em>et al.</em>, <span>“COMPARTMENTS: unification and visualization of protein subcellular localization evidence,”</span> <em>Database</em>, vol. 2014, no. 0, pp. bau012–bau012, Feb. 2014 [Online]. Available: <a href="https://doi.org/btbm">https://doi.org/btbm</a>. [Accessed: 29-Mar-2022]</div>
+<div class="csl-left-margin">[13] </div><div class="csl-right-inline">J. X. Binder <em>et al.</em>, <span>“COMPARTMENTS: unification and visualization of protein subcellular localization evidence,”</span> <em>Database</em>, vol. 2014, no. 0, pp. bau012–bau012, Feb. 2014 [Online]. Available: <a href="https://doi.org/btbm">https://doi.org/btbm</a>. [Accessed: 01-Apr-2022]</div>
 </div>
 <div id="ref-6QECA6Hm" class="csl-entry" role="doc-biblioentry">
-<div class="csl-left-margin">[14] </div><div class="csl-right-inline">A. Santos, K. Tsafou, C. Stolte, S. Pletscher-Frankild, S. I. O’Donoghue, and L. J. Jensen, <span>“Comprehensive comparison of large-scale tissue expression datasets,”</span> <em>PeerJ</em>, vol. 3, p. e1054, Jun. 2015 [Online]. Available: <a href="https://doi.org/f3mn6p">https://doi.org/f3mn6p</a>. [Accessed: 29-Mar-2022]</div>
+<div class="csl-left-margin">[14] </div><div class="csl-right-inline">A. Santos, K. Tsafou, C. Stolte, S. Pletscher-Frankild, S. I. O’Donoghue, and L. J. Jensen, <span>“Comprehensive comparison of large-scale tissue expression datasets,”</span> <em>PeerJ</em>, vol. 3, p. e1054, Jun. 2015 [Online]. Available: <a href="https://doi.org/f3mn6p">https://doi.org/f3mn6p</a>. [Accessed: 01-Apr-2022]</div>
 </div>
 <div id="ref-RQkLuc5t" class="csl-entry" role="doc-biblioentry">
-<div class="csl-left-margin">[15] </div><div class="csl-right-inline">C. Manning, M. Surdeanu, J. Bauer, J. Finkel, S. Bethard, and D. McClosky, <span>“The Stanford CoreNLP Natural Language Processing Toolkit,”</span> in <em>Proceedings of 52nd Annual Meeting of the Association for Computational Linguistics: System Demonstrations</em>, Baltimore, Maryland, 2014, pp. 55–60 [Online]. Available: <a href="https://doi.org/gf3xhp">https://doi.org/gf3xhp</a>. [Accessed: 29-Mar-2022]</div>
+<div class="csl-left-margin">[15] </div><div class="csl-right-inline">C. Manning, M. Surdeanu, J. Bauer, J. Finkel, S. Bethard, and D. McClosky, <span>“The Stanford CoreNLP Natural Language Processing Toolkit,”</span> in <em>Proceedings of 52nd Annual Meeting of the Association for Computational Linguistics: System Demonstrations</em>, Baltimore, Maryland, 2014, pp. 55–60 [Online]. Available: <a href="https://doi.org/gf3xhp">https://doi.org/gf3xhp</a>. [Accessed: 01-Apr-2022]</div>
 </div>
 <div id="ref-199TFjkrC" class="csl-entry" role="doc-biblioentry">
-<div class="csl-left-margin">[16] </div><div class="csl-right-inline">L. J. Jensen, J. Saric, and P. Bork, <span>“Literature mining for the biologist: from information retrieval to biological discovery,”</span> <em>Nature Reviews Genetics</em>, vol. 7, no. 2, pp. 119–129, Feb. 2006 [Online]. Available: <a href="https://doi.org/bgq7q9">https://doi.org/bgq7q9</a>. [Accessed: 29-Mar-2022]</div>
+<div class="csl-left-margin">[16] </div><div class="csl-right-inline">L. J. Jensen, J. Saric, and P. Bork, <span>“Literature mining for the biologist: from information retrieval to biological discovery,”</span> <em>Nature Reviews Genetics</em>, vol. 7, no. 2, pp. 119–129, Feb. 2006 [Online]. Available: <a href="https://doi.org/bgq7q9">https://doi.org/bgq7q9</a>. [Accessed: 01-Apr-2022]</div>
 </div>
 <div id="ref-1ZjlFRHa" class="csl-entry" role="doc-biblioentry">
-<div class="csl-left-margin">[17] </div><div class="csl-right-inline">W. W. M. Fleuren and W. Alkema, <span>“Application of text mining in the biomedical domain,”</span> <em>Methods</em>, vol. 74, pp. 97–106, Mar. 2015 [Online]. Available: <a href="https://doi.org/f64p6n">https://doi.org/f64p6n</a>. [Accessed: 29-Mar-2022]</div>
+<div class="csl-left-margin">[17] </div><div class="csl-right-inline">W. W. M. Fleuren and W. Alkema, <span>“Application of text mining in the biomedical domain,”</span> <em>Methods</em>, vol. 74, pp. 97–106, Mar. 2015 [Online]. Available: <a href="https://doi.org/f64p6n">https://doi.org/f64p6n</a>. [Accessed: 01-Apr-2022]</div>
 </div>
 <div id="ref-16As8893j" class="csl-entry" role="doc-biblioentry">
 <div class="csl-left-margin">[18] </div><div class="csl-right-inline">M. Krallinger, O. Rabal, S. A. Akhondi, <em>et al.</em>, <span>“Overview of the biocreative vi chemical-protein interaction track,”</span> in <em>Proceedings of the sixth biocreative challenge evaluation workshop</em>, 2017, vol. 1, pp. 141–146 [Online]. Available: <a href="https://www.semanticscholar.org/paper/Overview-of-the-BioCreative-VI-chemical-protein-Krallinger-Rabal/eed781f498b563df5a9e8a241c67d63dd1d92ad5">https://www.semanticscholar.org/paper/Overview-of-the-BioCreative-VI-chemical-protein-Krallinger-Rabal/eed781f498b563df5a9e8a241c67d63dd1d92ad5</a></div>
 </div>
 <div id="ref-DR8XM4Ff" class="csl-entry" role="doc-biblioentry">
-<div class="csl-left-margin">[19] </div><div class="csl-right-inline">S. Pyysalo, A. Airola, J. Heimonen, J. Björne, F. Ginter, and T. Salakoski, <span>“Comparative analysis of five protein-protein interaction corpora,”</span> <em>BMC Bioinformatics</em>, vol. 9, no. S3, p. S6, Apr. 2008 [Online]. Available: <a href="https://doi.org/fh3df7">https://doi.org/fh3df7</a>. [Accessed: 29-Mar-2022]</div>
+<div class="csl-left-margin">[19] </div><div class="csl-right-inline">S. Pyysalo, A. Airola, J. Heimonen, J. Björne, F. Ginter, and T. Salakoski, <span>“Comparative analysis of five protein-protein interaction corpora,”</span> <em>BMC Bioinformatics</em>, vol. 9, no. S3, p. S6, Apr. 2008 [Online]. Available: <a href="https://doi.org/fh3df7">https://doi.org/fh3df7</a>. [Accessed: 01-Apr-2022]</div>
 </div>
 <div id="ref-uujIm995" class="csl-entry" role="doc-biblioentry">
-<div class="csl-left-margin">[20] </div><div class="csl-right-inline">M. A. Hearst, S. T. Dumais, E. Osuna, J. Platt, and B. Scholkopf, <span>“Support vector machines,”</span> <em>IEEE Intelligent Systems and their Applications</em>, vol. 13, no. 4, pp. 18–28, Jul. 1998 [Online]. Available: <a href="https://doi.org/fwgxrj">https://doi.org/fwgxrj</a>. [Accessed: 29-Mar-2022]</div>
+<div class="csl-left-margin">[20] </div><div class="csl-right-inline">M. A. Hearst, S. T. Dumais, E. Osuna, J. Platt, and B. Scholkopf, <span>“Support vector machines,”</span> <em>IEEE Intelligent Systems and their Applications</em>, vol. 13, no. 4, pp. 18–28, Jul. 1998 [Online]. Available: <a href="https://doi.org/fwgxrj">https://doi.org/fwgxrj</a>. [Accessed: 01-Apr-2022]</div>
 </div>
 <div id="ref-BQS8ClV0" class="csl-entry" role="doc-biblioentry">
-<div class="csl-left-margin">[21] </div><div class="csl-right-inline">J. Schmidhuber, <span>“Deep learning in neural networks: An overview,”</span> <em>Neural Networks</em>, vol. 61, pp. 85–117, Jan. 2015 [Online]. Available: <a href="https://doi.org/f6v78n">https://doi.org/f6v78n</a>. [Accessed: 29-Mar-2022]</div>
+<div class="csl-left-margin">[21] </div><div class="csl-right-inline">J. Schmidhuber, <span>“Deep learning in neural networks: An overview,”</span> <em>Neural Networks</em>, vol. 61, pp. 85–117, Jan. 2015 [Online]. Available: <a href="https://doi.org/f6v78n">https://doi.org/f6v78n</a>. [Accessed: 01-Apr-2022]</div>
 </div>
 <div id="ref-16cIDAXhG" class="csl-entry" role="doc-biblioentry">
-<div class="csl-left-margin">[22] </div><div class="csl-right-inline">J. MacArthur <em>et al.</em>, <span>“The new NHGRI-EBI Catalog of published genome-wide association studies (GWAS Catalog),”</span> <em>Nucleic Acids Research</em>, vol. 45, no. D1, pp. D896–D901, Jan. 2017 [Online]. Available: <a href="https://doi.org/f9v7cp">https://doi.org/f9v7cp</a>. [Accessed: 29-Mar-2022]</div>
+<div class="csl-left-margin">[22] </div><div class="csl-right-inline">J. MacArthur <em>et al.</em>, <span>“The new NHGRI-EBI Catalog of published genome-wide association studies (GWAS Catalog),”</span> <em>Nucleic Acids Research</em>, vol. 45, no. D1, pp. D896–D901, Jan. 2017 [Online]. Available: <a href="https://doi.org/f9v7cp">https://doi.org/f9v7cp</a>. [Accessed: 01-Apr-2022]</div>
 </div>
 <div id="ref-LCyCrr7W" class="csl-entry" role="doc-biblioentry">
-<div class="csl-left-margin">[23] </div><div class="csl-right-inline">T. Rolland <em>et al.</em>, <span>“A Proteome-Scale Map of the Human Interactome Network,”</span> <em>Cell</em>, vol. 159, no. 5, pp. 1212–1226, Nov. 2014 [Online]. Available: <a href="https://doi.org/f3mn6x">https://doi.org/f3mn6x</a>. [Accessed: 29-Mar-2022]</div>
+<div class="csl-left-margin">[23] </div><div class="csl-right-inline">T. Rolland <em>et al.</em>, <span>“A Proteome-Scale Map of the Human Interactome Network,”</span> <em>Cell</em>, vol. 159, no. 5, pp. 1212–1226, Nov. 2014 [Online]. Available: <a href="https://doi.org/f3mn6x">https://doi.org/f3mn6x</a>. [Accessed: 01-Apr-2022]</div>
 </div>
 <div id="ref-1FI8iuYiQ" class="csl-entry" role="doc-biblioentry">
-<div class="csl-left-margin">[24] </div><div class="csl-right-inline">D. S. Wishart <em>et al.</em>, <span>“DrugBank 5.0: a major update to the DrugBank database for 2018,”</span> <em>Nucleic Acids Research</em>, vol. 46, no. D1, pp. D1074–D1082, Jan. 2018 [Online]. Available: <a href="https://doi.org/gcwtzk">https://doi.org/gcwtzk</a>. [Accessed: 29-Mar-2022]</div>
+<div class="csl-left-margin">[24] </div><div class="csl-right-inline">D. S. Wishart <em>et al.</em>, <span>“DrugBank 5.0: a major update to the DrugBank database for 2018,”</span> <em>Nucleic Acids Research</em>, vol. 46, no. D1, pp. D1074–D1082, Jan. 2018 [Online]. Available: <a href="https://doi.org/gcwtzk">https://doi.org/gcwtzk</a>. [Accessed: 01-Apr-2022]</div>
 </div>
 <div id="ref-18ZyyTcTe" class="csl-entry" role="doc-biblioentry">
-<div class="csl-left-margin">[25] </div><div class="csl-right-inline">C.-H. Wei, A. Allot, R. Leaman, and Z. Lu, <span>“PubTator central: automated concept annotation for biomedical full text articles,”</span> <em>Nucleic Acids Research</em>, vol. 47, no. W1, pp. W587–W593, Jul. 2019 [Online]. Available: <a href="https://doi.org/ggzfsc">https://doi.org/ggzfsc</a>. [Accessed: 29-Mar-2022]</div>
+<div class="csl-left-margin">[25] </div><div class="csl-right-inline">C.-H. Wei, A. Allot, R. Leaman, and Z. Lu, <span>“PubTator central: automated concept annotation for biomedical full text articles,”</span> <em>Nucleic Acids Research</em>, vol. 47, no. W1, pp. W587–W593, Jul. 2019 [Online]. Available: <a href="https://doi.org/ggzfsc">https://doi.org/ggzfsc</a>. [Accessed: 01-Apr-2022]</div>
 </div>
 <div id="ref-11YUuHulp" class="csl-entry" role="doc-biblioentry">
-<div class="csl-left-margin">[26] </div><div class="csl-right-inline">R. Leaman and Z. Lu, <span>“TaggerOne: joint named entity recognition and normalization with semi-Markov Models,”</span> <em>Bioinformatics</em>, vol. 32, no. 18, pp. 2839–2846, Sep. 2016 [Online]. Available: <a href="https://doi.org/f855dg">https://doi.org/f855dg</a>. [Accessed: 29-Mar-2022]</div>
+<div class="csl-left-margin">[26] </div><div class="csl-right-inline">R. Leaman and Z. Lu, <span>“TaggerOne: joint named entity recognition and normalization with semi-Markov Models,”</span> <em>Bioinformatics</em>, vol. 32, no. 18, pp. 2839–2846, Sep. 2016 [Online]. Available: <a href="https://doi.org/f855dg">https://doi.org/f855dg</a>. [Accessed: 01-Apr-2022]</div>
 </div>
 <div id="ref-17LQKv7vO" class="csl-entry" role="doc-biblioentry">
-<div class="csl-left-margin">[27] </div><div class="csl-right-inline">C.-H. Wei, L. Phan, J. Feltz, R. Maiti, T. Hefferon, and Z. Lu, <span>“tmVar 2.0: integrating genomic variant information from literature with dbSNP and ClinVar for precision medicine,”</span> <em>Bioinformatics</em>, vol. 34, no. 1, pp. 80–87, Jan. 2018 [Online]. Available: <a href="https://doi.org/gbzsmc">https://doi.org/gbzsmc</a>. [Accessed: 29-Mar-2022]</div>
+<div class="csl-left-margin">[27] </div><div class="csl-right-inline">C.-H. Wei, L. Phan, J. Feltz, R. Maiti, T. Hefferon, and Z. Lu, <span>“tmVar 2.0: integrating genomic variant information from literature with dbSNP and ClinVar for precision medicine,”</span> <em>Bioinformatics</em>, vol. 34, no. 1, pp. 80–87, Jan. 2018 [Online]. Available: <a href="https://doi.org/gbzsmc">https://doi.org/gbzsmc</a>. [Accessed: 01-Apr-2022]</div>
 </div>
 <div id="ref-aOPX10e0" class="csl-entry" role="doc-biblioentry">
-<div class="csl-left-margin">[28] </div><div class="csl-right-inline">C.-H. Wei, H.-Y. Kao, and Z. Lu, <span>“GNormPlus: An Integrative Approach for Tagging Genes, Gene Families, and Protein Domains,”</span> <em>BioMed Research International</em>, vol. 2015, pp. 1–7, 2015 [Online]. Available: <a href="https://doi.org/gb85jb">https://doi.org/gb85jb</a>. [Accessed: 29-Mar-2022]</div>
+<div class="csl-left-margin">[28] </div><div class="csl-right-inline">C.-H. Wei, H.-Y. Kao, and Z. Lu, <span>“GNormPlus: An Integrative Approach for Tagging Genes, Gene Families, and Protein Domains,”</span> <em>BioMed Research International</em>, vol. 2015, pp. 1–7, 2015 [Online]. Available: <a href="https://doi.org/gb85jb">https://doi.org/gb85jb</a>. [Accessed: 01-Apr-2022]</div>
 </div>
 <div id="ref-NXIFrudx" class="csl-entry" role="doc-biblioentry">
-<div class="csl-left-margin">[29] </div><div class="csl-right-inline">C.-H. Wei, H.-Y. Kao, and Z. Lu, <span>“SR4GN: A Species Recognition Software Tool for Gene Normalization,”</span> <em>PLoS ONE</em>, vol. 7, no. 6, p. e38460, Jun. 2012 [Online]. Available: <a href="https://doi.org/gpq498">https://doi.org/gpq498</a>. [Accessed: 29-Mar-2022]</div>
+<div class="csl-left-margin">[29] </div><div class="csl-right-inline">C.-H. Wei, H.-Y. Kao, and Z. Lu, <span>“SR4GN: A Species Recognition Software Tool for Gene Normalization,”</span> <em>PLoS ONE</em>, vol. 7, no. 6, p. e38460, Jun. 2012 [Online]. Available: <a href="https://doi.org/gpq498">https://doi.org/gpq498</a>. [Accessed: 01-Apr-2022]</div>
 </div>
 <div id="ref-q2fFAZTG" class="csl-entry" role="doc-biblioentry">
 <div class="csl-left-margin">[30] </div><div class="csl-right-inline">M. Honnibal and I. Montani, <span>“spaCy 2: Natural language understanding with Bloom embeddings, convolutional neural networks and incremental parsing,”</span> 2017. </div>
 </div>
 <div id="ref-M3TiGlfS" class="csl-entry" role="doc-biblioentry">
-<div class="csl-left-margin">[31] </div><div class="csl-right-inline">A. Ratner, S. H. Bach, H. Ehrenberg, J. Fries, S. Wu, and C. Ré, <span>“Snorkel: rapid training data creation with weak supervision,”</span> <em>The VLDB Journal</em>, vol. 29, no. 2–3, pp. 709–730, May 2020 [Online]. Available: <a href="https://doi.org/ghbw5f">https://doi.org/ghbw5f</a>. [Accessed: 29-Mar-2022]</div>
+<div class="csl-left-margin">[31] </div><div class="csl-right-inline">A. Ratner, S. H. Bach, H. Ehrenberg, J. Fries, S. Wu, and C. Ré, <span>“Snorkel: rapid training data creation with weak supervision,”</span> <em>The VLDB Journal</em>, vol. 29, no. 2–3, pp. 709–730, May 2020 [Online]. Available: <a href="https://doi.org/ghbw5f">https://doi.org/ghbw5f</a>. [Accessed: 01-Apr-2022]</div>
 </div>
 <div id="ref-riimmjYr" class="csl-entry" role="doc-biblioentry">
 <div class="csl-left-margin">[32] </div><div class="csl-right-inline">J. Lee <em>et al.</em>, <span>“BioBERT: a pre-trained biomedical language representation model for biomedical text mining,”</span> arXiv, 1901.08746, Oct. 2019 [Online]. Available: <a href="https://arxiv.org/abs/1901.08746">https://arxiv.org/abs/1901.08746</a></div>
 </div>
 <div id="ref-POJM5tCR" class="csl-entry" role="doc-biblioentry">
-<div class="csl-left-margin">[33] </div><div class="csl-right-inline">J. Devlin, M.-W. Chang, K. Lee, and K. Toutanova, <span>“[No title found],”</span> in <em>Proceedings of the 2019 Conference of the North</em>, Minneapolis, Minnesota, 2019, pp. 4171–4186 [Online]. Available: <a href="https://doi.org/ggbwf6">https://doi.org/ggbwf6</a>. [Accessed: 29-Mar-2022]</div>
+<div class="csl-left-margin">[33] </div><div class="csl-right-inline">J. Devlin, M.-W. Chang, K. Lee, and K. Toutanova, <span>“[No title found],”</span> in <em>Proceedings of the 2019 Conference of the North</em>, Minneapolis, Minnesota, 2019, pp. 4171–4186 [Online]. Available: <a href="https://doi.org/ggbwf6">https://doi.org/ggbwf6</a>. [Accessed: 01-Apr-2022]</div>
 </div>
 <div id="ref-u294RvPz" class="csl-entry" role="doc-biblioentry">
-<div class="csl-left-margin">[34] </div><div class="csl-right-inline">R. J. Roberts, <span>“PubMed Central: The GenBank of the published literature,”</span> <em>Proceedings of the National Academy of Sciences</em>, vol. 98, no. 2, pp. 381–382, Jan. 2001 [Online]. Available: <a href="https://doi.org/bbn9k8">https://doi.org/bbn9k8</a>. [Accessed: 29-Mar-2022]</div>
+<div class="csl-left-margin">[34] </div><div class="csl-right-inline">R. J. Roberts, <span>“PubMed Central: The GenBank of the published literature,”</span> <em>Proceedings of the National Academy of Sciences</em>, vol. 98, no. 2, pp. 381–382, Jan. 2001 [Online]. Available: <a href="https://doi.org/bbn9k8">https://doi.org/bbn9k8</a>. [Accessed: 01-Apr-2022]</div>
 </div>
 <div id="ref-187nWRTVH" class="csl-entry" role="doc-biblioentry">
 <div class="csl-left-margin">[35] </div><div class="csl-right-inline">T. Wolf <em>et al.</em>, <span>“&lt;span class="nocase"&gt;Transformers: State-of-the-Art Natural Language Processing&lt;/span&gt;,”</span> 2020, pp. 38–45 [Online]. Available: <a href="https://www.aclweb.org/anthology/2020.emnlp-demos.6">https://www.aclweb.org/anthology/2020.emnlp-demos.6</a></div>
@@ -641,13 +651,13 @@ This work was support by <a href="https://www.moore.org/grant-detail?grantId=GBM
 <div class="csl-left-margin">[38] </div><div class="csl-right-inline"><span>“[No title found].”</span> [Online]. Available: <a href="https://doi.org/bfmk">https://doi.org/bfmk</a></div>
 </div>
 <div id="ref-137tbemL9" class="csl-entry" role="doc-biblioentry">
-<div class="csl-left-margin">[39] </div><div class="csl-right-inline">S. Oxenham, <span>“Legal confusion threatens to slow data science,”</span> <em>Nature</em>, vol. 536, no. 7614, pp. 16–17, Aug. 2016 [Online]. Available: <a href="https://doi.org/bndt">https://doi.org/bndt</a>. [Accessed: 29-Mar-2022]</div>
+<div class="csl-left-margin">[39] </div><div class="csl-right-inline">S. Oxenham, <span>“Legal confusion threatens to slow data science,”</span> <em>Nature</em>, vol. 536, no. 7614, pp. 16–17, Aug. 2016 [Online]. Available: <a href="https://doi.org/bndt">https://doi.org/bndt</a>. [Accessed: 01-Apr-2022]</div>
 </div>
 <div id="ref-1GwdMLPbV" class="csl-entry" role="doc-biblioentry">
-<div class="csl-left-margin">[40] </div><div class="csl-right-inline">S. Carbon, R. Champieux, J. A. McMurry, L. Winfree, L. R. Wyatt, and M. A. Haendel, <span>“An analysis and metric of reusable data licensing practices for biomedical resources,”</span> <em>PLOS ONE</em>, vol. 14, no. 3, p. e0213090, Mar. 2019 [Online]. Available: <a href="https://doi.org/gf5m8v">https://doi.org/gf5m8v</a>. [Accessed: 29-Mar-2022]</div>
+<div class="csl-left-margin">[40] </div><div class="csl-right-inline">S. Carbon, R. Champieux, J. A. McMurry, L. Winfree, L. R. Wyatt, and M. A. Haendel, <span>“An analysis and metric of reusable data licensing practices for biomedical resources,”</span> <em>PLOS ONE</em>, vol. 14, no. 3, p. e0213090, Mar. 2019 [Online]. Available: <a href="https://doi.org/gf5m8v">https://doi.org/gf5m8v</a>. [Accessed: 01-Apr-2022]</div>
 </div>
 <div id="ref-9Jo1af7Z" class="csl-entry" role="doc-biblioentry">
-<div class="csl-left-margin">[41] </div><div class="csl-right-inline">A. Ratner, B. Hancock, J. Dunnmon, R. Goldman, and C. Ré, <span>“Snorkel MeTaL: Weak Supervision for Multi-Task Learning,”</span> in <em>Proceedings of the Second Workshop on Data Management for End-To-End Machine Learning</em>, Houston TX USA, 2018, pp. 1–4 [Online]. Available: <a href="https://doi.org/gf3xk7">https://doi.org/gf3xk7</a>. [Accessed: 29-Mar-2022]</div>
+<div class="csl-left-margin">[41] </div><div class="csl-right-inline">A. Ratner, B. Hancock, J. Dunnmon, R. Goldman, and C. Ré, <span>“Snorkel MeTaL: Weak Supervision for Multi-Task Learning,”</span> in <em>Proceedings of the Second Workshop on Data Management for End-To-End Machine Learning</em>, Houston TX USA, 2018, pp. 1–4 [Online]. Available: <a href="https://doi.org/gf3xk7">https://doi.org/gf3xk7</a>. [Accessed: 01-Apr-2022]</div>
 </div>
 <div id="ref-QJ6hYH8N" class="csl-entry" role="doc-biblioentry">
 <div class="csl-left-margin">[42] </div><div class="csl-right-inline">C. Guo, G. Pleiss, Y. Sun, and K. Q. Weinberger, <span>“On Calibration of Modern Neural Networks,”</span> arXiv, 1706.04599, Aug. 2017 [Online]. Available: <a href="https://arxiv.org/abs/1706.04599">https://arxiv.org/abs/1706.04599</a></div>
@@ -661,34 +671,23 @@ This work was support by <a href="https://www.moore.org/grant-detail?grantId=GBM
 <h4 id="individual-sources">Individual Sources</h4>
 <div id="fig:aupr_gen_model_test_set" class="fignos">
 <figure>
-<img src="https://raw.githubusercontent.com/danich1/snorkeling/86037d185a299a1f6dd4dd68605073849c72af6f/figures/label_sampling_experiment/transfer_test_set_aupr.png" alt="Figure 4: Edge-specific label functions improves performance over edge-mismatch label functions. Each line plot header depicts the edge type the generative model is trying to predict, while the colors represent the source of label functions. For example orange represents sampling label functions designed to predict the Compound treats Disease (CtD) edge type. The x axis shows the number of randomly sampled label functions being incorporated into the database-only baseline model (point at 0). The y axis shows area under the precision recall curve (AUPR). Each point on the plot shows the average of 50 sample runs, while the error bars show the 95% confidence intervals of all runs. The baseline and “All” data points consist of sampling from the entire fixed set of label functions." /><figcaption aria-hidden="true"><span>Figure 4:</span> Edge-specific label functions improves performance over edge-mismatch label functions.
+<img src="https://raw.githubusercontent.com/danich1/snorkeling-full-text/80c9c899e91418af6fba7c74c9bc28b04be78458/figure_generation/output/figure_three.png" alt="Figure 5: Edge-specific label functions improve performance over edge-mismatch label functions. Each line plot header depicts the edge type the generative model is trying to predict, while the colors represent the source of label functions. For example, orange represents sampling label functions designed to predict the Compound treats Disease (CtD) edge type. The x-axis shows the number of randomly sampled label functions incorporated as an addition to the database-only baseline model (the point at 0). The y-axis shows the area under the precision-recall curve (AUPR). Each point on the plot shows the average of 50 sample runs, while the error bars show the 95% confidence intervals of all runs. The baseline and “All” data points consist of sampling from the entire fixed set of label functions." /><figcaption aria-hidden="true"><span>Figure 5:</span> Edge-specific label functions improve performance over edge-mismatch label functions.
 Each line plot header depicts the edge type the generative model is trying to predict, while the colors represent the source of label functions.
-For example orange represents sampling label functions designed to predict the Compound treats Disease (CtD) edge type.
-The x axis shows the number of randomly sampled label functions being incorporated into the database-only baseline model (point at 0).
-The y axis shows area under the precision recall curve (AUPR).
+For example, orange represents sampling label functions designed to predict the Compound treats Disease (CtD) edge type.
+The x-axis shows the number of randomly sampled label functions incorporated as an addition to the database-only baseline model (the point at 0).
+The y-axis shows the area under the precision-recall curve (AUPR).
 Each point on the plot shows the average of 50 sample runs, while the error bars show the 95% confidence intervals of all runs.
 The baseline and “All” data points consist of sampling from the entire fixed set of label functions.</figcaption>
 </figure>
 </div>
 <h4 id="collective-pool-of-sources">Collective Pool of Sources</h4>
-<div id="fig:auroc_grabbag_gen_model_test_set" class="fignos">
-<figure>
-<img src="https://raw.githubusercontent.com/danich1/snorkeling/86037d185a299a1f6dd4dd68605073849c72af6f/figures/label_sampling_experiment/all_lf_test_set_auroc.png" alt="Figure 5: Using all label functions generally hinders generative model performance. Each line plot header depicts the edge type the generative model is trying to predict, while the colors represent the source of label functions. For example, orange represents sampling label functions designed to predict the Compound treats Disease (CtD) edge type. The x axis shows the number of randomly sampled label functions being incorporated into the database-only baseline model (point at 0). The y axis shows area under the receiver operating curve (AUROC). Each point on the plot shows the average of 50 sample runs, while the error bars show the 95% confidence intervals of all runs. The baseline and “All” data points consist of sampling from the entire fixed set of label functions." /><figcaption aria-hidden="true"><span>Figure 5:</span> Using all label functions generally hinders generative model performance.
-Each line plot header depicts the edge type the generative model is trying to predict, while the colors represent the source of label functions.
-For example, orange represents sampling label functions designed to predict the Compound treats Disease (CtD) edge type.
-The x axis shows the number of randomly sampled label functions being incorporated into the database-only baseline model (point at 0).
-The y axis shows area under the receiver operating curve (AUROC).
-Each point on the plot shows the average of 50 sample runs, while the error bars show the 95% confidence intervals of all runs.
-The baseline and “All” data points consist of sampling from the entire fixed set of label functions.</figcaption>
-</figure>
-</div>
 <div id="fig:aupr_grabbag_gen_model_test_set" class="fignos">
 <figure>
-<img src="https://raw.githubusercontent.com/danich1/snorkeling/86037d185a299a1f6dd4dd68605073849c72af6f/figures/label_sampling_experiment/all_lf_test_set_aupr.png" alt="Figure 6: Using all label functions generally hinders generative model performance. Each line plot header depicts the edge type the generative model is trying to predict, while the colors represent the source of label functions. For example, orange represents sampling label functions designed to predict the Compound treats Disease (CtD) edge type. The x axis shows the number of randomly sampled label functions being incorporated into the database-only baseline model (point at 0). The y axis shows area under the precision recall curve (AUPR). Each point on the plot shows the average of 50 sample runs, while the error bars show the 95% confidence intervals of all runs. The baseline and “All” data points consist of sampling from the entire fixed set of label functions." /><figcaption aria-hidden="true"><span>Figure 6:</span> Using all label functions generally hinders generative model performance.
+<img src="https://raw.githubusercontent.com/danich1/snorkeling-full-text/80c9c899e91418af6fba7c74c9bc28b04be78458/figure_generation/output/figure_five.png" alt="Figure 6: Using all label functions generally hinders generative model performance. Each line plot header depicts the edge type the generative model is trying to predict, while the colors represent the source of label functions. For example, orange represents sampling label functions designed to predict the Compound treats Disease (CtD) edge type. The x-axis shows the number of randomly sampled label functions incorporated as an addition to the database-only baseline model (the point at 0). The y-axis shows the area under the precision-recall curve (AUPR). Each point on the plot shows the average of 50 sample runs, while the error bars show the 95% confidence intervals of all runs. The baseline and “All” data points consist of sampling from the entire fixed set of label functions." /><figcaption aria-hidden="true"><span>Figure 6:</span> Using all label functions generally hinders generative model performance.
 Each line plot header depicts the edge type the generative model is trying to predict, while the colors represent the source of label functions.
 For example, orange represents sampling label functions designed to predict the Compound treats Disease (CtD) edge type.
-The x axis shows the number of randomly sampled label functions being incorporated into the database-only baseline model (point at 0).
-The y axis shows area under the precision recall curve (AUPR).
+The x-axis shows the number of randomly sampled label functions incorporated as an addition to the database-only baseline model (the point at 0).
+The y-axis shows the area under the precision-recall curve (AUPR).
 Each point on the plot shows the average of 50 sample runs, while the error bars show the 95% confidence intervals of all runs.
 The baseline and “All” data points consist of sampling from the entire fixed set of label functions.</figcaption>
 </figure>
