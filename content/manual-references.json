@@ -44,7 +44,7 @@
     "type": "manuscript"
 },
 {
-    "id": "raw:biocreative/chemprot",
+    "id": "biocreative-chemprot",
     "URL": "https://www.semanticscholar.org/paper/Overview-of-the-BioCreative-VI-chemical-protein-Krallinger-Rabal/eed781f498b563df5a9e8a241c67d63dd1d92ad5",
     "author": [
       {
@@ -157,7 +157,7 @@
     "type": "no-type"
     },
     {
-    "id": "Jiang2018RevisitingDS",
+    "URL": "https://aclanthology.org/L18-1566",
     "author": [
       {
         "family": "Jiang",
@@ -176,14 +176,18 @@
         "given": "Zhifang"
       }
     ],
-    "container-title": "LREC",
+    "container-title": "Proceedings of the eleventh international conference on language resources and evaluation (LREC 2018)",
+    "id": "jiang2018revisiting",
     "issued": {
       "date-parts": [
         [
-          2018
+          2018,
+          5
         ]
       ]
     },
+    "publisher": "European Language Resources Association (ELRA)",
+    "publisher-place": "Miyazaki, Japan",
     "title": "Revisiting distant supervision for relation extraction",
     "type": "paper-conference"
   },
