@@ -48,13 +48,13 @@ header-includes: |-
   <meta name="citation_fulltext_html_url" content="https://greenelab.github.io/text_mined_hetnet_manuscript/" />
   <meta name="citation_pdf_url" content="https://greenelab.github.io/text_mined_hetnet_manuscript/manuscript.pdf" />
   <link rel="alternate" type="application/pdf" href="https://greenelab.github.io/text_mined_hetnet_manuscript/manuscript.pdf" />
-  <link rel="alternate" type="text/html" href="https://greenelab.github.io/text_mined_hetnet_manuscript/v/1ccd3b603a45727d2219e1ebfe64394bb4b61e62/" />
-  <meta name="manubot_html_url_versioned" content="https://greenelab.github.io/text_mined_hetnet_manuscript/v/1ccd3b603a45727d2219e1ebfe64394bb4b61e62/" />
-  <meta name="manubot_pdf_url_versioned" content="https://greenelab.github.io/text_mined_hetnet_manuscript/v/1ccd3b603a45727d2219e1ebfe64394bb4b61e62/manuscript.pdf" />
+  <link rel="alternate" type="text/html" href="https://greenelab.github.io/text_mined_hetnet_manuscript/v/855f0b5dc5518b00568d742663e286d57fa4139f/" />
+  <meta name="manubot_html_url_versioned" content="https://greenelab.github.io/text_mined_hetnet_manuscript/v/855f0b5dc5518b00568d742663e286d57fa4139f/" />
+  <meta name="manubot_pdf_url_versioned" content="https://greenelab.github.io/text_mined_hetnet_manuscript/v/855f0b5dc5518b00568d742663e286d57fa4139f/manuscript.pdf" />
   <meta property="og:type" content="article" />
   <meta property="twitter:card" content="summary_large_image" />
-  <meta property="og:image" content="https://github.com/greenelab/text_mined_hetnet_manuscript/raw/1ccd3b603a45727d2219e1ebfe64394bb4b61e62/thumbnail.png" />
-  <meta property="twitter:image" content="https://github.com/greenelab/text_mined_hetnet_manuscript/raw/1ccd3b603a45727d2219e1ebfe64394bb4b61e62/thumbnail.png" />
+  <meta property="og:image" content="https://github.com/greenelab/text_mined_hetnet_manuscript/raw/855f0b5dc5518b00568d742663e286d57fa4139f/thumbnail.png" />
+  <meta property="twitter:image" content="https://github.com/greenelab/text_mined_hetnet_manuscript/raw/855f0b5dc5518b00568d742663e286d57fa4139f/thumbnail.png" />
   <link rel="icon" type="image/png" sizes="192x192" href="https://manubot.org/favicon-192x192.png" />
   <link rel="mask-icon" href="https://manubot.org/safari-pinned-tab.svg" color="#ad1457" />
   <meta name="theme-color" content="#ad1457" />
@@ -74,9 +74,9 @@ _A DOI-citable version of this manuscript is available at <https://doi.org/10.11
 
 <small><em>
 This manuscript
-([permalink](https://greenelab.github.io/text_mined_hetnet_manuscript/v/1ccd3b603a45727d2219e1ebfe64394bb4b61e62/))
+([permalink](https://greenelab.github.io/text_mined_hetnet_manuscript/v/855f0b5dc5518b00568d742663e286d57fa4139f/))
 was automatically generated
-from [greenelab/text_mined_hetnet_manuscript@1ccd3b6](https://github.com/greenelab/text_mined_hetnet_manuscript/tree/1ccd3b603a45727d2219e1ebfe64394bb4b61e62)
+from [greenelab/text_mined_hetnet_manuscript@855f0b5](https://github.com/greenelab/text_mined_hetnet_manuscript/tree/855f0b5dc5518b00568d742663e286d57fa4139f)
 on April 25, 2022.
 </em></small>
 
@@ -445,21 +445,41 @@ Despite the modest recall level, the amount of novel edge types remains elevated
 This notion highlights that Hetionet v1 is missing a compelling amount of biomedical information, and relationship extraction is a viable way to close the information gap.
 
 
-## Discussion and Conclusions
+## Discussion
+
+We measured the extent to which label functions can be re-used across multiple edge types to extract relationships from literature.
+Through our sampling experiment, we found that adding edge-specific label functions increases performance for the generative model (Figure {@fig:auroc_gen_model_test_set}).
+We found that label functions designed from relatively related edge types can increase performance (Gene interacts Gene (GiG) label functions predicting the Compound binds Gene (CbG) edge and vice versa), while the Disease associates Gene (DaG) edge type remained agnostic to label function sources (Figure {@fig:auroc_gen_model_test_set} and Supplemental Figure {@fig:aupr_gen_model_test_set}).
+Furthermore, we found that using all label functions at once generally hurts performance with the exception being the DaG edge type (Supplemental Figures {@fig:auroc_grabbag_gen_model_test_set} and {@fig:aupr_grabbag_gen_model_test_set}).
+One possibility for this observation is that DaG is a broadly defined edge type.
+For example, DaG may contain many concepts related to other edge types such as Disease (up/down) regulating a Gene, which makes it more agnostic to label function sources (examples highlighted in our [annotated sentences](https://github.com/greenelab/text_mined_hetnet_manuscript/tree/master/supplementary_materials/annotated_sentences)).  
+
+Regarding the discriminative model, adding edge-specific label function substantially improved performance for two out of the four edge types (Compound treats Disease (CtD) and  Disease associates Gene (DaG)) (Figure {@fig:auroc_discriminative_model_performance} and Supplemental Figure {@fig:aupr_discriminative_model_performance}). 
+Gene interacts Gene (GiG) and Compound binds Gene (CbG) discriminative models showed minor improvements compared to the generative model, but only when nearly all edge-specific label functions are included (Figure {@fig:auroc_discriminative_model_performance} and Supplemental Figure {@fig:aupr_discriminative_model_performance}).
+We came across a large amount of spurious gene mentions when working with the discriminative model and believe that these mentions contributed to CbG and GiG's hindered performance.
+We encountered difficulty in calibrating each discriminative model (Supplemental Figure {@fig:discriminative_model_calibration}).
+The temperature scaling algorithm appears to improve calibration for the highest scores for each model but did not successfully calibrate throughout the entire range of predictions. 
+Improving performance for all predictions may require more labeled examples or may be a limitation of the approach in this setting.
+Even with these limitations, this early-stage approach could recall many existing edges from an existing knowledge base, Hetionet v1, and suggest many new high-confidence edges for inclusion (Supplemental Figure {@fig:hetionet_reconstruction}).
+Our findings suggest that further work, including an expansion of edge types and a move to full text from abstracts, may make this approach suitable for building continuously updated knowledge bases to address drug repositioning and other biomedical challenges.  
+ 
+
+
+## Conclusion and Future Direction
 
 Filling out knowledge bases via manual curation can be an arduous and erroneous task [@doi:10.1093/bioinformatics/btm229].
-Using manual curation alone becomes impractical as the rate of publications continuously increases.
-Data programming is a paradigm that uses label functions to speed up the annotation process and can be used to solve this problem.
-However, creating useful label functions is an obstacle to this paradigm, which takes considerable time.
-We tested the feasibility of re-using label functions to reduce the number of label functions required for strong prediction performance.
+As the rate of publications increases, relying on manual curation alone becomes impractical.
+Data programming, a paradigm that uses label functions as a means to speed up the annotation process, can be used as a solution for this problem.
+An obstacle for this paradigm, however, is creating useful label functions, which takes a considerable amount of time. 
+We tested the feasibility of reusing label functions as a way to reduce the total number of label functions required for strong prediction performance.
+We conclude that label functions may be re-used with closely related edge types, but that re-use does not improve performance for most pairings.
+The discriminative model's performance improves as more edge-specific label functions are incorporated into the generative model; however, we did notice that performance greatly depends on the annotations provided by the generative model.
 
-Our sampling experiment revealed that adding edge-specific label functions is better than adding off-edge label functions.
-An exception to this trend is using label functions designed from conceptually related edge types (using Gene-interacts-Gene (GiG) label functions to predict Compound-binds-Gene (CbG) sentences and vice versa).
-Furthermore, broad edge types such as Disease-associates-Gene (DaG) did not follow this trend as we found this edge to be agnostic to any tested label function source.
-One possibility for this observation is that the "associates" relationship is a general concept that may include other concepts such as Disease (up/down) regulating a Gene (examples highlighted in our [annotated sentences](https://github.com/greenelab/text_mined_hetnet_manuscript/tree/master/supplementary_materials/annotated_sentences)).
-The discriminator model did not have an apparent positive or negative effect on performance; however, we noticed that performance heavily depended on the annotations provided by the generative model.
-This pattern suggests a focus on label function construction and generative model training may be key steps to focus on in future work.
-Although we found that label functions cannot be re-used across all edge types with the standard task framing, strategies like multitask [@doi:10.1145/3209889.3209898] or transfer learning [@doi:10.1186/s40537-016-0043-6] may make multi-label-function efforts more successful.
+This work sets up the foundation for creating a common framework that mines text to create edges.
+Within this framework we would continuously incorporate new knowledge as novel findings are published, while providing a single confidence score for an edge via sentence score consolidation.
+As opposed to many existing knowledge graphs (for example, Hetionet v1 where text-derived edges generally cannot be exactly attributed to excerpts from literature [@doi:10.7554/eLife.26726; @doi:10.15363/thinklab.d67]), our approach has the potential to annotate each edge based on its source sentences.
+In addition, edges generated with this approach would be unencumbered from upstream licensing or copyright restrictions, enabling openly licensed hetnets at a scale not previously possible [@doi:10.15363/thinklab.d107; @doi:10.1038/536016a; @doi:10.1371/journal.pone.0213090].
+New multitask learning [@doi:10.1145/3209889.3209898] strategies may make it even more practical to reuse label functions to construct continuously updating literature-derived knowledge graphs.
 
 
 ## Supplemental Information

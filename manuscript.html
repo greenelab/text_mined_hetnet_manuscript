@@ -75,13 +75,13 @@
   <meta name="citation_fulltext_html_url" content="https://greenelab.github.io/text_mined_hetnet_manuscript/" />
   <meta name="citation_pdf_url" content="https://greenelab.github.io/text_mined_hetnet_manuscript/manuscript.pdf" />
   <link rel="alternate" type="application/pdf" href="https://greenelab.github.io/text_mined_hetnet_manuscript/manuscript.pdf" />
-  <link rel="alternate" type="text/html" href="https://greenelab.github.io/text_mined_hetnet_manuscript/v/1ccd3b603a45727d2219e1ebfe64394bb4b61e62/" />
-  <meta name="manubot_html_url_versioned" content="https://greenelab.github.io/text_mined_hetnet_manuscript/v/1ccd3b603a45727d2219e1ebfe64394bb4b61e62/" />
-  <meta name="manubot_pdf_url_versioned" content="https://greenelab.github.io/text_mined_hetnet_manuscript/v/1ccd3b603a45727d2219e1ebfe64394bb4b61e62/manuscript.pdf" />
+  <link rel="alternate" type="text/html" href="https://greenelab.github.io/text_mined_hetnet_manuscript/v/855f0b5dc5518b00568d742663e286d57fa4139f/" />
+  <meta name="manubot_html_url_versioned" content="https://greenelab.github.io/text_mined_hetnet_manuscript/v/855f0b5dc5518b00568d742663e286d57fa4139f/" />
+  <meta name="manubot_pdf_url_versioned" content="https://greenelab.github.io/text_mined_hetnet_manuscript/v/855f0b5dc5518b00568d742663e286d57fa4139f/manuscript.pdf" />
   <meta property="og:type" content="article" />
   <meta property="twitter:card" content="summary_large_image" />
-  <meta property="og:image" content="https://github.com/greenelab/text_mined_hetnet_manuscript/raw/1ccd3b603a45727d2219e1ebfe64394bb4b61e62/thumbnail.png" />
-  <meta property="twitter:image" content="https://github.com/greenelab/text_mined_hetnet_manuscript/raw/1ccd3b603a45727d2219e1ebfe64394bb4b61e62/thumbnail.png" />
+  <meta property="og:image" content="https://github.com/greenelab/text_mined_hetnet_manuscript/raw/855f0b5dc5518b00568d742663e286d57fa4139f/thumbnail.png" />
+  <meta property="twitter:image" content="https://github.com/greenelab/text_mined_hetnet_manuscript/raw/855f0b5dc5518b00568d742663e286d57fa4139f/thumbnail.png" />
   <link rel="icon" type="image/png" sizes="192x192" href="https://manubot.org/favicon-192x192.png" />
   <link rel="mask-icon" href="https://manubot.org/safari-pinned-tab.svg" color="#ad1457" />
   <meta name="theme-color" content="#ad1457" />
@@ -94,9 +94,9 @@
 <p><em>A DOI-citable version of this manuscript is available at <a href="https://doi.org/10.1101/730085" class="uri">https://doi.org/10.1101/730085</a></em>.</p>
 <p><small><em>
 This manuscript
-(<a href="https://greenelab.github.io/text_mined_hetnet_manuscript/v/1ccd3b603a45727d2219e1ebfe64394bb4b61e62/">permalink</a>)
+(<a href="https://greenelab.github.io/text_mined_hetnet_manuscript/v/855f0b5dc5518b00568d742663e286d57fa4139f/">permalink</a>)
 was automatically generated
-from <a href="https://github.com/greenelab/text_mined_hetnet_manuscript/tree/1ccd3b603a45727d2219e1ebfe64394bb4b61e62">greenelab/text_mined_hetnet_manuscript@1ccd3b6</a>
+from <a href="https://github.com/greenelab/text_mined_hetnet_manuscript/tree/855f0b5dc5518b00568d742663e286d57fa4139f">greenelab/text_mined_hetnet_manuscript@855f0b5</a>
 on April 25, 2022.
 </em></small></p>
 <h2 id="authors">Authors</h2>
@@ -470,19 +470,34 @@ Our best recall was with the Compound-binds-Gene (CbG) edge type, where we retai
 In contrast, we only recalled close to 30% for Compound-treats-Disease (CtD), while the other two categories achieved a recall score close to 22%.
 Despite the modest recall level, the amount of novel edge types remains elevated.
 This notion highlights that Hetionet v1 is missing a compelling amount of biomedical information, and relationship extraction is a viable way to close the information gap.</p>
-<h2 id="discussion-and-conclusions">Discussion and Conclusions</h2>
+<h2 id="discussion">Discussion</h2>
+<p>We measured the extent to which label functions can be re-used across multiple edge types to extract relationships from literature.
+Through our sampling experiment, we found that adding edge-specific label functions increases performance for the generative model (Figure <a href="#fig:auroc_gen_model_test_set">2</a>).
+We found that label functions designed from relatively related edge types can increase performance (Gene interacts Gene (GiG) label functions predicting the Compound binds Gene (CbG) edge and vice versa), while the Disease associates Gene (DaG) edge type remained agnostic to label function sources (Figure <a href="#fig:auroc_gen_model_test_set">2</a> and Supplemental Figure <a href="#fig:aupr_gen_model_test_set">6</a>).
+Furthermore, we found that using all label functions at once generally hurts performance with the exception being the DaG edge type (Supplemental Figures <a href="#fig:auroc_grabbag_gen_model_test_set">3</a> and <a href="#fig:aupr_grabbag_gen_model_test_set">7</a>).
+One possibility for this observation is that DaG is a broadly defined edge type.
+For example, DaG may contain many concepts related to other edge types such as Disease (up/down) regulating a Gene, which makes it more agnostic to label function sources (examples highlighted in our <a href="https://github.com/greenelab/text_mined_hetnet_manuscript/tree/master/supplementary_materials/annotated_sentences">annotated sentences</a>).</p>
+<p>Regarding the discriminative model, adding edge-specific label function substantially improved performance for two out of the four edge types (Compound treats Disease (CtD) and Disease associates Gene (DaG)) (Figure <a href="#fig:auroc_discriminative_model_performance">4</a> and Supplemental Figure <a href="#fig:aupr_discriminative_model_performance">8</a>).
+Gene interacts Gene (GiG) and Compound binds Gene (CbG) discriminative models showed minor improvements compared to the generative model, but only when nearly all edge-specific label functions are included (Figure <a href="#fig:auroc_discriminative_model_performance">4</a> and Supplemental Figure <a href="#fig:aupr_discriminative_model_performance">8</a>).
+We came across a large amount of spurious gene mentions when working with the discriminative model and believe that these mentions contributed to CbG and GiG’s hindered performance.
+We encountered difficulty in calibrating each discriminative model (Supplemental Figure ??).
+The temperature scaling algorithm appears to improve calibration for the highest scores for each model but did not successfully calibrate throughout the entire range of predictions.
+Improving performance for all predictions may require more labeled examples or may be a limitation of the approach in this setting.
+Even with these limitations, this early-stage approach could recall many existing edges from an existing knowledge base, Hetionet v1, and suggest many new high-confidence edges for inclusion (Supplemental Figure <a href="#fig:hetionet_reconstruction">5</a>).
+Our findings suggest that further work, including an expansion of edge types and a move to full text from abstracts, may make this approach suitable for building continuously updated knowledge bases to address drug repositioning and other biomedical challenges.</p>
+<h2 id="conclusion-and-future-direction">Conclusion and Future Direction</h2>
 <p>Filling out knowledge bases via manual curation can be an arduous and erroneous task <span class="citation" data-cites="UdzvLgBM">[<a href="#ref-UdzvLgBM" role="doc-biblioref">8</a>]</span>.
-Using manual curation alone becomes impractical as the rate of publications continuously increases.
-Data programming is a paradigm that uses label functions to speed up the annotation process and can be used to solve this problem.
-However, creating useful label functions is an obstacle to this paradigm, which takes considerable time.
-We tested the feasibility of re-using label functions to reduce the number of label functions required for strong prediction performance.</p>
-<p>Our sampling experiment revealed that adding edge-specific label functions is better than adding off-edge label functions.
-An exception to this trend is using label functions designed from conceptually related edge types (using Gene-interacts-Gene (GiG) label functions to predict Compound-binds-Gene (CbG) sentences and vice versa).
-Furthermore, broad edge types such as Disease-associates-Gene (DaG) did not follow this trend as we found this edge to be agnostic to any tested label function source.
-One possibility for this observation is that the “associates” relationship is a general concept that may include other concepts such as Disease (up/down) regulating a Gene (examples highlighted in our <a href="https://github.com/greenelab/text_mined_hetnet_manuscript/tree/master/supplementary_materials/annotated_sentences">annotated sentences</a>).
-The discriminator model did not have an apparent positive or negative effect on performance; however, we noticed that performance heavily depended on the annotations provided by the generative model.
-This pattern suggests a focus on label function construction and generative model training may be key steps to focus on in future work.
-Although we found that label functions cannot be re-used across all edge types with the standard task framing, strategies like multitask <span class="citation" data-cites="9Jo1af7Z">[<a href="#ref-9Jo1af7Z" role="doc-biblioref">61</a>]</span> or transfer learning <span class="citation" data-cites="YRDXK4f4">[<a href="#ref-YRDXK4f4" role="doc-biblioref">62</a>]</span> may make multi-label-function efforts more successful.</p>
+As the rate of publications increases, relying on manual curation alone becomes impractical.
+Data programming, a paradigm that uses label functions as a means to speed up the annotation process, can be used as a solution for this problem.
+An obstacle for this paradigm, however, is creating useful label functions, which takes a considerable amount of time.
+We tested the feasibility of reusing label functions as a way to reduce the total number of label functions required for strong prediction performance.
+We conclude that label functions may be re-used with closely related edge types, but that re-use does not improve performance for most pairings.
+The discriminative model’s performance improves as more edge-specific label functions are incorporated into the generative model; however, we did notice that performance greatly depends on the annotations provided by the generative model.</p>
+<p>This work sets up the foundation for creating a common framework that mines text to create edges.
+Within this framework we would continuously incorporate new knowledge as novel findings are published, while providing a single confidence score for an edge via sentence score consolidation.
+As opposed to many existing knowledge graphs (for example, Hetionet v1 where text-derived edges generally cannot be exactly attributed to excerpts from literature <span class="citation" data-cites="O21tn8vf L2B5V7XC">[<a href="#ref-O21tn8vf" role="doc-biblioref">3</a>,<a href="#ref-L2B5V7XC" role="doc-biblioref">61</a>]</span>), our approach has the potential to annotate each edge based on its source sentences.
+In addition, edges generated with this approach would be unencumbered from upstream licensing or copyright restrictions, enabling openly licensed hetnets at a scale not previously possible <span class="citation" data-cites="4G0GW8oe 137tbemL9 1GwdMLPbV">[<a href="#ref-4G0GW8oe" role="doc-biblioref">62</a>,<a href="#ref-137tbemL9" role="doc-biblioref">63</a>,<a href="#ref-1GwdMLPbV" role="doc-biblioref">64</a>]</span>.
+New multitask learning <span class="citation" data-cites="9Jo1af7Z">[<a href="#ref-9Jo1af7Z" role="doc-biblioref">65</a>]</span> strategies may make it even more practical to reuse label functions to construct continuously updating literature-derived knowledge graphs.</p>
 <h2 id="supplemental-information">Supplemental Information</h2>
 <p>An online version of this manuscript is available at <a href="https://greenelab.github.io/text_mined_hetnet_manuscript/" class="uri">https://greenelab.github.io/text_mined_hetnet_manuscript/</a>.
 Labeled sentences are available at <a href="https://github.com/greenelab/text_mined_hetnet_manuscript/tree/master/supplementary_materials/annotated_sentences">https://github.com/greenelab/text_mined_hetnet_manuscript/tree/master/supplementary_materials/annotated_sentences</a>.
@@ -674,11 +689,20 @@ This work was support by <a href="https://www.moore.org/grant-detail?grantId=GBM
 <div id="ref-c6d3lKFX" class="csl-entry" role="doc-biblioentry">
 <div class="csl-left-margin">60. </div><div class="csl-right-inline"><strong>Adam: A Method for Stochastic Optimization</strong> <div class="csl-block">Diederik P Kingma, Jimmy Ba</div> <em>arXiv</em> (2017-01-31) <a href="https://arxiv.org/abs/1412.6980">https://arxiv.org/abs/1412.6980</a></div>
 </div>
-<div id="ref-9Jo1af7Z" class="csl-entry" role="doc-biblioentry">
-<div class="csl-left-margin">61. </div><div class="csl-right-inline"><strong>Snorkel MeTaL: Weak Supervision for Multi-Task Learning</strong> <div class="csl-block">Alex Ratner, Braden Hancock, Jared Dunnmon, Roger Goldman, Christopher Ré</div> <em>Proceedings of the Second Workshop on Data Management for End-To-End Machine Learning</em> (2018-06-15) <a href="https://doi.org/gf3xk7">https://doi.org/gf3xk7</a> <div class="csl-block">DOI: <a href="https://doi.org/10.1145/3209889.3209898">10.1145/3209889.3209898</a> · PMID: <a href="https://www.ncbi.nlm.nih.gov/pubmed/30931438">30931438</a> · PMCID: <a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC6436830">PMC6436830</a> · ISBN: 9781450358286</div></div>
+<div id="ref-L2B5V7XC" class="csl-entry" role="doc-biblioentry">
+<div class="csl-left-margin">61. </div><div class="csl-right-inline"><strong>[No title found]</strong> <a href="https://doi.org/f3mqwp">https://doi.org/f3mqwp</a> <div class="csl-block">DOI: <a href="https://doi.org/10.15363/thinklab.d67">10.15363/thinklab.d67</a></div></div>
 </div>
-<div id="ref-YRDXK4f4" class="csl-entry" role="doc-biblioentry">
-<div class="csl-left-margin">62. </div><div class="csl-right-inline"><strong>A survey of transfer learning</strong> <div class="csl-block">Karl Weiss, Taghi M Khoshgoftaar, DingDing Wang</div> <em>Journal of Big Data</em> (2016-12) <a href="https://doi.org/gfkr2w">https://doi.org/gfkr2w</a> <div class="csl-block">DOI: <a href="https://doi.org/10.1186/s40537-016-0043-6">10.1186/s40537-016-0043-6</a></div></div>
+<div id="ref-4G0GW8oe" class="csl-entry" role="doc-biblioentry">
+<div class="csl-left-margin">62. </div><div class="csl-right-inline"><strong>[No title found]</strong> <a href="https://doi.org/bfmk">https://doi.org/bfmk</a> <div class="csl-block">DOI: <a href="https://doi.org/10.15363/thinklab.d107">10.15363/thinklab.d107</a></div></div>
+</div>
+<div id="ref-137tbemL9" class="csl-entry" role="doc-biblioentry">
+<div class="csl-left-margin">63. </div><div class="csl-right-inline"><strong>Legal confusion threatens to slow data science</strong> <div class="csl-block">Simon Oxenham</div> <em>Nature</em> (2016-08-04) <a href="https://doi.org/bndt">https://doi.org/bndt</a> <div class="csl-block">DOI: <a href="https://doi.org/10.1038/536016a">10.1038/536016a</a> · PMID: <a href="https://www.ncbi.nlm.nih.gov/pubmed/27488781">27488781</a></div></div>
+</div>
+<div id="ref-1GwdMLPbV" class="csl-entry" role="doc-biblioentry">
+<div class="csl-left-margin">64. </div><div class="csl-right-inline"><strong>An analysis and metric of reusable data licensing practices for biomedical resources</strong> <div class="csl-block">Seth Carbon, Robin Champieux, Julie A McMurry, Lilly Winfree, Letisha R Wyatt, Melissa A Haendel</div> <em>PLOS ONE</em> (2019-03-27) <a href="https://doi.org/gf5m8v">https://doi.org/gf5m8v</a> <div class="csl-block">DOI: <a href="https://doi.org/10.1371/journal.pone.0213090">10.1371/journal.pone.0213090</a> · PMID: <a href="https://www.ncbi.nlm.nih.gov/pubmed/30917137">30917137</a> · PMCID: <a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC6436688">PMC6436688</a></div></div>
+</div>
+<div id="ref-9Jo1af7Z" class="csl-entry" role="doc-biblioentry">
+<div class="csl-left-margin">65. </div><div class="csl-right-inline"><strong>Snorkel MeTaL: Weak Supervision for Multi-Task Learning</strong> <div class="csl-block">Alex Ratner, Braden Hancock, Jared Dunnmon, Roger Goldman, Christopher Ré</div> <em>Proceedings of the Second Workshop on Data Management for End-To-End Machine Learning</em> (2018-06-15) <a href="https://doi.org/gf3xk7">https://doi.org/gf3xk7</a> <div class="csl-block">DOI: <a href="https://doi.org/10.1145/3209889.3209898">10.1145/3209889.3209898</a> · PMID: <a href="https://www.ncbi.nlm.nih.gov/pubmed/30931438">30931438</a> · PMCID: <a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC6436830">PMC6436830</a> · ISBN: 9781450358286</div></div>
 </div>
 </div>
 <h2 id="supplemental-figures">Supplemental Figures</h2>
