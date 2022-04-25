@@ -7,7 +7,7 @@ keywords:
 - heterogenous netowrks
 - text mining
 lang: en-US
-date-meta: '2022-04-12'
+date-meta: '2022-04-25'
 author-meta:
 - David N. Nicholson
 - Daniel S. Himmelstein
@@ -22,8 +22,8 @@ header-includes: |-
   <meta name="citation_title" content="Expanding a Database-derived Biomedical Knowledge Graph via Multi-relation Extraction from Biomedical Abstracts" />
   <meta property="og:title" content="Expanding a Database-derived Biomedical Knowledge Graph via Multi-relation Extraction from Biomedical Abstracts" />
   <meta property="twitter:title" content="Expanding a Database-derived Biomedical Knowledge Graph via Multi-relation Extraction from Biomedical Abstracts" />
-  <meta name="dc.date" content="2022-04-12" />
-  <meta name="citation_publication_date" content="2022-04-12" />
+  <meta name="dc.date" content="2022-04-25" />
+  <meta name="citation_publication_date" content="2022-04-25" />
   <meta name="dc.language" content="en-US" />
   <meta name="citation_language" content="en-US" />
   <meta name="dc.relation.ispartof" content="Manubot" />
@@ -48,13 +48,13 @@ header-includes: |-
   <meta name="citation_fulltext_html_url" content="https://greenelab.github.io/text_mined_hetnet_manuscript/" />
   <meta name="citation_pdf_url" content="https://greenelab.github.io/text_mined_hetnet_manuscript/manuscript.pdf" />
   <link rel="alternate" type="application/pdf" href="https://greenelab.github.io/text_mined_hetnet_manuscript/manuscript.pdf" />
-  <link rel="alternate" type="text/html" href="https://greenelab.github.io/text_mined_hetnet_manuscript/v/0121b3762153ba3ccf4816b53bd4a7db800457a9/" />
-  <meta name="manubot_html_url_versioned" content="https://greenelab.github.io/text_mined_hetnet_manuscript/v/0121b3762153ba3ccf4816b53bd4a7db800457a9/" />
-  <meta name="manubot_pdf_url_versioned" content="https://greenelab.github.io/text_mined_hetnet_manuscript/v/0121b3762153ba3ccf4816b53bd4a7db800457a9/manuscript.pdf" />
+  <link rel="alternate" type="text/html" href="https://greenelab.github.io/text_mined_hetnet_manuscript/v/1ccd3b603a45727d2219e1ebfe64394bb4b61e62/" />
+  <meta name="manubot_html_url_versioned" content="https://greenelab.github.io/text_mined_hetnet_manuscript/v/1ccd3b603a45727d2219e1ebfe64394bb4b61e62/" />
+  <meta name="manubot_pdf_url_versioned" content="https://greenelab.github.io/text_mined_hetnet_manuscript/v/1ccd3b603a45727d2219e1ebfe64394bb4b61e62/manuscript.pdf" />
   <meta property="og:type" content="article" />
   <meta property="twitter:card" content="summary_large_image" />
-  <meta property="og:image" content="https://github.com/greenelab/text_mined_hetnet_manuscript/raw/0121b3762153ba3ccf4816b53bd4a7db800457a9/thumbnail.png" />
-  <meta property="twitter:image" content="https://github.com/greenelab/text_mined_hetnet_manuscript/raw/0121b3762153ba3ccf4816b53bd4a7db800457a9/thumbnail.png" />
+  <meta property="og:image" content="https://github.com/greenelab/text_mined_hetnet_manuscript/raw/1ccd3b603a45727d2219e1ebfe64394bb4b61e62/thumbnail.png" />
+  <meta property="twitter:image" content="https://github.com/greenelab/text_mined_hetnet_manuscript/raw/1ccd3b603a45727d2219e1ebfe64394bb4b61e62/thumbnail.png" />
   <link rel="icon" type="image/png" sizes="192x192" href="https://manubot.org/favicon-192x192.png" />
   <link rel="mask-icon" href="https://manubot.org/safari-pinned-tab.svg" color="#ad1457" />
   <meta name="theme-color" content="#ad1457" />
@@ -74,10 +74,10 @@ _A DOI-citable version of this manuscript is available at <https://doi.org/10.11
 
 <small><em>
 This manuscript
-([permalink](https://greenelab.github.io/text_mined_hetnet_manuscript/v/0121b3762153ba3ccf4816b53bd4a7db800457a9/))
+([permalink](https://greenelab.github.io/text_mined_hetnet_manuscript/v/1ccd3b603a45727d2219e1ebfe64394bb4b61e62/))
 was automatically generated
-from [greenelab/text_mined_hetnet_manuscript@0121b37](https://github.com/greenelab/text_mined_hetnet_manuscript/tree/0121b3762153ba3ccf4816b53bd4a7db800457a9)
-on April 12, 2022.
+from [greenelab/text_mined_hetnet_manuscript@1ccd3b6](https://github.com/greenelab/text_mined_hetnet_manuscript/tree/1ccd3b603a45727d2219e1ebfe64394bb4b61e62)
+on April 25, 2022.
 </em></small>
 
 ## Authors
@@ -367,23 +367,23 @@ Creating label functions is a labor-intensive process that can take days to acco
 We sought to accelerate this process by measuring how well label functions can be reused.
 We evaluated this by performing an experiment where label functions are sampled on an individual (edge vs. edge) level and a global (collective pool of sources) level.
 We observed that performance increased when edge-specific label functions were added to an edge-specific baseline model, while label function reuse usually provided less benefit (AUROC Figure {@fig:auroc_gen_model_test_set}, AUPR Supplemental Figure {@fig:aupr_gen_model_test_set}).
-The quintessential example of this overarching trend is the Compound treats Disease (CtD) edge type, where edge-specific label functions consistently outperformed transferred label functions.
+The quintessential example of this overarching trend is the Compound-treats-Disease (CtD) edge type, where edge-specific label functions consistently outperformed transferred label functions.
 However, there is evidence that label function transferability may be feasible for selected edge types and label function sources. 
-Performance increases as more GiG label functions are incorporated into the CbG baseline model and vice versa.
+Performance increases as more Gene-interacts-Gene (GiG) label functions are incorporated into the Compound-binds-Gene (CbG) baseline model and vice versa.
 This trend suggests that sentences for GiG and CbG may share similar linguistic features or terminology that allows for label functions to be reused, which could relate to both describing physical interaction relationships.
-Perplexingly, edge-specific Disease associates Gene (DaG) label functions did not improve performance over label functions drawn from other edge types.
+Perplexingly, edge-specific Disease-associates-Gene (DaG) label functions did not improve performance over label functions drawn from other edge types.
 Overall, only CbG and GiG showed significant signs of reusability.
 This pattern suggests that label function transferability may be possible for these two edge types.
 
 ![
 Edge-specific label functions perform better than edge-mismatch label functions, but certain mismatch situations show signs of successful transfer.
 Each line plot header depicts the edge type the generative model is trying to predict, while the colors represent the source of label functions.
-For example, orange represents sampling label functions designed to predict the Compound treats Disease (CtD) edge type.
+For example, orange represents sampling label functions designed to predict the Compound-treats-Disease (CtD) edge type.
 The x-axis shows the number of randomly sampled label functions incorporated as an addition to the database-only baseline model (the point at 0).
 The y-axis shows the area under the receiver operating curve (AUROC).
 Each point on the plot shows the average of 50 sample runs, while the error bars show the 95% confidence intervals of all runs.
 The baseline and “All” data points consist of sampling from the entire fixed set of label functions.
-](https://raw.githubusercontent.com/danich1/snorkeling-full-text/80c9c899e91418af6fba7c74c9bc28b04be78458/figure_generation/output/figure_two.png){#fig:auroc_gen_model_test_set}
+](https://raw.githubusercontent.com/danich1/snorkeling-full-text/cd38c26db62f7eb7bc83fd9c424d0c8912512d06/figure_generation/output/figure_two.png){#fig:auroc_gen_model_test_set}
 
 We found that sampling from all label function sources at once usually underperformed relative to edge-specific label functions (Figure {@fig:auroc_grabbag_gen_model_test_set} and Supplemental Figure {@fig:aupr_grabbag_gen_model_test_set}).
 The gap between edge-specific sources and all sources widened as we sampled more label functions.
@@ -395,72 +395,71 @@ When pooling all label functions, the decreasing trend supports the notion that 
 ![
 Using all label functions generally hinders generative model performance.
 Each line plot header depicts the edge type the generative model is trying to predict, while the colors represent the source of label functions.
-For example, orange represents sampling label functions designed to predict the Compound treats Disease (CtD) edge type.
+For example, orange represents sampling label functions designed to predict the Compound-treats-Disease (CtD) edge type.
 The x-axis shows the number of randomly sampled label functions incorporated as an addition to the database-only baseline model (the point at 0).
 The y-axis shows the area under the receiver operating curve (AUROC).
 Each point on the plot shows the average of 50 sample runs, while the error bars show the 95% confidence intervals of all runs.
 The baseline and “All” data points consist of sampling from the entire fixed set of label functions.
-](https://raw.githubusercontent.com/danich1/snorkeling-full-text/80c9c899e91418af6fba7c74c9bc28b04be78458/figure_generation/output/figure_four.png){#fig:auroc_grabbag_gen_model_test_set}
+](https://raw.githubusercontent.com/danich1/snorkeling-full-text/cd38c26db62f7eb7bc83fd9c424d0c8912512d06/figure_generation/output/figure_four.png){#fig:auroc_grabbag_gen_model_test_set}
 
 
 ### Discriminative Model Performance
 
-The discriminative model is designed to augment performance over the generative model by incorporating textual features along with estimated training labels.
-The discriminative model is a piecewise convolutional neural network trained over word embeddings (See Methods and Materials).
-We found that the discriminative model generally out-performed the generative model as more edge-specific label functions are incorporated (Figure {@fig:auroc_discriminative_model_performance} and Supplemental Figure {@fig:aupr_discriminative_model_performance}).
-The discriminative model's performance is often poorest when very few edge-specific label functions are added to the baseline model (seen in Disease associates Gene (DaG), Compound binds Gene (CbG) and Gene interacts Gene (GiG)). 
-This suggests that generative models trained with more label functions produce outputs that are more suitable for training discriminative models.
-An exception to this trend is Compound treats Disease (CtD) where the discriminative model out-performs the generative model at all levels of sampling.
-We observed the opposite trend with the Compound-binds-Gene (CbG) edges: the discriminative model was always poorer or indistinguishable from the generative model.
+The discriminative model is intended to augment performance over the generative model by incorporating textual features together with estimated training labels.
+We found that the discriminative model generally outperformed the generative model with respect to AUROC as more edge-specific label functions were incorporated (Figure {@fig:auroc_discriminative_model_performance}).
+Regarding AUPR, this model outperformed the generative model for the Disease-associates-Gene (DaG) edge type. 
+At the same time, it had close to par performance for the rest of the edge types (Supplemental Figure {@fig:aupr_discriminative_model_performance}).
+The discriminative model's performance was often poorest when very few edge-specific label functions were incorporated into the baseline model (seen in DaG, CbG, and Gene-interacts-Gene (GiG)). 
+This example suggests that training generative models with more label functions produces better outputs for training for discriminative models. 
+Compound-treats-Disease (CtD) was an exception to this trend, where the discriminative model outperformed the generative model at all sampling levels in regards to AUROC.
+We observed the opposite trend with the Compound-binds-Gene (CbG) edges as the discriminative model was always worse or indistinguishable from the generative model.
 Interestingly, the AUPR for CbG plateaus below the generative model and decreases when all edge-specific label functions are used (Supplemental Figure {@fig:aupr_discriminative_model_performance}).
-This suggests that the discriminative model might be predicting more false positives in this setting.
-Incorporating more edge-specific label functions usually improves performance for the discriminative model over the generative model.
+This trend suggests that the discriminative model might have predicted more false positives in this setting.
+Overall, incorporating more edge-specific label functions usually improved performance for the discriminative model over the generative model.
 
 ![
-The discriminative model usually improves at a faster rate than the generative model as more edge-specific label function are included.
+The discriminative model usually improves faster than the generative model as more edge-specific label functions are included.
 The line plot headers represent the specific edge type the discriminative model is trying to predict.
-The x-axis shows the number of randomly sampled label functions that are incorporated into the baseline model (point at 0).
+The x-axis shows the number of randomly sampled label functions incorporated as an addition to the baseline model (the point at 0).
 The y axis shows the area under the receiver operating curve (AUROC).
-Each datapoint represents the average of 50 sample runs and the error bars represent the 95% confidence interval of each run.
-The baseline and “All” data points consist of sampling from the entire fixed set of label functions.
-](https://raw.githubusercontent.com/danich1/snorkeling/c76e683a7bbc97482335ed4ac9ef8ab81c46114d/figures/disc_model_experiment/disc_model_test_auroc.png){#fig:auroc_discriminative_model_performance}
+Each data point represents the average of 3 sample runs for the discriminator model and 50 sample runs for the generative model.
+The error bars represent each run's 95% confidence interval.
+The baseline and "All" data points consist of sampling from the entire fixed set of label functions.
+](https://raw.githubusercontent.com/danich1/snorkeling-full-text/cd38c26db62f7eb7bc83fd9c424d0c8912512d06/figure_generation/output/figure_six.png){#fig:auroc_discriminative_model_performance}
+
+### Text Mined Edges Can Expand a Database-derived Knowledge Graph
+
+![
+Text-mined edges recreate a substantial fraction of an existing knowledge graph and include new predictions.
+This bar chart shows the number of edges we can successfully recall in green and indicates the number of new edges in blue.  
+The recall for the Hetionet v1 knowledge graph is shown as a percentage in parentheses.
+For example, for the Compound-treats-Disease (CtD) edge, our method recalls 30% of existing edges and can add 6,282 new ones.
+](https://raw.githubusercontent.com/danich1/snorkeling-full-text/8735cdde7e1db8592899dda8cbb44eda4479b1fa/figure_generation/output/figure_eight.png){#fig:hetionet_reconstruction}
+
+One of the goals of our work is to measure the extent to which learning multiple edge types could construct a biomedical knowledge graph.
+Using Hetionet v1 as an evaluation set, we measured this framework's recall and quantified the number of edges that may be incorporated with high confidence.
+Overall, we were able to recall about thirty percent of the preexisting edges for all edge types (Figure {@fig:hetionet_reconstruction}) and report our top ten scoring sentences for each edge type in Supplemental Table {@tbl:edge_prediction_tbl}.
+Our best recall was with the Compound-binds-Gene (CbG) edge type, where we retained 33% of preexisting edges.
+In contrast, we only recalled close to 30% for Compound-treats-Disease (CtD), while the other two categories achieved a recall score close to 22%.
+Despite the modest recall level, the amount of novel edge types remains elevated.
+This notion highlights that Hetionet v1 is missing a compelling amount of biomedical information, and relationship extraction is a viable way to close the information gap.
 
 
-## Discussion
-
-We measured the extent to which label functions can be re-used across multiple edge types to extract relationships from literature.
-Through our sampling experiment, we found that adding edge-specific label functions increases performance for the generative model (Figure {@fig:auroc_gen_model_test_set}).
-We found that label functions designed from relatively related edge types can increase performance (Gene interacts Gene (GiG) label functions predicting the Compound binds Gene (CbG) edge and vice versa), while the Disease associates Gene (DaG) edge type remained agnostic to label function sources (Figure {@fig:auroc_gen_model_test_set} and Supplemental Figure {@fig:aupr_gen_model_test_set}).
-Furthermore, we found that using all label functions at once generally hurts performance with the exception being the DaG edge type (Supplemental Figures {@fig:auroc_grabbag_gen_model_test_set} and {@fig:aupr_grabbag_gen_model_test_set}).
-One possibility for this observation is that DaG is a broadly defined edge type.
-For example, DaG may contain many concepts related to other edge types such as Disease (up/down) regulating a Gene, which makes it more agnostic to label function sources (examples highlighted in our [annotated sentences](https://github.com/greenelab/text_mined_hetnet_manuscript/tree/master/supplementary_materials/annotated_sentences)).  
-
-Regarding the discriminative model, adding edge-specific label function substantially improved performance for two out of the four edge types (Compound treats Disease (CtD) and  Disease associates Gene (DaG)) (Figure {@fig:auroc_discriminative_model_performance} and Supplemental Figure {@fig:aupr_discriminative_model_performance}). 
-Gene interacts Gene (GiG) and Compound binds Gene (CbG) discriminative models showed minor improvements compared to the generative model, but only when nearly all edge-specific label functions are included (Figure {@fig:auroc_discriminative_model_performance} and Supplemental Figure {@fig:aupr_discriminative_model_performance}).
-We came across a large amount of spurious gene mentions when working with the discriminative model and believe that these mentions contributed to CbG and GiG's hindered performance.
-We encountered difficulty in calibrating each discriminative model (Supplemental Figure {@fig:discriminative_model_calibration}).
-The temperature scaling algorithm appears to improve calibration for the highest scores for each model but did not successfully calibrate throughout the entire range of predictions. 
-Improving performance for all predictions may require more labeled examples or may be a limitation of the approach in this setting.
-Even with these limitations, this early-stage approach could recall many existing edges from an existing knowledge base, Hetionet v1, and suggest many new high-confidence edges for inclusion (Supplemental Figure {@fig:hetionet_reconstruction}).
-Our findings suggest that further work, including an expansion of edge types and a move to full text from abstracts, may make this approach suitable for building continuously updated knowledge bases to address drug repositioning and other biomedical challenges.  
- 
-
-
-## Conclusion and Future Direction
+## Discussion and Conclusions
 
 Filling out knowledge bases via manual curation can be an arduous and erroneous task [@doi:10.1093/bioinformatics/btm229].
-As the rate of publications increases, relying on manual curation alone becomes impractical.
-Data programming, a paradigm that uses label functions as a means to speed up the annotation process, can be used as a solution for this problem.
-An obstacle for this paradigm, however, is creating useful label functions, which takes a considerable amount of time. 
-We tested the feasibility of reusing label functions as a way to reduce the total number of label functions required for strong prediction performance.
-We conclude that label functions may be re-used with closely related edge types, but that re-use does not improve performance for most pairings.
-The discriminative model's performance improves as more edge-specific label functions are incorporated into the generative model; however, we did notice that performance greatly depends on the annotations provided by the generative model.
+Using manual curation alone becomes impractical as the rate of publications continuously increases.
+Data programming is a paradigm that uses label functions to speed up the annotation process and can be used to solve this problem.
+However, creating useful label functions is an obstacle to this paradigm, which takes considerable time.
+We tested the feasibility of re-using label functions to reduce the number of label functions required for strong prediction performance.
 
-This work sets up the foundation for creating a common framework that mines text to create edges.
-Within this framework we would continuously incorporate new knowledge as novel findings are published, while providing a single confidence score for an edge via sentence score consolidation.
-As opposed to many existing knowledge graphs (for example, Hetionet v1 where text-derived edges generally cannot be exactly attributed to excerpts from literature [@doi:10.7554/eLife.26726; @doi:10.15363/thinklab.d67]), our approach has the potential to annotate each edge based on its source sentences.
-In addition, edges generated with this approach would be unencumbered from upstream licensing or copyright restrictions, enabling openly licensed hetnets at a scale not previously possible [@doi:10.15363/thinklab.d107; @doi:10.1038/536016a; @doi:10.1371/journal.pone.0213090].
-New multitask learning [@doi:10.1145/3209889.3209898] strategies may make it even more practical to reuse label functions to construct continuously updating literature-derived knowledge graphs.
+Our sampling experiment revealed that adding edge-specific label functions is better than adding off-edge label functions.
+An exception to this trend is using label functions designed from conceptually related edge types (using Gene-interacts-Gene (GiG) label functions to predict Compound-binds-Gene (CbG) sentences and vice versa).
+Furthermore, broad edge types such as Disease-associates-Gene (DaG) did not follow this trend as we found this edge to be agnostic to any tested label function source.
+One possibility for this observation is that the "associates" relationship is a general concept that may include other concepts such as Disease (up/down) regulating a Gene (examples highlighted in our [annotated sentences](https://github.com/greenelab/text_mined_hetnet_manuscript/tree/master/supplementary_materials/annotated_sentences)).
+The discriminator model did not have an apparent positive or negative effect on performance; however, we noticed that performance heavily depended on the annotations provided by the generative model.
+This pattern suggests a focus on label function construction and generative model training may be key steps to focus on in future work.
+Although we found that label functions cannot be re-used across all edge types with the standard task framing, strategies like multitask [@doi:10.1145/3209889.3209898] or transfer learning [@doi:10.1186/s40537-016-0043-6] may make multi-label-function efforts more successful.
 
 
 ## Supplemental Information
@@ -495,7 +494,7 @@ The x-axis shows the number of randomly sampled label functions incorporated as 
 The y-axis shows the area under the precision-recall curve (AUPR).
 Each point on the plot shows the average of 50 sample runs, while the error bars show the 95% confidence intervals of all runs.
 The baseline and “All” data points consist of sampling from the entire fixed set of label functions.
-](https://raw.githubusercontent.com/danich1/snorkeling-full-text/80c9c899e91418af6fba7c74c9bc28b04be78458/figure_generation/output/figure_three.png){#fig:aupr_gen_model_test_set}
+](https://raw.githubusercontent.com/danich1/snorkeling-full-text/cd38c26db62f7eb7bc83fd9c424d0c8912512d06/figure_generation/output/figure_three.png){#fig:aupr_gen_model_test_set}
 
 #### Collective Pool of Sources 
 
@@ -507,235 +506,69 @@ The x-axis shows the number of randomly sampled label functions incorporated as 
 The y-axis shows the area under the precision-recall curve (AUPR).
 Each point on the plot shows the average of 50 sample runs, while the error bars show the 95% confidence intervals of all runs.
 The baseline and “All” data points consist of sampling from the entire fixed set of label functions.
-](https://raw.githubusercontent.com/danich1/snorkeling-full-text/80c9c899e91418af6fba7c74c9bc28b04be78458/figure_generation/output/figure_five.png){#fig:aupr_grabbag_gen_model_test_set}
+](https://raw.githubusercontent.com/danich1/snorkeling-full-text/cd38c26db62f7eb7bc83fd9c424d0c8912512d06/figure_generation/output/figure_five.png){#fig:aupr_grabbag_gen_model_test_set}
 
 ### Discriminative Model Performance
 
 ![
 The discriminator model improves performance as the number of edge-specific label functions is added to the baseline model.
-The line plot headers represents the specific edge type the discriminator model is trying to predict.
-The x-axis shows the number of randomly sampled label functions incorporated on top of the baseline model (point at 0).
-The y axis shows the area under the precision recall curve (AUPR).
-Each datapoint shows the average of 50 sample runs, while the error bars represents the 95% confidence interval at each point.
-The baseline and “All” data points consist of sampling from the entire fixed set of label functions.
-](https://raw.githubusercontent.com/danich1/snorkeling/c76e683a7bbc97482335ed4ac9ef8ab81c46114d/figures/disc_model_experiment/disc_model_test_aupr.png){#fig:aupr_discriminative_model_performance}
+The line plot headers represent the specific edge type the discriminator model is trying to predict.
+The x-axis shows the number of randomly sampled label functions incorporated as an addition to the baseline model (the point at 0).
+The y axis shows the area under the precision-recall curve (AUPR).
+Each data point represents the average of 3 sample runs for the discriminator model and 50 sample runs for the generative model.
+The error bars represent each run's 95% confidence interval.
+The baseline and "All" data points consist of sampling from the entire fixed set of label functions.
+](https://raw.githubusercontent.com/danich1/snorkeling-full-text/cd38c26db62f7eb7bc83fd9c424d0c8912512d06/figure_generation/output/figure_seven.png){#fig:aupr_discriminative_model_performance}
 
-### Discriminative Model Calibration
-
-![
-Deep learning models are overconfident in their predictions and need to be calibrated after training.
-These are calibration plots for the discriminative model, where the green line represents the predictions before calibration and the blue line shows predictions after calibration. 
-Data points that lie closer to the diagonal line show better model calibration, while data points far from the diagonal line show poor performance.
-A perfectly calibrated model would align straight along the diagonal line. 
-](https://raw.githubusercontent.com/danich1/snorkeling/c76e683a7bbc97482335ed4ac9ef8ab81c46114d/figures/model_calibration_experiment/model_calibration.png){#fig:discriminative_model_calibration}
-
-Even deep learning models with impressive AUROC and AUPR statistics can be subject to poor calibration.
-Typically, these models are overconfident in their predictions [@arxiv:1706.04599; @arxiv:1807.00263].
-We attempted to use temperature scaling to fix the calibration of the best performing discriminative models (Figure {@fig:discriminative_model_calibration}).
-Before calibration (green lines), our models were aligned with the ideal calibration only when predicting low probability scores (close to 0.25).
-Applying the temperature scaling calibration algorithm (blue lines) did not substantially improve the calibration of the model in most cases.
-The exception to this pattern is the Disease associates Gene (DaG) model where high confidence scores are shown to be better calibrated.
-Overall, calbrating deep learning models is a nontrivial task that requires  more complex approaches to accomplish.
-
-### Text Mined Edges Can Expand a Database-derived Knowledge Graph
-
-![
-Text-mined edges recreate a substantial fraction of an existing knowledge graph and include new predictions.
-This bar chart shows the number of edges we can successfully recall in green and shows the number of new edges that can be added in blue.  
-The recall for the Hetionet v1 knowledge graph is shown as a percentage in parentheses.
-For example, for the Compound treats Disease (CtD) edge our method recalls 85% of existing edges and adds 6,088 new edges.
-](https://raw.githubusercontent.com/danich1/snorkeling/c76e683a7bbc97482335ed4ac9ef8ab81c46114d/figures/edge_prediction_experiment/edges_added.png){#fig:hetionet_reconstruction}
-
-One of the goals in our work is to measure the extent to which learning multiple edge types could construct a biomedical knowledge graph.
-Using Hetionet v1 as an evaluation set, we measured this framework's recall and quantified how many new edges could be added with high confidence.
-Overall, we were able to recall more than half of preexisting edges for all edge types (Figure {@fig:hetionet_reconstruction}) and report our top ten scoring sentences for each edge type in Supplemental Table {@tbl:edge_prediction_tbl}.
-Our best recall is with the Compound treats Disease (CtD) edge type, where we retain 85% of preexisting edges.
-Plus, we can add over 6,000 new edges to that category.
-In contrast, we could only recall close to 70% of existing edges for the other categories; however, we can add over 40,000 novel edges to each category.
-This highlights the fact that Hetionet v1 is missing a compelling amount of biomedical information and this framework is a viable way to close the information gap.
-
-### Comparison with CoCoScore using Hetionet v1 as an Evaluation Set
-
-![
-Our extractor shows similar performance to a previously published method when using Hetionet v1 as an evaluation set.
-We compared our model (blue) with the CoCoScore model [@tag:cocoscore] (green).
-The y axis represents AUROC and the x axis represents the edge type both models are trying to predict.
-](https://raw.githubusercontent.com/danich1/snorkeling/b6e707ea843ac5d66f62ed09277e6b1d3d4b8bf3/figures/literature_models/coco_score_auroc.png){#fig:cocoscore_comparison}
-
-Our model showed promising performance in terms of recalling edges in Hetionet v1.
-We assessed our model's performance relative to a recently published method [@tag:cocoscore].
-Though our method is primarily designed to predict assertions, not edges, we compared performance at an edge level because this was available for CoCoScore.
-We found that a simple summary approach, max sentence score, provided comparable performance to the CoCoScore for the compound treats disease (CtD) edge type and slightly poorer performance for other edge types (Supplemental Figure {@fig:cocoscore_comparison}).
-Sentence-level scores can be integrated in multiple ways, and approaches that consider more complexity (e.g., the number of sentences with high-probability) should be evaluated in future work.
 
 ## Supplemental Tables
 
 
-### Discriminative Model Calibration Tables
-
-| Disease Name           | Gene Symbol | Text     | Before Calibration | After Calibration | 
-|------------------------|-------------|---------------------------------------------------------|--------------------|-------------------| 
-| prostate cancer        | DKK1        | conclusion : high [dkk-1]{.gene_color} serum levels are associated with a poor survival in patients with [prostate cancer]{.disease_color} . | 0.999              | 0.916             | 
-| breast cancer          | ERBB2       | conclusion : [her-2 / neu]{.gene_color} overexpression in primary [breast carcinoma]{.disease_color} is correlated with patients ' age ( under age 50 ) and calcifications at mammography . | 0.998              | 0.906             | 
-| breast cancer          | ERBB2       | the results of multiple linear regression analysis , with her2 as the dependent variable , showed that family history of [breast cancer]{.disease_color} was significantly associated with elevated [her2]{.gene_color} levels in the tumors ( p = 0.0038 ) , after controlling for the effects of age , tumor estrogen receptor , and dna index .  | 0.998              | 0.904             | 
-| colon cancer           | SP3         | ba also decreased expression of sp1 , [sp3]{.gene_color} and sp4 transcription factors which are overexpressed in [colon cancer]{.disease_color} cells and decreased levels of several sp-regulated genes including survivin , vascular endothelial growth factor , p65 sub-unit of nfkb , epidermal growth factor receptor , cyclin d1 , and pituitary tumor transforming gene-1 . | 0.998              | 0.902             | 
-| breast cancer          | ERBB2       | in [breast cancer]{.disease_color} , overexpression of [her2]{.gene_color} is associated with an aggressive tumor phenotype and poor prognosis . | 0.998              | 0.898             | 
-| breast cancer          | BCL2        | in clinical [breast cancer]{.disease_color} samples , high [bcl2]{.gene_color} expression was associated with poor prognosis . | 0.997              | 0.886             | 
-| adrenal gland cancer   | TP53        | the mechanisms of adrenal tumorigenesis remain poorly established ; the r337h germline mutation in the [p53]{.gene_color} gene has previously been associated with [acts]{.disease_color} in brazilian children . | 0.996              | 0.883             | 
-| prostate cancer        | AR          | the [androgen receptor]{.gene_color} was expressed in all primary and metastatic [prostate cancer]{.disease_color} tissues and no mutations were identified .  | 0.996              | 0.881             | 
-| urinary bladder cancer | PIK3CA      | conclusions : increased levels of fgfr3 and [pik3ca]{.gene_color} mutated dna in urine and plasma are indicative of later progression and metastasis in [bladder cancer]{.disease_color} . | 0.995              | 0.866             | 
-| ovarian cancer         | EPAS1       | the log-rank test showed that nuclear positive immunostaining for hif-1alpha ( p = .002 ) and cytoplasmic positive immunostaining for [hif-2alpha]{.gene_color} ( p = .0112 ) in tumor cells are associated with poor prognosis of patients with [ovarian carcinoma]{.disease_color} . | 0.994              | 0.86              |   
-
-Table: Contains the top ten Disease-associates-Gene confidence scores before and after model calbration. Disease mentions are highlighted in [brown]{.disease_color} and Gene mentions are highlighted in [blue]{.gene_color}. {#tbl:dg_top_ten_table}
-
-| Disease Name                   | Gene Symbol | Text    | Before Calibration | After Calibration | 
-|--------------------------------|-------------|----------------------------------|--------------------|-------------------| 
-| endogenous depression          | EP300       | from a clinical point of view , [p300]{.gene_color} amplitude should be considered as a psychophysiological index of suicidal risk in major [depressive disorder]{.disease_color} .  | 0.202              | 0.379             | 
-| Alzheimer's disease            | PDK1        | [ from prion diseases to [alzheimer 's disease]{.disease_color} : a common therapeutic target , [pdk1 ]]{.gene_color} .  | 0.2                | 0.378             | 
-| endogenous depression          | HTR1A       | gepirone , a selective serotonin ( [5ht1a )]{.gene_color} partial agonist in the treatment of [major depression]{.disease_color} . | 0.199              | 0.378             | 
-| Gilles de la Tourette syndrome | FGF9        | there were no differences in gender distribution , age at tic onset or [td]{.disease_color} diagnosis , tic severity , proportion with current diagnoses of ocd/oc behavior or attention deficit hyperactivity disorder ( adhd ) , cbcl internalizing , externalizing , or total problems scores , ygtss scores , or [gaf]{.gene_color} scores . | 0.185              | 0.37              | 
-| hematologic cancer             | MLANA       | methods : the sln sections ( n = 214 ) were assessed by qrt assay for 4 established messenger rna biomarkers : [mart-1]{.gene_color} , mage-a3 , [galnac-t]{.disease_color} , and pax3 . | 0.18               | 0.368             | 
-| endogenous depression          | MAOA        | alpha 2-adrenoceptor responsivity in [depression]{.disease_color} : effect of chronic treatment with moclobemide , a selective [mao-a-inhibitor]{.gene_color} , versus maprotiline .  | 0.179              | 0.367             | 
-| chronic kidney failure         | B2M         | to evaluate comparative [beta 2-m]{.gene_color} removal we studied six stable [end-stage renal failure]{.disease_color} patients during high-flux 3-h haemodialysis , haemodia-filtration , and haemofiltration , using acrylonitrile , cellulose triacetate , polyamide and polysulphone capillary devices . | 0.178              | 0.366             | 
-| hematologic cancer             | C7          | serum antibody responses to four haemophilus influenzae type b capsular polysaccharide-protein conjugate vaccines ( prp-d , hboc , [c7p]{.gene_color} , and [prp-t )]{.disease_color} were studied and compared in 175 infants , 85 adults and 140 2-year-old children .  | 0.174              | 0.364             | 
-| hypertension                   | AVP         | portohepatic pressures , hepatic function , and blood gases in the combination of nitroglycerin and [vasopressin]{.gene_color} : search for additive effects in [cirrhotic portal hypertension]{.disease_color} .  | 0.168              | 0.361             | 
-| endogenous depression          | GAD1        | within-individual deflections in gad , physical , and social symptoms predicted later deflections in [depressive symptoms]{.disease_color} , and deflections in depressive symptoms predicted later deflections in [gad]{.gene_color} and separation anxiety symptoms . | 0.149              | 0.349             |  
-
-Table: Contains the bottom ten Disease-associates-Gene confidence scores before and after model calbration. Disease mentions are highlighted in [brown]{.disease_color} and Gene mentions are highlighted in [blue]{.gene_color}. {#tbl:dg_bottom_ten_table}
-
-| Compound Name          | Disease Name       | Text   | Before Calibration | After Calibration | 
-|--------------------|--------------------|---------------------------------------------------------|--------------------|-------------------| 
-| Prazosin           | hypertension       | experience with [prazosin]{.compound_color} in the treatment of [hypertension]{.disease_color} .   | 0.997              | 0.961             | 
-| Methyldopa         | hypertension       | oxprenolol plus cyclopenthiazide-kcl versus [methyldopa]{.compound_color} in the treatment of [hypertension]{.disease_color} .  | 0.997              | 0.961             | 
-| Methyldopa         | hypertension       | atenolol and [methyldopa]{.compound_color} in the treatment of [hypertension]{.disease_color} .  | 0.996              | 0.957             | 
-| Prednisone         | asthma             | [prednisone]{.compound_color} and beclomethasone for treatment of [asthma]{.disease_color} .    | 0.995              | 0.953             | 
-| Sulfasalazine      | ulcerative colitis | [sulphasalazine]{.compound_color} , used in the treatment of [ulcerative colitis]{.disease_color} , is cleaved in the colon by the metabolic action of colonic bacteria on the diazo bond to release 5-aminosalicylic acid ( 5-asa ) and sulpharidine .    | 0.994              | 0.949             | 
-| Prazosin           | hypertension       | letter : [prazosin]{.compound_color} in treatment of [hypertension]{.disease_color} .   | 0.994              | 0.949             | 
-| Methylprednisolone | asthma             | use of tao without [methylprednisolone]{.compound_color} in the treatment of severe [asthma]{.disease_color} .    | 0.994              | 0.948             | 
-| Budesonide         | asthma             | thus , a regimen of [budesonide]{.compound_color} treatment that consistently attenuates bronchial responsiveness in [asthmatic]{.disease_color} subjects had no effect in these men ; larger and longer trials will be required to establish whether a subgroup of smokers shows a favorable response .   | 0.994              | 0.946             | 
-| Methyldopa         | hypertension       | pressor and chronotropic responses to bilateral carotid occlusion ( bco ) and tyramine were also markedly reduced following treatment with [methyldopa]{.compound_color} , which is consistent with the clinical findings that chronic methyldopa treatment in [hypertensive]{.disease_color} patients impairs cardiovascular reflexes . | 0.994              | 0.946             | 
-| Fluphenazine       | schizophrenia      | low dose [fluphenazine decanoate]{.compound_color} in maintenance treatment of [schizophrenia]{.disease_color} .  | 0.994              | 0.946             |  
-
-Table: Contains the top ten Compound-treats-Disease confidence scores after model calbration. Disease mentions are highlighted in [brown]{.disease_color} and Compound mentions are highlighted in [red]{.compound_color}. {#tbl:cd_top_ten_table}
-
-| Compound Name  | Disease Name              | Text        | Before Calibration | After Calibration | 
-|----------------|---------------------------|----------------------------------------------|--------------------|-------------------| 
-| Indomethacin   | hypertension              | effects of [indomethacin]{.compound_color} in rabbit [renovascular hypertension]{.disease_color} . | 0.033              | 0.13              | 
-| Alprazolam     | panic disorder            | according to logistic regression analysis , the relationships between plasma [alprazolam]{.compound_color} concentration and response , as reflected by number of [panic attacks]{.disease_color} reported , phobia ratings , physicians ' and patients ' ratings of global improvement , and the emergence of side effects , were significant .  | 0.03               | 0.124             | 
-| Mestranol      | polycystic ovary syndrome | the binding capacity of plasma testosterone-estradiol-binding globulin ( tebg ) and testosterone ( t ) levels were measured in four women with proved [polycystic ovaries]{.disease_color} and three women with a clinical diagnosis of polycystic ovarian disease before , during , and after administration of norethindrone , 2 mg. , and [mestranol]{.compound_color} , 0.1 mg . | 0.03               | 0.123             | 
-| Creatine       | coronary artery disease   | during successful and uncomplicated angioplasty ( ptca ) , we studied the effect of a short lasting [myocardial ischemia]{.disease_color} on plasma creatine kinase , creatine kinase mb-activity , and [creatine]{.compound_color} kinase mm-isoforms ( mm1 , mm2 , mm3 ) in 23 patients .  | 0.028              | 0.12              | 
-| Creatine       | coronary artery disease   | in 141 patients with [acute myocardial infarction]{.disease_color} , [creatine]{.compound_color} phosphokinase isoenzyme ( cpk-mb ) was determined by the activation method with dithiothreitol ( rao et al. : clin . | 0.027              | 0.117             | 
-| Morphine       | brain cancer              | the tissue to serum ratio of [morphine]{.compound_color} in the [hypothalamus]{.disease_color} , hippocampus , striatum , midbrain and cortex were also smaller in morphine tolerant than in non-tolerant rats .    | 0.026              | 0.115             | 
-| Glutathione    | anemia                    | our results suggest that an association between [gsh]{.compound_color} px [deficiency and hemolytic anemia]{.disease_color} need not represent a cause-and-effect relationship .  | 0.026              | 0.114             | 
-| Dinoprostone   | stomach cancer            | prostaglandin e2 ( [pge2 )]{.compound_color} - and 6-keto-pgf1 alpha-like immunoactivity was measured in incubates of [forestomach and gastric corpus mucosa]{.disease_color} in ( a ) unoperated rats , ( b ) rats with sham-operation of the kidneys and ( c ) rats with bilateral nephrectomy .   | 0.023              | 0.107             | 
-| Creatine       | coronary artery disease   | the value of the electrocardiogram in assessing infarct size was studied using serial estimates of the mb isomer of [creatine]{.compound_color} kinase ( ck mb ) in plasma , serial 35 lead praecordial maps in 28 patients with [anterior myocardial infarction]{.disease_color} , and serial 12 lead electrocardiograms in 17 patients with inferior myocardial infarction .       | 0.022              | 0.105             | 
-| Sulfamethazine | multiple sclerosis        | quantitation and confirmation of [sulfamethazine]{.compound_color} residues in swine muscle and liver by lc and [gc/ms]{.disease_color} . | 0.017              | 0.093             |  
-
-Table: Contains the bottom ten Compound-treats-Disease confidence scores before and after model calbration. Disease mentions are highlighted in [brown]{.disease_color} and Compound mentions are highlighted in [red]{.compound_color}. {#tbl:cd_bottom_ten_table}
-
-| Compound Name                  | Gene Symbol | Text               | Before Calibration | After Calibration | 
-|--------------------------------|-------------|-------------------------|--------------------|-------------------| 
-| Cyclic Adenosine Monophosphate | B3GNT2      | in sk-n-mc human neuroblastoma cells , the [camp]{.compound_color} response to 10 nm isoproterenol ( iso ) is mediated primarily by [beta 1-adrenergic]{.gene_color} receptors . | 0.903              | 0.93              | 
-| Indomethacin                   | AGT         | [indomethacin]{.compound_color} , a potent inhibitor of prostaglandin synthesis , is known to increase the maternal blood pressure response to [angiotensin ii]{.gene_color} infusion . | 0.894              | 0.922             | 
-| Tretinoin                      | RXRA        | the vitamin a derivative [retinoic acid]{.compound_color} exerts its effects on transcription through two distinct classes of nuclear receptors , the retinoic acid receptor ( rar ) and the [retinoid x receptor]{.gene_color} ( rxr ) .   | 0.882              | 0.912             | 
-| Tretinoin                      | RXRA        | the vitamin a derivative retinoic acid exerts its effects on transcription through two distinct classes of nuclear receptors , the [retinoic acid]{.compound_color} receptor ( rar ) and the [retinoid x receptor]{.gene_color} ( rxr ) .  | 0.872              | 0.903             | 
-| D-Tyrosine                     | CSF1        | however , the extent of gap [tyrosine]{.compound_color} phosphorylation induced by [csf-1]{.gene_color} was approximately 10 % of that induced by pdgf-bb in the nih3t3 fibroblasts .   | 0.851              | 0.883             | 
-| D-Glutamic Acid                | GLB1        | thus , the negatively charged side chain of [glu-461]{.compound_color} is important for divalent cation binding to [beta-galactosidase]{.gene_color} .  | 0.849              | 0.882             | 
-| D-Tyrosine                     | CD4         | second , we use the same system to provide evidence that the physical association of [cd4]{.gene_color} with the tcr is required for effective [tyrosine]{.compound_color} phosphorylation of the tcr zeta-chain subunit , presumably reflecting delivery of p56lck ( lck ) to the tcr . | 0.825              | 0.859             | 
-| Calcium Chloride               | TNC         | the possibility that the enhanced length dependence of [ca2]{.compound_color} + sensitivity after cardiac tnc reconstitution was attributable to reduced [tnc]{.gene_color} binding was excluded when the length dependence of partially extracted fast fibres was reduced to one-half the normal value after a 50 % deletion of the native tnc . | 0.821              | 0.855             | 
-| Metoprolol                     | KCNMB2      | studies in difi cells of the displacement of specific 125i-cyp binding by nonselective ( propranolol ) , beta 1-selective ( [metoprolol]{.compound_color} and atenolol ) , and beta 2-selective ( ici 118-551 ) antagonists revealed only a single class of [beta 2-adrenergic]{.gene_color} receptors .  | 0.82               | 0.854             | 
-| D-Tyrosine                     | PLCG1       | epidermal growth factor ( egf ) or platelet-derived growth factor binding to their receptor on fibroblasts induces tyrosine phosphorylation of plc gamma 1 and stable association of [plc gamma 1]{.gene_color} with the receptor protein [tyrosine]{.compound_color} kinase . | 0.818              | 0.851             |  
-
-Table: Contains the top ten Compound-binds-Gene confidence scores before and after model calbration. Gene mentions are highlighted in [blue]{.gene_color} and Compound mentions are highlighted in [red]{.compound_color}. {#tbl:cg_top_ten_table}
-
-| Compound Name     | Gene Symbol | Text              | Before Calibration | After Calibration | 
-|-------------------|-------------|------------------------------------------------------------------|--------------------|-------------------| 
-| Deferoxamine      | TF          | the mechanisms of fe uptake have been characterised using 59fe complexes of citrate , nitrilotriacetate , [desferrioxamine]{.compound_color} , and 59fe added to eagle 's minimum essential medium ( mem ) and compared with human transferrin ( [tf )]{.gene_color} labelled with 59fe and iodine-125 .    | 0.02               | 0.011             | 
-| Hydrocortisone    | GH1         | group iv patients had normal basal levels of lh and normal lh , [gh]{.gene_color} and [cortisol]{.compound_color} responses .  | 0.02               | 0.011             | 
-| Carbachol         | INS         | at the same concentration , however , iapp significantly ( p less than 0.05 ) inhibited [carbachol-stimulated]{.compound_color} ( 10 ( -7 ) m ) release of insulin by 30 % , and cgrp significantly inhibited carbachol-stimulated release of [insulin]{.gene_color} by 33 % when compared with the control group .  | 0.02               | 0.011             | 
-| Adenosine         | ME2         | at physiological concentrations , atp , adp , and [amp]{.compound_color} all inhibit the enzyme from atriplex spongiosa and panicum miliaceum ( [nad-me-type]{.gene_color} plants ) , with atp the most inhibitory species .    | 0.019              | 0.01              | 
-| Naloxone          | POMC        | specifically , opioids , including 2-n-pentyloxy-2-phenyl-4-methyl-morpholine , [naloxone]{.compound_color} , and [beta-endorphin]{.gene_color} , have been shown to interact with il-2 receptors ( 134 ) and regulate production of il-1 and il-2 ( 48-50 , 135 ) .   | 0.018              | 0.01              | 
-| Cortisone acetate | POMC        | sarcoidosis therapy with [cortisone]{.compound_color} and [acth --]{.gene_color} the role of acth therapy .  | 0.017              | 0.009             | 
-| Epinephrine       | INS         | thermogenic effect of thyroid hormones : interactions with [epinephrine]{.compound_color} and [insulin]{.gene_color} .  | 0.017              | 0.009             | 
-| Aldosterone       | KNG1        | important vasoconstrictor , fluid - and sodium-retaining factors are the [renin-angiotensin-aldosterone]{.compound_color} system , sympathetic nerve activity , and vasopressin ; vasodilator , volume , and sodium-eliminating factors are atrial natriuretic peptide , vasodilator prostaglandins like prostacyclin and prostaglandin e2 , dopamine , [bradykinin]{.gene_color} , and possibly , endothelial derived relaxing factor ( edrf ) . | 0.016              | 0.008             | 
-| D-Leucine         | POMC        | cross-reactivities of [leucine-enkephalin]{.compound_color} and [beta-endorphin]{.gene_color} with the eia were less than 0.1 % , while that with gly-gly-phe-met and oxidized gly-gly-phe-met were 2.5 % and 10.2 % , respectively .  | 0.011              | 0.005             | 
-| Estriol           | LGALS1      | [ diagnostic value of serial determination of [estriol]{.compound_color} and [hpl]{.gene_color} in plasma and of total estrogens in 24-h-urine compared to single values for diagnosis of fetal danger ] .   | 0.01               | 0.005             | 
-
-Table: Contains the bottom ten Compound-binds-Gene confidence scores before and after model calbration. Gene mentions are highlighted in [blue]{.gene_color} and Compound mentions are highlighted in [red]{.compound_color}. {#tbl:cg_bottom_ten_table}
-
-| Gene1 Symbol | Gene2 Symbol | Text   | Before Calibration | After Calibration | 
-|--------------|--------------|----------|--------------------|-------------------| 
-| ESR1         | HSP90AA1     | previous studies have suggested that the 90-kda heat shock protein ( [hsp90 )]{.gene_color} interacts with the [er]{.gene_color} , thus stabilizing the receptor in an inactive state .   | 0.812              | 0.864             | 
-| TP53         | TP73         | cyclin g interacts with p53 as well as [p73]{.gene_color} , and its binding to [p53]{.gene_color} or p73 presumably mediates downregulation of p53 and p73 .    | 0.785              | 0.837             | 
-| TP53         | AKT1         | treatment of c81 cells with ly294002 resulted in an increase in the [p53-responsive]{.gene_color} gene mdm2 , suggesting a role for [akt]{.gene_color} in the tax-mediated regulation of p53 transcriptional activity .  | 0.773              | 0.825             | 
-| ABCB1        | NR1I3        | valproic acid induces cyp3a4 and [mdr1]{.gene_color} gene expression by activation of [constitutive androstane receptor]{.gene_color} and pregnane x receptor pathways .  | 0.762              | 0.813             | 
-| PTH2R        | PTH2         | thus , the juxtamembrane receptor domain specifies the signaling and binding selectivity of [tip39]{.gene_color} for the [pth2 receptor]{.gene_color} over the pth1 receptor .    | 0.761              | 0.812             | 
-| CCND1        | ABL1         | synergy with [v-abl]{.gene_color} depended on a motif in [cyclin d1]{.gene_color} that mediates its binding to the retinoblastoma protein , suggesting that abl oncogenes in part mediate their mitogenic effects via a retinoblastoma protein-dependent pathway .    | 0.757              | 0.808             | 
-| CTNND1       | CDH1         | these complexes are formed independently of ddr1 activation and of beta-catenin and [p120-catenin]{.gene_color} binding to [e-cadherin]{.gene_color} ; they are ubiquitous in epithelial cells . | 0.748              | 0.798             | 
-| CSF1         | CSF1R        | this is in agreement with current thought that the [c-fms]{.gene_color} proto-oncogene product functions as the [csf-1]{.gene_color} receptor specific to this pathway . | 0.745              | 0.795             | 
-| EZR          | CFTR         | without [ezrin]{.gene_color} binding , the cytoplasmic tail of [cftr]{.gene_color} only interacts strongly with the first amino-terminal pdz domain to form a 1:1 c-cftr .  | 0.732              | 0.78              | 
-| SRC          | PIK3CG       | we have demonstrated that the sh2 ( [src]{.gene_color} homology 2 ) domains of the 85 kda subunit of pi-3k are sufficient to mediate binding of the [pi-3k]{.gene_color} complex to tyrosine phosphorylated , but not non-phosphorylated il-2r beta , suggesting that tyrosine phosphorylation is an integral component of the activation of pi-3k by the il-2r . | 0.731              | 0.78              | 
-
-Table: Contains the top ten Gene-interacts-Gene confidence scores before and after model calbration. Both gene mentions highlighted in [blue]{.gene_color}. {#tbl:gg_top_ten_table}
-
-| Gene1 Symbol | Gene2 Symbol | Text  | Before Calibration | After Calibration | 
-|--------------|--------------|----------|--------------------|-------------------| 
-| AGTR1        | ACE          | result ( s ) : the luteal tissue is the major site of ang ii , [ace]{.gene_color} , [at1r]{.gene_color} , and vegf , with highest staining intensity found during the midluteal phase and at pregnancy . | 0.009              | 0.003             | 
-| ABCE1        | ABCF2        | in relation to normal melanocytes , abcb3 , abcb6 , abcc2 , abcc4 , [abce1]{.gene_color} and [abcf2]{.gene_color} were significantly increased in melanoma cell lines , whereas abca7 , abca12 , abcb2 , abcb4 , abcb5 and abcd1 showed lower expression levels . | 0.008              | 0.002             | 
-| IL4          | IFNG         | in contrast , il-13ralpha2 mrna expression was up-regulated by [ifn-gamma]{.gene_color} plus [il-4]{.gene_color} . | 0.007              | 0.002             | 
-| FCAR         | CD79A        | we report here the presence of circulating soluble fcalphar ( [cd89 )]{.gene_color} - [iga]{.gene_color} complexes in patients with igan .    | 0.007              | 0.002             | 
-| IL4          | VCAM1        | similarly , [il-4]{.gene_color} induced [vcam-1]{.gene_color} expression and augmented tnf-alpha-induced expression on huvec but did not affect vcam-1 expression on hdmec .  | 0.007              | 0.002             | 
-| IL2          | IFNG         | prostaglandin e2 at priming of naive cd4 + t cells inhibits acquisition of ability to produce [ifn-gamma]{.gene_color} and [il-2]{.gene_color} , but not il-4 and il-5 . | 0.006              | 0.002             | 
-| IL2          | FOXP3        | il-1b promotes tgf-b1 and [il-2]{.gene_color} dependent [foxp3]{.gene_color} expression in regulatory t cells . | 0.006              | 0.002             | 
-| IL2          | IFNG         | the detailed distribution of lymphokine-producing cells showed that [il-2]{.gene_color} and [ifn-gamma-producing]{.gene_color} cells were located mainly in the follicular areas .    | 0.005              | 0.001             | 
-| IFNG         | IL10         | results : we found weak mrna expression of interleukin-4 ( il-4 ) and il-5 , and strong expression of il-6 , [il-10]{.gene_color} and [ifn-gamma]{.gene_color} before therapy . | 0.005              | 0.001             | 
-| PIK3R1       | PTEN         | both [pten]{.gene_color} ( [pi3k]{.gene_color} antagonist ) and pp2 ( unspecific phosphatase ) were down-regulated .  | 0.005              | 0.001             |  
-
-Table: Contains the bottom ten Gene-interacts-Gene confidence scores before and after model calbration. Both gene mentions highlighted in [blue]{.gene_color}. {#tbl:gg_bottom_ten_table}
-
 ### Top Ten Sentences for Each Edge Type
 
-| Edge Type | Source Node | Target Node | Generative Model Prediction | Discriminative Model Prediction | Number of Sentences | In Hetionet | Text     | 
-|-----------|-------------|-------------|-----------------------------|---------------------------------|--------------|----------------------|----------|
-| [D]{.disease_color}a[G]{.gene_color}       | urinary bladder cancer | TP53        | 1                           | 0.945                           | 2112         | Existing             | conclusion : our findings indicate that the dsp53-285 can upregulate wild-type [p53]{.gene_color} expression in human [bladder cancer]{.disease_color} cells through rna activation , and suppresses cells proliferation and metastasis in vitro and in vivo . | 
-| [D]{.disease_color}a[G]{.gene_color}       | ovarian cancer         | EGFR        | 1                           | 0.937                           | 1330         | Existing             | conclusion : our data showed that increased expression of [egfr]{.gene_color} is associated with poor prognosis of patients with [eoc]{.disease_color} and dacomitinib may act as a novel , useful chemotherapy drug .  | 
-| [D]{.disease_color}a[G]{.gene_color}       | stomach cancer         | TP53        | 1                           | 0.937                           | 2679         | Existing             | conclusion : this meta-analysis suggests that [p53]{.gene_color} arg72pro polymorphism is associated with increased risk of [gastric cancer]{.disease_color} in asians .  | 
-| [D]{.disease_color}a[G]{.gene_color}       | lung cancer            | TP53        | 1                           | 0.936                           | 6813         | Existing             | conclusion : these results suggest that high expression of the [p53]{.gene_color} oncoprotein is a favorable prognostic factor in a subset of patients with [nsclc]{.disease_color} .  | 
-| [D]{.disease_color}a[G]{.gene_color}       | breast cancer          | TCF7L2      | 1                           | 0.936                           | 56           | Existing             | this meta-analysis demonstrated that [tcf7l2]{.gene_color} gene polymorphisms ( rs12255372 and rs7903146 ) are associated with an increased susceptibility to [breast cancer]{.disease_color} . | 
-| [D]{.disease_color}a[G]{.gene_color}       | skin cancer            | COX2        | 1                           | 0.935                           | 73           | Novel                | elevated expression of [cox-2]{.gene_color} has been associated with tumor progression in [skin cancer]{.disease_color} through multiple mechanisms . | 
-| [D]{.disease_color}a[G]{.gene_color}       | thyroid cancer         | VEGFA       | 1                           | 0.933                           | 592          | Novel                | as a conclusion , we suggest that [vegf]{.gene_color} g +405 c polymorphism is associated with increased risk of [ptc]{.disease_color} .  | 
-| [D]{.disease_color}a[G]{.gene_color}       | stomach cancer         | EGFR        | 1                           | 0.933                           | 1237         | Existing             | recently , high lymph node ratio is closely associated with [egfr]{.gene_color} expression in advanced [gastric cancer]{.disease_color} . | 
-| [D]{.disease_color}a[G]{.gene_color}       | liver cancer           | GPC3        | 1                           | 0.933                           | 1944         | Novel                | conclusions serum [gpc3]{.gene_color} was overexpressed in [hcc]{.disease_color} patients .  | 
-| [D]{.disease_color}a[G]{.gene_color}       | stomach cancer         | CCR6        | 1                           | 0.931                           | 24           | Novel                | the cox regression analysis showed that high expression of [ccr6]{.gene_color} was an independent prognostic factor for [gc]{.disease_color} patients . | 
-| [C]{.compound_color}t[D]{.disease_color}       | Sorafenib    | liver cancer           | 1                           | 0.99                            | 6672         | Existing             | tace plus [sorafenib]{.compound_color} for the treatment of [hepatocellular carcinoma]{.disease_color} : final results of the multicenter socrates trial . | 
-| [C]{.compound_color}t[D]{.disease_color}       | Methotrexate | rheumatoid arthritis   | 1                           | 0.989                           | 14546        | Existing             | comparison of low-dose oral pulse [methotrexate]{.compound_color} and placebo in the treatment of [rheumatoid arthritis]{.disease_color} .| 
-| [C]{.compound_color}t[D]{.disease_color}       | Auranofin    | rheumatoid arthritis   | 1                           | 0.988                           | 419          | Existing             | [auranofin]{.compound_color} versus placebo in the treatment of [rheumatoid arthritis]{.disease_color} . | 
-| [C]{.compound_color}t[D]{.disease_color}       | Lamivudine   | hepatitis B            | 1                           | 0.988                           | 6709         | Existing             | randomized controlled trials ( rcts ) comparing etv with [lam]{.compound_color} for the treatment of [hepatitis b]{.disease_color} decompensated cirrhosis were included .| 
-| [C]{.compound_color}t[D]{.disease_color}       | Doxorubicin  | urinary bladder cancer | 1                           | 0.988                           | 930          | Existing             | 17-year follow-up of a randomized prospective controlled trial of adjuvant intravesical [doxorubicin]{.compound_color} in the treatment of superficial [bladder cancer]{.disease_color} . | 
-| [C]{.compound_color}t[D]{.disease_color}       | Docetaxel    | breast cancer          | 1                           | 0.987                           | 5206         | Existing             | currently , randomized phase iii trials have demonstrated that [docetaxel]{.compound_color} is an effective strategy in the adjuvant treatment of [breast cancer]{.disease_color} .| 
-| [C]{.compound_color}t[D]{.disease_color}       | Cimetidine   | psoriasis              | 0.999                       | 0.987                           | 12           | Novel                | [cimetidine]{.compound_color} versus placebo in the treatment of [psoriasis]{.disease_color} . | 
-| [C]{.compound_color}t[D]{.disease_color}       | Olanzapine   | schizophrenia          | 1                           | 0.987                           | 3324         | Novel                | a double-blind , randomised comparative trial of amisulpride versus [olanzapine]{.compound_color} in the treatment of [schizophrenia]{.disease_color} : short-term results at two months . | 
-| [C]{.compound_color}t[D]{.disease_color}       | Fulvestrant  | breast cancer          | 1                           | 0.987                           | 826          | Existing             | phase iii clinical trials have demonstrated the clinical benefit of [fulvestrant]{.compound_color} in the endocrine treatment of [breast cancer]{.disease_color} . | 
-| [C]{.compound_color}t[D]{.disease_color}       | Pimecrolimus | atopic dermatitis      | 1                           | 0.987                           | 531          | Existing             | introduction : although several controlled clinical trials have demonstrated the efficacy and good tolerability of 1 % [pimecrolimus]{.compound_color} cream for the treatment of [atopic dermatitis]{.disease_color} , the results of these trials may not apply to real-life usage . | 
-| [C]{.compound_color}b[G]{.gene_color}       | Gefitinib     | EGFR        | 1                           | 0.99                            | 8746         | Existing             | morphologic features of adenocarcinoma of the lung predictive of response to the [epidermal growth factor receptor]{.gene_color} kinase inhibitors erlotinib and [gefitinib]{.compound_color} .  | 
-| [C]{.compound_color}b[G]{.gene_color}       | Adenosine     | EGFR        | 1                           | 0.987                           | 644          | Novel                | it is well established that inhibiting [atp]{.compound_color} binding within the [egfr]{.gene_color} kinase domain regulates its function .   | 
-| [C]{.compound_color}b[G]{.gene_color}       | Rosiglitazone | PPARG       | 1                           | 0.987                           | 1498         | Existing             | [rosiglitazone]{.compound_color} is a potent [peroxisome proliferator-activated receptor gamma]{.gene_color} agonist that decreases hyperglycemia by reducing insulin resistance in patients with type 2 diabetes mellitus . | 
-| [C]{.compound_color}b[G]{.gene_color}       | D-Tyrosine    | INSR        | 0.998                       | 0.987                           | 1713         | Novel                | this result suggests that [tyrosine]{.compound_color} phosphorylation of phosphatidylinositol 3-kinase by the [insulin receptor]{.gene_color} kinase may increase the specific activity of the former enzyme in vivo .   | 
-| [C]{.compound_color}b[G]{.gene_color}       | D-Tyrosine    | IGF1        | 0.998                       | 0.983                           | 819          | Novel                | affinity-purified [insulin-like growth factor i]{.gene_color} receptor kinase is activated by [tyrosine]{.compound_color} phosphorylation of its beta subunit .  | 
-| [C]{.compound_color}b[G]{.gene_color}       | Pindolol      | HTR1A       | 1                           | 0.983                           | 175          | Existing             | [pindolol]{.compound_color} , a betablocker with weak partial [5-ht1a receptor]{.gene_color} agonist activity has been shown to produce a more rapid onset of antidepressant action of ssris .   | 
-| [C]{.compound_color}b[G]{.gene_color}       | Progesterone  | SHBG        | 1                           | 0.981                           | 492          | Existing             | however , dng also elicits properties of [progesterone]{.compound_color} derivatives like neutrality in metabolic and cardiovascular system and considerable antiandrogenic activity , the latter increased by lack of binding to [shbg]{.gene_color} as specific property of dng . | 
-| [C]{.compound_color}b[G]{.gene_color}       | Mifepristone  | AR          | 1                           | 0.98                            | 78           | Existing             | [ru486]{.compound_color} bound to the [androgen receptor]{.gene_color} .  | 
-| [C]{.compound_color}b[G]{.gene_color}       | Alfentanil    | OPRM1       | 1                           | 0.979                           | 10           | Existing             | purpose : [alfentanil]{.compound_color} is a high potency [mu opiate receptor]{.gene_color} agonist commonly used during presurgical induction of anesthesia .  | 
-| [C]{.compound_color}b[G]{.gene_color}       | Candesartan   | AGTR1       | 1                           | 0.979                           | 36           | Existing             | [tcv-116]{.compound_color} is a new , nonpeptide , [angiotensin ii type-1 receptor]{.gene_color} antagonist that acts as a specific inhibitor of the renin-angiotensin system .  | 
-| [G]{.gene_color}i[G]{.gene_color}       | BRCA2       | BRCA1       | 0.972                       | 0.984                           | 12257        | Novel                | a total of 9 families ( 16 % ) showed mutations in the [brca1]{.gene_color} gene , including the one new mutation identified in this study ( 5382insc ) , and 12 families ( 21 % ) presented mutations in the [brca2]{.gene_color} gene . | 
-| [G]{.gene_color}i[G]{.gene_color}       | MDM2        | TP53        | 0.938                       | 0.978                           | 17128        | Existing             | no mutations in the [tp53]{.gene_color} gene have been found in samples with amplification of [mdm2]{.gene_color} .  | 
-| [G]{.gene_color}i[G]{.gene_color}       | BRCA1       | BRCA2       | 1                           | 0.978                           | 12257        | Existing             | pathogenic truncating mutations in the [brca1]{.gene_color} gene were found in two tumor samples with allelic losses , whereas no mutations were identified in the [brca2]{.gene_color} gene . | 
-| [G]{.gene_color}i[G]{.gene_color}       | KRAS        | TP53        | 0.992                       | 0.971                           | 4106         | Novel                | mutations in the [p53]{.gene_color} gene did not correlate with mutations in the [c-k-ras]{.gene_color} gene , indicating that colorectal cancer can develop through pathways independent not only of the presence of mutations in any of these genes but also of their cooperation . | 
-| [G]{.gene_color}i[G]{.gene_color}       | TP53        | HRAS        | 0.992                       | 0.969                           | 451          | Novel                | pathologic examination of the uc specimens from aa-exposed patients identified heterozygous [hras]{.gene_color} changes in 3 cases , and deletion or replacement mutations in the [tp53]{.gene_color} gene in 4 . | 
-| [G]{.gene_color}i[G]{.gene_color}       | REN         | NR1H3       | 0.998                       | 0.966                           | 8            | Novel                | nuclear receptor [lxralpha]{.gene_color} is involved in camp-mediated human [renin]{.gene_color} gene expression . | 
-| [G]{.gene_color}i[G]{.gene_color}       | ESR2        | CYP19A1     | 0.999                       | 0.96                            | 159          | Novel                | dna methylation , histone modifications , and binding of estrogen receptor , [erb]{.gene_color} to regulatory dna sequences of [cyp19a1]{.gene_color} gene were evaluated by chromatin immunoprecipitation ( chip ) assay . | 
-| [G]{.gene_color}i[G]{.gene_color}       | RET         | EDNRB       | 0.816                       | 0.96                            | 136          | Novel                | mutations in the [ret]{.gene_color} gene , which codes for a receptor tyrosine kinase , and in [ednrb]{.gene_color} which codes for the endothelin-b receptor , have been shown to be associated with hscr in humans .  | 
-| [G]{.gene_color}i[G]{.gene_color}       | PKD1        | PKD2        | 1                           | 0.959                           | 1614         | Existing             | approximately 85 % of adpkd cases are caused by mutations in the [pkd1]{.gene_color} gene , while mutations in the [pkd2]{.gene_color} gene account for the remaining 15 % of cases . | 
-| [G]{.gene_color}i[G]{.gene_color}       | LYZ         | CTCF        | 0.999                       | 0.959                           | 2            | Novel                | in conjunction with the thyroid receptor ( tr ) , [ctcf]{.gene_color} binding to the [lysozyme]{.gene_color} gene transcriptional silencer mediates the thyroid hormone response element ( tre ) - dependent transcriptional repression . |  
-
+| Edge Type                                | Source Node         | Target Node     | Generative Model Prediction | Discriminative Model Prediction | Number of Sentences | In Hetionet | Text                                                                                                                                                                                                                                                                                                                                                                                 | 
+|------------------------------------------|---------------------|-----------------|-----------------------------|---------------------------------|---------------------|-------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------| 
+| [D]{.disease_color}a[G]{.gene_color}     | hematologic cancer  | STMN1           | 1.000                       | 0.979                           | 83                  | Novel       | the stathmin1 mrna expression level in de novo al patient be high than that in healthy person ( p < 0.05 ) , the [stathmin1].{gene_color} mrna expression level in relapse patient with al be high than that in de novo patient ( p < 0.05 ) , and there be no significant difference of stathmin1 mrna expression between patient with [aml].{disease_color} and patient with all . | 
+| [D]{.disease_color}a[G]{.gene_color}     | breast cancer       | INSIG2          | 1.000                       | 0.979                           | 4                   | Novel       | in analysis of [idc ].{disease_color} cell , the level of [insig2].{gene_color} mrna expression be significantly high in late - stage patient than in early - stage patient .                                                                                                                                                                                                        | 
+| [D]{.disease_color}a[G]{.gene_color}     | lung cancer         | GNAO1           | 1.000                       | 0.979                           | 104                 | Novel       | high [numb].{disease_color} expression be associate with favorable prognosis in patient with [lung adenocarcinoma].{gene_color} , but not in those with squamous cell carcinoma .                                                                                                                                                                                                    | 
+| [D]{.disease_color}a[G]{.gene_color}     | breast cancer       | TTF1            | 1.000                       | 0.977                           | 88                  | Novel       | significant [ttf-1].{gene_color} overexpression be observe in adenocarcinomas harbor egfr mutation ( p = 0.008 ) , and no or significantly low level expression of ttf-1 be observe in [adenocarcinomas].{disease_color} harbor kras mutation ( p = 0.000 ) .                                                                                                                        | 
+| [D]{.disease_color}a[G]{.gene_color}     | breast cancer       | BUB1B           | 1.000                       | 0.977                           | 13                  | Novel       | elevated [bubr1].{gene_color} expression be associate with poor survival in early stage [breast cancer].{disease_color} patient .                                                                                                                                                                                                                                                    | 
+| [D]{.disease_color}a[G]{.gene_color}     | Alzheimer's disease | SERPINA3        | 1.000                       | 0.977                           | 182                 | Existing    | a common polymorphism within act and il-1beta gene affect plasma level of [act].{gene_color} or il-1beta , and [ad].{disease_color} patient with the act t , t or il-1beta t , t genotype show the high level of plasma act or il-1beta , respectively .                                                                                                                             | 
+| [D]{.disease_color}a[G]{.gene_color}     | esophageal cancer   | TRAF6           | 1.000                       | 0.976                           | 15                  | Novel       | expression of traf6 be highly elevated in [esophageal cancer].{disease_color} tissue , and patient with high [traf6].{gene_color} expression have a significantly short survival time than those with low traf6 expression .                                                                                                                                                         | 
+| [D]{.disease_color}a[G]{.gene_color}     | hypertension        | TBX4            | 1.000                       | 0.975                           | 146                 | Novel       | the proportion of circulate [th1].{gene_color} cell and the level of t - bet , ifng mrna be increase in [ht].{disease_color} patient , the expression of ifng - as1 be upregulated and positively correlate with the proportion of circulate th1 cell or t - bet , and ifng expression , or serum level of anti - thyroglobulin antibody / thyroperoxidase antibody in ht patient .  | 
+| [D]{.disease_color}a[G]{.gene_color}     | breast cancer       | TP53            | 1.000                       | 0.975                           | 3481                | Existing    | hormone receptor status rather than her2 status be significantly associate with increase ki-67 and [p53].{gene_color} expression in triple [- negative ].{disease_color} breast carcinoma , and high expression of ki-67 but not p53 be significantly associate with axillary nodal metastasis in triple - negative and high - grade non - triple - negative breast carcinoma .      | 
+| [D]{.disease_color}a[G]{.gene_color}     | esophageal cancer   | COL17A1         | 1.000                       | 0.975                           | 32                  | Novel       | high [cd147].{gene_color} expression in patient with [esophageal cancer].{disease_color} be associate with bad survival outcome and common clinicopathological indicator of poor prognosis .                                                                                                                                                                                         | 
+| [C]{.compound_color}t[D]{.disease_color} | Docetaxel           | prostate cancer | 0.996                       | 0.964                           | 5614                | Existing    | docetaxel and atrasentan versus [docetaxel ].{compound_color} and placebo for man with advanced castration - resistant [prostate cancer].{disease_color} ( swog s0421 ) : a randomised phase 3 trial                                                                                                                                                                                 | 
+| [C]{.compound_color}t[D]{.disease_color} | E7389               | breast cancer   | 0.999                       | 0.957                           | 862                 | Novel       | clinical effect of prior trastuzumab on combination [eribulin mesylate].{compound_color} plus trastuzumab as first - line treatment for human epidermal growth factor receptor 2 positive locally recurrent or metastatic [breast cancer].{disease_color} : result from a phase ii , single - arm , multicenter study                                                                | 
+| [C]{.compound_color}t[D]{.disease_color} | Zoledronate         | bone cancer     | 0.996                       | 0.955                           | 226                 | Novel       | [zoledronate].{compound_color} in combination with chemotherapy and surgery to treat [osteosarcoma].{disease_color} ( os2006 ) : a randomised , multicentre , open - label , phase 3 trial .                                                                                                                                                                                         | 
+| [C]{.compound_color}t[D]{.disease_color} |                     |                 | 0.878                       | 0.954                           | 484                 | Existing    | the role of [ixazomib].{compound_color} as an augment conditioning therapy in salvage autologous stem cell transplant ( asct ) and as a post - asct consolidation and maintenance strategy in patient with relapse multiple myeloma ( accord [ uk - mra [myeloma].{disease_color} xii ] trial ) : study protocol for a phase iii randomise controlled trial                          | 
+| [C]{.compound_color}t[D]{.disease_color} | Topotecan           | lung cancer     | 1.000                       | 0.954                           | 315                 | Existing    | combine chemotherapy with cisplatin , etoposide , and irinotecan versus [topotecan].{compound_color} alone as second - line treatment for patient with [sensitive relapse small].{disease_color} - cell lung cancer ( jcog0605 ) : a multicentre , open - label , randomised phase 3 trial .                                                                                         | 
+| [C]{.compound_color}t[D]{.disease_color} | Epirubicin          | breast cancer   | 0.999                       | 0.953                           | 2147                | Existing    | accelerate versus standard [epirubicin].{compound_color} follow by cyclophosphamide , methotrexate , and fluorouracil or capecitabine as adjuvant therapy for [breast cancer].{disease_color} in the randomised uk tact2 trial ( cruk/05/19 ) : a multicentre , phase 3 , open - label , randomise , control trial                                                                   | 
+| [C]{.compound_color}t[D]{.disease_color} | Paclitaxel          | breast cancer   | 1.000                       | 0.952                           | 10255               | Existing    | sunitinib plus [paclitaxel].{compound_color} versus bevacizumab plus paclitaxel for first - line treatment of patients with [advanced breast cancer].{disease_color} : a phase iii , randomized , open - label trial                                                                                                                                                                 | 
+| [C]{.compound_color}t[D]{.disease_color} | Anastrozole         | breast cancer   | 0.996                       | 0.952                           | 2364                | Existing    | a european organisation for research and treatment of cancer randomize , double - blind , placebo - control , multicentre [phase].{disease_color} ii trial of anastrozole in combination with [gefitinib or placebo in hormone].{compound_color} receptor - positive advanced breast cancer ( nct00066378 ) .                                                                        | 
+| [C]{.compound_color}t[D]{.disease_color} | Gefitinib           | lung cancer     | 1.000                       | 0.950                           | 11860               | Existing    | [gefitinib].{compound_color} versus placebo as maintenance therapy in patient with locally advanced or metastatic [non - small].{disease_color} - cell lung cancer ( inform ; c - tong 0804 ) : a multicentre , double - blind randomise phase 3 trial .                                                                                                                             | 
+| [C]{.compound_color}t[D]{.disease_color} | Docetaxel           | prostate cancer | 1.000                       | 0.949                           | 5614                | Existing    | ipilimumab versus placebo after radiotherapy in patient with metastatic castration - resistant [prostate cancer].{disease_color} that have progress after [docetaxel].{compound_color} chemotherapy ( ca184 - 043 ) : a multicentre , randomised , double - blind , phase 3 trial                                                                                                    | 
+| [C]{.compound_color}t[D]{.disease_color} | Sulfamethazine      | lung cancer     | 0.611                       | 0.949                           | 4                   | Novel       | [tmp].{compound_color} / smz ( 320/1600 mg / day ) treatment be compare to placebo in a double - blind , randomized trial in [patient with newly diagnose].{disease_color} small cell carcinoma of the lung during the initial course of chemotherapy with cyclophosphamide , doxorubicin , and etoposide .                                                                          | 
+| [C]{.compound_color}b[G]{.gene_color}    | D-Tyrosine          | EGFR            | 0.601                       | 0.876                           | 3423                | Novel       | amphiregulin ( ar ) and heparin - binding egf - like growth factor ( hb - [egf].{gene_color} ) bind and activate the egfr while heregulin ( hrg [) act ].{compound_color} through the p185erbb-2 and p180erbb-4 tyrosine kinase .                                                                                                                                                    | 
+| [C]{.compound_color}b[G]{.gene_color}    | Phosphonotyrosine   | ANK3            | 0.004                       | 0.865                           | 1                   | Novel       | at least two domain of p85 can bind to [ank3 ].{gene_color} , and the interaction involve the p85 c - sh2 domain be find to be [phosphotyrosine].{compound_color} - independent .                                                                                                                                                                                                    | 
+| [C]{.compound_color}b[G]{.gene_color}    | Adenosine           | ABCC8           | 0.891                       | 0.860                           | 353                 | Novel       | sulfonylurea act by inhibition of [beta - cell ].{compound_color} adenosine triphosphate - dependent potassium ( k(atp ) ) channel after bind to the sulfonylurea subunit 1 [receptor ( ].{gene_color} sur1 ) .                                                                                                                                                                      | 
+| [C]{.compound_color}b[G]{.gene_color}    | D-Tyrosine          | AREG            | 0.891                       | 0.857                           | 22                  | Novel       | amphiregulin ( [ar ) ].{gene_color} and heparin - binding egf - like growth factor ( hb - egf ) bind and activate the egfr while heregulin ( hrg [) act ].{compound_color} through the p185erbb-2 and p180erbb-4 tyrosine kinase .                                                                                                                                                   | 
+| [C]{.compound_color}b[G]{.gene_color}    | D-Tyrosine          | EGF             | 0.602                       | 0.856                           | 389                 | Novel       | upon activation of the receptor for the epidermal growth factor ( [egfr ) ].{gene_color} , sprouty2 undergoe phosphorylation at a conserve [tyrosine ].{compound_color} that recruit the src homology 2 domain of c - cbl .                                                                                                                                                          | 
+| [C]{.compound_color}b[G]{.gene_color}    | D-Tyrosine          | CSF1            | 0.101                       | 0.854                           | 106                 | Novel       | as a member of the subclass iii family of receptor [tyrosine].{compound_color} kinase , kit be closely relate to the receptor for platelet derive growth factor alpha and beta ( pdgf - a and b [) , macrophage colony ].{gene_color} stimulate factor ( m - csf ) , and flt3 ligand .                                                                                               | 
+| [C]{.compound_color}b[G]{.gene_color}    | D-Tyrosine          | ERBB4           | 0.101                       | 0.848                           | 115                 | Novel       | the efgr family be a group of four structurally similar [tyrosine ].{compound_color} kinase ( egfr , her2 / neu , erbb-3 [, and erbb-4].{gene_color} ) that dimerize on bind with a number of ligand , include egf and transform growth factor alpha .                                                                                                                               | 
+| [C]{.compound_color}b[G]{.gene_color}    | D-Tyrosine          | EGFR            | 0.969                       | 0.848                           | 3423                | Novel       | the [epidermal growth factor receptor ].{gene_color} be a member of type - -pron- growth factor receptor [family ].{compound_color} with tyrosine kinase activity that be activate follow the binding of multiple cognate ligand .                                                                                                                                                   | 
+| [C]{.compound_color}b[G]{.gene_color}    | D-Tyrosine          | VAV1            | 0.601                       | 0.842                           | 187                 | Novel       | stimulation of quiescent rodent fibroblast with either epidermal or platelet - derive growth factor induce an increase affinity of vav for cbl - b and result in the [subsequent ].{gene_color} formation of a vav - [dependent ].{compound_color} trimeric complex with the ligand - stimulate tyrosine kinase receptor .                                                           | 
+| [C]{.compound_color}b[G]{.gene_color}    | Tretinoin           | RORB            | 0.601                       | 0.840                           | 7                   | Novel       | the retinoid z receptor beta ( [rzr beta ) ].{gene_color} , an orphan receptor , be a member of the [retinoic acid].{compound_color} receptor ( rar)/thyroid hormone receptor ( tr ) subfamily of nuclear receptor .                                                                                                                                                                 | 
+| [C]{.compound_color}b[G]{.gene_color}    | L-Tryptophan        | TACR1           | 0.891                       | 0.839                           | 4                   | Novel       | these result suggest that the [tryptophan ].{compound_color} and quinuclidine series of nk-1 antagonist bind to similar bind site on the human [nk-1 receptor ].{gene_color} .                                                                                                                                                                                                       | 
+| [G]{.gene_color}i[G]{.gene_color}        | CYSLTR2             | CYSLTR2         | 0.967                       | 0.564                           | 37                  | Novel       | the bind pocket of [cyslt2 ].{gene2_color} receptor and the proposition of the interaction mode between [cyslt2 ].{gene1_color} and hami3379 be identify .                                                                                                                                                                                                                           | 
+| [G]{.gene_color}i[G]{.gene_color}        | RXRA                | PPARA           | 1.000                       | 0.563                           | 143                 | Novel       | after bind ligand , the [ppar ].{gene2_color} - y receptor heterodimerize [with ].{gene1_color} the rxr receptor .                                                                                                                                                                                                                                                                   | 
+| [G]{.gene_color}i[G]{.gene_color}        | RXRA                | RXRA            | 0.824                       | 0.551                           | 1101                | Existing    | nuclear hormone receptor , for example , bind either as homodimer or as heterodimer with [retinoid x receptor ].{gene1_color} ( [rxr ) ].{gene2_color} to half - site repeat that be stabilize by protein - protein interaction mediate by residue within both the dna- and ligand - bind domain .                                                                                   | 
+| [G]{.gene_color}i[G]{.gene_color}        | ADRBK1              | ADRA2A          | 0.822                       | 0.543                           | 3                   | Novel       | mutation of these residue within the [holo - alpha(2a)ar diminish grk2-promoted].{gene2_color} phosphorylation [of ].{gene1_color} the receptor as well as the ability of the kinase to be activate by receptor binding .                                                                                                                                                            | 
+| [G]{.gene_color}i[G]{.gene_color}        | ESRRA               | ESRRA           | 0.001                       | 0.531                           | 308                 | Existing    | the crystal structure of the ligand bind domain ( lbd ) of the estrogen - relate receptor [alpha ].{gene2_color} ( [erralpha , ].{gene1_color} nr3b1 ) complexe with a coactivator peptide from peroxisome proliferator - activate receptor coactivator-1alpha ( pgc-1alpha ) reveal a transcriptionally active conformation in the absence of a ligand .                            | 
+| [G]{.gene_color}i[G]{.gene_color}        | GP1BA               | VWF             | 0.518                       | 0.527                           | 144                 | Existing    | these finding indicate the novel bind site require for [vwf ].{gene2_color} binding of human [gpibalpha ].{gene1_color} .                                                                                                                                                                                                                                                            | 
+| [G]{.gene_color}i[G]{.gene_color}        | NR2C1               | NR2C1           | 0.027                       | 0.522                           | 26                  | Novel       | the human [testicular receptor 2].{gene1_color} ( [tr2 )].{gene2_color} , a member of the nuclear hormone receptor superfamily , have no identify ligand yet .                                                                                                                                                                                                                       | 
+| [G]{.gene_color}i[G]{.gene_color}        | NCOA1               | ESRRG           | 0.992                       | 0.518                           | 1                   | Novel       | the crystal structure of the ligand bind domain ( lbd ) of the estrogen - relate receptor [3 (].{gene2_color} err3 ) complexe with a steroid receptor [coactivator-1 (].{gene1_color} src-1 ) peptide reveal a transcriptionally active conformation in absence of any ligand .                                                                                                      | 
+| [G]{.gene_color}i[G]{.gene_color}        | PPARG               | PPARG           | 0.824                       | 0.504                           | 2497                | Existing    | although these agent can bind and activate an orphan nuclear receptor , [peroxisome proliferator - activate].{gene2_color} receptor [gamma ( ].{gene1_color} ppargamma ) , there be no direct evidence to conclusively implicate this receptor in the regulation of mammalian glucose homeostasis .                                                                                  | 
+| [G]{.gene_color}i[G]{.gene_color}        | ESR2                | ESR1            | 0.995                       | 0.503                           | 1715                | Novel       | ligand bind experiment with purify [er alpha].{gene2_color} and [er beta].{gene1_color} confirm that the two phytoestrogen be er ligand .                                                                                                                                                                                                                                            | 
+| [G]{.gene_color}i[G]{.gene_color}        | FGFR2               | FGFR2           | 1.000                       | 0.501                           | 584                 | Existing    | receptor modeling of [kgfr].{gene1_color} be use to identify selective kgfr tyrosine kinase ( tk ) inhibitor molecule that have the potential to bind selectively to the [kgfr].{gene2_color} .                                                                                                                                                                                      |  
 Table: Contains the top ten predictions for each edge type. Highlighted words represent entities mentioned within the given sentence. {#tbl:edge_prediction_tbl}
