@@ -1,7 +1,7 @@
 # Output directory containing the formatted manuscript
 
 The [`gh-pages`](https://github.com/greenelab/text_mined_hetnet_manuscript/tree/gh-pages) branch hosts the contents of this directory at <https://greenelab.github.io/text_mined_hetnet_manuscript/>.
-The permalink for this webpage version is <https://greenelab.github.io/text_mined_hetnet_manuscript/v/855f0b5dc5518b00568d742663e286d57fa4139f/>.
+The permalink for this webpage version is <https://greenelab.github.io/text_mined_hetnet_manuscript/v/7db1498385dcd18aef7f6b98e56f6f73df6df305/>.
 To redirect to the permalink for the latest manuscript version at anytime, use the link <https://greenelab.github.io/text_mined_hetnet_manuscript/v/freeze/>.
 
 ## Files
@@ -35,4 +35,4 @@ Verifying timestamps with the `ots verify` command requires running a local bitc
 ## Source
 
 The manuscripts in this directory were built from
-[`855f0b5dc5518b00568d742663e286d57fa4139f`](https://github.com/greenelab/text_mined_hetnet_manuscript/commit/855f0b5dc5518b00568d742663e286d57fa4139f).
+[`7db1498385dcd18aef7f6b98e56f6f73df6df305`](https://github.com/greenelab/text_mined_hetnet_manuscript/commit/7db1498385dcd18aef7f6b98e56f6f73df6df305).
