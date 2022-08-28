@@ -7,7 +7,7 @@ keywords:
 - heterogenous netowrks
 - text mining
 lang: en-US
-date-meta: '2022-04-27'
+date-meta: '2022-08-28'
 author-meta:
 - David N. Nicholson
 - Daniel S. Himmelstein
@@ -22,8 +22,8 @@ header-includes: |-
   <meta name="citation_title" content="Expanding a Database-derived Biomedical Knowledge Graph via Multi-relation Extraction from Biomedical Abstracts" />
   <meta property="og:title" content="Expanding a Database-derived Biomedical Knowledge Graph via Multi-relation Extraction from Biomedical Abstracts" />
   <meta property="twitter:title" content="Expanding a Database-derived Biomedical Knowledge Graph via Multi-relation Extraction from Biomedical Abstracts" />
-  <meta name="dc.date" content="2022-04-27" />
-  <meta name="citation_publication_date" content="2022-04-27" />
+  <meta name="dc.date" content="2022-08-28" />
+  <meta name="citation_publication_date" content="2022-08-28" />
   <meta name="dc.language" content="en-US" />
   <meta name="citation_language" content="en-US" />
   <meta name="dc.relation.ispartof" content="Manubot" />
@@ -48,13 +48,13 @@ header-includes: |-
   <meta name="citation_fulltext_html_url" content="https://greenelab.github.io/text_mined_hetnet_manuscript/" />
   <meta name="citation_pdf_url" content="https://greenelab.github.io/text_mined_hetnet_manuscript/manuscript.pdf" />
   <link rel="alternate" type="application/pdf" href="https://greenelab.github.io/text_mined_hetnet_manuscript/manuscript.pdf" />
-  <link rel="alternate" type="text/html" href="https://greenelab.github.io/text_mined_hetnet_manuscript/v/7db1498385dcd18aef7f6b98e56f6f73df6df305/" />
-  <meta name="manubot_html_url_versioned" content="https://greenelab.github.io/text_mined_hetnet_manuscript/v/7db1498385dcd18aef7f6b98e56f6f73df6df305/" />
-  <meta name="manubot_pdf_url_versioned" content="https://greenelab.github.io/text_mined_hetnet_manuscript/v/7db1498385dcd18aef7f6b98e56f6f73df6df305/manuscript.pdf" />
+  <link rel="alternate" type="text/html" href="https://greenelab.github.io/text_mined_hetnet_manuscript/v/b0db68b6ae8ecacf0c4ae0b0326c482d1ec99f6d/" />
+  <meta name="manubot_html_url_versioned" content="https://greenelab.github.io/text_mined_hetnet_manuscript/v/b0db68b6ae8ecacf0c4ae0b0326c482d1ec99f6d/" />
+  <meta name="manubot_pdf_url_versioned" content="https://greenelab.github.io/text_mined_hetnet_manuscript/v/b0db68b6ae8ecacf0c4ae0b0326c482d1ec99f6d/manuscript.pdf" />
   <meta property="og:type" content="article" />
   <meta property="twitter:card" content="summary_large_image" />
-  <meta property="og:image" content="https://github.com/greenelab/text_mined_hetnet_manuscript/raw/7db1498385dcd18aef7f6b98e56f6f73df6df305/thumbnail.png" />
-  <meta property="twitter:image" content="https://github.com/greenelab/text_mined_hetnet_manuscript/raw/7db1498385dcd18aef7f6b98e56f6f73df6df305/thumbnail.png" />
+  <meta property="og:image" content="https://github.com/greenelab/text_mined_hetnet_manuscript/raw/b0db68b6ae8ecacf0c4ae0b0326c482d1ec99f6d/thumbnail.png" />
+  <meta property="twitter:image" content="https://github.com/greenelab/text_mined_hetnet_manuscript/raw/b0db68b6ae8ecacf0c4ae0b0326c482d1ec99f6d/thumbnail.png" />
   <link rel="icon" type="image/png" sizes="192x192" href="https://manubot.org/favicon-192x192.png" />
   <link rel="mask-icon" href="https://manubot.org/safari-pinned-tab.svg" color="#ad1457" />
   <meta name="theme-color" content="#ad1457" />
@@ -74,10 +74,10 @@ _A DOI-citable version of this manuscript is available at <https://doi.org/10.11
 
 <small><em>
 This manuscript
-([permalink](https://greenelab.github.io/text_mined_hetnet_manuscript/v/7db1498385dcd18aef7f6b98e56f6f73df6df305/))
+([permalink](https://greenelab.github.io/text_mined_hetnet_manuscript/v/b0db68b6ae8ecacf0c4ae0b0326c482d1ec99f6d/))
 was automatically generated
-from [greenelab/text_mined_hetnet_manuscript@7db1498](https://github.com/greenelab/text_mined_hetnet_manuscript/tree/7db1498385dcd18aef7f6b98e56f6f73df6df305)
-on April 27, 2022.
+from [greenelab/text_mined_hetnet_manuscript@b0db68b](https://github.com/greenelab/text_mined_hetnet_manuscript/tree/b0db68b6ae8ecacf0c4ae0b0326c482d1ec99f6d)
+on August 28, 2022.
 </em></small>
 
 ## Authors
