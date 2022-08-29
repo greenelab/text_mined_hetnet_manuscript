@@ -39,18 +39,18 @@ cyclophosphamide
 cyslt
 CYSLTR
 danich
-dataset
+Dataset
 datasets
 dhimmel
 dimerize
 discretized
 discretizing
-discriminative
+Discriminative
 docetaxel
 doxorubicin
 DrugBank
 efgr
-EGF
+egf
 EGFR
 embeddings
 Epirubicin
@@ -64,7 +64,7 @@ FGFR
 fibroblast
 fluorouracil
 GBMF
-gefitinib
+Gefitinib
 genotype
 GN
 GNAO
@@ -80,7 +80,7 @@ heregulin
 heterodimer
 heterodimerize
 heterogenous
-hetionet
+Hetionet
 Himmelstein
 holo
 homodimer
@@ -88,7 +88,7 @@ hrg
 huggingface’s
 idc
 ifng
-insig
+INSIG
 ipilimumab
 irinotecan
 ixazomib
@@ -170,7 +170,7 @@ tmp
 tmVar
 topotecan
 TP
-traf
+TRAF
 transcriptionally
 transferability
 Translational
@@ -178,7 +178,7 @@ trastuzumab
 Tretinoin
 trimeric
 triphosphate
-TTF
+ttf
 tyrosine
 unannotated
 undergoe
@@ -186,4 +186,4 @@ underperformed
 upregulated
 vav
 vwf
-Zoledronate
+zoledronate

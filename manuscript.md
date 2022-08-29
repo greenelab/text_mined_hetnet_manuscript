@@ -7,7 +7,7 @@ keywords:
 - heterogenous netowrks
 - text mining
 lang: en-US
-date-meta: '2022-08-28'
+date-meta: '2022-08-29'
 author-meta:
 - David N. Nicholson
 - Daniel S. Himmelstein
@@ -22,8 +22,8 @@ header-includes: |-
   <meta name="citation_title" content="Expanding a Database-derived Biomedical Knowledge Graph via Multi-relation Extraction from Biomedical Abstracts" />
   <meta property="og:title" content="Expanding a Database-derived Biomedical Knowledge Graph via Multi-relation Extraction from Biomedical Abstracts" />
   <meta property="twitter:title" content="Expanding a Database-derived Biomedical Knowledge Graph via Multi-relation Extraction from Biomedical Abstracts" />
-  <meta name="dc.date" content="2022-08-28" />
-  <meta name="citation_publication_date" content="2022-08-28" />
+  <meta name="dc.date" content="2022-08-29" />
+  <meta name="citation_publication_date" content="2022-08-29" />
   <meta name="dc.language" content="en-US" />
   <meta name="citation_language" content="en-US" />
   <meta name="dc.relation.ispartof" content="Manubot" />
@@ -48,13 +48,13 @@ header-includes: |-
   <meta name="citation_fulltext_html_url" content="https://greenelab.github.io/text_mined_hetnet_manuscript/" />
   <meta name="citation_pdf_url" content="https://greenelab.github.io/text_mined_hetnet_manuscript/manuscript.pdf" />
   <link rel="alternate" type="application/pdf" href="https://greenelab.github.io/text_mined_hetnet_manuscript/manuscript.pdf" />
-  <link rel="alternate" type="text/html" href="https://greenelab.github.io/text_mined_hetnet_manuscript/v/b0db68b6ae8ecacf0c4ae0b0326c482d1ec99f6d/" />
-  <meta name="manubot_html_url_versioned" content="https://greenelab.github.io/text_mined_hetnet_manuscript/v/b0db68b6ae8ecacf0c4ae0b0326c482d1ec99f6d/" />
-  <meta name="manubot_pdf_url_versioned" content="https://greenelab.github.io/text_mined_hetnet_manuscript/v/b0db68b6ae8ecacf0c4ae0b0326c482d1ec99f6d/manuscript.pdf" />
+  <link rel="alternate" type="text/html" href="https://greenelab.github.io/text_mined_hetnet_manuscript/v/9a68ffc944997a70d32c1dcfa8b4ff7dc7d1116f/" />
+  <meta name="manubot_html_url_versioned" content="https://greenelab.github.io/text_mined_hetnet_manuscript/v/9a68ffc944997a70d32c1dcfa8b4ff7dc7d1116f/" />
+  <meta name="manubot_pdf_url_versioned" content="https://greenelab.github.io/text_mined_hetnet_manuscript/v/9a68ffc944997a70d32c1dcfa8b4ff7dc7d1116f/manuscript.pdf" />
   <meta property="og:type" content="article" />
   <meta property="twitter:card" content="summary_large_image" />
-  <meta property="og:image" content="https://github.com/greenelab/text_mined_hetnet_manuscript/raw/b0db68b6ae8ecacf0c4ae0b0326c482d1ec99f6d/thumbnail.png" />
-  <meta property="twitter:image" content="https://github.com/greenelab/text_mined_hetnet_manuscript/raw/b0db68b6ae8ecacf0c4ae0b0326c482d1ec99f6d/thumbnail.png" />
+  <meta property="og:image" content="https://github.com/greenelab/text_mined_hetnet_manuscript/raw/9a68ffc944997a70d32c1dcfa8b4ff7dc7d1116f/thumbnail.png" />
+  <meta property="twitter:image" content="https://github.com/greenelab/text_mined_hetnet_manuscript/raw/9a68ffc944997a70d32c1dcfa8b4ff7dc7d1116f/thumbnail.png" />
   <link rel="icon" type="image/png" sizes="192x192" href="https://manubot.org/favicon-192x192.png" />
   <link rel="mask-icon" href="https://manubot.org/safari-pinned-tab.svg" color="#ad1457" />
   <meta name="theme-color" content="#ad1457" />
@@ -74,17 +74,18 @@ _A DOI-citable version of this manuscript is available at <https://doi.org/10.11
 
 <small><em>
 This manuscript
-([permalink](https://greenelab.github.io/text_mined_hetnet_manuscript/v/b0db68b6ae8ecacf0c4ae0b0326c482d1ec99f6d/))
+([permalink](https://greenelab.github.io/text_mined_hetnet_manuscript/v/9a68ffc944997a70d32c1dcfa8b4ff7dc7d1116f/))
 was automatically generated
-from [greenelab/text_mined_hetnet_manuscript@b0db68b](https://github.com/greenelab/text_mined_hetnet_manuscript/tree/b0db68b6ae8ecacf0c4ae0b0326c482d1ec99f6d)
-on August 28, 2022.
+from [greenelab/text_mined_hetnet_manuscript@9a68ffc](https://github.com/greenelab/text_mined_hetnet_manuscript/tree/9a68ffc944997a70d32c1dcfa8b4ff7dc7d1116f)
+on August 29, 2022.
 </em></small>
 
 ## Authors
 
 
 
-+ **David N. Nicholson**<br>
++ **David N. Nicholson**
+  <br>
     ![ORCID icon](images/orcid.svg){.inline_icon width=16 height=16}
     [0000-0003-0002-5761](https://orcid.org/0000-0003-0002-5761)
     · ![GitHub icon](images/github.svg){.inline_icon width=16 height=16}
@@ -94,7 +95,8 @@ on August 28, 2022.
      · Funded by GBMF4552
   </small>
 
-+ **Daniel S. Himmelstein**<br>
++ **Daniel S. Himmelstein**
+  <br>
     ![ORCID icon](images/orcid.svg){.inline_icon width=16 height=16}
     [0000-0002-3012-7446](https://orcid.org/0000-0002-3012-7446)
     · ![GitHub icon](images/github.svg){.inline_icon width=16 height=16}
@@ -106,7 +108,8 @@ on August 28, 2022.
      · Funded by GBMF4552
   </small>
 
-+ **Casey S. Greene**<br>
++ **Casey S. Greene**
+  <br>
     ![ORCID icon](images/orcid.svg){.inline_icon width=16 height=16}
     [0000-0001-8713-9213](https://orcid.org/0000-0001-8713-9213)
     · ![GitHub icon](images/github.svg){.inline_icon width=16 height=16}
@@ -118,6 +121,11 @@ on August 28, 2022.
      · Funded by GBMF4552 and R01 HG010067
   </small>
 
+
+::: {#correspondence}
+✉ — Correspondence possible via [GitHub Issues](https://github.com/greenelab/text_mined_hetnet_manuscript/issues)
+
+:::
 
 
 ## Abstract {.page_break_before}
@@ -147,7 +155,7 @@ This process creates an expert system to automatically scan, detect, and extract
 These expert systems fall into three types: unsupervised, rule-based, and supervised systems.
 
 Unsupervised systems extract relationships without the need for annotated text.
-These approaches utilize linguistic patterns such as the frequency of two entities appearing in a sentence together more often than chance, commonly referred to as co-occurrence [@doi:10.1016/j.ymeth.2014.11.020; @doi:10.1093/nar/gkv383; @doi:10.1186/s12859-018-2048-y; @doi:10.1371/journal.pcbi.1005962; @doi:10.1371/journal.pcbi.1000943;@doi:doi:10.1186/s12859-019-2634-7; @doi:10.1093/database/bau012; @doi:10.1109/BIBM.2015.7359766; @doi:10.7717/peerj.1054].
+These approaches utilize linguistic patterns such as the frequency of two entities appearing in a sentence together more often than chance, commonly referred to as co-occurrence [@doi:10.1016/j.ymeth.2014.11.020; @doi:10.1093/nar/gkv383; @doi:10.1186/s12859-018-2048-y; @doi:10.1371/journal.pcbi.1005962; @doi:10.1371/journal.pcbi.1000943;@doi:10.1186/s12859-019-2634-7; @doi:10.1093/database/bau012; @doi:10.1109/BIBM.2015.7359766; @doi:10.7717/peerj.1054].
 For example, a possible system would say gene X is associated with disease Y because gene X and disease Y appear together more often than chance [@doi:10.1016/j.ymeth.2014.11.020].
 Besides frequency, other systems can utilize grammatical structure to identify relationships [@doi:10.1093/bioinformatics/bty114].
 This information is modeled in the form of a tree data structure, termed a dependency tree.
@@ -162,7 +170,7 @@ These approaches provide exact results, but the quantity of positive results rem
 For this project, we constructed our label functions without the aid of these works; however, the approaches mentioned in this section provide substantial inspiration for novel label functions in future endeavors.
 
 Supervised systems depend on machine learning classifiers to predict the existence of a relationship using biomedical text as input.
-These classifiers can range from linear methods such as support vector machines [@doi:10.1371/journal.pone.0200699; @doi:10.1093/bioinformatics/btw503] to deep learning [@doi:doi:10.1093/database/bay102; @doi:10.1016/j.neunet.2014.09.003; @arxiv:1904.02181; @arxiv:1901.08746; @arxiv:1706.03762; @doi:10.1093/database/bay060], which all require access to well-annotated datasets.
+These classifiers can range from linear methods such as support vector machines [@doi:10.1371/journal.pone.0200699; @doi:10.1093/bioinformatics/btw503] to deep learning [@doi:10.1093/database/bay102; @doi:10.1016/j.neunet.2014.09.003; @arxiv:1904.02181; @arxiv:1901.08746; @arxiv:1706.03762; @doi:10.1093/database/bay060], which all require access to well-annotated datasets.
 Typically, these datasets are usually constructed via manual curation by individual scientists [@doi:10.1186/s12859-015-0472-9; @doi:10.1016/j.jbi.2012.04.004; @doi:10.1016/j.artmed.2004.07.016; @doi:10.1186/1471-2105-8-50; @doi:10.1093/bioinformatics/btl616]  or through community-based efforts [@doi:10.1093/database/baw068; @biocreative-chemprot; @doi:10.1186/1471-2105-9-S3-S6].
 Often, these datasets are well annotated but are modest in size, making model training hard as these algorithms become increasingly complex.
 
