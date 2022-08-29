@@ -18,7 +18,7 @@ DOCKER_RUNNING="$(docker info &> /dev/null && echo "true" || (true && echo "fals
 # Set option defaults
 CI="${CI:-false}"
 BUILD_PDF="${BUILD_PDF:-true}"
-BUILD_DOCX="${BUILD_DOCX:-false}"
+BUILD_DOCX="${BUILD_DOCX:-true}"
 BUILD_LATEX="${BUILD_LATEX:-false}"
 SPELLCHECK="${SPELLCHECK:-false}"
 MANUBOT_USE_DOCKER="${MANUBOT_USE_DOCKER:-$DOCKER_RUNNING}"
