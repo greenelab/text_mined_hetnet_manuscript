@@ -1,6 +1,6 @@
 ABCC
 adenocarcinomas
-adenosine
+Adenosine
 adjuvant
 ADRA
 ADRBK
@@ -12,8 +12,8 @@ AREG
 arxiv
 asct
 atrasentan
-aupr
-AUROC
+AUPR
+auroc
 autologous
 axillary
 bevacizumab
@@ -39,7 +39,7 @@ cyclophosphamide
 cyslt
 CYSLTR
 danich
-Dataset
+dataset
 datasets
 dhimmel
 dimerize
@@ -51,7 +51,7 @@ doxorubicin
 DrugBank
 efgr
 egf
-EGFR
+egfr
 embeddings
 Epirubicin
 erbb
@@ -65,6 +65,8 @@ fibroblast
 fluorouracil
 GBMF
 Gefitinib
+generalizable
+genomic
 genotype
 GN
 GNAO
@@ -80,7 +82,7 @@ heregulin
 heterodimer
 heterodimerize
 heterogenous
-Hetionet
+hetionet
 Himmelstein
 holo
 homodimer
@@ -168,9 +170,9 @@ thyroperoxidase
 tk
 tmp
 tmVar
-topotecan
+Topotecan
 TP
-TRAF
+traf
 transcriptionally
 transferability
 Translational
@@ -178,12 +180,12 @@ trastuzumab
 Tretinoin
 trimeric
 triphosphate
-ttf
-tyrosine
+TTF
+Tyrosine
 unannotated
 undergoe
 underperformed
 upregulated
 vav
-vwf
-zoledronate
+VWF
+Zoledronate

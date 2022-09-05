@@ -7,7 +7,7 @@ keywords:
 - heterogenous netowrks
 - text mining
 lang: en-US
-date-meta: '2022-08-29'
+date-meta: '2022-09-05'
 author-meta:
 - David N. Nicholson
 - Daniel S. Himmelstein
@@ -22,8 +22,8 @@ header-includes: |-
   <meta name="citation_title" content="Expanding a Database-derived Biomedical Knowledge Graph via Multi-relation Extraction from Biomedical Abstracts" />
   <meta property="og:title" content="Expanding a Database-derived Biomedical Knowledge Graph via Multi-relation Extraction from Biomedical Abstracts" />
   <meta property="twitter:title" content="Expanding a Database-derived Biomedical Knowledge Graph via Multi-relation Extraction from Biomedical Abstracts" />
-  <meta name="dc.date" content="2022-08-29" />
-  <meta name="citation_publication_date" content="2022-08-29" />
+  <meta name="dc.date" content="2022-09-05" />
+  <meta name="citation_publication_date" content="2022-09-05" />
   <meta name="dc.language" content="en-US" />
   <meta name="citation_language" content="en-US" />
   <meta name="dc.relation.ispartof" content="Manubot" />
@@ -48,13 +48,13 @@ header-includes: |-
   <meta name="citation_fulltext_html_url" content="https://greenelab.github.io/text_mined_hetnet_manuscript/" />
   <meta name="citation_pdf_url" content="https://greenelab.github.io/text_mined_hetnet_manuscript/manuscript.pdf" />
   <link rel="alternate" type="application/pdf" href="https://greenelab.github.io/text_mined_hetnet_manuscript/manuscript.pdf" />
-  <link rel="alternate" type="text/html" href="https://greenelab.github.io/text_mined_hetnet_manuscript/v/9a68ffc944997a70d32c1dcfa8b4ff7dc7d1116f/" />
-  <meta name="manubot_html_url_versioned" content="https://greenelab.github.io/text_mined_hetnet_manuscript/v/9a68ffc944997a70d32c1dcfa8b4ff7dc7d1116f/" />
-  <meta name="manubot_pdf_url_versioned" content="https://greenelab.github.io/text_mined_hetnet_manuscript/v/9a68ffc944997a70d32c1dcfa8b4ff7dc7d1116f/manuscript.pdf" />
+  <link rel="alternate" type="text/html" href="https://greenelab.github.io/text_mined_hetnet_manuscript/v/a5913d6f868110d291ed65e9a25a84145f1cfd9e/" />
+  <meta name="manubot_html_url_versioned" content="https://greenelab.github.io/text_mined_hetnet_manuscript/v/a5913d6f868110d291ed65e9a25a84145f1cfd9e/" />
+  <meta name="manubot_pdf_url_versioned" content="https://greenelab.github.io/text_mined_hetnet_manuscript/v/a5913d6f868110d291ed65e9a25a84145f1cfd9e/manuscript.pdf" />
   <meta property="og:type" content="article" />
   <meta property="twitter:card" content="summary_large_image" />
-  <meta property="og:image" content="https://github.com/greenelab/text_mined_hetnet_manuscript/raw/9a68ffc944997a70d32c1dcfa8b4ff7dc7d1116f/thumbnail.png" />
-  <meta property="twitter:image" content="https://github.com/greenelab/text_mined_hetnet_manuscript/raw/9a68ffc944997a70d32c1dcfa8b4ff7dc7d1116f/thumbnail.png" />
+  <meta property="og:image" content="https://github.com/greenelab/text_mined_hetnet_manuscript/raw/a5913d6f868110d291ed65e9a25a84145f1cfd9e/thumbnail.png" />
+  <meta property="twitter:image" content="https://github.com/greenelab/text_mined_hetnet_manuscript/raw/a5913d6f868110d291ed65e9a25a84145f1cfd9e/thumbnail.png" />
   <link rel="icon" type="image/png" sizes="192x192" href="https://manubot.org/favicon-192x192.png" />
   <link rel="mask-icon" href="https://manubot.org/safari-pinned-tab.svg" color="#ad1457" />
   <meta name="theme-color" content="#ad1457" />
@@ -74,10 +74,10 @@ _A DOI-citable version of this manuscript is available at <https://doi.org/10.11
 
 <small><em>
 This manuscript
-([permalink](https://greenelab.github.io/text_mined_hetnet_manuscript/v/9a68ffc944997a70d32c1dcfa8b4ff7dc7d1116f/))
+([permalink](https://greenelab.github.io/text_mined_hetnet_manuscript/v/a5913d6f868110d291ed65e9a25a84145f1cfd9e/))
 was automatically generated
-from [greenelab/text_mined_hetnet_manuscript@9a68ffc](https://github.com/greenelab/text_mined_hetnet_manuscript/tree/9a68ffc944997a70d32c1dcfa8b4ff7dc7d1116f)
-on August 29, 2022.
+from [greenelab/text_mined_hetnet_manuscript@a5913d6](https://github.com/greenelab/text_mined_hetnet_manuscript/tree/a5913d6f868110d291ed65e9a25a84145f1cfd9e)
+on September 5, 2022.
 </em></small>
 
 ## Authors
@@ -189,6 +189,7 @@ This paper seeks to accelerate the label function creation process by measuring 
 We hypothesized that sentences describing one relationship type might share linguistic features such as keywords or sentence structure with sentences describing other relationship types.
 If this hypothesis were to, one could drastically reduce the time needed to build a relation extractor system and swiftly populate large databases like Hetionet v1.
 We conducted a series of experiments to estimate how label function reuse enhances performance over distant supervision alone.
+As biomedical data comes in various forms (e.g. publications, electronic health records, images, genomic sequences, etc.), we chose to subset this space to only include open-access biomedical publications available on pubmed.
 We focused on relationships that indicated similar types of physical interactions (i.e., Gene-binds-Gene and Compound-binds-Gene) and two more distinct types (i.e., Disease-associates-Gene and Compound-treats-Disease).
 
 
@@ -243,8 +244,9 @@ Numbers in parentheses show the number of positives and negatives that resulted 
 
 ### Label Functions for Annotating Sentences
 
-The challenge of having too few ground truth annotations is familiar to many natural language processing applications, even when unannotated text is abundant.
+The challenge of having too few ground truth annotations is familiar to many biomedical applications that use natural language processing, even when unannotated text is abundant.
 Data programming circumvents this issue by quickly annotating large datasets using multiple noisy signals emitted by label functions [@arxiv:1605.07723].
+We chose to use data programming for this project as it allows us to provide generalizable rules that can be reused in future text mining systems.
 Label functions are simple pythonic functions that emit: a positive label (1), a negative label (0), or abstain from emitting a label (-1).
 These functions can use different approaches or techniques to emit a label; however, these functions can be grouped into simple categories discussed below.
 Once constructed, these functions are combined using a generative model to output a single annotation. 
@@ -335,7 +337,10 @@ $$
 
 Following optimization, the model emits a probability estimate that each sentence belongs to the positive training class.
 At this step, each probability estimate can be discretized via a chosen threshold into a positive or negative class.
-We used a threshold of 0.5 for discretizing our training classes within our analysis.
+This model uses the following parameters to generate training estimates: weight for the l2 loss, a learning rate, and the number of epochs.
+We fixed the learning rate to be 1e-3 as we found that higher weights produced NaN results.
+We also fixed the number of epochs to 250 and performed a grid search of five evenly spaced numbers between 0.01 and 5 for the l2 loss parameter.
+Following the training phase, we used a threshold of 0.5 for discretizing training classes' probability estimates within our analysis.
 For more information on how the likelihood function is constructed and minimized, refer to [@doi:10.1007/s00778-019-00552-1].
 
 #### Discriminative Model
@@ -343,7 +348,9 @@ For more information on how the likelihood function is constructed and minimized
 The discriminative model is the final step in this framework.
 This model uses training labels generated from the generative model combined with sentence features to classify the presence of a biomedical relationship.
 Typically, the discriminative model is a neural network.
-We used BioBERT [@arxiv:1901.08746], a BERT [@BERT] model trained on all papers and abstracts within Pubmed Central [@doi:10.1073/pnas.98.2.381], as our discriminative model.
+In the context of text mining, these networks take the form of transformer models [@arxiv:1706.03762], which have achieved high-performing results.
+Their past performance lead us to choose BioBERT [@arxiv:1901.08746] as our discriminative model.
+BioBERT [@arxiv:1901.08746] is a BERT [@arxiv:1810.04805] model that was trained on all papers and abstracts within Pubmed Central [@doi:10.1073/pnas.98.2.381].
 BioBERT provides its own set of word embeddings, dense vectors representing words that models such as neural networks can use to construct sentence features.
 We downloaded a pre-trained version of this model using huggingface's transformer python package [@Wolf_Transformers_State-of-the-Art_Natural_2020] and fine-tuned it using our generated training labels.
 Our fine-tuning approach involved freezing all downstream layers except for the classification head of this model.
@@ -352,16 +359,17 @@ Next, we trained this model for 10 epochs using the Adam optimizer [@arxiv:1412.
 ### Experimental Design
 
 Reusing label functions across edge types would substantially reduce the number of label functions required to extract multiple relationships from biomedical literature.
-We first established a baseline by training a generative model using only distant supervision label functions designed for the target edge type (see Supplemental Methods).
+We first established a baseline by training a generative model using only distant supervision label functions designed for the target edge type.
 Then we compared the baseline model with models that incorporated a set number of text pattern label functions.
 Using a sampling with replacement approach, we sampled these text pattern label functions from three different groups: within edge types, across edge types, and from a pool of all label functions.
 We compared within-edge-type performance to across-edge-type and all-edge-type performance.
 We sampled a fixed number of label functions for each edge type consisting of five evenly spaced numbers between one and the total number of possible label functions.
 We repeated this sampling process 50 times for each point.
 Furthermore, we also trained the discriminative model using annotations from the generative model trained on edge-specific label functions at each point.
-We report the performance of both models in terms of the area under the receiver operating characteristic curve (AUROC) and the area under the precision-recall curve (AUPR).
+We report the performance of both models in terms of the area under the receiver operating characteristic curve (AUROC) and the area under the precision-recall curve (AUPR) for each sample.
+Next, we aggregated each individual sample's performance by constructing bootstrapped confidence intervals.
 Ensuing model evaluations, we quantified the number of edges we could incorporate into Hetionet v1.
-We used our best performing discriminative model to score every candidate sentence within our dataset and grouped candidates based on their mention pair. 
+We used our best-performing discriminative model to score every candidate sentence within our dataset and grouped candidates based on their mention pair. 
 We took the max score within each candidate group, and this score represents the probability of the existence of an edge. 
 We established edges using a cutoff score that produced an equal error rate between the false positives and false negatives.
 Lastly, we report the number of preexisting edges we could recall and the number of novel edges we can incorporate.

@@ -7,7 +7,7 @@
   <meta name="author" content="David N. Nicholson" />
   <meta name="author" content="Daniel S. Himmelstein" />
   <meta name="author" content="Casey S. Greene" />
-  <meta name="dcterms.date" content="2022-08-29" />
+  <meta name="dcterms.date" content="2022-09-05" />
   <meta name="keywords" content="machine learning, weak supervision, natural language processing, heterogenous netowrks, text mining" />
   <title>Expanding a Database-derived Biomedical Knowledge Graph via Multi-relation Extraction from Biomedical Abstracts</title>
   <style>
@@ -46,8 +46,8 @@
   <meta name="citation_title" content="Expanding a Database-derived Biomedical Knowledge Graph via Multi-relation Extraction from Biomedical Abstracts" />
   <meta property="og:title" content="Expanding a Database-derived Biomedical Knowledge Graph via Multi-relation Extraction from Biomedical Abstracts" />
   <meta property="twitter:title" content="Expanding a Database-derived Biomedical Knowledge Graph via Multi-relation Extraction from Biomedical Abstracts" />
-  <meta name="dc.date" content="2022-08-29" />
-  <meta name="citation_publication_date" content="2022-08-29" />
+  <meta name="dc.date" content="2022-09-05" />
+  <meta name="citation_publication_date" content="2022-09-05" />
   <meta name="dc.language" content="en-US" />
   <meta name="citation_language" content="en-US" />
   <meta name="dc.relation.ispartof" content="Manubot" />
@@ -72,13 +72,13 @@
   <meta name="citation_fulltext_html_url" content="https://greenelab.github.io/text_mined_hetnet_manuscript/" />
   <meta name="citation_pdf_url" content="https://greenelab.github.io/text_mined_hetnet_manuscript/manuscript.pdf" />
   <link rel="alternate" type="application/pdf" href="https://greenelab.github.io/text_mined_hetnet_manuscript/manuscript.pdf" />
-  <link rel="alternate" type="text/html" href="https://greenelab.github.io/text_mined_hetnet_manuscript/v/9a68ffc944997a70d32c1dcfa8b4ff7dc7d1116f/" />
-  <meta name="manubot_html_url_versioned" content="https://greenelab.github.io/text_mined_hetnet_manuscript/v/9a68ffc944997a70d32c1dcfa8b4ff7dc7d1116f/" />
-  <meta name="manubot_pdf_url_versioned" content="https://greenelab.github.io/text_mined_hetnet_manuscript/v/9a68ffc944997a70d32c1dcfa8b4ff7dc7d1116f/manuscript.pdf" />
+  <link rel="alternate" type="text/html" href="https://greenelab.github.io/text_mined_hetnet_manuscript/v/a5913d6f868110d291ed65e9a25a84145f1cfd9e/" />
+  <meta name="manubot_html_url_versioned" content="https://greenelab.github.io/text_mined_hetnet_manuscript/v/a5913d6f868110d291ed65e9a25a84145f1cfd9e/" />
+  <meta name="manubot_pdf_url_versioned" content="https://greenelab.github.io/text_mined_hetnet_manuscript/v/a5913d6f868110d291ed65e9a25a84145f1cfd9e/manuscript.pdf" />
   <meta property="og:type" content="article" />
   <meta property="twitter:card" content="summary_large_image" />
-  <meta property="og:image" content="https://github.com/greenelab/text_mined_hetnet_manuscript/raw/9a68ffc944997a70d32c1dcfa8b4ff7dc7d1116f/thumbnail.png" />
-  <meta property="twitter:image" content="https://github.com/greenelab/text_mined_hetnet_manuscript/raw/9a68ffc944997a70d32c1dcfa8b4ff7dc7d1116f/thumbnail.png" />
+  <meta property="og:image" content="https://github.com/greenelab/text_mined_hetnet_manuscript/raw/a5913d6f868110d291ed65e9a25a84145f1cfd9e/thumbnail.png" />
+  <meta property="twitter:image" content="https://github.com/greenelab/text_mined_hetnet_manuscript/raw/a5913d6f868110d291ed65e9a25a84145f1cfd9e/thumbnail.png" />
   <link rel="icon" type="image/png" sizes="192x192" href="https://manubot.org/favicon-192x192.png" />
   <link rel="mask-icon" href="https://manubot.org/safari-pinned-tab.svg" color="#ad1457" />
   <meta name="theme-color" content="#ad1457" />
@@ -94,10 +94,10 @@
 <p><em>A DOI-citable version of this manuscript is available at <a href="https://doi.org/10.1101/730085" class="uri">https://doi.org/10.1101/730085</a></em>.</p>
 <p><small><em>
 This manuscript
-(<a href="https://greenelab.github.io/text_mined_hetnet_manuscript/v/9a68ffc944997a70d32c1dcfa8b4ff7dc7d1116f/">permalink</a>)
+(<a href="https://greenelab.github.io/text_mined_hetnet_manuscript/v/a5913d6f868110d291ed65e9a25a84145f1cfd9e/">permalink</a>)
 was automatically generated
-from <a href="https://github.com/greenelab/text_mined_hetnet_manuscript/tree/9a68ffc944997a70d32c1dcfa8b4ff7dc7d1116f">greenelab/text_mined_hetnet_manuscript@9a68ffc</a>
-on August 29, 2022.
+from <a href="https://github.com/greenelab/text_mined_hetnet_manuscript/tree/a5913d6f868110d291ed65e9a25a84145f1cfd9e">greenelab/text_mined_hetnet_manuscript@a5913d6</a>
+on September 5, 2022.
 </em></small></p>
 <h2 id="authors">Authors</h2>
 <ul>
@@ -189,6 +189,7 @@ This dependency makes constructing a knowledge base with a myriad of heterogenou
 We hypothesized that sentences describing one relationship type might share linguistic features such as keywords or sentence structure with sentences describing other relationship types.
 If this hypothesis were to, one could drastically reduce the time needed to build a relation extractor system and swiftly populate large databases like Hetionet v1.
 We conducted a series of experiments to estimate how label function reuse enhances performance over distant supervision alone.
+As biomedical data comes in various forms (e.g. publications, electronic health records, images, genomic sequences, etc.), we chose to subset this space to only include open-access biomedical publications available on pubmed.
 We focused on relationships that indicated similar types of physical interactions (i.e., Gene-binds-Gene and Compound-binds-Gene) and two more distinct types (i.e., Disease-associates-Gene and Compound-treats-Disease).</p>
 <style> 
 span.gene_color { color:#02b3e4 } 
@@ -271,8 +272,9 @@ Numbers in parentheses show the number of positives and negatives that resulted 
 </table>
 </div>
 <h3 id="label-functions-for-annotating-sentences">Label Functions for Annotating Sentences</h3>
-<p>The challenge of having too few ground truth annotations is familiar to many natural language processing applications, even when unannotated text is abundant.
+<p>The challenge of having too few ground truth annotations is familiar to many biomedical applications that use natural language processing, even when unannotated text is abundant.
 Data programming circumvents this issue by quickly annotating large datasets using multiple noisy signals emitted by label functions <span class="citation" data-cites="5Il3kN32">[<a href="#ref-5Il3kN32" role="doc-biblioref">46</a>]</span>.
+We chose to use data programming for this project as it allows us to provide generalizable rules that can be reused in future text mining systems.
 Label functions are simple pythonic functions that emit: a positive label (1), a negative label (0), or abstain from emitting a label (-1).
 These functions can use different approaches or techniques to emit a label; however, these functions can be grouped into simple categories discussed below.
 Once constructed, these functions are combined using a generative model to output a single annotation.
@@ -372,29 +374,35 @@ Under these two assumptions, the model finds the optimal parameters by minimizin
 \]</span></p>
 <p>Following optimization, the model emits a probability estimate that each sentence belongs to the positive training class.
 At this step, each probability estimate can be discretized via a chosen threshold into a positive or negative class.
-We used a threshold of 0.5 for discretizing our training classes within our analysis.
+This model uses the following parameters to generate training estimates: weight for the l2 loss, a learning rate, and the number of epochs.
+We fixed the learning rate to be 1e-3 as we found that higher weights produced NaN results.
+We also fixed the number of epochs to 250 and performed a grid search of five evenly spaced numbers between 0.01 and 5 for the l2 loss parameter.
+Following the training phase, we used a threshold of 0.5 for discretizing training classes’ probability estimates within our analysis.
 For more information on how the likelihood function is constructed and minimized, refer to <span class="citation" data-cites="M3TiGlfS">[<a href="#ref-M3TiGlfS" role="doc-biblioref">56</a>]</span>.</p>
 <h4 id="discriminative-model">Discriminative Model</h4>
 <p>The discriminative model is the final step in this framework.
 This model uses training labels generated from the generative model combined with sentence features to classify the presence of a biomedical relationship.
 Typically, the discriminative model is a neural network.
-We used BioBERT <span class="citation" data-cites="riimmjYr">[<a href="#ref-riimmjYr" role="doc-biblioref">31</a>]</span>, a BERT <span class="citation" data-cites="BERT">[<a href="#ref-BERT" role="doc-biblioref"><strong>BERT?</strong></a>]</span> model trained on all papers and abstracts within Pubmed Central <span class="citation" data-cites="u294RvPz">[<a href="#ref-u294RvPz" role="doc-biblioref">57</a>]</span>, as our discriminative model.
+In the context of text mining, these networks take the form of transformer models <span class="citation" data-cites="Exfv0f4l">[<a href="#ref-Exfv0f4l" role="doc-biblioref">32</a>]</span>, which have achieved high-performing results.
+Their past performance lead us to choose BioBERT <span class="citation" data-cites="riimmjYr">[<a href="#ref-riimmjYr" role="doc-biblioref">31</a>]</span> as our discriminative model.
+BioBERT <span class="citation" data-cites="riimmjYr">[<a href="#ref-riimmjYr" role="doc-biblioref">31</a>]</span> is a BERT <span class="citation" data-cites="19YSwtWHS">[<a href="#ref-19YSwtWHS" role="doc-biblioref">57</a>]</span> model that was trained on all papers and abstracts within Pubmed Central <span class="citation" data-cites="u294RvPz">[<a href="#ref-u294RvPz" role="doc-biblioref">58</a>]</span>.
 BioBERT provides its own set of word embeddings, dense vectors representing words that models such as neural networks can use to construct sentence features.
-We downloaded a pre-trained version of this model using huggingface’s transformer python package <span class="citation" data-cites="187nWRTVH">[<a href="#ref-187nWRTVH" role="doc-biblioref">58</a>]</span> and fine-tuned it using our generated training labels.
+We downloaded a pre-trained version of this model using huggingface’s transformer python package <span class="citation" data-cites="187nWRTVH">[<a href="#ref-187nWRTVH" role="doc-biblioref">59</a>]</span> and fine-tuned it using our generated training labels.
 Our fine-tuning approach involved freezing all downstream layers except for the classification head of this model.
-Next, we trained this model for 10 epochs using the Adam optimizer <span class="citation" data-cites="c6d3lKFX">[<a href="#ref-c6d3lKFX" role="doc-biblioref">59</a>]</span> with huggingface’s default parameter settings and a learning rate of 0.001.</p>
+Next, we trained this model for 10 epochs using the Adam optimizer <span class="citation" data-cites="c6d3lKFX">[<a href="#ref-c6d3lKFX" role="doc-biblioref">60</a>]</span> with huggingface’s default parameter settings and a learning rate of 0.001.</p>
 <h3 id="experimental-design">Experimental Design</h3>
 <p>Reusing label functions across edge types would substantially reduce the number of label functions required to extract multiple relationships from biomedical literature.
-We first established a baseline by training a generative model using only distant supervision label functions designed for the target edge type (see Supplemental Methods).
+We first established a baseline by training a generative model using only distant supervision label functions designed for the target edge type.
 Then we compared the baseline model with models that incorporated a set number of text pattern label functions.
 Using a sampling with replacement approach, we sampled these text pattern label functions from three different groups: within edge types, across edge types, and from a pool of all label functions.
 We compared within-edge-type performance to across-edge-type and all-edge-type performance.
 We sampled a fixed number of label functions for each edge type consisting of five evenly spaced numbers between one and the total number of possible label functions.
 We repeated this sampling process 50 times for each point.
 Furthermore, we also trained the discriminative model using annotations from the generative model trained on edge-specific label functions at each point.
-We report the performance of both models in terms of the area under the receiver operating characteristic curve (AUROC) and the area under the precision-recall curve (AUPR).
+We report the performance of both models in terms of the area under the receiver operating characteristic curve (AUROC) and the area under the precision-recall curve (AUPR) for each sample.
+Next, we aggregated each individual sample’s performance by constructing bootstrapped confidence intervals.
 Ensuing model evaluations, we quantified the number of edges we could incorporate into Hetionet v1.
-We used our best performing discriminative model to score every candidate sentence within our dataset and grouped candidates based on their mention pair.
+We used our best-performing discriminative model to score every candidate sentence within our dataset and grouped candidates based on their mention pair.
 We took the max score within each candidate group, and this score represents the probability of the existence of an edge.
 We established edges using a cutoff score that produced an equal error rate between the false positives and false negatives.
 Lastly, we report the number of preexisting edges we could recall and the number of novel edges we can incorporate.</p>
@@ -494,7 +502,7 @@ Furthermore, broad edge types such as DaG did not follow this trend as we found 
 One possibility for this observation is that the “associates” relationship is a general concept that may include other concepts such as Disease (up/down) regulating a Gene (examples highlighted in our <a href="https://github.com/greenelab/text_mined_hetnet_manuscript/tree/master/supplementary_materials/annotated_sentences">annotated sentences</a>).
 The discriminator model did not have an apparent positive or negative effect on performance; however, we noticed that performance heavily depended on the annotations provided by the generative model.
 This pattern suggests a focus on label function construction and generative model training may be key steps to focus on in future work.
-Although we found that label functions cannot be re-used across all edge types with the standard task framing, strategies like multitask <span class="citation" data-cites="9Jo1af7Z">[<a href="#ref-9Jo1af7Z" role="doc-biblioref">60</a>]</span> or transfer learning <span class="citation" data-cites="YRDXK4f4">[<a href="#ref-YRDXK4f4" role="doc-biblioref">61</a>]</span> may make multi-label-function efforts more successful.</p>
+Although we found that label functions cannot be re-used across all edge types with the standard task framing, strategies like multitask <span class="citation" data-cites="9Jo1af7Z">[<a href="#ref-9Jo1af7Z" role="doc-biblioref">61</a>]</span> or transfer learning <span class="citation" data-cites="YRDXK4f4">[<a href="#ref-YRDXK4f4" role="doc-biblioref">62</a>]</span> may make multi-label-function efforts more successful.</p>
 <h2 id="supplemental-information">Supplemental Information</h2>
 <p>An online version of this manuscript is available at <a href="https://greenelab.github.io/text_mined_hetnet_manuscript/" class="uri">https://greenelab.github.io/text_mined_hetnet_manuscript/</a>.
 Labeled sentences are available at <a href="https://github.com/greenelab/text_mined_hetnet_manuscript/tree/master/supplementary_materials/annotated_sentences">https://github.com/greenelab/text_mined_hetnet_manuscript/tree/master/supplementary_materials/annotated_sentences</a>.
@@ -674,20 +682,23 @@ This work was support by <a href="https://www.moore.org/grant-detail?grantId=GBM
 <div id="ref-M3TiGlfS" class="csl-entry" role="doc-biblioentry">
 <div class="csl-left-margin">56. </div><div class="csl-right-inline"><strong>Snorkel: rapid training data creation with weak supervision</strong> <div class="csl-block">Alexander Ratner, Stephen H Bach, Henry Ehrenberg, Jason Fries, Sen Wu, Christopher Ré</div> <em>The VLDB Journal</em> (2019-07-15) <a href="https://doi.org/ghbw5f">https://doi.org/ghbw5f</a> <div class="csl-block">DOI: <a href="https://doi.org/10.1007/s00778-019-00552-1">10.1007/s00778-019-00552-1</a> · PMID: <a href="https://www.ncbi.nlm.nih.gov/pubmed/32214778">32214778</a> · PMCID: <a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC7075849">PMC7075849</a></div></div>
 </div>
+<div id="ref-19YSwtWHS" class="csl-entry" role="doc-biblioentry">
+<div class="csl-left-margin">57. </div><div class="csl-right-inline"><strong>BERT: Pre-training of Deep Bidirectional Transformers for Language Understanding</strong> <div class="csl-block">Jacob Devlin, Ming-Wei Chang, Kenton Lee, Kristina Toutanova</div> <em>arXiv</em> (2019-05-28) <a href="https://arxiv.org/abs/1810.04805">https://arxiv.org/abs/1810.04805</a></div>
+</div>
 <div id="ref-u294RvPz" class="csl-entry" role="doc-biblioentry">
-<div class="csl-left-margin">57. </div><div class="csl-right-inline"><strong>PubMed Central: The GenBank of the published literature</strong> <div class="csl-block">Richard J Roberts</div> <em>Proceedings of the National Academy of Sciences</em> (2001-01-09) <a href="https://doi.org/bbn9k8">https://doi.org/bbn9k8</a> <div class="csl-block">DOI: <a href="https://doi.org/10.1073/pnas.98.2.381">10.1073/pnas.98.2.381</a> · PMID: <a href="https://www.ncbi.nlm.nih.gov/pubmed/11209037">11209037</a> · PMCID: <a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC33354">PMC33354</a></div></div>
+<div class="csl-left-margin">58. </div><div class="csl-right-inline"><strong>PubMed Central: The GenBank of the published literature</strong> <div class="csl-block">Richard J Roberts</div> <em>Proceedings of the National Academy of Sciences</em> (2001-01-09) <a href="https://doi.org/bbn9k8">https://doi.org/bbn9k8</a> <div class="csl-block">DOI: <a href="https://doi.org/10.1073/pnas.98.2.381">10.1073/pnas.98.2.381</a> · PMID: <a href="https://www.ncbi.nlm.nih.gov/pubmed/11209037">11209037</a> · PMCID: <a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC33354">PMC33354</a></div></div>
 </div>
 <div id="ref-187nWRTVH" class="csl-entry" role="doc-biblioentry">
-<div class="csl-left-margin">58. </div><div class="csl-right-inline"><strong>Transformers: State-of-the-Art Natural Language Processing</strong> <div class="csl-block">Thomas Wolf, Lysandre Debut, Victor Sanh, Julien Chaumond, Clement Delangue, Anthony Moi, Perric Cistac, Clara Ma, Yacine Jernite, Julien Plu, … Alexander M Rush</div> <em>Association for Computational Linguistics</em> (2020-10) <a href="https://www.aclweb.org/anthology/2020.emnlp-demos.6">https://www.aclweb.org/anthology/2020.emnlp-demos.6</a></div>
+<div class="csl-left-margin">59. </div><div class="csl-right-inline"><strong>Transformers: State-of-the-Art Natural Language Processing</strong> <div class="csl-block">Thomas Wolf, Lysandre Debut, Victor Sanh, Julien Chaumond, Clement Delangue, Anthony Moi, Perric Cistac, Clara Ma, Yacine Jernite, Julien Plu, … Alexander M Rush</div> <em>Association for Computational Linguistics</em> (2020-10) <a href="https://www.aclweb.org/anthology/2020.emnlp-demos.6">https://www.aclweb.org/anthology/2020.emnlp-demos.6</a></div>
 </div>
 <div id="ref-c6d3lKFX" class="csl-entry" role="doc-biblioentry">
-<div class="csl-left-margin">59. </div><div class="csl-right-inline"><strong>Adam: A Method for Stochastic Optimization</strong> <div class="csl-block">Diederik P Kingma, Jimmy Ba</div> <em>arXiv</em> (2017-01-31) <a href="https://arxiv.org/abs/1412.6980">https://arxiv.org/abs/1412.6980</a></div>
+<div class="csl-left-margin">60. </div><div class="csl-right-inline"><strong>Adam: A Method for Stochastic Optimization</strong> <div class="csl-block">Diederik P Kingma, Jimmy Ba</div> <em>arXiv</em> (2017-01-31) <a href="https://arxiv.org/abs/1412.6980">https://arxiv.org/abs/1412.6980</a></div>
 </div>
 <div id="ref-9Jo1af7Z" class="csl-entry" role="doc-biblioentry">
-<div class="csl-left-margin">60. </div><div class="csl-right-inline"><strong>Snorkel MeTaL</strong> <div class="csl-block">Alex Ratner, Braden Hancock, Jared Dunnmon, Roger Goldman, Christopher Ré</div> <em>Proceedings of the Second Workshop on Data Management for End-To-End Machine Learning</em> (2018-06-15) <a href="https://doi.org/gf3xk7">https://doi.org/gf3xk7</a> <div class="csl-block">DOI: <a href="https://doi.org/10.1145/3209889.3209898">10.1145/3209889.3209898</a> · PMID: <a href="https://www.ncbi.nlm.nih.gov/pubmed/30931438">30931438</a> · PMCID: <a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC6436830">PMC6436830</a></div></div>
+<div class="csl-left-margin">61. </div><div class="csl-right-inline"><strong>Snorkel MeTaL</strong> <div class="csl-block">Alex Ratner, Braden Hancock, Jared Dunnmon, Roger Goldman, Christopher Ré</div> <em>Proceedings of the Second Workshop on Data Management for End-To-End Machine Learning</em> (2018-06-15) <a href="https://doi.org/gf3xk7">https://doi.org/gf3xk7</a> <div class="csl-block">DOI: <a href="https://doi.org/10.1145/3209889.3209898">10.1145/3209889.3209898</a> · PMID: <a href="https://www.ncbi.nlm.nih.gov/pubmed/30931438">30931438</a> · PMCID: <a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC6436830">PMC6436830</a></div></div>
 </div>
 <div id="ref-YRDXK4f4" class="csl-entry" role="doc-biblioentry">
-<div class="csl-left-margin">61. </div><div class="csl-right-inline"><strong>A survey of transfer learning</strong> <div class="csl-block">Karl Weiss, Taghi M Khoshgoftaar, DingDing Wang</div> <em>Journal of Big Data</em> (2016-05-28) <a href="https://doi.org/gfkr2w">https://doi.org/gfkr2w</a> <div class="csl-block">DOI: <a href="https://doi.org/10.1186/s40537-016-0043-6">10.1186/s40537-016-0043-6</a></div></div>
+<div class="csl-left-margin">62. </div><div class="csl-right-inline"><strong>A survey of transfer learning</strong> <div class="csl-block">Karl Weiss, Taghi M Khoshgoftaar, DingDing Wang</div> <em>Journal of Big Data</em> (2016-05-28) <a href="https://doi.org/gfkr2w">https://doi.org/gfkr2w</a> <div class="csl-block">DOI: <a href="https://doi.org/10.1186/s40537-016-0043-6">10.1186/s40537-016-0043-6</a></div></div>
 </div>
 </div>
 <h2 id="supplemental-figures">Supplemental Figures</h2>
