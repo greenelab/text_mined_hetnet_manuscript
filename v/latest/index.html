@@ -72,13 +72,13 @@
   <meta name="citation_fulltext_html_url" content="https://greenelab.github.io/text_mined_hetnet_manuscript/" />
   <meta name="citation_pdf_url" content="https://greenelab.github.io/text_mined_hetnet_manuscript/manuscript.pdf" />
   <link rel="alternate" type="application/pdf" href="https://greenelab.github.io/text_mined_hetnet_manuscript/manuscript.pdf" />
-  <link rel="alternate" type="text/html" href="https://greenelab.github.io/text_mined_hetnet_manuscript/v/a5913d6f868110d291ed65e9a25a84145f1cfd9e/" />
-  <meta name="manubot_html_url_versioned" content="https://greenelab.github.io/text_mined_hetnet_manuscript/v/a5913d6f868110d291ed65e9a25a84145f1cfd9e/" />
-  <meta name="manubot_pdf_url_versioned" content="https://greenelab.github.io/text_mined_hetnet_manuscript/v/a5913d6f868110d291ed65e9a25a84145f1cfd9e/manuscript.pdf" />
+  <link rel="alternate" type="text/html" href="https://greenelab.github.io/text_mined_hetnet_manuscript/v/5c6d27ce900434d72782c9da8f19e6925cbf0fcc/" />
+  <meta name="manubot_html_url_versioned" content="https://greenelab.github.io/text_mined_hetnet_manuscript/v/5c6d27ce900434d72782c9da8f19e6925cbf0fcc/" />
+  <meta name="manubot_pdf_url_versioned" content="https://greenelab.github.io/text_mined_hetnet_manuscript/v/5c6d27ce900434d72782c9da8f19e6925cbf0fcc/manuscript.pdf" />
   <meta property="og:type" content="article" />
   <meta property="twitter:card" content="summary_large_image" />
-  <meta property="og:image" content="https://github.com/greenelab/text_mined_hetnet_manuscript/raw/a5913d6f868110d291ed65e9a25a84145f1cfd9e/thumbnail.png" />
-  <meta property="twitter:image" content="https://github.com/greenelab/text_mined_hetnet_manuscript/raw/a5913d6f868110d291ed65e9a25a84145f1cfd9e/thumbnail.png" />
+  <meta property="og:image" content="https://github.com/greenelab/text_mined_hetnet_manuscript/raw/5c6d27ce900434d72782c9da8f19e6925cbf0fcc/thumbnail.png" />
+  <meta property="twitter:image" content="https://github.com/greenelab/text_mined_hetnet_manuscript/raw/5c6d27ce900434d72782c9da8f19e6925cbf0fcc/thumbnail.png" />
   <link rel="icon" type="image/png" sizes="192x192" href="https://manubot.org/favicon-192x192.png" />
   <link rel="mask-icon" href="https://manubot.org/safari-pinned-tab.svg" color="#ad1457" />
   <meta name="theme-color" content="#ad1457" />
@@ -94,9 +94,9 @@
 <p><em>A DOI-citable version of this manuscript is available at <a href="https://doi.org/10.1101/730085" class="uri">https://doi.org/10.1101/730085</a></em>.</p>
 <p><small><em>
 This manuscript
-(<a href="https://greenelab.github.io/text_mined_hetnet_manuscript/v/a5913d6f868110d291ed65e9a25a84145f1cfd9e/">permalink</a>)
+(<a href="https://greenelab.github.io/text_mined_hetnet_manuscript/v/5c6d27ce900434d72782c9da8f19e6925cbf0fcc/">permalink</a>)
 was automatically generated
-from <a href="https://github.com/greenelab/text_mined_hetnet_manuscript/tree/a5913d6f868110d291ed65e9a25a84145f1cfd9e">greenelab/text_mined_hetnet_manuscript@a5913d6</a>
+from <a href="https://github.com/greenelab/text_mined_hetnet_manuscript/tree/5c6d27ce900434d72782c9da8f19e6925cbf0fcc">greenelab/text_mined_hetnet_manuscript@5c6d27c</a>
 on September 5, 2022.
 </em></small></p>
 <h2 id="authors">Authors</h2>
@@ -490,7 +490,7 @@ Our best recall was with the CbG edge type, where we retained 33% of preexisting
 In contrast, we only recalled close to 30% for CtD, while the other two categories achieved a recall score close to 22%.
 Despite the modest recall level, the amount of novel edge types remains elevated.
 This notion highlights that Hetionet v1 is missing a compelling amount of biomedical information, and relationship extraction is a viable way to close the information gap.</p>
-<h2 id="discussion-and-conclusions">Discussion and Conclusions</h2>
+<h2 id="discussion">Discussion</h2>
 <p>Filling out knowledge bases via manual curation can be an arduous and erroneous task <span class="citation" data-cites="UdzvLgBM">[<a href="#ref-UdzvLgBM" role="doc-biblioref">8</a>]</span>.
 Using manual curation alone becomes impractical as the rate of publications continuously increases.
 Data programming is a paradigm that uses label functions to speed up the annotation process and can be used to solve this problem.
@@ -500,9 +500,17 @@ We tested the feasibility of re-using label functions to reduce the number of la
 An exception to this trend is using label functions designed from conceptually related edge types (using GiG label functions to predict CbG sentences and vice versa).
 Furthermore, broad edge types such as DaG did not follow this trend as we found this edge to be agnostic to any tested label function source.
 One possibility for this observation is that the “associates” relationship is a general concept that may include other concepts such as Disease (up/down) regulating a Gene (examples highlighted in our <a href="https://github.com/greenelab/text_mined_hetnet_manuscript/tree/master/supplementary_materials/annotated_sentences">annotated sentences</a>).
-The discriminator model did not have an apparent positive or negative effect on performance; however, we noticed that performance heavily depended on the annotations provided by the generative model.
+These two results suggest that the transferability of label functions is likely to relate to the nature of the edge type in question, so determining how many label functions will be required to scale across multiple relationship types will depend on how conceptually similar those types are.</p>
+<p>The discriminator model did not have an apparent positive or negative effect on performance; however, we noticed that performance heavily depended on the annotations provided by the generative model.
 This pattern suggests a focus on label function construction and generative model training may be key steps to focus on in future work.
 Although we found that label functions cannot be re-used across all edge types with the standard task framing, strategies like multitask <span class="citation" data-cites="9Jo1af7Z">[<a href="#ref-9Jo1af7Z" role="doc-biblioref">61</a>]</span> or transfer learning <span class="citation" data-cites="YRDXK4f4">[<a href="#ref-YRDXK4f4" role="doc-biblioref">62</a>]</span> may make multi-label-function efforts more successful.</p>
+<h2 id="conclusions">Conclusions</h2>
+<p>We found that performance often increased through the tested range of 25-30 different label functions per relationship type.
+Our finding of limited value for reuse across most edge type pairs suggests that the amount of work required to construct graphs will scale linearly based on the number of edge types.
+We did not investigate whether certain individual label functions, as opposed to the full set of label functions for an edge type, were particularly reusable.
+It remains possible that some functions are generic and could be used as the base through supplementation with additional, type-specific, functions.
+Literature continues to grow at a rate likely to surpass what is feasible by human curation.
+Further work is needed to understand how to automatically extract large-scale knowledge graphs from the wealth of biomedical text.</p>
 <h2 id="supplemental-information">Supplemental Information</h2>
 <p>An online version of this manuscript is available at <a href="https://greenelab.github.io/text_mined_hetnet_manuscript/" class="uri">https://greenelab.github.io/text_mined_hetnet_manuscript/</a>.
 Labeled sentences are available at <a href="https://github.com/greenelab/text_mined_hetnet_manuscript/tree/master/supplementary_materials/annotated_sentences">https://github.com/greenelab/text_mined_hetnet_manuscript/tree/master/supplementary_materials/annotated_sentences</a>.
