@@ -134,6 +134,8 @@ content/04.results.md:84:Hetionet
 content/05.discussion_and_conclusion.md:3:curation
 content/05.discussion_and_conclusion.md:4:curation
 content/05.discussion_and_conclusion.md:10:CbG
+content/05.discussion_and_conclusion.md:13:transferability
+content/05.discussion_and_conclusion.md:25:curation
 content/06.acknowledgements.md:9:Ratner
 content/06.acknowledgements.md:9:Ré's
 content/90.back-matter.md:15:CtD

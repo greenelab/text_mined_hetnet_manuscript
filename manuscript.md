@@ -48,13 +48,13 @@ header-includes: |-
   <meta name="citation_fulltext_html_url" content="https://greenelab.github.io/text_mined_hetnet_manuscript/" />
   <meta name="citation_pdf_url" content="https://greenelab.github.io/text_mined_hetnet_manuscript/manuscript.pdf" />
   <link rel="alternate" type="application/pdf" href="https://greenelab.github.io/text_mined_hetnet_manuscript/manuscript.pdf" />
-  <link rel="alternate" type="text/html" href="https://greenelab.github.io/text_mined_hetnet_manuscript/v/a5913d6f868110d291ed65e9a25a84145f1cfd9e/" />
-  <meta name="manubot_html_url_versioned" content="https://greenelab.github.io/text_mined_hetnet_manuscript/v/a5913d6f868110d291ed65e9a25a84145f1cfd9e/" />
-  <meta name="manubot_pdf_url_versioned" content="https://greenelab.github.io/text_mined_hetnet_manuscript/v/a5913d6f868110d291ed65e9a25a84145f1cfd9e/manuscript.pdf" />
+  <link rel="alternate" type="text/html" href="https://greenelab.github.io/text_mined_hetnet_manuscript/v/5c6d27ce900434d72782c9da8f19e6925cbf0fcc/" />
+  <meta name="manubot_html_url_versioned" content="https://greenelab.github.io/text_mined_hetnet_manuscript/v/5c6d27ce900434d72782c9da8f19e6925cbf0fcc/" />
+  <meta name="manubot_pdf_url_versioned" content="https://greenelab.github.io/text_mined_hetnet_manuscript/v/5c6d27ce900434d72782c9da8f19e6925cbf0fcc/manuscript.pdf" />
   <meta property="og:type" content="article" />
   <meta property="twitter:card" content="summary_large_image" />
-  <meta property="og:image" content="https://github.com/greenelab/text_mined_hetnet_manuscript/raw/a5913d6f868110d291ed65e9a25a84145f1cfd9e/thumbnail.png" />
-  <meta property="twitter:image" content="https://github.com/greenelab/text_mined_hetnet_manuscript/raw/a5913d6f868110d291ed65e9a25a84145f1cfd9e/thumbnail.png" />
+  <meta property="og:image" content="https://github.com/greenelab/text_mined_hetnet_manuscript/raw/5c6d27ce900434d72782c9da8f19e6925cbf0fcc/thumbnail.png" />
+  <meta property="twitter:image" content="https://github.com/greenelab/text_mined_hetnet_manuscript/raw/5c6d27ce900434d72782c9da8f19e6925cbf0fcc/thumbnail.png" />
   <link rel="icon" type="image/png" sizes="192x192" href="https://manubot.org/favicon-192x192.png" />
   <link rel="mask-icon" href="https://manubot.org/safari-pinned-tab.svg" color="#ad1457" />
   <meta name="theme-color" content="#ad1457" />
@@ -74,9 +74,9 @@ _A DOI-citable version of this manuscript is available at <https://doi.org/10.11
 
 <small><em>
 This manuscript
-([permalink](https://greenelab.github.io/text_mined_hetnet_manuscript/v/a5913d6f868110d291ed65e9a25a84145f1cfd9e/))
+([permalink](https://greenelab.github.io/text_mined_hetnet_manuscript/v/5c6d27ce900434d72782c9da8f19e6925cbf0fcc/))
 was automatically generated
-from [greenelab/text_mined_hetnet_manuscript@a5913d6](https://github.com/greenelab/text_mined_hetnet_manuscript/tree/a5913d6f868110d291ed65e9a25a84145f1cfd9e)
+from [greenelab/text_mined_hetnet_manuscript@5c6d27c](https://github.com/greenelab/text_mined_hetnet_manuscript/tree/5c6d27ce900434d72782c9da8f19e6925cbf0fcc)
 on September 5, 2022.
 </em></small>
 
@@ -461,7 +461,7 @@ Despite the modest recall level, the amount of novel edge types remains elevated
 This notion highlights that Hetionet v1 is missing a compelling amount of biomedical information, and relationship extraction is a viable way to close the information gap.
 
 
-## Discussion and Conclusions
+## Discussion
 
 Filling out knowledge bases via manual curation can be an arduous and erroneous task [@doi:10.1093/bioinformatics/btm229].
 Using manual curation alone becomes impractical as the rate of publications continuously increases.
@@ -473,9 +473,21 @@ Our sampling experiment revealed that adding edge-specific label functions is be
 An exception to this trend is using label functions designed from conceptually related edge types (using GiG label functions to predict CbG sentences and vice versa).
 Furthermore, broad edge types such as DaG did not follow this trend as we found this edge to be agnostic to any tested label function source.
 One possibility for this observation is that the "associates" relationship is a general concept that may include other concepts such as Disease (up/down) regulating a Gene (examples highlighted in our [annotated sentences](https://github.com/greenelab/text_mined_hetnet_manuscript/tree/master/supplementary_materials/annotated_sentences)).
+These two results suggest that the transferability of label functions is likely to relate to the nature of the edge type in question, so determining how many label functions will be required to scale across multiple relationship types will depend on how conceptually similar those types are.
+
 The discriminator model did not have an apparent positive or negative effect on performance; however, we noticed that performance heavily depended on the annotations provided by the generative model.
 This pattern suggests a focus on label function construction and generative model training may be key steps to focus on in future work.
 Although we found that label functions cannot be re-used across all edge types with the standard task framing, strategies like multitask [@doi:10.1145/3209889.3209898] or transfer learning [@doi:10.1186/s40537-016-0043-6] may make multi-label-function efforts more successful.
+
+## Conclusions
+
+We found that performance often increased through the tested range of 25-30 different label functions per relationship type.
+Our finding of limited value for reuse across most edge type pairs suggests that the amount of work required to construct graphs will scale linearly based on the number of edge types.
+We did not investigate whether certain individual label functions, as opposed to the full set of label functions for an edge type, were particularly reusable.
+It remains possible that some functions are generic and could be used as the base through supplementation with additional, type-specific, functions.
+Literature continues to grow at a rate likely to surpass what is feasible by human curation.
+Further work is needed to understand how to automatically extract large-scale knowledge graphs from the wealth of biomedical text.
+
 
 
 ## Supplemental Information
