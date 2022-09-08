@@ -48,13 +48,13 @@ header-includes: |-
   <meta name="citation_fulltext_html_url" content="https://greenelab.github.io/text_mined_hetnet_manuscript/" />
   <meta name="citation_pdf_url" content="https://greenelab.github.io/text_mined_hetnet_manuscript/manuscript.pdf" />
   <link rel="alternate" type="application/pdf" href="https://greenelab.github.io/text_mined_hetnet_manuscript/manuscript.pdf" />
-  <link rel="alternate" type="text/html" href="https://greenelab.github.io/text_mined_hetnet_manuscript/v/ab06be2d562f6dbdbcb10b3b83665abdf760ab87/" />
-  <meta name="manubot_html_url_versioned" content="https://greenelab.github.io/text_mined_hetnet_manuscript/v/ab06be2d562f6dbdbcb10b3b83665abdf760ab87/" />
-  <meta name="manubot_pdf_url_versioned" content="https://greenelab.github.io/text_mined_hetnet_manuscript/v/ab06be2d562f6dbdbcb10b3b83665abdf760ab87/manuscript.pdf" />
+  <link rel="alternate" type="text/html" href="https://greenelab.github.io/text_mined_hetnet_manuscript/v/44ab7e979ffbd1b3b87bb920f198333eea2eb2a4/" />
+  <meta name="manubot_html_url_versioned" content="https://greenelab.github.io/text_mined_hetnet_manuscript/v/44ab7e979ffbd1b3b87bb920f198333eea2eb2a4/" />
+  <meta name="manubot_pdf_url_versioned" content="https://greenelab.github.io/text_mined_hetnet_manuscript/v/44ab7e979ffbd1b3b87bb920f198333eea2eb2a4/manuscript.pdf" />
   <meta property="og:type" content="article" />
   <meta property="twitter:card" content="summary_large_image" />
-  <meta property="og:image" content="https://github.com/greenelab/text_mined_hetnet_manuscript/raw/ab06be2d562f6dbdbcb10b3b83665abdf760ab87/thumbnail.png" />
-  <meta property="twitter:image" content="https://github.com/greenelab/text_mined_hetnet_manuscript/raw/ab06be2d562f6dbdbcb10b3b83665abdf760ab87/thumbnail.png" />
+  <meta property="og:image" content="https://github.com/greenelab/text_mined_hetnet_manuscript/raw/44ab7e979ffbd1b3b87bb920f198333eea2eb2a4/thumbnail.png" />
+  <meta property="twitter:image" content="https://github.com/greenelab/text_mined_hetnet_manuscript/raw/44ab7e979ffbd1b3b87bb920f198333eea2eb2a4/thumbnail.png" />
   <link rel="icon" type="image/png" sizes="192x192" href="https://manubot.org/favicon-192x192.png" />
   <link rel="mask-icon" href="https://manubot.org/safari-pinned-tab.svg" color="#ad1457" />
   <meta name="theme-color" content="#ad1457" />
@@ -74,9 +74,9 @@ _A DOI-citable version of this manuscript is available at <https://doi.org/10.11
 
 <small><em>
 This manuscript
-([permalink](https://greenelab.github.io/text_mined_hetnet_manuscript/v/ab06be2d562f6dbdbcb10b3b83665abdf760ab87/))
+([permalink](https://greenelab.github.io/text_mined_hetnet_manuscript/v/44ab7e979ffbd1b3b87bb920f198333eea2eb2a4/))
 was automatically generated
-from [greenelab/text_mined_hetnet_manuscript@ab06be2](https://github.com/greenelab/text_mined_hetnet_manuscript/tree/ab06be2d562f6dbdbcb10b3b83665abdf760ab87)
+from [greenelab/text_mined_hetnet_manuscript@44ab7e9](https://github.com/greenelab/text_mined_hetnet_manuscript/tree/44ab7e979ffbd1b3b87bb920f198333eea2eb2a4)
 on September 8, 2022.
 </em></small>
 
@@ -524,7 +524,7 @@ This work was support by [Grant GBMF4552](https://www.moore.org/grant-detail?gra
 <!-- Explicitly insert bibliography here -->
 <div id="refs"></div>
 
-## Supplemental Figures
+## Supplemental Figures {.page_break_before}
 
 ### Generative Model Using Randomly Sampled Label Functions
 
