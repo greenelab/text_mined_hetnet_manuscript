@@ -7,7 +7,7 @@
   <meta name="author" content="David N. Nicholson" />
   <meta name="author" content="Daniel S. Himmelstein" />
   <meta name="author" content="Casey S. Greene" />
-  <meta name="dcterms.date" content="2022-09-05" />
+  <meta name="dcterms.date" content="2022-09-08" />
   <meta name="keywords" content="machine learning, weak supervision, natural language processing, heterogenous netowrks, text mining" />
   <title>Expanding a Database-derived Biomedical Knowledge Graph via Multi-relation Extraction from Biomedical Abstracts</title>
   <style>
@@ -46,8 +46,8 @@
   <meta name="citation_title" content="Expanding a Database-derived Biomedical Knowledge Graph via Multi-relation Extraction from Biomedical Abstracts" />
   <meta property="og:title" content="Expanding a Database-derived Biomedical Knowledge Graph via Multi-relation Extraction from Biomedical Abstracts" />
   <meta property="twitter:title" content="Expanding a Database-derived Biomedical Knowledge Graph via Multi-relation Extraction from Biomedical Abstracts" />
-  <meta name="dc.date" content="2022-09-05" />
-  <meta name="citation_publication_date" content="2022-09-05" />
+  <meta name="dc.date" content="2022-09-08" />
+  <meta name="citation_publication_date" content="2022-09-08" />
   <meta name="dc.language" content="en-US" />
   <meta name="citation_language" content="en-US" />
   <meta name="dc.relation.ispartof" content="Manubot" />
@@ -72,13 +72,13 @@
   <meta name="citation_fulltext_html_url" content="https://greenelab.github.io/text_mined_hetnet_manuscript/" />
   <meta name="citation_pdf_url" content="https://greenelab.github.io/text_mined_hetnet_manuscript/manuscript.pdf" />
   <link rel="alternate" type="application/pdf" href="https://greenelab.github.io/text_mined_hetnet_manuscript/manuscript.pdf" />
-  <link rel="alternate" type="text/html" href="https://greenelab.github.io/text_mined_hetnet_manuscript/v/5c6d27ce900434d72782c9da8f19e6925cbf0fcc/" />
-  <meta name="manubot_html_url_versioned" content="https://greenelab.github.io/text_mined_hetnet_manuscript/v/5c6d27ce900434d72782c9da8f19e6925cbf0fcc/" />
-  <meta name="manubot_pdf_url_versioned" content="https://greenelab.github.io/text_mined_hetnet_manuscript/v/5c6d27ce900434d72782c9da8f19e6925cbf0fcc/manuscript.pdf" />
+  <link rel="alternate" type="text/html" href="https://greenelab.github.io/text_mined_hetnet_manuscript/v/ab06be2d562f6dbdbcb10b3b83665abdf760ab87/" />
+  <meta name="manubot_html_url_versioned" content="https://greenelab.github.io/text_mined_hetnet_manuscript/v/ab06be2d562f6dbdbcb10b3b83665abdf760ab87/" />
+  <meta name="manubot_pdf_url_versioned" content="https://greenelab.github.io/text_mined_hetnet_manuscript/v/ab06be2d562f6dbdbcb10b3b83665abdf760ab87/manuscript.pdf" />
   <meta property="og:type" content="article" />
   <meta property="twitter:card" content="summary_large_image" />
-  <meta property="og:image" content="https://github.com/greenelab/text_mined_hetnet_manuscript/raw/5c6d27ce900434d72782c9da8f19e6925cbf0fcc/thumbnail.png" />
-  <meta property="twitter:image" content="https://github.com/greenelab/text_mined_hetnet_manuscript/raw/5c6d27ce900434d72782c9da8f19e6925cbf0fcc/thumbnail.png" />
+  <meta property="og:image" content="https://github.com/greenelab/text_mined_hetnet_manuscript/raw/ab06be2d562f6dbdbcb10b3b83665abdf760ab87/thumbnail.png" />
+  <meta property="twitter:image" content="https://github.com/greenelab/text_mined_hetnet_manuscript/raw/ab06be2d562f6dbdbcb10b3b83665abdf760ab87/thumbnail.png" />
   <link rel="icon" type="image/png" sizes="192x192" href="https://manubot.org/favicon-192x192.png" />
   <link rel="mask-icon" href="https://manubot.org/safari-pinned-tab.svg" color="#ad1457" />
   <meta name="theme-color" content="#ad1457" />
@@ -94,10 +94,10 @@
 <p><em>A DOI-citable version of this manuscript is available at <a href="https://doi.org/10.1101/730085" class="uri">https://doi.org/10.1101/730085</a></em>.</p>
 <p><small><em>
 This manuscript
-(<a href="https://greenelab.github.io/text_mined_hetnet_manuscript/v/5c6d27ce900434d72782c9da8f19e6925cbf0fcc/">permalink</a>)
+(<a href="https://greenelab.github.io/text_mined_hetnet_manuscript/v/ab06be2d562f6dbdbcb10b3b83665abdf760ab87/">permalink</a>)
 was automatically generated
-from <a href="https://github.com/greenelab/text_mined_hetnet_manuscript/tree/5c6d27ce900434d72782c9da8f19e6925cbf0fcc">greenelab/text_mined_hetnet_manuscript@5c6d27c</a>
-on September 5, 2022.
+from <a href="https://github.com/greenelab/text_mined_hetnet_manuscript/tree/ab06be2d562f6dbdbcb10b3b83665abdf760ab87">greenelab/text_mined_hetnet_manuscript@ab06be2</a>
+on September 8, 2022.
 </em></small></p>
 <h2 id="authors">Authors</h2>
 <ul>
@@ -140,16 +140,27 @@ Department of Systems Pharmacology and Translational Therapeutics, University of
 <p>✉ — Correspondence possible via <a href="https://github.com/greenelab/text_mined_hetnet_manuscript/issues">GitHub Issues</a></p>
 </div>
 <h2 class="page_break_before" id="abstract">Abstract</h2>
-<p>Knowledge graphs support multiple research efforts by providing contextual information for biomedical entities, constructing networks, and supporting the interpretation of high-throughput analyses.
-These databases are populated via some form of manual curation, which is challenging to scale with an increasing publication rate.
+<h3 id="background">Background</h3>
+<p>Knowledge graphs support biomedical research efforts by providing contextual information for biomedical entities, constructing networks, and supporting the interpretation of high-throughput analyses.
+These databases are populated via manual curation, which is challenging to scale with an exponentially rising publication rate.
 Data programming is a paradigm that circumvents this arduous manual process by combining databases with simple rules and heuristics written as label functions, which are programs designed to annotate textual data automatically.
 Unfortunately, writing a useful label function requires substantial error analysis and is a nontrivial task that takes multiple days per function.
-This circumstance makes populating a knowledge graph with multiple nodes and edge types practically infeasible.
-We sought to accelerate the label function creation process by evaluating how label functions can be re-used across multiple edge types.
-We used a subset of an existing knowledge graph centered on disease, compound, and gene entities to evaluate label function re-use.
-We determined the best label function combination by comparing a baseline database-only model with the same model but added edge-specific or edge-mismatch label functions.
-We confirmed that adding additional edge-specific rather than edge-mismatch label functions often improves text annotation and shows that this approach can incorporate novel edges into our source knowledge graph. 
-We expect that the continued development of this strategy has the potential to swiftly populate knowledge graphs with new discoveries, ensuring that these resources include cutting-edge results.</p>
+This bottleneck makes populating a knowledge graph with multiple nodes and edge types practically infeasible.
+Thus, we sought to accelerate the label function creation process by evaluating how label functions can be re-used across multiple edge types.</p>
+<h3 id="results">Results</h3>
+<p>We obtained entity-tagged abstracts and subsetted these entities to only contain compounds, genes, and disease mentions.
+We extracted sentences containing co-mentions of certain biomedical entities contained in a previously described knowledge graph, Hetionet v1.
+We trained a baseline model that used database-only label functions and then used a sampling approach to measure how well adding edge-specific or edge-mismatch label function combinations improved over our baseline.
+Next, we trained a discriminator model to detect sentences that indicated a biomedical relationship and then estimated the number of edge types that could be recalled and added to Hetionet v1.
+We found that adding edge-mismatch label functions rarely improved relationship extraction, while control edge-specific label functions did.
+There were two exceptions to this trend, Compound-binds-Gene and Gene-interacts-Gene, which both indicated physical relationships and showed signs of transferability.
+Across the scenarios tested, discriminative model performance strongly depends on generated annotations.
+Using the best discriminative model for each edge type, we recalled close to 30% of established edges within Hetionet v1.</p>
+<h3 id="conclusions">Conclusions</h3>
+<p>Our results show that this framework can incorporate novel edges into our source knowledge graph.
+However, results with label function transfer were mixed.
+Only label functions describing very similar edge types supported improved performance when transferred.
+We expect that the continued development of this strategy may provide essential building blocks to populating biomedical knowledge graphs with discoveries, ensuring that these resources include cutting-edge results.</p>
 <h2 id="introduction">Introduction</h2>
 <p>Knowledge bases are essential resources that hold complex structured and unstructured information.
 These resources have been used to construct networks for drug repurposing discovery <span class="citation" data-cites="u8pIAt5j bPvC638e O21tn8vf">[<a href="#ref-u8pIAt5j" role="doc-biblioref">1</a>,<a href="#ref-bPvC638e" role="doc-biblioref">2</a>,<a href="#ref-O21tn8vf" role="doc-biblioref">3</a>]</span> or as a source of training labels for text mining systems <span class="citation" data-cites="EHeTvZht CVHSURuI HS4ARwmZ">[<a href="#ref-EHeTvZht" role="doc-biblioref">4</a>,<a href="#ref-CVHSURuI" role="doc-biblioref">5</a>,<a href="#ref-HS4ARwmZ" role="doc-biblioref">6</a>]</span>.
@@ -406,7 +417,7 @@ We used our best-performing discriminative model to score every candidate senten
 We took the max score within each candidate group, and this score represents the probability of the existence of an edge.
 We established edges using a cutoff score that produced an equal error rate between the false positives and false negatives.
 Lastly, we report the number of preexisting edges we could recall and the number of novel edges we can incorporate.</p>
-<h2 id="results">Results</h2>
+<h2 id="results-1">Results</h2>
 <h3 id="generative-model-using-randomly-sampled-label-functions">Generative Model Using Randomly Sampled Label Functions</h3>
 <p>Creating label functions is a labor-intensive process that can take days to accomplish.
 We sought to accelerate this process by measuring how well label functions can be reused.
@@ -504,7 +515,7 @@ These two results suggest that the transferability of label functions is likely 
 <p>The discriminator model did not have an apparent positive or negative effect on performance; however, we noticed that performance heavily depended on the annotations provided by the generative model.
 This pattern suggests a focus on label function construction and generative model training may be key steps to focus on in future work.
 Although we found that label functions cannot be re-used across all edge types with the standard task framing, strategies like multitask <span class="citation" data-cites="9Jo1af7Z">[<a href="#ref-9Jo1af7Z" role="doc-biblioref">61</a>]</span> or transfer learning <span class="citation" data-cites="YRDXK4f4">[<a href="#ref-YRDXK4f4" role="doc-biblioref">62</a>]</span> may make multi-label-function efforts more successful.</p>
-<h2 id="conclusions">Conclusions</h2>
+<h2 id="conclusions-1">Conclusions</h2>
 <p>We found that performance often increased through the tested range of 25-30 different label functions per relationship type.
 Our finding of limited value for reuse across most edge type pairs suggests that the amount of work required to construct graphs will scale linearly based on the number of edge types.
 We did not investigate whether certain individual label functions, as opposed to the full set of label functions for an edge type, were particularly reusable.
@@ -571,7 +582,7 @@ This work was support by <a href="https://www.moore.org/grant-detail?grantId=GBM
 <div class="csl-left-margin">16. </div><div class="csl-right-inline"><strong>COMPARTMENTS: unification and visualization of protein subcellular localization evidence</strong> <div class="csl-block">JX Binder, S Pletscher-Frankild, K Tsafou, C Stolte, SI O'Donoghue, R Schneider, LJ Jensen</div> <em>Database</em> (2014-02-25) <a href="https://doi.org/btbm">https://doi.org/btbm</a> <div class="csl-block">DOI: <a href="https://doi.org/10.1093/database/bau012">10.1093/database/bau012</a> · PMID: <a href="https://www.ncbi.nlm.nih.gov/pubmed/24573882">24573882</a> · PMCID: <a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3935310">PMC3935310</a></div></div>
 </div>
 <div id="ref-ETC6lm7S" class="csl-entry" role="doc-biblioentry">
-<div class="csl-left-margin">17. </div><div class="csl-right-inline"><strong>A new method for prioritizing drug repositioning candidates extracted by literature-based discovery</strong> <div class="csl-block">Majid Rastegar-Mojarad, Ravikumar Komandur Elayavilli, Dingcheng Li, Rashmi Prasad, Hongfang Liu</div> <em>2015 IEEE International Conference on Bioinformatics and Biomedicine (BIBM)</em> (2015-11) <a href="https://doi.org/gf479j">https://doi.org/gf479j</a> <div class="csl-block">DOI: <a href="https://doi.org/10.1109/bibm.2015.7359766">10.1109/bibm.2015.7359766</a></div></div>
+<div class="csl-left-margin">17. </div><div class="csl-right-inline"><strong>A new method for prioritizing drug repositioning candidates extracted by literature-based discovery</strong> <a href="https://doi.org/gf479j">https://doi.org/gf479j</a> <div class="csl-block">DOI: <a href="https://doi.org/10.1109/bibm.2015.7359766">10.1109/bibm.2015.7359766</a></div></div>
 </div>
 <div id="ref-6QECA6Hm" class="csl-entry" role="doc-biblioentry">
 <div class="csl-left-margin">18. </div><div class="csl-right-inline"><strong>Comprehensive comparison of large-scale tissue expression datasets</strong> <div class="csl-block">Alberto Santos, Kalliopi Tsafou, Christian Stolte, Sune Pletscher-Frankild, Seán I O’Donoghue, Lars Juhl Jensen</div> <em>PeerJ</em> (2015-06-30) <a href="https://doi.org/f3mn6p">https://doi.org/f3mn6p</a> <div class="csl-block">DOI: <a href="https://doi.org/10.7717/peerj.1054">10.7717/peerj.1054</a> · PMID: <a href="https://www.ncbi.nlm.nih.gov/pubmed/26157623">26157623</a> · PMCID: <a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4493645">PMC4493645</a></div></div>
@@ -580,7 +591,7 @@ This work was support by <a href="https://www.moore.org/grant-detail?grantId=GBM
 <div class="csl-left-margin">19. </div><div class="csl-right-inline"><strong>A global network of biomedical relationships derived from text</strong> <div class="csl-block">Bethany Percha, Russ B Altman</div> <em>Bioinformatics</em> (2018-02-27) <a href="https://doi.org/gc3ndk">https://doi.org/gc3ndk</a> <div class="csl-block">DOI: <a href="https://doi.org/10.1093/bioinformatics/bty114">10.1093/bioinformatics/bty114</a> · PMID: <a href="https://www.ncbi.nlm.nih.gov/pubmed/29490008">29490008</a> · PMCID: <a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC6061699">PMC6061699</a></div></div>
 </div>
 <div id="ref-KEkjqdB0" class="csl-entry" role="doc-biblioentry">
-<div class="csl-left-margin">20. </div><div class="csl-right-inline"><strong>RLIMS-P 2.0: A Generalizable Rule-Based Information Extraction System for Literature Mining of Protein Phosphorylation Information</strong> <div class="csl-block">Manabu Torii, Cecilia N Arighi, Gang Li, Qinghua Wang, Cathy H Wu, K Vijay-Shanker</div> <em>IEEE/ACM Transactions on Computational Biology and Bioinformatics</em> (2015-01-01) <a href="https://doi.org/gf8fpv">https://doi.org/gf8fpv</a> <div class="csl-block">DOI: <a href="https://doi.org/10.1109/tcbb.2014.2372765">10.1109/tcbb.2014.2372765</a> · PMID: <a href="https://www.ncbi.nlm.nih.gov/pubmed/26357075">26357075</a> · PMCID: <a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4568560">PMC4568560</a></div></div>
+<div class="csl-left-margin">20. </div><div class="csl-right-inline"><strong>RLIMS-P 2.0: A Generalizable Rule-Based Information Extraction System for Literature Mining of Protein Phosphorylation Information</strong> <a href="https://doi.org/gf8fpv">https://doi.org/gf8fpv</a> <div class="csl-block">DOI: <a href="https://doi.org/10.1109/tcbb.2014.2372765">10.1109/tcbb.2014.2372765</a> · PMID: <a href="https://www.ncbi.nlm.nih.gov/pubmed/26357075">26357075</a> · PMCID: <a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4568560">PMC4568560</a></div></div>
 </div>
 <div id="ref-1avvFjJ9" class="csl-entry" role="doc-biblioentry">
 <div class="csl-left-margin">21. </div><div class="csl-right-inline"><strong>Large-scale extraction of accurate drug-disease treatment pairs from biomedical literature for drug repurposing</strong> <div class="csl-block">Rong Xu, QuanQiu Wang</div> <em>BMC Bioinformatics</em> (2013-06-06) <a href="https://doi.org/gb8v3k">https://doi.org/gb8v3k</a> <div class="csl-block">DOI: <a href="https://doi.org/10.1186/1471-2105-14-181">10.1186/1471-2105-14-181</a> · PMID: <a href="https://www.ncbi.nlm.nih.gov/pubmed/23742147">23742147</a> · PMCID: <a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3702428">PMC3702428</a></div></div>
@@ -679,7 +690,7 @@ This work was support by <a href="https://www.moore.org/grant-detail?grantId=GBM
 <div class="csl-left-margin">52. </div><div class="csl-right-inline"><strong>tmVar 2.0: integrating genomic variant information from literature with dbSNP and ClinVar for precision medicine</strong> <div class="csl-block">Chih-Hsuan Wei, Lon Phan, Juliana Feltz, Rama Maiti, Tim Hefferon, Zhiyong Lu</div> <em>Bioinformatics</em> (2017-09-01) <a href="https://doi.org/gbzsmc">https://doi.org/gbzsmc</a> <div class="csl-block">DOI: <a href="https://doi.org/10.1093/bioinformatics/btx541">10.1093/bioinformatics/btx541</a> · PMID: <a href="https://www.ncbi.nlm.nih.gov/pubmed/28968638">28968638</a> · PMCID: <a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5860583">PMC5860583</a></div></div>
 </div>
 <div id="ref-aOPX10e0" class="csl-entry" role="doc-biblioentry">
-<div class="csl-left-margin">53. </div><div class="csl-right-inline"><strong>GNormPlus: An Integrative Approach for Tagging Genes, Gene Families, and Protein Domains</strong> <div class="csl-block">Chih-Hsuan Wei, Hung-Yu Kao, Zhiyong Lu</div> <em>BioMed Research International</em> (2015) <a href="https://doi.org/gb85jb">https://doi.org/gb85jb</a> <div class="csl-block">DOI: <a href="https://doi.org/10.1155/2015/918710">10.1155/2015/918710</a> · PMID: <a href="https://www.ncbi.nlm.nih.gov/pubmed/26380306">26380306</a> · PMCID: <a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4561873">PMC4561873</a></div></div>
+<div class="csl-left-margin">53. </div><div class="csl-right-inline"><strong>GNormPlus: An Integrative Approach for Tagging Genes, Gene Families, and Protein Domains</strong> <a href="https://doi.org/gb85jb">https://doi.org/gb85jb</a> <div class="csl-block">DOI: <a href="https://doi.org/10.1155/2015/918710">10.1155/2015/918710</a> · PMID: <a href="https://www.ncbi.nlm.nih.gov/pubmed/26380306">26380306</a> · PMCID: <a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4561873">PMC4561873</a></div></div>
 </div>
 <div id="ref-NXIFrudx" class="csl-entry" role="doc-biblioentry">
 <div class="csl-left-margin">54. </div><div class="csl-right-inline"><strong>SR4GN: A Species Recognition Software Tool for Gene Normalization</strong> <div class="csl-block">Chih-Hsuan Wei, Hung-Yu Kao, Zhiyong Lu</div> <em>PLoS ONE</em> (2012-06-05) <a href="https://doi.org/gpq498">https://doi.org/gpq498</a> <div class="csl-block">DOI: <a href="https://doi.org/10.1371/journal.pone.0038460">10.1371/journal.pone.0038460</a> · PMID: <a href="https://www.ncbi.nlm.nih.gov/pubmed/22679507">22679507</a> · PMCID: <a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3367953">PMC3367953</a></div></div>

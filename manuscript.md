@@ -7,7 +7,7 @@ keywords:
 - heterogenous netowrks
 - text mining
 lang: en-US
-date-meta: '2022-09-05'
+date-meta: '2022-09-08'
 author-meta:
 - David N. Nicholson
 - Daniel S. Himmelstein
@@ -22,8 +22,8 @@ header-includes: |-
   <meta name="citation_title" content="Expanding a Database-derived Biomedical Knowledge Graph via Multi-relation Extraction from Biomedical Abstracts" />
   <meta property="og:title" content="Expanding a Database-derived Biomedical Knowledge Graph via Multi-relation Extraction from Biomedical Abstracts" />
   <meta property="twitter:title" content="Expanding a Database-derived Biomedical Knowledge Graph via Multi-relation Extraction from Biomedical Abstracts" />
-  <meta name="dc.date" content="2022-09-05" />
-  <meta name="citation_publication_date" content="2022-09-05" />
+  <meta name="dc.date" content="2022-09-08" />
+  <meta name="citation_publication_date" content="2022-09-08" />
   <meta name="dc.language" content="en-US" />
   <meta name="citation_language" content="en-US" />
   <meta name="dc.relation.ispartof" content="Manubot" />
@@ -48,13 +48,13 @@ header-includes: |-
   <meta name="citation_fulltext_html_url" content="https://greenelab.github.io/text_mined_hetnet_manuscript/" />
   <meta name="citation_pdf_url" content="https://greenelab.github.io/text_mined_hetnet_manuscript/manuscript.pdf" />
   <link rel="alternate" type="application/pdf" href="https://greenelab.github.io/text_mined_hetnet_manuscript/manuscript.pdf" />
-  <link rel="alternate" type="text/html" href="https://greenelab.github.io/text_mined_hetnet_manuscript/v/5c6d27ce900434d72782c9da8f19e6925cbf0fcc/" />
-  <meta name="manubot_html_url_versioned" content="https://greenelab.github.io/text_mined_hetnet_manuscript/v/5c6d27ce900434d72782c9da8f19e6925cbf0fcc/" />
-  <meta name="manubot_pdf_url_versioned" content="https://greenelab.github.io/text_mined_hetnet_manuscript/v/5c6d27ce900434d72782c9da8f19e6925cbf0fcc/manuscript.pdf" />
+  <link rel="alternate" type="text/html" href="https://greenelab.github.io/text_mined_hetnet_manuscript/v/ab06be2d562f6dbdbcb10b3b83665abdf760ab87/" />
+  <meta name="manubot_html_url_versioned" content="https://greenelab.github.io/text_mined_hetnet_manuscript/v/ab06be2d562f6dbdbcb10b3b83665abdf760ab87/" />
+  <meta name="manubot_pdf_url_versioned" content="https://greenelab.github.io/text_mined_hetnet_manuscript/v/ab06be2d562f6dbdbcb10b3b83665abdf760ab87/manuscript.pdf" />
   <meta property="og:type" content="article" />
   <meta property="twitter:card" content="summary_large_image" />
-  <meta property="og:image" content="https://github.com/greenelab/text_mined_hetnet_manuscript/raw/5c6d27ce900434d72782c9da8f19e6925cbf0fcc/thumbnail.png" />
-  <meta property="twitter:image" content="https://github.com/greenelab/text_mined_hetnet_manuscript/raw/5c6d27ce900434d72782c9da8f19e6925cbf0fcc/thumbnail.png" />
+  <meta property="og:image" content="https://github.com/greenelab/text_mined_hetnet_manuscript/raw/ab06be2d562f6dbdbcb10b3b83665abdf760ab87/thumbnail.png" />
+  <meta property="twitter:image" content="https://github.com/greenelab/text_mined_hetnet_manuscript/raw/ab06be2d562f6dbdbcb10b3b83665abdf760ab87/thumbnail.png" />
   <link rel="icon" type="image/png" sizes="192x192" href="https://manubot.org/favicon-192x192.png" />
   <link rel="mask-icon" href="https://manubot.org/safari-pinned-tab.svg" color="#ad1457" />
   <meta name="theme-color" content="#ad1457" />
@@ -74,10 +74,10 @@ _A DOI-citable version of this manuscript is available at <https://doi.org/10.11
 
 <small><em>
 This manuscript
-([permalink](https://greenelab.github.io/text_mined_hetnet_manuscript/v/5c6d27ce900434d72782c9da8f19e6925cbf0fcc/))
+([permalink](https://greenelab.github.io/text_mined_hetnet_manuscript/v/ab06be2d562f6dbdbcb10b3b83665abdf760ab87/))
 was automatically generated
-from [greenelab/text_mined_hetnet_manuscript@5c6d27c](https://github.com/greenelab/text_mined_hetnet_manuscript/tree/5c6d27ce900434d72782c9da8f19e6925cbf0fcc)
-on September 5, 2022.
+from [greenelab/text_mined_hetnet_manuscript@ab06be2](https://github.com/greenelab/text_mined_hetnet_manuscript/tree/ab06be2d562f6dbdbcb10b3b83665abdf760ab87)
+on September 8, 2022.
 </em></small>
 
 ## Authors
@@ -130,16 +130,32 @@ on September 5, 2022.
 
 ## Abstract {.page_break_before}
 
-Knowledge graphs support multiple research efforts by providing contextual information for biomedical entities, constructing networks, and supporting the interpretation of high-throughput analyses. 
-These databases are populated via some form of manual curation, which is challenging to scale with an increasing publication rate. 
+### Background
+
+Knowledge graphs support biomedical research efforts by providing contextual information for biomedical entities, constructing networks, and supporting the interpretation of high-throughput analyses. 
+These databases are populated via manual curation, which is challenging to scale with an exponentially rising publication rate. 
 Data programming is a paradigm that circumvents this arduous manual process by combining databases with simple rules and heuristics written as label functions, which are programs designed to annotate textual data automatically. 
 Unfortunately, writing a useful label function requires substantial error analysis and is a nontrivial task that takes multiple days per function.
-This circumstance makes populating a knowledge graph with multiple nodes and edge types practically infeasible. 
-We sought to accelerate the label function creation process by evaluating how label functions can be re-used across multiple edge types.
-We used a subset of an existing knowledge graph centered on disease, compound, and gene entities to evaluate label function re-use. 
-We determined the best label function combination by comparing a baseline database-only model with the same model but added edge-specific or edge-mismatch label functions.
-We confirmed that adding additional edge-specific rather than edge-mismatch label functions often improves text annotation and shows that this approach can incorporate novel edges into our source knowledge graph. 
-We expect that the continued development of this strategy has the potential to swiftly populate knowledge graphs with new discoveries, ensuring that these resources include cutting-edge results.
+This bottleneck makes populating a knowledge graph with multiple nodes and edge types practically infeasible.
+Thus, we sought to accelerate the label function creation process by evaluating how label functions can be re-used across multiple edge types.
+
+### Results
+
+We obtained entity-tagged abstracts and subsetted these entities to only contain compounds, genes, and disease mentions.
+We extracted sentences containing co-mentions of certain biomedical entities contained in a previously described knowledge graph, Hetionet v1.
+We trained a baseline model that used database-only label functions and then used a sampling approach to measure how well adding edge-specific or edge-mismatch label function combinations improved over our baseline.
+Next, we trained a discriminator model to detect sentences that indicated a biomedical relationship and then estimated the number of edge types that could be recalled and added to Hetionet v1.
+We found that adding edge-mismatch label functions rarely improved relationship extraction, while control edge-specific label functions did.
+There were two exceptions to this trend, Compound-binds-Gene and Gene-interacts-Gene, which both indicated physical relationships and showed signs of transferability.
+Across the scenarios tested, discriminative model performance strongly depends on generated annotations.
+Using the best discriminative model for each edge type, we recalled close to 30% of established edges within Hetionet v1.
+
+### Conclusions
+
+Our results show that this framework can incorporate novel edges into our source knowledge graph.
+However, results with label function transfer were mixed.
+Only label functions describing very similar edge types supported improved performance when transferred.
+We expect that the continued development of this strategy may provide essential building blocks to populating biomedical knowledge graphs with discoveries, ensuring that these resources include cutting-edge results.
 
 
 ## Introduction

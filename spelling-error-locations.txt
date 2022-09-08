@@ -1,5 +1,12 @@
 content/00.front-matter.md:7:citable
-content/01.abstract.md:4:curation
+content/01.abstract.md:6:curation
+content/01.abstract.md:14:subsetted
+content/01.abstract.md:15:Hetionet
+content/01.abstract.md:17:Hetionet
+content/01.abstract.md:19:transferability
+content/01.abstract.md:20:discriminative
+content/01.abstract.md:21:discriminative
+content/01.abstract.md:21:Hetionet
 content/02.introduction.md:4:repurposing
 content/02.introduction.md:5:curation
 content/02.introduction.md:6:curation
